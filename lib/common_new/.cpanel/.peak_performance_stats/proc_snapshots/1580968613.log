@@ -1,0 +1,68 @@
+Thu Feb  6 05:56:53 GMT 2020
+Running Processes:
+schooztc  3762537 68.7  0.7 556224 233512 ?       R    05:56   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3762655 78.5  0.5 499172 177512 ?       R    05:56   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3762767 65.2  0.2 433660 94688 ?        R    05:56   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 202.4% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3762537 62.3  0.7 637660 240560 ?       R    05:56   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3762655 69.5  0.5 517604 195956 ?       R    05:56   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3762767 63.6  0.3 439008 117944 ?       R    05:56   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3762537 62.9  0.7 637660 240560 ?       R    05:56   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3762655 70.7  0.5 517872 196048 ?       R    05:56   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3762767 65.5  0.3 445148 124000 ?       R    05:56   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3762537 63.7  0.7 637660 240560 ?       R    05:56   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3762655 72.0  0.6 518884 196976 ?       R    05:56   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3762767 66.8  0.3 450196 128696 ?       R    05:56   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3762537 64.5  0.7 638172 241088 ?       S    05:56   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3762655 72.8  0.6 519908 198060 ?       R    05:56   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3762767 68.5  0.3 451636 130080 ?       R    05:56   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3762537 64.5  0.7 638172 241088 ?       S    05:56   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3762655 73.7  0.6 520168 198540 ?       R    05:56   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3762767 69.6  0.4 455692 134364 ?       R    05:56   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  05:56:55 up 180 days, 14:28,  0 users,  load average: 0.08, 0.02, 0.01
+
+
+MySQL User Processes:
+ID = 68046269	TIME = 2	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 68046263	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (7490) ORDER BY meta_id ASC
+ID = 68046244	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT ID FROM wp_posts WHERE post_parent = 7490 AND post_status IN ( 'publish', 'closed' ) AND post_type = 'topic' ORDER BY ID DESC
+
+Current load:  05:56:55 up 180 days, 14:28,  0 users,  load average: 0.08, 0.02, 0.01
+
+

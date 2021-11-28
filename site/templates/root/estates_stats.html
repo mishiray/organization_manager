@@ -1,0 +1,89 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">View Estates Statistics</h1>
+    <!-- DataTales Example -->
+  
+    <!--{if !empty($maxestate)}-->
+    <div class="col-lg-4">
+    <h2 class="h3 mb-2 text-gray-800">Highest selling estate</h2>
+      <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-dark"><!--{$maxestate->name}--></h6>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+        <img src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$maxestate->images}-->" alt="Images" class="w-100">
+        </div>
+        <div class="card-body">
+          <p> <strong>Total Amount Paid: </strong>
+            &#8358;<!--{$maxestate->total_amount_paid|number_format:2}--></p>
+            
+          <p> <strong>Total Plots Sold: </strong>
+            <!--{$maxestate->totalsold}--></p>
+        </div>
+      </div>
+    </div>
+    <!--{else}-->
+    <h2 class="m-4">No Highest Selling Estate Yet</h2>
+    <!--{/if}-->
+
+  <!--{if !empty($stats)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Property Name</th>
+            <th>Total Plots Sold</th>
+            <th>Total Plots Available</th>
+            <th>Total Plots</th>
+            <th>Total Amount Sold</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <th>Property Name</th>
+            <th>Total Plots Sold</th>
+            <th>Total Plots Available</th>
+            <th>Total Plots</th>
+            <th>Total Amount Sold</th>
+            <th>Status</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+          <!--{foreach $stats as $stat}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <td><!--{$stat->product}--></td>
+            <td><!--{$stat->totalsold}--></td>
+            <td><!--{$stat->available}--></td>
+            <td><!--{$stat->totalplot}--></td>
+            <td>&#8358;<!--{$stat->t_amount|number_format:2}--></td>
+            <th>
+              <!--{if $stat->available < 1}-->
+                <span class="badge badge-primary">Sold Out</span></td> 
+              <!--{else if $stat->available<10}-->
+                <span class="badge badge-danger">Less than 10 plots</span></td>
+              <!--{else if $stat->available<20}-->
+                <span class="badge badge-warning">Less than 10 plots</span></td>
+              <!--{else}-->
+                <span class="badge badge-success">OK</span></td>
+              <!--{/if}-->
+            </th>
+		      </tr>
+			  	<!--{$numCount=$numCount+1}-->
+          <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <h2 class="m-4">No Record Found</h2>
+  <!--{/if}-->
+<!--{/block}-->

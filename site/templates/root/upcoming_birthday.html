@@ -1,0 +1,99 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Upcoming Birthdays</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Here are a list of birthdays and anniversaries for the month</h6>
+  </div>
+  <!--{if !empty($birthmonths)}-->
+    <div class="row justify-content-center">
+
+    <!--{foreach $birthmonths as $birthday}-->
+    <div class="col-md-3 mb-4">
+        
+			<div class="card <!--{if $birthday->format|date_format:"%m%d" == $smarty.now|date_format:"%m%d"}--> bg-gradient-primary <!--{else}--> <!--{if $birthday->format|date_format:"%m%d" < $smarty.now|date_format:"%m%d"}--> bg-gradient-danger <!--{/if}-->  bg-gradient-warning <!--{/if}--> text-white shadow">
+				<div class="text-white card-body">
+						<strong> Name: </Strong> <!--{$birthday->firstname }--> <!--{$birthday->surname}--> <br>
+					  <div class="text-white"><strong> Date: </strong><!--{$birthday->format|date_format:"%B %e"}--></div> <br>
+					  <!--{if $birthday->format|date_format:"%m%d" == $smarty.now|date_format:"%m%d"}--> <div class="p-2 text-primary text-center bg-light"> HAPPY BIRTHDAY </div> 
+					  <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/upcoming_birthday">
+    			         <input type="hidden" name="email" value="<!--{$birthday->email}-->" />
+    			         <input type="hidden" name="name" value="<!--{$birthday->firstname}--> <!--{$birthday->surname}-->" />
+    			         <button type="submit" name="send_email" class="btn btn-sm my-1 btn-primary">Send Email</button>
+    			         <button type="button" class="btn btn-sm my-1 btn-success">Send SmS</button>
+    			     </form>
+					  <!--{else}-->  <!--{if $birthday->format|date_format:"%m%d" < $smarty.now|date_format:"%m%d"}-->  <div class="p-2 text-center text-primary bg-light"> PAST </div> <!--{else}-->  <div class="p-2 text-center text-primary bg-light"> UPCOMING </div> <!--{/if}-->   <!--{/if}-->
+				</div>
+				
+			</div>
+    </div>
+    <!--{/foreach}-->
+  </div>
+  <hr>
+</div>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Birthdays</h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+			  	<!--{foreach $birthmonths as $birthday}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+			      <td>
+              <!--{$birthday->firstname }--> <!--{$birthday->surname}--> 
+            </td>
+            <td>
+              <!--{$birthday->format|date_format:"%B %e"}-->
+            </td>
+			 <td>
+			     <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/upcoming_birthday">
+			         <input type="hidden" name="email" value="<!--{$birthday->email}-->" />
+			         <input type="hidden" name="name" value="<!--{$birthday->firstname}--> <!--{$birthday->surname}-->" />
+               <button type="submit" name="send_email" class="btn btn-sm my-1 btn-primary">Send Email</button>
+               <button type="button" class="btn btn-sm my-1 btn-success">Send SmS</button>
+			     </form>
+            </td>
+			    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+    <!--{if !empty($fail)}-->
+        <div class="form-group">
+        <!--{$fail}-->
+        </div>
+    <!--{else}-->
+    <!--{/if}-->
+  </div>
+</div>
+<!--{else}-->
+<div class="alert alert-warning"><h3 class="alert-heading">No Birthday for this month</h3></div>
+<!--{/if}-->
+  
+  
+<!--{/block}-->

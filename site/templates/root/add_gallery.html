@@ -1,0 +1,68 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Gallery</h1>
+    <p class="mb-4">Add a new Image to the records</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add Gallery Image</h6>
+      </div>
+      <div class="card-body">
+      <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_gallery" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="file_upload" class="form-control-label">Upload an Image</label>
+                  <input type="file" accept="image/*" id="file_upload" class="input-rounded w-100" name="file_upload"/>
+                </div>
+                <div class="form-group">
+                  <label for="tags" class="form-control-label">Add tags</label>
+                  <select name="tags[]" class="form-control" multiple id="tags">
+                    <!--
+                        --Gallery filter-- 
+                        .flt_64 = Estates
+                        .flt_65 = Apartments
+                        .flt_46 = Landed Property
+                        .flt_11 = 2 Bedroom
+                        .flt_8 = Storey
+                        .flt_10 = Self Con
+                    -->
+                    <option disabled>Select tags</option>
+                    <option value="flt_64">Estates</option>
+                    <option value="flt_65">Apartments</option>
+                    <option value="flt_46">Landed Property</option>
+                    <option value="flt_11">2 Bedroom</option>
+                    <option value="flt_8">Storey</option>
+                    <option value="flt_10">Self Con</option>
+                  </select>   
+                </div>
+                  <div class="form-group">
+                    <label for="title" class="form-control-label">Image title</label>
+                        <input type="text" class="form-control form-control-user" id="title" name="title" placeholder="Image title">
+                  </div>
+                  <div class="form-group">
+                        <label for="description" class="form-control-label">Description</label>
+                        <textarea id="description" name="description" class="form-control form-control-sm input-block" rows="3" placeholder="Description" required></textarea>
+                  </div>
+                  <div class="form-group text-center">
+                    <button class="btn btn-success btn-sm rounded-0" type="submit" name="gallery">Add Image</button>
+                </div>
+            </div>
+            <!--{if !empty($fail)}-->
+            <div class="col">
+              <div class="form-group">
+                <!--{$fail}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <br>
+        </div>
+        
+      </form>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

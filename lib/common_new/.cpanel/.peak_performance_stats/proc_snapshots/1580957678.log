@@ -1,0 +1,71 @@
+Thu Feb  6 02:54:38 GMT 2020
+Running Processes:
+schooztc  3103238 35.4  0.7 638176 241120 ?       S    02:54   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3103401 59.6  0.7 564032 241484 ?       R    02:54   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3103825 51.3  0.2 433128 88296 ?        R    02:54   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3103841 38.3  0.2 428932 73184 ?        R    02:54   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+COMMAND     PID     USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+php-cgi 3103238 schooztc   14u  IPv4 1835564206      0t0  TCP 199.79.63.83:60138->203.190.36.191:443 (ESTABLISHED)
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 205% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3103238 33.5  0.7 638176 241312 ?       S    02:54   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3103825 58.5  0.3 435280 105812 ?       R    02:54   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3103841 48.2  0.2 433388 94460 ?        R    02:54   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3103238 33.5  0.7 638176 241312 ?       S    02:54   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3103825 60.5  0.3 435388 107200 ?       R    02:54   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3103841 50.0  0.2 433376 95280 ?        R    02:54   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3103238 33.5  0.7 638176 241312 ?       S    02:54   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3103825 62.2  0.3 436344 109548 ?       R    02:54   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3103841 52.0  0.2 433384 95564 ?        R    02:54   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3103238 33.5  0.7 638176 241312 ?       S    02:54   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3103825 63.5  0.3 436324 110596 ?       R    02:54   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3103841 53.0  0.2 433392 96304 ?        R    02:54   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3103238 33.5  0.7 638176 241312 ?       S    02:54   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3103825 63.5  0.3 436324 110596 ?       R    02:54   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3103841 53.0  0.2 433392 96304 ?        R    02:54   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  02:54:40 up 180 days, 11:26,  0 users,  load average: 0.01, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 68008251	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 68008249	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 68008207	TIME = 6	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  02:54:40 up 180 days, 11:26,  0 users,  load average: 0.01, 0.00, 0.00
+
+

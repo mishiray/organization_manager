@@ -1,0 +1,264 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h1 class="h3 mb-2 text-gray-800">Transaction Management</h1>
+<p class="mb-4">Add New Transaction</p>
+
+<section class="row justify-content-center" id="printMe">
+	<div class="col-md-12 card">
+		<div class="card-body text-center pt-4">
+			<div class="row no-gutters justify-content-center">
+					<fieldset class="px-4 text-justify">
+						<legend class="text-center">Transaction Management</legend>
+							<!--{if !empty($fail)}-->
+								<div class="form-group">
+									<!--{$fail}-->
+								</div>
+							<!--{/if}-->
+
+							<div class="row  text-right">
+								<div class="col-12 justify-content-end p-2 text-right d-flex">
+									<div class="well clearfix mr-4">
+										<a class="btn btn-danger pull-right add-record" data-added="0"><i class="fa fa-plus"></i> Add Row</a>
+									</div>
+								</div>
+							</div>
+							<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finance_manager" enctype="multipart/form-data" class="w-100">
+								<div class="form-group">
+									<div class="table-responsive">
+									<table id="financetbl" class="table table-hover table-bordered">
+										<thead class=" text-light bg-primary">
+											<tr>
+							                    <th scope="col">S/N</th>
+							                    <th scope="col">Date</th>
+							                    <th scope="col">Account</th>
+							                    <th scope="col">Payment Type</th>
+							                    <th scope="col">Beneficiary Name</th>
+							                    <th scope="col">Category</th>
+												<th scope="col">Details</th>
+							                    <th scope="col">Description</th>
+							                    <th scope="col">Amount</th>
+							                  </tr>
+							                </thead>
+											
+							                <tbody id="financebody">
+								                  <tr id = "rec-0">
+								                    <td>
+								                    	<span class="font-weight-bold sn">1</span>
+								                    </td>
+								                    <td>
+								                      <input type="date" id="date" class="form-control  border " name="date" i="" value="<!--{$smarty.now|date_format: '%Y-%m-%d'}-->" placeholder="" >
+													</td>
+													<td>
+														<select class="form-control" id="account" name="account">
+														<!--{if !empty($accounts)}-->
+															<option selected disabled>Choose</option>
+															<!--{foreach $accounts as $acc}-->
+																<option i="" value="<!--{$acc->account}-->" > <!--{$acc->category|ucwords}--> - <!--{$acc->account|ucwords}--> </option>
+															<!--{/foreach}-->
+														<!--{else}-->
+															<option>No Account Added</option>
+														<!--{/if}-->
+														</select>
+													</td>
+													<td>
+														<select class="form-control" id="payment" name="payment">
+															<option selected disabled>Choose</option>
+															<option i="" value="bank transfer">Bank Transfer</option>
+															<option i="" value="cheque">Cheque</option>
+															<option i="" value="cash">Cash</option>
+														</select>
+													</td>
+								                    <td>
+								                      <input type="text" id="person" class="form-control  border " name="person" i="" value="">
+								                    </td>
+								                    <td>
+														<div class="form-group">
+															<div class="custom-control custom-radio custom-control-inline">
+															  <input type="radio" id="income0" checked name="category0" value="income" i="0" class="custom-control-input category">
+															  <label  class="custom-control-label" for="income0">Income</label>
+															</div>
+															<div class="custom-control custom-radio custom-control-inline">
+															  <input type="radio" id="expense0" name="category0" value="expense" i="0" class="custom-control-input category">
+															  <label  class="custom-control-label" for="expense0">Expense</label>
+															</div>
+														</div>
+														<input type="hidden" id="catfinal0" name="catfinal" value="income" i="0" class="">
+								                    </td>
+													<td>
+														<input type="hidden" id="detfinal0" name="detfinal" value="" v="" i="0" class="">
+														<select class="form-control expensedetail d-none" i="0" id="expensedetail0" name="purpose">
+															<option selected disabled>Choose</option>
+															<!--{if !empty($expense_accounts)}-->
+																<!--{foreach $expense_accounts as $account}-->
+																<option i='<!--{$account->category}-->' value="<!--{$account->account}-->"><!--{$account->type|ucwords}--> - <!--{$account->account|ucwords}--></option>
+																<!--{/foreach}-->
+															<!--{else}-->
+															<option i="" value="wages salaries">Wages & Salaries</option>
+															<option i="" value="maintenance and repair">Maintenance & Repair</option>
+															<option i="" value="office Expenses">Office Expenses</option>
+															<option i="" value="stationery">Stationery</option>
+															<option i="" value="commission">Commission</option>
+															<option i="" value="petty cash">Petty cash</option>
+															<option i="" value="cost of sales">Cost of sales</option>
+															<option i="" value="purchase of assets">Purchase of assets</option>
+															<option i="" value="others">Others</option>
+															<!--{/if}-->
+														</select>
+														<select class="form-control incomedetail" id="incomedetail0" i="0"  name="purpose">
+															<option selected disabled>Choose</option>
+															<!--{if !empty($income_accounts)}-->
+																<!--{foreach $income_accounts as $account}-->
+																<option i="<!--{$account->category}-->" value="<!--{$account->account}-->"><!--{$account->type|ucwords}--> - <!--{$account->account|ucwords}--></option>
+																<!--{/foreach}-->
+															<!--{else}-->
+															<option i="" value="sales">Sales</option>
+															<option i="" value="payment">Payment</option>
+															<option i="" value="transfer">Transfer</option>
+															<option i="" value="refund">Refund</option>
+															<option i="" value="deposit">Deposit</option>
+															<option i="" value="others">Others</option>
+															<!--{/if}-->
+														</select>
+													</td>
+								                    <td>
+								                      <textarea id="description" class="form-control  border  " name="description[]" value="" placeholder=""></textarea>
+								                    </td>
+								                    <td>
+								                      <input type="number" id="amount0" class="form-control  border  amount " name="amount" i="0" value="" placeholder="">
+								                    </td>
+													<td><a class="btn btn-xs delete-record" data-id="0"><i class="fa fa-trash"></i></a></td>
+								                  </tr>
+							                </tbody>
+							                <tfoot>
+							                  <tr> 
+							                    <th colspan="6" class="text-center">
+							                      Totals 
+							                    </th>
+							                    <td class="text-center">
+													<label for="" class="form-control-label">Income Total</label>
+								                    <input id="creditTotal" type="number" class="form-control  border  creditTotal badge-pill" name="credittotal" value="" placeholder="" required readonly>
+							                    </td>
+							                    <td class="text-center">
+													<label for="debitTotal" class="form-control-label">Expense Total</label>
+								                    <input id="debitTotal" type="number" class="form-control  border  debitTotal badge-pill" name="debittotal" value="" placeholder="" required readonly>
+							                    </td>
+							                    <td class="text-center">
+													<label for="balanceTotal" class="form-control-label">Balance Total</label>
+								                    <input id="balanceTotal" type="number" class="form-control  border  balanceTotal badge-pill" name="grandtotal" value="" placeholder="" required readonly>
+							                    </td>
+							                  </tr>
+							                </tfoot>
+							              </table>
+										  <div class="d-none">
+											<textarea name="allData" id="allData"></textarea>
+										  </div>
+							            </div>
+										<div class="d-none">
+											<table>
+												<tr>
+													<td></td>
+												</tr>
+												<tr class="sample-row d-none" id = "rec-1">
+													<td>
+														<span class="font-weight-bold sn">1</span>
+													</td>
+													<td>
+													  <input type="date" id="date" class="form-control  border " name="date" i="" value="<!--{$smarty.now|date_format: '%Y-%m-%d'}-->" placeholder="" >
+													</td>
+													<td>
+														<select class="form-control" id="account" name="account">
+														<!--{if !empty($accounts)}-->
+															<option selected disabled>Choose</option>
+															<!--{foreach $accounts as $acc}-->
+																<option i="" value="<!--{$acc->category}-->" > <!--{$acc->account|ucwords}--></option>
+															<!--{/foreach}-->
+														<!--{else}-->
+															<option>No Account Added</option>
+														<!--{/if}-->
+														</select>
+													</td>
+													<td>
+														<select class="form-control" id="payment" name="payment">
+															<option selected disabled>Choose</option>
+															<option i="" value="bank transfer">Bank Transfer</option>
+															<option i="" value="cheque">Cheque</option>
+															<option i="" value="cash">Cash</option>
+														</select>
+													</td>
+													<td>
+													  <input type="text" id="person" class="form-control  border " name="person[]" i="" value="">
+													</td>
+													<td>
+														<div class="form-group">
+															<div class="custom-control custom-radio custom-control-inline">
+															  <input type="radio" id="income" checked name="category" value="income" i="" class="custom-control-input category">
+															  <label id="labelIncome" class="custom-control-label" for="income">Income</label>
+															</div>
+															<div class="custom-control custom-radio custom-control-inline">
+															  <input type="radio" id="expense" name="category" value="expense" i="" class="custom-control-input category">
+															  <label id="labelExpense" class="custom-control-label" for="expense">Expense</label>
+															</div>
+														</div>
+														<input type="hidden" id="catfinal" name="catfinal" value="income" i="" class="">
+													</td>
+													<td>
+														<input type="hidden" id="detfinal" name="detfinal" v="" value="" i="" class="">
+														<select class="form-control d-none expensedetail" id="debits" i=""  name="purpose">
+															<option selected disabled>Choose</option>
+															<!--{if !empty($expense_accounts)}-->
+																<!--{foreach $expense_accounts as $account}-->
+																<option i='<!--{$account->category}-->'' value="<!--{$account->account}-->"> <!--{$account->type|ucwords}--> - <!--{$account->account|ucwords}--></option>
+																<!--{/foreach}-->
+															<!--{else}-->
+															<option i="" value="wages salaries">Wages & Salaries</option>
+															<option i="" value="maintenance and repair">Maintenance & Repair</option>
+															<option i="" value="office expenses">Office Expenses</option>
+															<option i="" value="stationery">Stationery</option>
+															<option i="" value="commission">Commission</option>
+															<option i="" value="petty cash">Petty cash</option>
+															<option i="" value="cost of sales">Cost of sales</option>
+															<option i="" value="purchase of assets">Purchase of assets</option>
+															<option i="" value="others">Others</option>
+															<!--{/if}-->
+														</select>
+														<select class="form-control incomedetail" id="credits" i="" name="purpose">
+															<option selected disabled>Choose</option>
+															<!--{if !empty($income_accounts)}-->
+																<!--{foreach $income_accounts as $account}-->
+																<option i="<!--{$account->category}-->" value="<!--{$account->account}-->"><!--{$account->type|ucwords}--> - <!--{$account->account|ucwords}--></option>
+																<!--{/foreach}-->
+															<!--{else}-->
+															<option i="" value="sales">Sales</option>
+															<option i="" value="payment">Payment</option>
+															<option i="" value="transfer">Transfer</option>
+															<option i="" value="refund">Refund</option>
+															<option i="" value="deposit">Deposit</option>
+															<option i="" value="others">Others</option>
+															<!--{/if}-->
+														</select>
+													</td>
+													<td>
+													  <textarea id="description" class="form-control  border" name="description[]" value="" placeholder=""></textarea>
+													</td>
+								                    <td>
+								                      <input type="number" id="amount" class="form-control  border  amount " name="amount" i="0" value="" placeholder="">
+								                    </td>
+													<td><a class="btn btn-xs delete-record" data-id="0"><i class="fa fa-trash"></i></a></td>
+						
+												</tr>
+											</table>
+										</div>
+									</div>
+								<div class="form-group text-center">
+									<button class="btn btn-success btn-sm rounded-0" type="submit" name="addexpense"><i class="fa fa-plus"></i> Publish Expense</button>
+								</div>
+							</form>
+					</fieldset>
+			</div>
+	    </div>
+	</div>
+	<div class="card-footer d-none">
+		<button type="button" class="btn btn-primary btn-sm" id="printSect"><i class="fa fa-print"></i> Print Now</button>
+	</div>
+</section>
+<!--{/block}-->

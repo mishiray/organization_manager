@@ -1,0 +1,53 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard | Notifications </strong>&nbsp;<i class="fa fa-bell"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<h2>NOTIFICATIONS</h2>
+<!--{if !empty($err)}-->
+<!--{$err}-->
+<!--{/if}-->
+<section class="jumbotron text-center">
+	<div class="table-responsive">
+		<!--{if !empty($notifications)}-->
+		<!--{if !empty($notifications->bookings)}-->
+		<table class="table table-striped table-hover table-bordered" id="dataTableId">
+		  <thead class="thead-dark">
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Ticket No</th>
+		      <th scope="col">Email</th>
+		      <th scope="col">Booking Date</th>
+		      <th scope="col">Traveling From</th>
+		      <th scope="col">Traveling To</th>
+		      <th scope="col">Amount</th>
+		      <th scope="col"></th>
+		    </tr>
+		  </thead>
+		  <tbody><!--{$numCount=1}-->
+		  	<!--{foreach $notifications->bookings as $bookings}-->
+		    <tr>
+		      <td><!--{$numCount}--></td>
+		      <td><!--{$bookings->ticketNo}--></td>
+		      <td><!--{$bookings->client}--></td>
+		      <td><!--{$bookings->bookingDate}--></td>
+		      <td><!--{$bookings->search->travelFrom}--></td>
+		      <td><!--{$bookings->search->travelTo}--></td>
+		      <td>₦<!--{$bookings->totalFee}--></td>
+		      <td>
+		      	<a class="btn btn-sm btn-info" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/ticket/ticketInfo?ticket=<!--{$bookings->ticketNo}-->"><i class="fa fa-ellipsis-v"></i> More</a>
+		      	<a class="btn btn-sm btn-success" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/notifications?ticket=<!--{$bookings->token}-->&evt=read"><i class="fa fa-check"></i> Mark as read</a>
+		      </td>
+		    </tr>
+		  	<!--{$numCount=$numCount+1}-->
+			<!--{/foreach}-->
+
+		  </tbody>
+		</table>
+		<!--{/if}-->
+		<!--{else}-->
+		<div class="alert alert-info"><h3 class="alert-heading">No notification</h3></div>
+		<!--{/if}-->
+	</div>
+</section>
+<!--{/block}-->

@@ -1,0 +1,301 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+
+<h1 class="h3 mb-2 text-gray-800">Estimates
+</h1>
+
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+	  <h6 class="m-0 font-weight-bold text-primary">Estimates</h6>
+	</div>
+	<div class="card-body justify-content-center">
+		<div class="col-lg-6 bg-primary rounded pt-2">
+		  <form action="" class="d-flex" method="post">
+		  <div class="form-group mr-2">
+			<label for="product" class="form-control-label text-light">Products</label>
+			<select name="product" class="form-control" id="product">
+				<option value="">All</option>
+				<!--{foreach $products as $type}-->
+				<option <!--{if !empty($filter->product) && $filter->product == $type->name }--> selected <!--{/if}--> value="<!--{$type->name}-->">
+					<!--{$type->name|ucwords}-->
+				</option>
+				<!--{/foreach}-->
+			</select>
+		  </div>
+			<div class="form-group d-flex"> 
+			  <button type="submit" class="mt-2 btn btn-success" name="triggers" id="reports" value="filter_accounts">OK</button>
+		   </div>      
+		 </form>
+		</div>
+		
+		<div class="row text-right d-flex justify-content-end m-4">
+			<div class="col-md-2 m-1 justify-content-end ">
+				<div class="well clearfix">
+					<a class="btn btn-success rounded-pill p-2 pull-right add-record" data-added="0" data-toggle="modal" data-target="#addestimateModal"><i class="fa fa-plus"></i> Add Estimate</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="card-body">
+		
+		<!--{if !empty($fail)}-->
+			<div class="form-group">
+				<!--{$fail}-->
+			</div>
+		<!--{/if}-->
+		<div class="col-sm-12">
+			<div class="table-responsive">
+					<table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
+					  <thead class="site-bg-1 text-dark">
+					    <th>
+						  S/N
+					    </th>
+					    <th>
+						  Customer
+					    </th>
+					    <th>
+						  Product
+					    </th>
+						<th>
+						  Amount
+						</th>
+						<th>
+						  Date Added
+						</th>
+						<th>
+							Action
+						</th>
+					  </thead>
+					  <tbody>
+						  
+						<!--{if !empty($estimates)}-->
+						<!--{$numcount = 1}-->
+					  	<!--{foreach $estimates as $estimate}-->
+							<tr>
+								<td>
+									<!--{$numcount}-->
+								</td>
+								<td>
+									<!--{$estimate->customer|ucwords}-->
+								</td>
+								<td>
+									<!--{$estimate->product|ucwords}-->
+								</td>
+								<td>
+									₦<!--{$estimate->price|number_format}-->
+								</td>
+								<td>
+									<!--{$estimate->dateadded|date_format}-->
+								</td>
+								<td class="d-flex">
+									<div class="btn-group m-2" role="group">
+										<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Action
+										</button>
+										<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+											<a class="dropdown-item editestimate" data-toggle="modal" i='<!--{json_encode($estimate)}-->' data-target="#editestimateModal"> Edit </a>
+											<a class="dropdown-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_estimate?id=<!--{$estimate->token}-->"> View </a>
+										</div>
+									</div>
+									<form action="" class="d-flex m-2" method="post">
+									  <input type="hidden" name="token" value="<!--{$estimate->token}-->">
+									  <button type="submit" name="triggers" value="delete_estimate" onclick="return deleteItem();" class="btn btn-danger btn-sm"><i class="fa fa-trash p-2"></i>Delete</button>
+									</form>
+								</td>
+							</tr>
+							<!--{$numcount = $numcount + 1}-->
+						<!--{/foreach}-->
+						<!--{/if}-->
+					  </tbody>
+					</table>
+			</div>
+		</div>
+	</div>
+	
+	<!-- expense account modal-->
+	<div class="modal fade" id="addestimateModal" tabindex="-1" role="dialog" aria-labelledby="exampleexpenseLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h3 class="modal-title" id="exampleexpenseLabel">Add an estimate</h3>
+			<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			</div>
+			<form action="" method="post">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-4">
+							<div class="form-group">
+								<label for="customer" class="form-control-label">Customer</label>
+								<input type="text" list="customers" placeholder="Enter Full Name" class="form-control" name="customer"/>
+								<datalist id="customers">
+								  <!--{foreach $customers as $customer}-->
+									<option><!--{$customer|ucwords}--></option>
+									<!--{/foreach}-->
+								</datalist>
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="form-group">
+								<label for="date" class="form-control-label">Date</label>
+								<input type="date" name="date" class="form-control" id="date">
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="form-group">
+								<label for="expiry_date" class="form-control-label">Expiry Date</label>
+								<input type="date" name="expiry_date" class="form-control" id="expiry_date">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="product" class="form-control-label">Product Item</label>
+						<select name="product" id="product" class="form-control product">
+							<option value="">Choose</option>
+							<!--{if !empty($products)}-->
+								<!--{foreach $products as $product}-->
+								<option i="<!--{$product->amount}-->" value="<!--{$product->name}-->"><!--{$product->name}--></option>
+								<!--{/foreach}-->
+							<!--{/if}-->
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="description" class="form-control-label">Description</label>
+						<input type="text" class="form-control" name="description" required placeholder="Description" id="product">
+					</div>
+					
+					<div class="row">
+						<div class="col-4">
+						<div class="form-group">
+							<label for="quantity" class="form-control-label">Quantity</label>
+							<input type="number" min="1" class="form-control money" name="quantity" value="1" required placeholder="Quantity" id="quantity">
+						</div>
+						</div>
+						<div class="col-4">
+						<div class="form-group">
+							<label for="price" class="form-control-label">Price</label>
+							<input type="number" min="1" class="form-control money" name="price" required placeholder="Price" id="price">
+						</div>
+						</div>
+						<div class="col-4">
+							<div class="form-group">
+								<label for="tax" class="form-control-label">Tax</label>
+								<input type="number" class="form-control money" name="tax" placeholder="Tax" id="tax">
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-6">
+							<div class="form-group">
+								<label for="amount" class="form-control-label">Amount</label>
+								<input type="number" class="form-control" name="amount" required readonly placeholder="Amount" id="amount">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn rounded-pill border-secondary btn-lg" style="min-width: 100px;" type="button" data-dismiss="modal">Cancel</button>
+					<button class="btn p-2 rounded-pill btn-primary btn-lg" style="min-width: 100px;" name="triggers" value="add_estimate" >Add</button>
+				</div>
+			</form>
+		</div>
+		</div>
+	</div>
+
+	<!-- expense account modal-->
+	<div class="modal fade" id="editestimateModal" tabindex="-1" role="dialog" aria-labelledby="exampleexpenseLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h3 class="modal-title" id="exampleexpenseLabel">Edit estimate</h3>
+			<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			</div>
+			<form action="" method="post">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-4">
+							<input type="hidden" id="token" name="token">
+							<div class="form-group">
+								<label for="customer" class="form-control-label">Customer</label>
+								<input type="text" id="editcustomer" list="customers" placeholder="Enter Full Name" class="form-control" name="customer"/>
+								<datalist id="customers">
+								  <!--{foreach $customers as $customer}-->
+									<option><!--{$customer|ucwords}--></option>
+									<!--{/foreach}-->
+								</datalist>
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="form-group">
+								<label for="date" class="form-control-label">Date</label>
+								<input type="date" name="date" id="editdate"  class="form-control" id="date">
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="form-group">
+								<label for="expiry_date" class="form-control-label">Expiry Date</label>
+								<input type="date" name="expiry_date" id="editexpdate"  class="form-control" id="expiry_date">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="product" class="form-control-label">Product Item</label>
+						<select name="product" id="editproduct" class="form-control product">
+							<option value="">Choose</option>
+							<!--{if !empty($products)}-->
+								<!--{foreach $products as $product}-->
+								<option i="<!--{$product->amount}-->" value="<!--{$product->name}-->"><!--{$product->name}--></option>
+								<!--{/foreach}-->
+							<!--{/if}-->
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="description" class="form-control-label">Description</label>
+						<input type="text" class="form-control" name="description" required placeholder="Description" id="editdescription" >
+					</div>
+					
+					<div class="row">
+						<div class="col-4">
+						<div class="form-group">
+							<label for="quantity" class="form-control-label">Quantity</label>
+							<input type="number"  min="1" class="form-control money" name="quantity" value="1" required placeholder="Quantity" id="editquantity">
+						</div>
+						</div>
+						<div class="col-4">
+						<div class="form-group">
+							<label for="price" class="form-control-label">Price</label>
+							<input type="number" min="1" class="form-control money" name="price" required placeholder="Price" id="editprice">
+						</div>
+						</div>
+						<div class="col-4">
+							<div class="form-group">
+								<label for="tax" class="form-control-label">Tax</label>
+								<input type="number" class="form-control money" name="tax" placeholder="Tax" id="edittax">
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-6">
+							<div class="form-group">
+								<label for="amount" class="form-control-label">Amount</label>
+								<input type="number" class="form-control" name="amount" required readonly placeholder="Amount" id="editamount">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn rounded-pill border-secondary btn-lg" style="min-width: 100px;" type="button" data-dismiss="modal">Cancel</button>
+					<button class="btn p-2 rounded-pill btn-primary btn-lg" style="min-width: 100px;" name="triggers" value="update_estimate" >Edit</button>
+				</div>
+			</form>
+		</div>
+		</div>
+	</div>
+</div>
+<!--{/block}-->

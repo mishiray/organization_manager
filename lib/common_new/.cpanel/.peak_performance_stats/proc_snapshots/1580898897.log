@@ -1,0 +1,93 @@
+Wed Feb  5 10:34:57 GMT 2020
+Running Processes:
+schooztc  3330428  0.3  0.0  63764  9680 ?        S    10:34   0:00 dovecot/lmtp [local READY]
+schooztc  3331169 55.1  0.7 561756 238220 ?       R    10:34   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3331237 52.3  0.5 492980 172248 ?       R    10:34   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3331676 34.0  0.1 427340 56840 ?        R    10:34   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3331683 33.0  0.1 427232 58692 ?        R    10:34   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 174.9% (warning)
+      SSL: SSL error: missing certificate (warning)
+  Varnish: schoolofgreatness.africa is cached. (warning)
+  Varnish: ajahcity.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: courses.schoolofgreatness.africa is cached. (warning)
+  Varnish: uaac.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: alexihama.ajahcity.com.ng is cached. (warning)
+  Varnish: adeniyichristopher.ajahcity.com.ng is cached. (warning)
+  Varnish: spp.ajahcity.com.ng is cached. (warning)
+  Varnish: scog.ajahcity.com.ng is cached. (warning)
+  Varnish: metromedia.ajahcity.com.ng is cached. (warning)
+  Varnish: frankieslist.ajahcity.com.ng is cached. (warning)
+  Varnish: alethiaenterprise.schoolofgreatness.africa is cached. (warning)
+  Varnish: maccherithresources.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: lekkipeninsulapolice.org.schoolofgreatness.africa is cached. (warning)
+  Varnish: pecuniahouse.ajahcity.com.ng is cached. (warning)
+  Varnish: ajahcity.com.ng is cached. (warning)
+  Varnish: uaac.com.ng is cached. (warning)
+  Varnish: lekkipeninsulapolice.org is cached. (warning)
+  Varnish: maccherithresources.com.ng is cached. (warning)
+  Varnish: alethiaenterprise.com is cached. (warning)
+  Varnish: schoolofgreatness.africa.md-47.webhostbox.net is cached. (warning)
+
+
+Snapshot 1
+schooztc 3331169 55.3  0.7 563828 239424 ?       R    10:34   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3331237 51.7  0.5 507488 186540 ?       R    10:34   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3331676 43.6  0.2 427868 69976 ?        S    10:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3331683 43.3  0.2 428656 72036 ?        R    10:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3331169 56.0  0.7 556916 232892 ?       R    10:34   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3331237 52.1  0.5 507488 186540 ?       S    10:34   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3331676 45.6  0.2 428808 71168 ?        R    10:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3331683 45.6  0.2 428640 73140 ?        R    10:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3331169 56.5  0.0      0     0 ?        R    10:34   0:06 [php-cgi]
+schooztc 3331237 52.3  0.5 507488 186540 ?       R    10:34   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3331676 47.6  0.2 428892 72480 ?        R    10:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3331683 47.6  0.2 428636 74000 ?        R    10:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3331237 52.5  0.5 507488 186540 ?       S    10:34   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3331676 49.3  0.2 428940 73100 ?        R    10:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3331683 49.0  0.2 428628 74480 ?        R    10:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3331237 47.5  0.5 507488 186540 ?       S    10:34   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3331676 38.5  0.2 428900 73880 ?        R    10:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3331683 38.0  0.2 428908 75504 ?        R    10:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  10:34:59 up 179 days, 19:06,  1 user,  load average: 0.05, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 67755985	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67755984	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67755964	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  10:34:59 up 179 days, 19:06,  1 user,  load average: 0.05, 0.01, 0.00
+
+

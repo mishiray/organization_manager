@@ -1,0 +1,53 @@
+<!--{extends file="dashboard.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong>
+	&nbsp;Certificates <i class="fa fa-certificate"></i>
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<h3>MY CERTIFICATE</h3>
+<section class="row justify-content-center">
+	<div class="col-sm-11">
+    <!--{if $userinfo->active=='1'}-->
+		<div class="table-responsive">
+			<!--{if !empty($certificates)}-->
+			<div id="dataTableId_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+				<!--{include file="paging-top.html"}-->
+				<table class="table table-striped table-hover table-bordered">
+				  <thead class="alert-success">
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">TITLE</th>
+				      <th scope="col">DESCRIPTION</th>
+				      <th scope="col">DATE UPLOADED</th>
+				      <th scope="col">FILE</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	<!--{$numCount=1}-->
+				  	<!--{foreach $certificates as $certificate}-->
+				    <tr>
+				      <td><!--{$numCount}--></td>
+				      <td><!--{$certificate->title}--></td>
+				      <td><!--{$certificate->description}--></td>
+				      <td><!--{$certificate->datesent}--></td>
+				      <td>
+				      		<a class="btn btn-sm btn-warning" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$certificate->certurl}-->" title="<!--{$certificate->title}-->" target="__blank"><i class="fa fa-download"></i> Download Certificate</a>
+				      </td>
+				    </tr>
+				  	<!--{$numCount=$numCount+1}-->
+					<!--{/foreach}-->
+				  </tbody>
+				</table>
+				<!--{include file="paging-bottom.html"}-->
+			</div>
+			<!--{else}-->
+			<div class="alert alert-warning"><h6 class="font-weight-bold"> certificate is not yet available</h6></div>
+			<!--{/if}-->
+		</div>
+    <!--{else}-->
+      <div class="alert alert-danger"><h6 class="font-weight-bold"> your account is currently inactive contact our Admin </h6></div>
+    <!--{/if}-->
+	</div>
+</section>
+<!--{/block}-->

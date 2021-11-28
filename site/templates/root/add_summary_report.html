@@ -1,0 +1,102 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Summary Report</h1>
+    <p class="mb-4">Add a new Summary Report to the Database</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add Summary Report</h6>
+      </div>
+      <div class="card-body">
+      <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_summary_report" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6">
+              
+              <div class="form-group">
+                <label for="branch_name" class="form-control-label">Branch name</label>
+                <select class="form-control" name="branch_name"> 
+                  <!--{if !empty($branches)}-->
+                  <option value="">Select Branch</option>
+                    <!--{foreach $branches as $branch}-->  
+                    <option value="<!--{$branch->zone}-->">
+                      <!--{$branch->zone|ucfirst}-->
+                    </option>
+                    <!--{/foreach}-->
+                  <!--{else}-->
+                  <option value="none">No branches added</option>
+                  <!--{/if}-->
+                </select>
+            </div>
+                <div class="form-group">
+                    <label for="Team" class="form-control-label">Team</label>
+                    <input type="text" class="form-control form-control-user" id="Team" name="team" placeholder="Team">
+                </div>
+                <div class="form-group">
+                    <label for="Date" class="form-control-label">Date</label>
+                    <input type="Date" class="form-control form-control-user" id="Date" name="date" placeholder="Date">
+                </div>
+                <div class="form-group">
+                    <label for="Period" class="form-control-label">Period</label>
+                    <input type="text" class="form-control form-control-user" id="Period" name="period" placeholder="Period">
+                </div>
+                <div class="form-group">
+                  <label for="new_business" class="form-control-label">New Business Production</label>
+                  <input type="number" class="form-control form-control-user" id="new_business" name="new_business" placeholder="New Business Production">
+                </div>
+                <div class="form-group">
+                  <label for="old_business" class="form-control-label">Old Business Renewal</label>
+                  <input type="number" class="form-control form-control-user" id="old_business" name="old_business" placeholder="Old Business Renewal">
+                </div>
+                <div class="form-group">
+                  <label for="prospect" class="form-control-label">Prospects</label>
+                  <input type="number" class="form-control form-control-user" id="prospect" name="prospect" placeholder="Prospects">
+                </div>
+                <div class="form-group">
+                  <label for="proposal_sent" class="form-control-label">Proposals Sent</label>
+                  <input type="number" class="form-control form-control-user" id="proposal_sent" name="proposal_sent" placeholder="Proposals Sent">
+                </div>
+                <div class="form-group">
+                    <label for="client_inspection" class="form-control-label">Clients For Inspection</label>
+                    <input type="number" class="form-control form-control-user" id="client_inspection" name="client_inspection" placeholder="Clients For Inspection">
+                </div>
+                <div class="form-group">
+                    <label for="business_received" class="form-control-label">New Business Received</label>
+                    <input type="number" class="form-control form-control-user" id="business_received" name="business_received" placeholder="New Business Received">
+                </div>
+                <div class="form-group">
+                  <label for="achievements" class="form-control-label">Achievements</label>
+                  <textarea class="form-control" id="achievements" name="achievements"  placeholder="Achievements">
+                  </textarea>
+                </div>
+                <div class="form-group">
+                  <label for="challenges" class="form-control-label">Challenges</label>
+                  <textarea class="form-control" id="challenges" name="challenges"  placeholder="Challenges">
+                  </textarea>
+                </div>
+                <div class="form-group">
+                  <label for="suggestions" class="form-control-label">Suggestions</label>
+                  <textarea class="form-control" id="suggestions" name="suggestions"  placeholder="Suggestions">
+                  </textarea>
+                </div>
+                  <div class="form-group text-center">
+                    <button class="btn btn-primary btn-sm rounded-0" type="submit" name="add_summary_report">Add Summary Report</button>
+                </div>
+            </div>
+            <!--{if !empty($fail)}-->
+            <div class="col">
+              <div class="form-group">
+                <!--{$fail}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <br>
+        </div>
+        
+      </form>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

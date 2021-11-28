@@ -1,0 +1,342 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard |</strong>&nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finances">FINANCES&nbsp;<i class="fa fa-money"></i></a>&nbsp;| Finaice Detail&nbsp;<i class="fa fa-info"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<!--{if !empty($finance)}-->
+<section class="row justify-content-center" id="printMe">
+	<div class="col-md-12 card">
+		<h4 class="card-header bg-success mt-2 text-center font-weight-bold">
+			<img class="img float-left" style="max-width: 100px;" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/logo.png" alt="<!--{$Site.companyName}-->"> <!--{$finance->title}-->
+		</h4>
+		<div class="card-body text-center pt-4">
+			<div class="row no-gutters justify-content-center">
+				<div class="col-sm-6 card-body text-dark site-bg-1 px-4">
+					<h4 class="card-title text-center mb-4 font-weight-bold">Creator's Detail</h4>
+					<h6><span class="font-weight-bold my-2">Name: </span> <!--{$finance->recorder->firstname}--> <!--{$finance->recorder->lastname}--></h6>
+			      	<h6><span class="font-weight-bold my-2">Username: </span> <!--{$finance->recorder->username}--></h6>
+			      	<h6><span class="font-weight-bold my-2">Email: </span> <!--{$finance->user}--></h6>
+				</div>
+				<div class="col-sm-6 card-body text-dark site-bg-2 px-4">
+					<h4 class="card-title text-center mb-4 font-weight-bold">Finance Detail</h4>
+					<h6><span class="font-weight-bold my-2">Project: </span> <!--{$finance->projectinfo->name}--></h6>
+					<h6><span class="font-weight-bold my-2">Finance ID: </span> <!--{$finance->financeid}--></h6>
+			      	<h6 class="d-none"><span class="font-weight-bold d-none my-2">Budget: </span># <!--{$finance->amount}--></h6>
+			      	<h6 class="d-none"><span class="font-weight-bold my-2">Discount: </span> <!--{$finance->discount}-->%</h6>
+			      	<h6><span class="font-weight-bold my-2">Status: </span> 
+			      		<!--{if $finance->status==0}--><span class="badge badge-pill badge-warning">pending</span>
+				      	<!--{elseif $finance->status==1}--><span class="badge badge-pill badge-success">approved</span>
+				      	<!--{elseif $finance->status==2}--><span class="badge badge-pill badge-danger">declined</span>
+				      	<!--{/if}-->
+			      	</h6>
+					<div class="overflow-v-auto text-center h-max200px my-2 text-justify">
+						<span class="font-weight-bold my-2">Description: </span><!--{$finance->description}-->
+					</div>
+					<!--{if !empty($finance->attachment)}-->
+			      	<h6><span class="font-weight-bold my-2">Attached File: </span> <a class="btn btn-primary" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$finance->attachment}-->" title="<!--{$finance->title1}-->" target="__top">View or Download File</a></h6>
+					<!--{/if}-->
+				</div>
+				<div class="col-sm-12 card-body px-4">
+					<p class="text-center">
+						<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finances" class="btn btn-sm btn-warning rounded-0 btn-success-hover mb-1"><i class="fa fa-undo"></i> BACK</a>
+						<!--{if in_array($userinfo->userrole, array('level0','level1')) or $userinfo->email==$finance->user}-->
+							<button class="btn btn-sm btn-primary rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#editReportInfo" aria-expanded="true" aria-controls="editReportInfo" id="editReport"><i class="fa fa-pencil-square"></i> Edit Finance</button>
+							<button class="btn btn-sm btn-secondary rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#manageFinInfo" aria-expanded="true" aria-controls="manageFinInfo" id="manageFin"><i class="fa fa-calculator"></i> Manage Finance</button>
+						<!--{/if}-->
+						<!--{if !empty( (array)$finance->md_review)}-->
+							<button class="btn btn-sm btn-primary rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#lawyerInfo" aria-expanded="true" aria-controls="lawyerInfo" id="lawyerP"><i class="fa fa-info-circle"></i> Review Detail</button>
+						<!--{/if}-->
+						<!--{if in_array($userinfo->userrole, array('level0','level1'))}-->
+							<a class="btn btn-sm btn-danger rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finance?id=<!--{$finance->id}-->&evt=delete" what='delete this finance'><i class="fa fa-trash"></i> Delete</a>
+							<button class="btn btn-sm btn-primary rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#mdApprove" aria-expanded="true" aria-controls="mdApprove" id="mdApp"><i class="fa fa-check-circle"></i> Review Finance</button>
+							<a class="btn d-none btn-sm btn-warning rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finance?id=<!--{$finance->financeid}-->&evt=dec" what='decline this finance'><i class="fa fa-times-circle"></i> Decline</a>
+						<!--{/if}-->
+					</p>
+					<!--{if !empty($fail)}-->
+						<p>
+						  <!--{$fail}-->
+						</p>
+					<!--{/if}-->
+				</div>
+	            <div class="col-md-12 card-body text-justify" id="accordion">
+	            	<!--{if in_array($userinfo->userrole, array('level0','level1')) or $userinfo->email==$finance->user}-->
+	            	<div id="editReportInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="editReport" data-parent="#accordion">
+						<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finance?id=<!--{$finance->financeid}-->" enctype="multipart/form-data" class="w-100">
+							<div class="card card-body">
+								<fieldset class="border rounded border-success px-5 text-justify">
+									<legend class="text-center">Edit Finance Detail</legend>
+									<div class="form-group">
+										<label for="project">Project</label>
+										<select id="project" name="project" required class="form-control signup-input">
+											<!--{if !empty($projects)}-->
+											<!--{foreach $projects as $project}-->
+												<option value="<!--{$project->id}-->"><!--{$project->name|capitalize}--> (<!--{$project->type}-->)</option>
+											<!--{/foreach}-->
+											<!--{/if}-->
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="title" class="form-control-label">Finance Title *</label>
+										<input type="text" id="title" name="title" value="<!--{$finance->title1}-->" class="form-control form-control-sm input-rounded" required/>
+									</div>
+									<div class="form-group d-none">
+										<label for="amount" class="form-control-label">Budget *</label>
+										<input type="number" id="amount" name="amount" value="<!--{$finance->amount}-->" class="form-control form-control-sm input-rounded" required/>
+									</div>
+									<div class="form-group d-none">
+										<label for="discount" class="form-control-label">Discount (%) *</label>
+										<input type="number" id="discount" name="discount" value="<!--{$finance->discount}-->" class="form-control form-control-sm input-rounded" min="0" max="100" />
+									</div>
+									<div class="form-group">
+										<label for="description" class="form-control-label">Purpose *</label>
+										<textarea id="description" name="description" class="form-control form-control-sm input-block" rows="6" required><!--{$finance->description1}--></textarea>
+									</div>
+									<div class="form-group">
+										<label for="author" class="form-control-label">Creator</label>
+										<input type="text" id="author" name="author" value="<!--{$finance->recorder->firstname}--> <!--{$finance->recorder->lastname}-->" class="form-control form-control-sm input-rounded" readonly/>
+									</div>
+									<div class="form-group d-none">
+										<label for="file_upload" class="form-control-label">Upload a File</label>
+										<input type="file" accept="image/*, application/*, video/*" id="file_upload" class="input-rounded w-100" name="file_upload"/>
+									</div>
+									<div class="form-group text-center">
+										<button class="btn btn-success btn-sm rounded-0" type="submit" name="finance"><i class="fa fa-save"></i> Update Changes</button>
+									</div>
+								</fieldset>
+							</div>
+						</form>
+	            	</div>
+	            	<div id="manageFinInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="manageFin" data-parent="#accordion">
+						<div class="card card-body">
+							<fieldset class="border rounded border-success px-4 text-justify">
+								<legend class="text-center">Finance Expense Management</legend>
+								<div class="form-group py-2">
+									<h3 class="text-center text-success"><span class="font-weight-bold">Project: </span><!--{$finance->projectinfo->title}--></h3>
+								</div>
+								<div class="form-group d-none">
+									<h3 class="text-center align-content-stretch"><span class="font-weight-bold">Budget: </span>#<!--{$finance->amount}--></h3>
+								</div>
+								<!--{if !empty($finance->expenses) and is_array($finance->expenses)}-->
+								<!--{$totalExp=0.0}-->
+								<!--{foreach $finance->expenses as $key=> $expense}-->
+									<div class="row justify-content-center d-none">
+										<div class="col-sm-10">
+											<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finance?id=<!--{$finance->financeid}-->" enctype="multipart/form-data" class="w-100">
+												<div class="form-row">
+													<div class="form-group col-sm-3">
+														<label for="author" class="form-control-label">Date</label><br/>
+														<label for="author" class="form-control-label"><!--{$expense->date|date_format:'%e, %b, %Y'}--></label>
+														<input type="hidden" name="exkey" value="<!--{$key}-->">
+													</div>
+													<div class="form-group col-sm-4">
+														<label for="contractor" class="form-control-label">Name, Purpose</label>
+														<input type="text" id="contractor" name="contractor" value="<!--{$expense->contractor}-->" placeholder="Contracted To" class="form-control form-control-sm input-rounded"/>
+													</div>
+													<div class="form-group col-sm-3">
+														<label for="amount" class="form-control-label">Amount</label>
+														<input type="number" id="amount" name="amount" value="<!--{$expense->amount}-->" placeholder="Expense Amount" class="form-control form-control-sm input-rounded"/>
+														<!--{$totalExp=($totalExp+$expense->amount)}-->
+													</div>
+													<div class="form-group col-sm-2 text-center">&nbsp;<br/>
+														<button class="btn btn-success btn-sm rounded-0" type="submit" name="updexp"><i class="fa fa-pencil"></i> Update</button>
+													</div>
+												</div>
+											</form>
+										</div>
+										<div class="col-sm-2">
+											<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finance?id=<!--{$finance->financeid}-->" enctype="multipart/form-data" class="w-100">
+												<div class="form-group text-center">
+													<input type="hidden" name="exkey" value="<!--{$key}-->">&nbsp;<br/>
+													<button class="btn btn-danger btn-sm rounded-0 confirmTrig" type="submit" name="delexp"  what='delete this expenses'><i class="fa fa-trash"></i> Delete</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								<!--{/foreach}-->
+								<div class="row d-none justify-content-center">
+									<div class="col-sm-8">
+										<h4 class="font-weight-bold">Total Expense:</h4>
+									</div>
+									<div class="col-sm-4">
+										<h4 class="font-weight-bold"># <!--{$totalExp}--></h4>
+									</div>
+									<div class="col-sm-8">
+										<h4 class="font-weight-bold">Difference:</h4>
+									</div>
+									<div class="col-sm-4">
+										<h4 class="font-weight-bold"># <!--{($finance->amount-$totalExp)}--></h4>
+									</div>
+								</div>
+								<!--{/if}-->
+								<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finance?id=<!--{$finance->financeid}-->" enctype="multipart/form-data" class="w-100 d-none">
+									<hr class="bg-success">
+									<div class="form-row">
+										<div class="form-group col-sm-3">
+											<label for="author" class="form-control-label">Today, <!--{$Site.dateNow|date_format:'%e %a, %b, %Y'}--></label>
+										</div>
+										<div class="form-group col-sm-4">
+											<label for="amount" class="form-control-label">Amount</label>
+											<input type="number" id="amount" name="amount" value="" placeholder="Expense Amount" class="form-control form-control-sm input-rounded"/>
+										</div>
+										<div class="form-group col-sm-5">
+											<label for="contractor" class="form-control-label">Name, Purpose</label>
+											<input type="text" id="contractor" name="contractor" value="" placeholder="Contracted To" class="form-control form-control-sm input-rounded"/>
+										</div>
+									</div>
+									<div class="form-group text-center">
+										<button class="btn btn-success btn-sm rounded-0" type="submit" name="addexpense"><i class="fa fa-plus"></i> Add Expense</button>
+									</div>
+								</form>
+								<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finance?id=<!--{$finance->financeid}-->" enctype="multipart/form-data" class="w-100">
+									<div class="form-group">
+							            <div class="table-responsive">
+							              <table class="table table-striped table-hover table-bordered">
+							                <thead class="thead-light">
+											  <tr>
+							                    <th scope="col">S/N</th>
+							                    <th scope="col">Date</th>
+							                    <th scope="col">Bank Account</th>
+							                    <th scope="col">Payment Type</th>
+							                    <th scope="col">Beneficiary Name</th>
+							                    <th scope="col">Expense Category</th>
+							                    <th scope="col">Credit</th>
+							                    <th scope="col">Debit</th>
+							                    <th scope="col">Balance</th>
+							                  </tr>
+							                </thead>
+							                <tbody>
+							                  <!--{for $idXX=0; $idXX<10; $idXX++}-->
+								                  <tr>
+								                    <td>
+								                    	<span class="font-weight-bold"><!--{($idXX+1)}-->.</span>
+								                    </td>
+								                    <td>
+								                      <input type="date" id="date<!--{$idXX}-->" class="form-control form-control-sm border border-success badge-pill" name="date[]" i="<!--{$idXX}-->" value="<!--{if !empty($finance->expenses1->date[$idXX])}--><!--{date('Y-m-d',strtotime($finance->expenses1->date[$idXX]))}--><!--{/if}-->" placeholder="" <!--{if $idXX==0}-->required<!--{/if}-->>
+													</td>
+													<td>
+														<select class="form-control" id="account<!--{$idXX}-->" name="account[]">
+														<!--{if !empty($accounts)}-->
+															<option selected disabled>Choose</option>
+															<!--{foreach $accounts as $acc}-->
+																<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses1->account[$idXX])}--><!--{if $finance->expenses1->account[$idXX] == $acc->id}--> selected <!--{/if}--><!--{/if}--> value="<!--{$acc->id}-->" > <!--{$acc->bank_name|ucfirst}-->-<!--{$acc->number}-->-<!--{$acc->currency}--></option>
+															<!--{/foreach}-->
+														<!--{else}-->
+															<option>No Account Added</option>
+														<!--{/if}-->
+														</select>
+													</td>
+													<td>
+														<select class="form-control" id="payment<!--{$idXX}-->" name="payment[]">
+															<option selected disabled>Choose</option>
+															<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses1->payment[$idXX])}--><!--{if $finance->expenses1->payment[$idXX] == 'bank transfer'}--> selected <!--{/if}--><!--{/if}--> value="bank transfer">Bank Transfer</option>
+															<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses1->payment[$idXX])}--><!--{if $finance->expenses1->payment[$idXX] == 'cheque'}--> selected <!--{/if}--><!--{/if}-->value="cheque">Cheque</option>
+															<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses1->payment[$idXX])}--><!--{if $finance->expenses1->payment[$idXX] == 'cash'}--> selected <!--{/if}--><!--{/if}-->value="cash">Cash</option>
+														</select>
+													</td>
+								                    <td>
+								                      <input type="text" id="person<!--{$idXX}-->" class="form-control form-control-sm border border-success badge-pill" name="person[]" i="<!--{$idXX}-->" value="<!--{if !empty($finance->expenses1->person[$idXX])}--><!--{$finance->expenses1->person[$idXX]}--><!--{/if}-->" placeholder="" <!--{if $idXX==0}-->required<!--{/if}-->>
+								                    </td>
+								                    <td>
+													  <select class="form-control" id="purpose<!--{$idXX}-->" name="purpose[]">
+														<option selected disabled>Choose</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses1->purpose[$idXX])}--><!--{if $finance->expenses1->purpose[$idXX] == 'wages_alaries'}--> selected <!--{/if}--><!--{/if}-->  value="wages_salaries">Wages & Salaries</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses1->purpose[$idXX])}--><!--{if $finance->expenses1->purpose[$idXX] == 'maintenance_repair'}--> selected <!--{/if}--><!--{/if}--> value="maintenance_repair">Maintenance & Repair</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses1->purpose[$idXX])}--><!--{if $finance->expenses1->purpose[$idXX] == 'office_expenses'}--> selected <!--{/if}--><!--{/if}--> value="office_expenses">Office Expenses</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses1->purpose[$idXX])}--><!--{if $finance->expenses1->purpose[$idXX] == 'stationery'}--> selected <!--{/if}--><!--{/if}--> value="stationery">Stationery</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses1->purpose[$idXX])}--><!--{if $finance->expenses1->purpose[$idXX] == 'commission'}--> selected <!--{/if}--><!--{/if}--> value="commission">Commission</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses1->purpose[$idXX])}--><!--{if $finance->expenses1->purpose[$idXX] == 'petty_cash'}--> selected <!--{/if}--><!--{/if}--> value="petty_cash">Petty cash</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses1->purpose[$idXX])}--><!--{if $finance->expenses1->purpose[$idXX] == 'cost_of_sales'}--> selected <!--{/if}--><!--{/if}--> value="cost_of_sales">Cost of sales</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses1->purpose[$idXX])}--><!--{if $finance->expenses1->purpose[$idXX] == 'purchase_of_assets'}--> selected <!--{/if}--><!--{/if}--> value="purchase_of_assets">Purchase of assets</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses1->purpose[$idXX])}--><!--{if $finance->expenses1->purpose[$idXX] == 'others'}--> selected <!--{/if}--><!--{/if}--> value="others">Others</option>
+													  </select>
+								                    </td>
+								                    <td>
+								                      <input type="number" id="credit<!--{$idXX}-->" class="form-control form-control-sm border border-success creditInput badge-pill" name="credit[]" i="<!--{$idXX}-->" value="<!--{if isset($finance->expenses1->credit[$idXX])}--><!--{$finance->expenses1->credit[$idXX]}--><!--{/if}-->" placeholder="" <!--{if $idXX==0}-->required<!--{/if}-->>
+								                    </td>
+								                    <td>
+								                      <input type="number" id="debit<!--{$idXX}-->" class="form-control form-control-sm border border-success debitInput badge-pill" name="debit[]" i="<!--{$idXX}-->" value="<!--{if isset($finance->expenses1->debit[$idXX])}--><!--{$finance->expenses1->debit[$idXX]}--><!--{/if}-->" placeholder="" <!--{if $idXX==0}-->required<!--{/if}-->>
+								                    </td>
+								                    <td>
+								                      <input type="number" id="balance<!--{$idXX}-->" class="form-control form-control-sm border border-success balanceInput badge-pill" name="balance[]" i="<!--{$idXX}-->" value="<!--{if isset($finance->expenses1->balance[$idXX])}--><!--{$finance->expenses1->balance[$idXX]}--><!--{elseif $idXX==0}-->0<!--{/if}-->" placeholder="" readonly <!--{if $idXX==0}-->required<!--{/if}-->>
+								                    </td>
+								                  </tr>
+							                  <!--{/for}-->
+							                </tbody>
+							                <tfoot>
+							                  <tr> 
+							                    <th colspan="4" class="text-center">
+							                      Total Balance
+							                    </th>
+							                    <td class="text-center">
+								                    <input type="number" class="form-control form-control-sm border border-success creditTotal badge-pill" name="credittotal" value="<!--{if isset($finance->expenses1->credittotal)}--><!--{$finance->expenses1->credittotal}--><!--{/if}-->" placeholder="" required readonly>
+							                    </td>
+							                    <td class="text-center">
+								                    <input type="number" class="form-control form-control-sm border border-success debitTotal badge-pill" name="debittotal" value="<!--{if isset($finance->expenses1->debittotal)}--><!--{$finance->expenses1->debittotal}--><!--{/if}-->" placeholder="" required readonly>
+							                    </td>
+							                    <td class="text-center">
+								                    <input type="number" class="form-control form-control-sm border border-success balanceTotal badge-pill" name="grandtotal" value="<!--{if isset($finance->expenses1->grandtotal)}--><!--{$finance->expenses1->grandtotal}--><!--{/if}-->" placeholder="" required readonly>
+							                    </td>
+							                  </tr>
+							                </tfoot>
+							              </table>
+							            </div>
+									</div>
+									<div class="form-group text-center">
+										<button class="btn btn-success btn-sm rounded-0" type="submit" name="managexpense"><i class="fa fa-plus"></i> Update Expense</button>
+									</div>
+								</form>
+
+							</fieldset>
+						</div>
+					</div>
+	            	<!--{/if}-->
+		            <!--{if !empty( (array)$finance->md_review)}-->
+	            	<div id="lawyerInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="lawyerP" data-parent="#accordion">
+	            		<div class="row no-gutters justify-content-center">
+							<div class="col-sm-6 card-body text-white site-bg-1 px-4">
+								<h4 class="card-title text-center my-4 font-weight-bold">MD Detail</h4>
+								<h6><span class="font-weight-bold my-2">Name: </span> <!--{$finance->md->firstname}--> <!--{$finance->md->lastname}--></h6>
+						      	<h6><span class="font-weight-bold my-2">Email: </span> <!--{$finance->md->email}--></h6>
+						      	<h6><span class="font-weight-bold my-2">Phone No: </span> <!--{$finance->md->phone}--></h6>
+								<div class="overflow-v-auto h-max200px my-2 text-justify">
+									<span class="font-weight-bold my-2">Comment: </span><!--{$finance->md_review->comment}-->
+								</div>
+							</div>
+	            		</div>
+	            	</div>
+	            	<!--{/if}-->
+					<!--{if in_array($userinfo->userrole, array('level0','level1'))}-->
+	            	<div id="mdApprove" class="collapse mt-2 row justify-content-center" aria-labelledby="mdApp" data-parent="#accordion">
+						<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finance?id=<!--{$finance->financeid}-->" enctype="multipart/form-data" class="w-100">
+							<div class="card card-body">
+								<fieldset class="border rounded border-success px-5 text-justify">
+									<legend class="text-center">Review Finance</legend>
+									<div class="form-group">
+										<label for="comment" class="form-control-label">Comment</label>
+										<textarea id="comment" name="comment" rows="5" class="form-control form-control-sm input-rounded" required><!--{if !empty($finance->md_review->comment)}--><!--{$finance->md_review->comment}--><!--{/if}--></textarea>
+									</div>
+									<div class="form-group">
+										<label for="status" class="form-control-label">Review Status</label>
+										<select id="status" name="status" class="form-control form-control-sm input-rounded" required>
+											<option value="1" <!--{if $finance->status=='2'}-->selected<!--{/if}-->>Approve</option>
+											<option value="2" <!--{if $finance->status=='4'}-->selected<!--{/if}-->>Decline</option>
+										</select>
+									</div>
+									<div class="form-group text-center">
+										<button class="btn btn-success btn-sm rounded-0" type="submit" name="mreview">Update Review</button>
+									</div>
+								</fieldset>
+							</div>
+						</form>
+	            	</div>
+	            	<!--{/if}-->
+	            </div>
+			</div>
+		</div>
+		<div class="card-footer d-none">
+			<button type="button" class="btn btn-primary btn-sm" id="printSect"><i class="fa fa-print"></i> Print Now</button>
+		</div>
+	</div>
+</section>
+<!--{/if}-->
+<!--{/block}-->

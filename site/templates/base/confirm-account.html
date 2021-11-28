@@ -1,0 +1,35 @@
+<!--{extends 'default.html'}-->
+<!--{block name="home-slider"}--><!--{/block}-->
+<!--{block name="content"}-->
+	<div class="site-page">
+		<div>
+			<div class="col-sm-12 pd-ltr-10 text-center bg-dark text-white">
+				<h3 class="text-center">Thanks for Being Part of the Law!!!</h3>
+				You are welcome to a platform where you rightly handle and take charge of your legal issues.
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="panel col-md-5 pd-tb-50">
+				<div class="panel-heading">
+					<h2 class="text-center"><i class="fa fa-check-circle-o"></i> SIGNUP CONFIRMATION PAGE</small></h2>
+				</div>
+				<div class="panel-body">
+					<!--{if !empty($fail)}-->
+						<!--{$fail}-->
+					<!--{/if}-->
+					<!--{if empty($expr)}-->
+					<form method="post">
+						<div class="form-group">
+							<label for="dataEmail">Enter Email *</label>
+							<input type="email" name="dataEmail" class="form-control" value="<!--{if !empty($posteds->dataEmail)}--><!--{$posteds->dataEmail}--><!--{/if}-->" id="dataEmail" required>
+						</div>
+						<div class="form-group">
+							<button class="btn btn-primary btn-block" type="submit" name="dataConfirm">Verify Confirmation Link <i class="fa fa-check"></i></button>
+						</div>
+					</form>
+					<!--{/if}-->
+				</div>
+			</div>
+		</div>
+	</div>
+<!--{/block}-->

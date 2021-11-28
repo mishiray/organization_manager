@@ -1,0 +1,252 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Corporate Marketing Business Report</h1>
+<p class="mb-4">The table contains corporate marketing report  for the business</p>
+<!--{if !empty($report)}-->
+<section class="row justify-content-center" id="printMe">
+	<div class="card">
+		<div class="card-body text-center pt-4">
+			<div class="row no-gutters justify-content-center">
+				<div class="col-sm-6 card-body text-dark site-bg-1 px-4">
+					<h4 class="card-title text-center mb-4 font-weight-bold">Marketer's Detail</h4>
+					<h6><span class="font-weight-bold my-2">Name: </span><!--{$report->marketerDetail->firstname}--> <!--{$report->marketerDetail->lastname}--> </h6>
+			      	<h6><span class="font-weight-bold my-2">Username: </span> <!--{$report->marketerDetail->username}--> </h6>
+			      	<h6><span class="font-weight-bold my-2">Email: </span> <!--{$report->user}--></h6>
+					<hr class="bg-white">
+					<h4 class="card-title text-center mb-4 font-weight-bold">Clients Detail</h4>
+					<h6><span class="font-weight-bold my-2">Clients Name: </span> <!--{$report->client}--></h6>
+			      	<h6><span class="font-weight-bold my-2">Clients Email: </span> <!--{$report->clientemail}--></h6>
+			      	<h6><span class="font-weight-bold my-2">Clients Phone No: </span> <!--{$report->clientphone}--></h6>
+			      	<h6><span class="font-weight-bold my-2">Clients Address: </span> <!--{$report->address}--></h6>
+					<hr class="bg-white">
+			      	<h6><span class="font-weight-bold my-2">Status: </span>
+				      	<!--{if in_array($userinfo->userrole, array('level3')) }-->
+				      		<!--{if $report->status==0}--><span class="badge badge-pill badge-warning">submited to lawyer</span>
+				      		<!--{elseif $report->status==1}--><span class="badge badge-pill badge-info">approved by lawyer</span>
+				      		<!--{elseif $report->status==2}--><span class="badge badge-pill badge-success">fully approved</span>
+				      		<!--{elseif $report->status==3}--><span class="badge badge-pill badge-danger">declined by lawyer</span>
+				      		<!--{elseif $report->status==4}--><span class="badge badge-pill badge-danger">fully declined</span>
+				      		<!--{/if}-->
+				      	<!--{elseif in_array($userinfo->userrole, array('level2'))}-->
+				      		<!--{if $report->status==0}--><span class="badge badge-pill badge-warning">pending report</span>
+				      		<!--{elseif $report->status==1}--><span class="badge badge-pill badge-info">submitted to MD</span>
+				      		<!--{elseif $report->status==2}--><span class="badge badge-pill badge-success">approved by MD</span>
+				      		<!--{elseif $report->status==3}--><span class="badge badge-pill badge-danger">declined</span>
+				      		<!--{elseif $report->status==4}--><span class="badge badge-pill badge-danger">declined by MD</span>
+				      		<!--{/if}-->
+				      	<!--{elseif in_array($userinfo->userrole, array('level1'))}-->
+				      		<!--{if $report->status==1}--><span class="badge badge-pill badge-info">pending report</span>
+				      		<!--{elseif $report->status==2}--><span class="badge badge-pill badge-success">approved</span>
+				      		<!--{elseif $report->status==3}--><span class="badge badge-pill badge-danger">declined by lawyer</span>
+				      		<!--{elseif $report->status==4}--><span class="badge badge-pill badge-danger">declined</span>
+				      		<!--{/if}-->
+				      	<!--{else}-->
+				      		<!--{if $report->status==0}--><span class="badge badge-pill badge-warning">pending (marketer)</span>
+				      		<!--{elseif $report->status==1}--><span class="badge badge-pill badge-success">approved (by lawyer)</span>
+				      		<!--{elseif $report->status==2}--><span class="badge badge-pill badge-success">approved (by MD)</span>
+				      		<!--{elseif $report->status==3}--><span class="badge badge-pill badge-danger">declined (by lawyer)</span>
+				      		<!--{elseif $report->status==4}--><span class="badge badge-pill badge-danger">declined (by MD)</span>
+				      		<!--{/if}-->
+				      	<!--{/if}-->
+			      	</h6>
+				</div>
+				<div class="col-sm-6 card-body text-dark site-bg-1 px-4">
+					<h4 class="card-title text-center mb-4 font-weight-bold">Other Detail</h4>
+					<h6 class="d-none"><span class="font-weight-bold my-2">Project Name: </span> <!--{$report->project}--></h6>
+			      	<h6 class="d-none"><span class="font-weight-bold my-2">Report Title: </span> <!--{$report->title}--></h6>
+					<h6><span class="font-weight-bold my-2">Clients Budget: </span># <!--{$report->budget}--></h6>
+			      	<h6><span class="font-weight-bold my-2">Clients Request Type: </span> <!--{$report->requesttype}--></h6>
+			      	<h6><span class="font-weight-bold my-2">Request Location: </span> <!--{$report->location}--></h6>
+					<div style="overflow-y: auto; max-height: 200px;" class="text-justify">
+						<span class="font-weight-bold my-2">Marketers Comment: </span><!--{$report->content_stripe}-->
+					</div>
+					<!--{if !empty($report->attachment)}-->
+			      	<h6 class="d-none"><span class="font-weight-bold my-2">Attached File: </span> <a class="btn btn-primary" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$report->attachment}-->" title="<!--{$report->title1}-->" target="__top">View or Download File</a></h6>
+					<!--{/if}-->
+				</div>
+				<div class="col-sm-12 card-body px-4">
+					<p class="text-center">
+						<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/reports" class="btn btn-sm btn-warning rounded-0 btn-success-hover mb-1"><i class="fa fa-undo"></i> BACK</a>
+						<!--{if !empty( (array)$report->lawyer_review) or !empty( (array)$report->md_review)}-->
+							<button class="btn btn-sm btn-primary rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#lawyerInfo" aria-expanded="true" aria-controls="lawyerInfo" id="lawyerP"><i class="fa fa-info-circle"></i> Other Detail</button>
+						<!--{/if}-->
+						<!--{if (in_array($report->status, array('0','3', '4')) and $userinfo->email==$report->user) or $userinfo->userrole=='level0'}-->
+							<button class="btn btn-sm btn-primary rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#editReportInfo" aria-expanded="true" aria-controls="editReportInfo" id="editReport"><i class="fa fa-pencil-square"></i> Edit Report</button>
+							<a class="btn btn-sm btn-danger rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/report?id=<!--{$report->reportid}-->&evt=delete" what='delete this report'><i class="fa fa-trash"></i> Delete</a>
+						<!--{/if}-->
+						<!--{if (in_array($report->status, array('0','3','1','4')) and $userinfo->userrole=='level2') or $userinfo->userrole=='level0'}-->
+							<button class="btn btn-sm btn-success rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#lawApprove" aria-expanded="true" aria-controls="lawApprove" id="lawApp"><i class="fa fa-check-square"></i> Review Report</button>
+							<a class="btn d-none btn-sm btn-warning rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/report?id=<!--{$report->reportid}-->&evt=decline" what='decline this report'><i class="fa fa-times-rectangle"></i> Decline</a>
+						<!--{/if}-->
+						<!--{if (in_array($report->status, array('2','1','4')) and $userinfo->userrole=='level1') or $userinfo->userrole=='level0'}-->
+							<button class="btn btn-sm btn-primary rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#mdApprove" aria-expanded="true" aria-controls="mdApprove" id="mdApp"><i class="fa fa-check-circle"></i> Review Report</button>
+							<a class="btn d-none btn-sm btn-warning rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/report?id=<!--{$report->reportid}-->&evt=dec" what='decline this report'><i class="fa fa-times-circle"></i> Decline</a>
+							<a class="btn btn-sm btn-danger rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/report?id=<!--{$report->reportid}-->&evt=delete" what='delete this record from the system'><i class="fa fa-trash"></i> Delete</a>
+						<!--{/if}-->
+					</p>
+					<!--{if !empty($fail)}-->
+						<p>
+						  <!--{$fail}-->
+						</p>
+					<!--{/if}-->
+				</div>
+	            <div class="col-md-11 card-body text-justify" id="accordion">
+	            	<!--{if (in_array($report->status, array('0','3', '4')) and $userinfo->email==$report->user) or $userinfo->userrole=='level0'}-->
+	            	<div id="editReportInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="editReport" data-parent="#accordion">
+						<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/report?id=<!--{$report->reportid}-->" enctype="multipart/form-data" class="w-100">
+							<div class="card card-body">
+								<fieldset class="border rounded border-success px-5 text-justify">
+									<legend class="text-center">Edit Report Detail</legend>
+									<div class="form-group">
+										<label for="client" class="form-control-label">Clients Name *</label>
+										<input type="text" id="client" name="client" value="<!--{$report->client}-->" class="form-control form-control-sm input-rounded" required/>
+									</div>
+									<div class="form-group">
+										<label for="clientphone" class="form-control-label">Clients Phone *</label>
+										<input type="tel" id="clientphone" name="clientphone" value="<!--{$report->clientphone}-->" class="form-control form-control-sm input-rounded" required/>
+									</div>
+									<div class="form-group">
+										<label for="clientemail" class="form-control-label">Clients Email</label>
+										<input type="email" id="clientemail" name="clientemail" value="<!--{$report->clientemail}-->" class="form-control form-control-sm input-rounded"/>
+									</div>
+									<div class="form-group">
+										<label for="address" class="form-control-label">Clients Address *</label>
+										<input type="tel" id="address" name="address" value="<!--{$report->address}-->" class="form-control form-control-sm input-rounded" required/>
+									</div>
+									<div class="form-group d-none">
+										<label for="project" class="form-control-label">Project Name *</label>
+										<input type="text" id="project" name="project" value="<!--{$report->project}-->" class="form-control form-control-sm input-rounded"/>
+									</div>
+									<div class="form-group d-none">
+										<label for="title" class="form-control-label">Report Title *</label>
+										<input type="text" id="title" name="title" value="<!--{$report->title1}-->" class="form-control form-control-sm input-rounded"/>
+									</div>
+									<div class="form-group">
+										<label for="requesttype" class="form-control-label">Clients Request Type *</label>
+										<input type="text" id="requesttype" name="requesttype" value="<!--{$report->requesttype}-->" class="form-control form-control-sm input-rounded" required/>
+									</div>
+									<div class="form-group">
+										<label for="location" class="form-control-label">Request Location *</label>
+										<input type="tel" id="location" name="location" value="<!--{$report->location}-->" class="form-control form-control-sm input-rounded" required/>
+									</div>
+									<div class="form-group">
+										<label for="budget" class="form-control-label">Clients Budget *</label>
+										<input type="number" id="budget" name="budget" value="<!--{$report->budget}-->" class="form-control form-control-sm input-rounded" required/>
+									</div>
+									<div class="form-group">
+										<label for="content" class="form-control-label">Marketers Comment Box *</label>
+										<textarea id="content" name="content" class="form-control form-control-sm input-block" rows="10" required><!--{$report->comment1}--></textarea>
+										<!--<div id="editcontent"></div>-->
+										<!--<input type="hidden" name="content"  id="content" value="" required />-->
+										<!--{$content_stripe=$report->content_stripe}-->
+									</div>
+									<div class="form-group d-none">
+										<label for="author" class="form-control-label">Author</label>
+										<input type="text" id="author" name="author" value="<!--{$report->marketerDetail->firstname}--> <!--{$report->marketerDetail->lastname}-->" class="form-control form-control-sm input-rounded" readonly/>
+									</div>
+									<div class="form-group d-none">
+										<label for="file_upload" class="form-control-label">Upload a File</label>
+										<input type="file" accept="image/*, application/*, video/*" id="file_upload" class="input-rounded w-100" name="file_upload"/>
+									</div>
+									<!--{if !empty($fail)}-->
+										<div class="form-group">
+											<!--{$fail}-->
+										</div>
+									<!--{/if}-->
+									<div class="form-group text-center">
+										<button class="btn btn-success btn-sm rounded-0" type="submit" name="report">Update Report</button>
+									</div>
+								</fieldset>
+							</div>
+						</form>
+	            	</div>
+	            	<!--{/if}-->
+	            	<!--{if !empty( (array)$report->lawyer_review) or !empty( (array)$report->md_review)}-->
+	            	<div id="lawyerInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="lawyerP" data-parent="#accordion">
+	            		<div class="row no-gutters justify-content-center">
+	            			<!--{if !empty( (array)$report->lawyer_review)}-->
+							<div class="col-sm-6 card-body text-white site-bg-1 px-4">
+								<h4 class="card-title text-center my-4 font-weight-bold">Lawyer's Detail</h4>
+								<h6><span class="font-weight-bold my-2">Name: </span> <!--{$report->lawyer->firstname}--> <!--{$report->lawyer->lastname}--></h6>
+						      	<h6><span class="font-weight-bold my-2">Email: </span> <!--{$report->lawyer->email}--></h6>
+						      	<h6><span class="font-weight-bold my-2">Phone No: </span> <!--{$report->lawyer->phone}--></h6>
+								<div class="overflow-v-auto h-max200px my-2 text-justify">
+									<span class="font-weight-bold my-2">Comment: </span><!--{$report->lawyer_review->comment}-->
+								</div>
+							</div>
+							<!--{/if}-->
+		            		<!--{if !empty( (array)$report->md_review)}-->
+							<div class="col-sm-6 card-body text-white site-bg-1 px-4">
+								<h4 class="card-title text-center my-4 font-weight-bold">MD Detail</h4>
+								<h6><span class="font-weight-bold my-2">Name: </span> <!--{$report->md->firstname}--> <!--{$report->md->lastname}--></h6>
+						      	<h6><span class="font-weight-bold my-2">Email: </span> <!--{$report->md->email}--></h6>
+						      	<h6><span class="font-weight-bold my-2">Phone No: </span> <!--{$report->md->phone}--></h6>
+								<div class="overflow-v-auto h-max200px my-2 text-justify">
+									<span class="font-weight-bold my-2">Comment: </span><!--{$report->md_review->comment}-->
+								</div>
+							</div>
+							<!--{/if}-->
+	            		</div>
+	            	</div>
+	            	<!--{/if}-->
+					<!--{if (in_array($report->status, array('0','3','1','4')) and $userinfo->userrole=='level2') or $userinfo->userrole=='level0'}-->
+	            	<div id="lawApprove" class="collapse mt-2 row justify-content-center" aria-labelledby="lawApp" data-parent="#accordion">
+						<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/report?id=<!--{$report->reportid}-->" enctype="multipart/form-data" class="w-100">
+							<div class="card card-body">
+								<fieldset class="border rounded border-success px-5 text-justify">
+									<legend class="text-center">Review Report</legend>
+									<div class="form-group">
+										<label for="comment" class="form-control-label">Comment</label>
+										<textarea id="comment" name="comment" rows="5" class="form-control form-control-sm input-rounded" required><!--{$report->lawyer_review->comment}--></textarea>
+									</div>
+									<div class="form-group">
+										<label for="status" class="form-control-label">Review Status</label>
+										<select id="status" name="status" class="form-control form-control-sm input-rounded" required>
+											<option value="1" <!--{if $report->status=='1'}-->selected<!--{/if}-->>Approve & Send to MD</option>
+											<option value="3" <!--{if $report->status=='3'}-->selected<!--{/if}-->>Decline</option>
+										</select>
+									</div>
+									<div class="form-group text-center">
+										<button class="btn btn-success btn-sm rounded-0" type="submit" name="lreview">Save Changes</button>
+									</div>
+								</fieldset>
+							</div>
+						</form>
+	            	</div>
+	            	<!--{/if}-->
+					<!--{if (in_array($report->status, array('2','1','4')) and $userinfo->userrole=='level1') or $userinfo->userrole=='level0'}-->
+	            	<div id="mdApprove" class="collapse mt-2 row justify-content-center" aria-labelledby="mdApp" data-parent="#accordion">
+						<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/report?id=<!--{$report->reportid}-->" enctype="multipart/form-data" class="w-100">
+							<div class="card card-body">
+								<fieldset class="border rounded  px-5 text-justify">
+									<legend class="text-center">Review Report</legend>
+									<div class="form-group">
+										<label for="comment" class="form-control-label">Comment</label>
+										<textarea id="comment" name="comment" rows="5" class="form-control form-control-sm input-rounded" required><!--{$report->md_review->comment}--></textarea>
+									</div>
+									<div class="form-group">
+										<label for="status" class="form-control-label">Review Status</label>
+										<select id="status" name="status" class="form-control form-control-sm input-rounded" required>
+											<option value="2" <!--{if $report->status=='2'}-->selected<!--{/if}-->>Approve</option>
+											<option value="4" <!--{if $report->status=='4'}-->selected<!--{/if}-->>Decline</option>
+										</select>
+									</div>
+									<div class="form-group text-center">
+										<button class="btn btn-success btn-sm rounded-0" type="submit" name="mreview">Save Changes</button>
+									</div>
+								</fieldset>
+							</div>
+						</form>
+	            	</div>
+	            	<!--{/if}-->
+	            </div>
+			</div>
+		</div>
+		<div class="card-footer d-none">
+			<button type="button" class="btn btn-primary btn-sm" id="printSect"><i class="fa fa-print"></i> Print Now</button>
+		</div>
+	</div>
+</section>
+<!--{/if}-->
+<!--{/block}-->

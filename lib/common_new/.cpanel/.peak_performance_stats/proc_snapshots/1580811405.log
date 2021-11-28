@@ -1,0 +1,106 @@
+Tue Feb  4 10:16:45 GMT 2020
+Running Processes:
+schooztc  1649155  0.0  0.0 139272  2480 ?        S    09:56   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc  1664794  0.2  0.0  75412 15920 ?        S    10:01   0:02 dovecot/lmtp [local READY]
+schooztc  1712993 45.0  0.5 584308 187764 ?       R    10:16   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  1713061 49.5  0.3 448916 127648 ?       R    10:16   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  1713142 42.3  0.2 428884 73904 ?        S    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  1713161 47.5  0.2 427112 66704 ?        R    10:16   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc  1713179 31.0  0.1 427028 59524 ?        R    10:16   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  1713197 11.0  0.1 378928 33148 ?        S    10:16   0:00 /opt/cloudlinux/alt-php56/root/usr/bin/php-cgi /home/schooztc/public_html/ajahcity.com.ng/index.php
+
+Running Queries:
+
+Open connections
+COMMAND       PID     USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+pure-ftpd 1649155 schooztc    4u  IPv4 1769699200      0t0  TCP *:21 (LISTEN)
+pure-ftpd 1649155 schooztc    5u  IPv6 1769699201      0t0  TCP *:21 (LISTEN)
+pure-ftpd 1649155 schooztc    6u  IPv4 1779723283      0t0  TCP 199.79.63.83:21->41.190.2.245:25979 (ESTABLISHED)
+pure-ftpd 1649155 schooztc   10u  IPv4 1780131938      0t0  TCP 199.79.63.83:36852 (LISTEN)
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 213.8% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 1649155  0.0  0.0 139272  2480 ?        S    09:56   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1712993 45.0  0.6 593780 197192 ?       R    10:16   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713061 50.5  0.4 475172 154464 ?       R    10:16   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713142 46.0  0.2 433132 88416 ?        R    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713161 51.3  0.2 430252 79152 ?        R    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc 1713179 40.3  0.2 429060 71308 ?        R    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713197 33.5  0.1 382904 37264 ?        R    10:16   0:00 /opt/cloudlinux/alt-php56/root/usr/bin/php-cgi /home/schooztc/public_html/ajahcity.com.ng/index.php
+schooztc 1713276 10.0  0.0 378276 31512 ?        S    10:16   0:00 /opt/cloudlinux/alt-php56/root/usr/bin/php-cgi /home/schooztc/public_html/ajahcity.com.ng/index.php
+
+Snapshot 2
+schooztc 1649155  0.0  0.0 139272  2480 ?        S    09:56   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1712993 45.1  0.6 593780 197192 ?       R    10:16   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713061 50.7  0.4 475924 155160 ?       R    10:16   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713142 46.2  0.2 433240 88472 ?        R    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713161 51.6  0.2 430272 79420 ?        R    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc 1713179 40.6  0.2 428916 72088 ?        R    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713197 34.0  0.1 382904 37264 ?        R    10:16   0:00 /opt/cloudlinux/alt-php56/root/usr/bin/php-cgi /home/schooztc/public_html/ajahcity.com.ng/index.php
+schooztc 1713276 10.0  0.0 378276 31512 ?        S    10:16   0:00 /opt/cloudlinux/alt-php56/root/usr/bin/php-cgi /home/schooztc/public_html/ajahcity.com.ng/index.php
+
+Snapshot 3
+schooztc 1649155  0.0  0.0 139272  2480 ?        S    09:56   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1712993 41.0  0.6 593780 197192 ?       R    10:16   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713061 44.3  0.4 475924 155160 ?       R    10:16   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713142 37.0  0.2 433240 88472 ?        R    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713161 38.7  0.2 430272 79420 ?        R    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc 1713179 30.5  0.2 428916 72088 ?        R    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713197 22.6  0.1 382904 37264 ?        R    10:16   0:00 /opt/cloudlinux/alt-php56/root/usr/bin/php-cgi /home/schooztc/public_html/ajahcity.com.ng/index.php
+schooztc 1713276  5.0  0.0 378276 31512 ?        S    10:16   0:00 /opt/cloudlinux/alt-php56/root/usr/bin/php-cgi /home/schooztc/public_html/ajahcity.com.ng/index.php
+
+Snapshot 4
+schooztc 1649155  0.0  0.0 139272  2480 ?        S    09:56   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1712993 41.0  0.6 593780 197192 ?       R    10:16   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713061 44.3  0.4 475924 155160 ?       R    10:16   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713142 37.0  0.2 433240 88472 ?        R    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713161 38.7  0.2 430272 79420 ?        R    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc 1713179 30.5  0.2 428916 72088 ?        R    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713197 22.6  0.1 382904 37264 ?        R    10:16   0:00 /opt/cloudlinux/alt-php56/root/usr/bin/php-cgi /home/schooztc/public_html/ajahcity.com.ng/index.php
+schooztc 1713276  5.0  0.0 378276 31512 ?        S    10:16   0:00 /opt/cloudlinux/alt-php56/root/usr/bin/php-cgi /home/schooztc/public_html/ajahcity.com.ng/index.php
+
+Snapshot 5
+schooztc 1649155  0.0  0.0 139272  2480 ?        S    09:56   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1712993 41.0  0.6 593780 197192 ?       R    10:16   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713061 44.3  0.4 475924 155160 ?       R    10:16   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713142 37.0  0.2 433240 88472 ?        R    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713161 38.7  0.2 430272 79420 ?        R    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc 1713179 30.5  0.2 428916 72088 ?        R    10:16   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 1713197 22.6  0.1 382904 37264 ?        R    10:16   0:00 /opt/cloudlinux/alt-php56/root/usr/bin/php-cgi /home/schooztc/public_html/ajahcity.com.ng/index.php
+schooztc 1713276  5.0  0.0 378276 31512 ?        S    10:16   0:00 /opt/cloudlinux/alt-php56/root/usr/bin/php-cgi /home/schooztc/public_html/ajahcity.com.ng/index.php
+
+Current load:  10:16:47 up 178 days, 18:48,  0 users,  load average: 0.01, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 67366993	TIME = 2	USER = schooztc_ajahcit	HOST = localhost	DB = schooztc_ajahcity	COMMAND = Sleep	INFO = 
+ID = 67366990	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67366986	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67366985	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67366976	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67366967	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  10:16:47 up 178 days, 18:48,  0 users,  load average: 0.01, 0.00, 0.00
+
+

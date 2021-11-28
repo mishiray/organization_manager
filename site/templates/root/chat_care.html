@@ -1,0 +1,57 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<!--{if !empty($fail)}-->
+<!--{$fail}-->
+<!--{/if}-->
+	<div class="col-sm-12 sales" id="printMe">
+		<h3>Customer Care</h3>
+		<p class="mb-4"><i class="fa fa-headphones"></i>Customer chat Threads</p>
+
+		
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+	  <h6 class="m-0 font-weight-bold text-primary">Records</h6>
+	</div>
+	<div class="card-body">
+
+		<div class="table-responsive">
+			<div id="dataTableId_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+				<!--{if !empty($chat_inbox)}-->
+				<div class="row">
+					<div class="col-sm-12">
+						<table class="table table-striped" id="dataTable">
+							<thead>
+								<tr>
+									<th>S/N</th><th>Track Id</th><th>Message Title</th><th>Sender Detail</th><th>Date Sent</th><th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<!--{foreach $chat_inbox as $kY=> $inbox}-->
+								<tr>
+									<td><!--{($kY+1)}--></td>
+									<td><!--{$inbox->chatId}--></td>
+									<td><!--{$inbox->message}--></td>
+									<td>
+										Name: <!--{$inbox->sender_name}-->
+										Email: <!--{$inbox->sender}-->
+									</td>
+									<td><!--{$inbox->date_sent}--></td>
+									<td>
+										<a  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/chat_thread?chatid=<!--{$inbox->chatId}-->" class="badge btn-sm btn-info">Open Thread</a>
+									</td>
+								</tr>
+								<!--{$countStarted=$countStarted+1}-->
+								<!--{/foreach}-->
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!--{else}-->
+					<div class="alert alert-info alert-dismissible" role="alert" style="width: 90% !important;"><h5>No record found</h5></div>
+				<!--{/if}-->
+		</div>
+	</div>
+	</div>
+	
+	</div>
+<!--{/block}-->

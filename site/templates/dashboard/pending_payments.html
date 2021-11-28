@@ -1,0 +1,93 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Pending Payments</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Payments</h6>
+  </div>
+  <!--{if !empty($defclients)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th class="d-none">Id</th>
+            <th>Product Info</th>
+            <th>Timeline</th>
+            <th class="d-none" scope="col"></th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <th class="d-none">Id</th>
+            <th>Product Info</th>
+            <th>Timeline</th>
+            <th class="d-none" scope="col"></th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+			  	<!--{foreach $defclients as $client}-->
+			    <tr>
+            <!--`id`, `token`, `email`, `staffid`, `title`, `firstname`, `lastname`,
+               `middlename`, `gender`, `password`, `username`, `refid`, `referrer`, 
+               `phone`, `address1`, `address2`, `bank_name`, `account_name`, 
+               `account_number`, `state`, `city`, `country`, `emergencycontacts`, 
+               `usertype`, `usercat`, `userrole`, `userimg`, `verified`, `terms`, 
+               `dateadded`, `datehired`, `datefired`, `active`, `reckey`, `recdate`, 
+               `addedby`-->
+            <td><!--{$numCount}--></td>
+            <td class="d-none">
+              <strong>ID: </strong> <!--{$client->reg_id}--> <br>
+              <strong>Token: </strong> <!--{$client->token}-->
+            </td>
+            <td>
+              <strong>Product Name: </strong><!--{$client->product}--><br>
+              <strong>Amount: </strong>&#8358;<!--{$client->total_amount|number_format:2}--> <br>
+              <strong>Payment Type: </strong><!--{$client->payment_type}--> <br>
+              <strong>Subscription Date: </strong><!--{$client->reg_date}--><br>
+            </td>
+            <td>
+              <strong>Date Span: </strong><!--{$client->date->datediff}--> day(s)<br/>
+              <!--{if $client->date->datediff <= 15}-->
+                <span class="badge badge-success">Payment Not Due</span>
+              <!--{else if $client->date->datediff >= 15}-->
+              <span class="badge badge-warning">Payment Due</span>
+              <!--{else if $client->date->datediff >= 30}-->
+              <span class="badge badge-danger">Payment Over Due</span>
+              <!--{/if}-->
+			     </td>
+			     <td>
+            <!--{if $type=='subscription'}-->
+			      	<a class="btn btn-sm my-1 btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/view_subscription?id=<!--{$client->reg_id}-->"><i class="fa fa-ellipsis-v"></i> Detail</a>
+            <!--{else}-->
+              <a class="btn btn-sm my-1 btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/view_investment?id=<!--{$client->reg_id}-->"><i class="fa fa-ellipsis-v"></i> Detail</a>
+            <!--{/if}-->
+            </td>
+			      <td>
+              <!--{if $client->paid =='0'}-->
+			      	  <a class="btn btn-sm my-1 btn-warning"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/make_payment?type=<!--{$type}-->&id=<!--{$client->token}-->"><i class="fa fa-ellipsis-v"></i> Add Payment </a>
+              <!--{else}-->
+                <a class="btn btn-sm my-1 btn-warning"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/make_payment?type=<!--{$type}-->&id=<!--{$client->token}-->"><i class="fa fa-ellipsis-v"></i> Add More Payment </a>
+              <!--{/if}-->
+            </td>
+			    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

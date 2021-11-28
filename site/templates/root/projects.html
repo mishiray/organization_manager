@@ -1,0 +1,71 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong> &nbsp;CONSTRUCTION PROJECTS&nbsp;<i class="fa fa-list"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row no-gutters justify-content-center">
+	<div class="col-sm-10 form-group mb-3">
+		<!--{if !empty($fail)}-->
+		  <!--{$fail}-->
+		<!--{/if}-->
+	</div>
+	<div class="col-sm-11">
+		<!--{if !empty($projects)}-->
+		<div class="row justify-content-center">
+			<!--{include file="paging-top.html"}-->
+			<!--{$numCount = 0}-->
+			<!--{foreach $projects as $project}-->
+				<div class="col-md-4 mb-4 text-dark">
+					<div class="card bg-dark text-white border-0 rounded-0">
+						<!--{$endext=end(explode(".", $project->images[0]))}-->
+						<!--{if in_array($endext, array("jpg","png","jpe","jpeg", "jp2", "tiff", "tiff"))}-->
+							<img src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($project->images) and is_array($project->images)}--><!--{$project->images[0]}--><!--{else}-->site/media/images/atobe logo.png<!--{/if}-->" class="card-img h200px" alt="<!--{$project->title}-->">
+						<!--{else}-->
+                            <div class="w-100">
+                              <video autobuffer controls class="w-100 h200px">
+                                <source src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$project->images[0]}-->">
+                                <source src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$project->images[0]}-->">
+                                <object type="video/ogg" data="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$project->images[0]}-->" class="w-100 h200px">
+                                  <param name="src" value="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$project->images[0]}-->">
+                                  <param name="autoplay" value="false">
+                                  <param name="autoStart" value="0">
+                                  <p class="d-none"><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$project->images[0]}-->" target="__blank">Download this video file.</a></p>
+                                </object>
+                              </video>
+                            </div>
+						<!--{/if}-->
+						<div class="card-img-overlay bg-overlay-green">
+							<h5 class="card-title text-white font-weight-bold"><!--{$project->title2}--></h5>
+							<h6 class="card-title text-white font-weight-bold"><!--{$project->category|capitalize}--></h6>
+							<h6 class="card-title d-none font-weight-bold">₦ <!--{$project->amount}--></h6>
+							<p class="card-text mt-2 text-white overflow-v-auto h130px"><!--{$project->description}--></p>
+						</div>
+						<div class="card-footer bg-transparent border-0 card-overlay-footer mt-5" style="z-index: 1;">
+							<p class="float-right">
+								<!--{if in_array( $Site.session.User.userinfo->userrole, array('level0','level1')) and  $Site.session.User.userinfo->active==true}-->
+									<!--{if $project->show!='1'}-->
+										<a class="btn btn-sm btn-success rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/projects?id=<!--{$project->token}-->&evt=show" what='show this record to website visitors'><i class="fa fa-check-circle"></i> Show</a>
+									<!--{/if}-->
+									<!--{if $project->show!='0'}-->
+										<a class="btn btn-sm btn-warning rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/projects?id=<!--{$project->token}-->&evt=hide" what='hide this record from website visitors'><i class="fa fa-times-circle"></i> Hide</a>
+									<!--{/if}-->
+									<!--{if $project->set_featured!='1'}-->
+										<a class="btn btn-sm btn-success rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/projects?id=<!--{$project->token}-->&evt=feature" what='show this record to website visitors'><i class="fa fa-check-circle"></i> Feature as Ongoing Project</a>
+									<!--{/if}-->
+									<a class="btn btn-sm btn-danger rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/projects?id=<!--{$project->token}-->&evt=delete" what='delete this record from the system'><i class="fa fa-trash"></i> Delete</a>
+								<!--{/if}-->
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/project?id=<!--{$project->token}-->" class="align-bottom btn btn-sm btn-success rounded-0 mb-1"><i class="fa fa-info-circle"></i> Check Info</a>
+							</p>
+						</div>
+					</div>
+				</div>
+		  		<!--{$numCount=$numCount+1}-->
+			<!--{/foreach}-->
+			<!--{include file="paging-bottom.html"}-->
+		</div>
+		<!--{else}-->
+		<div class="alert alert-success mt-5"><h4 class="alert-heading font-weight-bold text-center pt-2">No registered project yet</h4></div>
+		<!--{/if}-->
+	</div>
+</section>
+<!--{/block}-->

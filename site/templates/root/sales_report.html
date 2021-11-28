@@ -1,0 +1,168 @@
+<!--{extends file="root.html"}-->
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Sales Report</h1>
+<p class="mb-4">The table contains sales reports</p>
+
+<!-- DataTales Example -->
+<section class="row">
+  <div class="card w-100 shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Reports</h6>
+    </div>
+    <div class="card-body justify-content-center">
+      <div class="col-lg-6 bg-primary rounded pt-2">
+        <form action="" class="d-flex" method="post">
+        <div class="form-group">
+          <label class="text-light" for="Year">Enter Year</label>
+              <select class="form-control" id="Year"  name="year">
+                <!--{for $foo=2010 to 3000}-->
+                  <option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+                    <!--{$foo}-->
+                  </option>
+                <!--{/for}-->
+              </select>
+        </div>
+        <div class="form-group">
+          <label for="month"class="text-light">Select Month</label>
+              <select class="form-control" id="month"  name="month">
+                <option value="">All</option>
+                <!--{foreach $months as $month}-->
+                  <option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+                    <!--{$month}-->
+                  </option>
+                <!--{/foreach}-->
+              </select>
+        </div>
+        <div class="form-group">
+          <label for="week"class="text-light">Select Week</label>
+              <select class="form-control" id="week"  name="week">
+                <option value="">All</option>
+                <option <!--{if !empty($filter->week) && $filter->week == 1 }--> selected <!--{/if}-->  value="1">
+                  Week 1
+                </option>
+                <option <!--{if !empty($filter->week) && $filter->week == 2 }--> selected <!--{/if}-->  value="2">
+                  Week 2
+                </option>
+                <option <!--{if !empty($filter->week) && $filter->week == 3 }--> selected <!--{/if}-->  value="3">
+                  Week 3
+                </option>
+                <option <!--{if !empty($filter->week) && $filter->week == 4}--> selected <!--{/if}-->  value="4">
+                  Week 4
+                </option>
+                <option <!--{if !empty($filter->week) && $filter->week == 5}--> selected <!--{/if}-->  value="5">
+                  Week 5
+                </option>
+              </select>
+        </div>
+          <div class="form-group d-flex"> 
+            <button type="submit" class="mt-2 btn btn-success" name="triggers" id="reports" value="sales_report">OK</button>
+         </div>      
+       </form>
+      </div>
+    </div>
+    <!--{if !empty($payments)}-->
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-6"> 
+          <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex bg-success flex-row align-items-center justify-content-between">
+              <h4 class="m-0 font-weight-bold text-light">Total Sales</h4>
+            </div>
+            <div class="card-body">
+              <h3>&#8358;<!--{$total_sales->this_week|number_format:2}--> </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>SN</th>
+              <th>Transaction Id</th>
+              <th>Paid By</th>
+              <th>Amount</th>
+              <th>Product</th>
+              <th>Purpose</th>
+              <th>Transaction Date</th>
+              <th>Gate Way</th>
+              <th>Status</th>
+              <th>Proof</th>
+              <th class="d-none" scope="col"></th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>SN</th>
+              <th>Transaction Id</th>
+              <th>Paid By</th>
+              <th>Amount</th>
+              <th>Product</th>
+              <th>Purpose</th>
+              <th>Transaction Date</th>
+              <th>Gate Way</th>
+              <th>Status</th>
+              <th>Proof</th>
+              <th class="d-none" scope="col"></th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <!--{$numCount=1}-->
+            <!--{foreach $payments as $payment}-->
+            <tr>
+              <td><!--{$numCount}--></td>
+              <td>
+                <strong><!--{$payment->transid1}--></strong>
+              </td>
+              <td>
+                <!--{$payment->details->surname|ucfirst}--> <!--{$payment->details->firstname|ucfirst}-->
+              </td>
+              <td>
+                &#8358;<!--{$payment->amount|number_format:2}-->
+              </td>
+              <td>
+                <!--{$payment->details->product}-->
+              </td>
+              <td>
+                <!--{$payment->purpose}-->
+              </td>
+              <td>
+                <!--{$payment->transdate}-->
+              </td>
+              <td>
+                <!--{$payment->gateway}-->
+              </td>
+              <td>
+                  <span class="badge badge-<!--{if $payment->status =='1'}-->success<!--{else}-->warning<!--{/if}-->"><!--{if $payment->status=='1'}-->Success<!--{else}-->Failed<!--{/if}--></span></td>
+              </td>
+              <td>
+                <!--{if !empty($payment->proof)}-->
+                <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$payment->proof}-->" target="_blank" >Click to view</a>
+                <!--{else}-->
+                <a>No Proof</a>
+                <!--{/if}-->
+              </td>
+              <td>
+                <a class="btn btn-sm my-1 btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/update_payment?id=<!--{$payment->id}-->"><i class="fa fa-ellipsis-v"></i> Detail</a>
+              </td>
+            </tr>
+            <!--{$numCount=$numCount+1}-->
+          <!--{/foreach}-->
+          </tbody>
+        </table>
+      </div>
+      <div class="row text-center justify-content-center">
+        <div class="form-group">
+          <button id="exportbtn" class="p-2 btn btn-sm btn-success text-light m-2" type="button" onclick="exportExcel('#dataTable');" >EXPORT REPORT</button>
+        </div>
+      </div>
+    </div>
+    <!--{else}-->
+    <div class="alert alert-warning"><h3 class="alert-heading">No reports found</h3></div>
+    <!--{/if}-->
+  </div>
+</section>
+<!--{/block}-->

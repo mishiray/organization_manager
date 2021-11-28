@@ -1,0 +1,78 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Weekly Report</h1>
+    <p class="mb-4">Add a new Weekly Report to the Database</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add Weekly Report</h6>
+      </div>
+      <div class="card-body">
+      <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_weekly_report" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="branch_name" class="form-control-label">Branch name</label>
+                    <select class="form-control" name="branch_name"> 
+                      <!--{if !empty($branches)}-->
+                      <option value="">Select Branch</option>
+                        <!--{foreach $branches as $branch}-->  
+                        <option value="<!--{$branch->zone}-->">
+                          <!--{$branch->zone|ucfirst}-->
+                        </option>
+                        <!--{/foreach}-->
+                      <!--{else}-->
+                      <option value="none">No branches added</option>
+                      <!--{/if}-->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Team" class="form-control-label">Team</label>
+                    <input type="text" class="form-control form-control-user" id="Team" name="team" placeholder="Team">
+                </div>
+                <div class="form-group">
+                    <label for="Project" class="form-control-label">Month/Week</label>
+                    <input type="text" class="form-control form-control-user" id="Month/Week" name="type" placeholder="Month/Week">
+                </div>
+                <div class="form-group">
+                  <label for="Date" class="form-control-label">Date</label>
+                  <input type="Date" class="form-control form-control-user" id="Date" name="date" placeholder="Date">
+                </div>
+                <div class="form-group">
+                  <label for="Organization/Institution" class="form-control-label">Organization/Institution</label>
+                  <input type="text" class="form-control form-control-user" id="Organization/Institution" name="organization" placeholder="Organization/Institution">
+                </div>
+                <div class="form-group">
+                  <label for="Activities" class="form-control-label">Activities</label>
+                  <textarea class="form-control" id="Activities" name="activities" placeholder="Activities"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="Action_Plan" class="form-control-label">Action_Plan</label>
+                  <textarea class="form-control" id="Action_Plan" name="action_plan" placeholder="Action_Plan"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="Note" class="form-control-label">Note</label>
+                    <textarea class="form-control" id="Note" name="note" placeholder="Note"></textarea>
+                </div>
+                  <div class="form-group text-center">
+                    <button class="btn btn-primary btn-sm rounded-0" type="submit" name="add_weekly_report">Add Weekly Report</button>
+                </div>
+            </div>
+            <!--{if !empty($fail)}-->
+            <div class="col">
+              <div class="form-group">
+                <!--{$fail}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <br>
+        </div>
+        
+      </form>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

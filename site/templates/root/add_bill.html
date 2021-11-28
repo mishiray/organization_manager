@@ -1,0 +1,201 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h1 class="h3 mb-2 text-gray-800">Bills</h1>
+<p class="mb-4">Add New Bill</p>
+
+<section class="row" id="printMe">
+	<div class="col-md-12 card">
+		<div class="card-body pt-4">
+			<div class="row">
+							<!--{if !empty($fail)}-->
+								<div class="form-group">
+									<!--{$fail}-->
+								</div>
+							<!--{/if}-->
+							<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_bill" enctype="multipart/form-data" class="w-100">
+								<div class="row w-100">
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="vendor" class="form-control-label">Vendor</label>
+											<select name="vendor" class="form-control" required id="vendors">
+												<option value="">All</option>
+												<!--{foreach $vendors as $vendor}-->
+												<option i='<!--{json_encode($vendor)}-->' class="vendor_list" value="<!--{$vendor->vendor_name}-->">
+													<!--{$vendor->vendor_name|ucwords}-->
+												</option>
+												<!--{/foreach}-->
+											</select>
+										</div>
+										<div class="form-group">
+											<div id="vendor_address">
+												<!-- details from script -->
+											</div>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="date" class="form-control-label">Date</label>
+											<input type="date" name="date" required class="form-control" id="date">
+										</div>
+										<div class="form-group">
+											<label for="due_date" class="form-control-label">Due Date</label>
+											<input type="date" name="due_date" required class="form-control" id="due_date">
+										</div>
+									</div>
+								</div>
+
+								<div class="row text-right">
+									<div class="col justify-content-end p-2 text-right d-flex">
+										<div class="well clearfix mr-4">
+											<a class="btn btn-danger pull-right add-record" data-added="0"><i class="fa fa-plus"></i> Add Row</a>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-12">
+										<div class="form-group">
+											<div class="table-responsive">
+											<table id="financetbl" class="table table-hover table-bordered">
+												<thead class=" text-light bg-primary">
+													<tr>
+														<th scope="col">S/N</th>
+														<th scope="col" style="min-width: 300px;">Item</th>
+														<th scope="col" style="min-width: 200px;">Expense Category</th>
+														<th scope="col">Description</th>
+														<th scope="col" style="width: 3	0px;">Quantity</th>
+														<th scope="col">Price</th>
+														<th scope="col">Tax</th>
+														<th scope="col">Amount</th>
+													  </tr>
+													</thead>
+													
+													<tbody id="financebody">
+														  <tr id = "rec-0">
+															<td>
+																<span class="font-weight-bold sn">1</span>
+															</td>
+															<td>
+																<select class="form-control product" id="products0" i="0" name="products">
+																<!--{if !empty($products)}-->
+																	<option selected disabled>Choose</option>
+																	<!--{foreach $products as $product}-->
+																		<option i='<!--{json_encode($product)}-->' value="<!--{$product->product_name}-->" > <!--{$product->product_name}--></option>
+																	<!--{/foreach}-->
+																<!--{else}-->
+																	<option>No Products Added</option>
+																<!--{/if}-->
+																</select>
+															</td>
+															<td>
+																<select class="form-control" id="expenses0" i = "0" name="expenses">
+																	<!--{if !empty($expense_accounts)}-->
+																		<option selected disabled>Choose</option>
+																		<!--{foreach $expense_accounts as $expense}-->
+																			<option i="" value="<!--{$expense->account}-->" > <!--{$expense->account}--></option>
+																		<!--{/foreach}-->
+																	<!--{else}-->
+																		<option>No Expense Added</option>
+																	<!--{/if}-->
+																	</select>
+															</td>
+															<td>
+																<textarea id="description0" class="form-control border" name="description[]" value="" placeholder=""></textarea>
+															</td>
+															<td>
+															  <input type="number" id="quantity0" class="form-control  border  quantity " name="quantity" i="0" value="1" placeholder="">
+															</td>
+															<td>
+															  <input type="number" id="price0" class="form-control  border  price " name="price" i="0" value="" placeholder="">
+															</td>
+															<td>
+															  <input type="number" id="tax0" class="form-control  border  tax " name="tax" i="0" value="" placeholder="">
+															</td>
+															<td>
+															  <input type="number" id="amount0" class="form-control  border  amount " name="amount" i="0" value="" placeholder="">
+															</td>
+															<td><a class="btn btn-xs delete-record" data-id="0"><i class="fa fa-trash"></i></a></td>
+														  </tr>
+													</tbody>
+													<tfoot>
+													  <tr> 
+														<th colspan="7" class="text-center">
+														  Totals 
+														</th>
+														<td class="text-center">
+															<label for="" class="form-control-label">Total</label>
+															<input id="creditTotal" type="number" class="form-control  border  creditTotal badge-pill" name="total_amount" value="" placeholder="" required readonly>
+														</td>
+													  </tr>
+													</tfoot>
+												  </table>
+												  <div class="d-none">
+													<textarea name="allData" id="allData"></textarea>
+												  </div>
+												</div>
+												<div class="d-none">
+													<table>
+														<tr>
+															<td></td>
+														</tr>
+														<tr class="sample-row d-none" id = "rec-1">
+															<td>
+																<span class="font-weight-bold sn">1</span>
+															</td>
+															<td>
+																<select class="form-control product" id="products" name="products">
+																<!--{if !empty($products)}-->
+																	<option selected disabled>Choose</option>
+																	<!--{foreach $products as $product}-->
+																		<option i='<!--{json_encode($product)}-->' value="<!--{$product->product_name}-->" > <!--{$product->product_name}--></option>
+																	<!--{/foreach}-->
+																<!--{else}-->
+																	<option>No Products Added</option>
+																<!--{/if}-->
+																</select>
+															</td>
+															<td>
+																<select class="form-control" id="expenses" name="expenses">
+																	<!--{if !empty($expense_accounts)}-->
+																		<option selected disabled>Choose</option>
+																		<!--{foreach $expense_accounts as $expense}-->
+																			<option i='' value="<!--{$expense->account}-->" > <!--{$expense->account}--></option>
+																		<!--{/foreach}-->
+																	<!--{else}-->
+																		<option>No Expense Added</option>
+																	<!--{/if}-->
+																	</select>
+															</td>
+															<td>
+																<textarea id="description" class="form-control border" name="description[]" value="" placeholder=""></textarea>
+															</td>
+															<td>
+															  <input type="number" id="quantity" class="form-control  border  quantity " name="quantity" i="" value="1" placeholder="">
+															</td>
+															<td>
+															  <input type="number" id="price" class="form-control  border  price " name="price" i="" value="" placeholder="">
+															</td>
+															<td>
+															  <input type="number" id="tax" class="form-control  border  tax " name="tax" i="" value="" placeholder="">
+															</td>
+															<td>
+															  <input type="number" id="amount" class="form-control  border  amount " name="amount" i="0" value="" placeholder="">
+															</td>
+															<td><a class="btn btn-xs delete-record" data-id="0"><i class="fa fa-trash"></i></a></td>
+														</tr>
+													</table>
+												</div>
+										</div>
+									</div>
+								</div>
+								<div class="form-group text-center">
+									<button class="btn btn-success rounded-0 p-2" type="submit" name="add_bill"><i class="fa fa-plus"></i> Add Bill </button>
+								</div>
+							</form>
+			</div>
+	    </div>
+	</div>
+	<div class="card-footer d-none">
+		<button type="button" class="btn btn-primary btn-sm" id="printSect"><i class="fa fa-print"></i> Print Now</button>
+	</div>
+</section>
+<!--{/block}-->

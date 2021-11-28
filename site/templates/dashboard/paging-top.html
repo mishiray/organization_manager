@@ -1,0 +1,35 @@
+<!--{if $Pager->entry < $Pager->totalRecs }-->
+<div class="row">
+	<div class="col-md-5">
+		<div class="dataTables_length" id="entry">
+			<form method="get" action="">
+				<!--{if !empty($Pager->page)}--><input type="hidden" name="page" value="<!--{$Pager->page}-->"/><!--{/if}-->
+				<!--{if !empty($Pager->search)}--><input type="hidden" name="search" value="<!--{$Pager->search}-->"/><!--{/if}-->
+				<!--{if !empty($Site.get.id)}--><input type="hidden" name="id" value="<!--{$Site.get.id}-->"/><!--{/if}-->
+				<label>Show 
+				<select name="entry" onchange="this.form.submit()" class="custom-select custom-select-sm form-control form-control-sm">
+					<option value="5" <!--{if $Pager->entry == '5' }-->selected<!--{/if}-->>5</option>
+					<option value="10" <!--{if $Pager->entry == '10' }-->selected<!--{/if}-->>10</option>
+					<option value="15" <!--{if $Pager->entry == '15' }-->selected<!--{/if}-->>15</option>
+					<option value="20" <!--{if $Pager->entry == '20' }-->selected<!--{/if}-->>20</option>
+					<option value="25" <!--{if $Pager->entry == '25' }-->selected<!--{/if}-->>25</option>
+					<option value="50" <!--{if $Pager->entry == '50' }-->selected<!--{/if}-->>50</option>
+					<option value="100" <!--{if $Pager->entry == '100' }-->selected<!--{/if}-->>100</option>
+				</select> entries
+				</label>
+			</form>
+		</div>
+	</div>
+	<div class="col-md-5">
+		<div id="search" class="dataTables_filter">
+			<form method="get" action="">
+				<!--{if !empty($Pager->page)}--><input type="hidden" name="page" value="<!--{$Pager->page}-->"/><!--{/if}-->
+				<!--{if !empty($Pager->entry)}--><input type="hidden" name="entry" value="<!--{$Pager->entry}-->"/><!--{/if}-->
+				<!--{if !empty($Site.get.id)}--><input type="hidden" name="id" value="<!--{$Site.get.id}-->"/><!--{/if}-->
+				<label>Search:<input type="search" class="form-control form-control-sm" placeholder="" name="search" value="<!--{$Pager->search}-->"></label>
+				<button type="submit" class="btn btn-sm btn-primary">Search</button>
+			</form>
+		</div>
+	</div>
+</div>
+<!--{/if}-->

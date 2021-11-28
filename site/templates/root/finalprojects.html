@@ -1,0 +1,107 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong>
+	&nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/clients">Students&nbsp;<i class="fa fa-users"></i></a>&nbsp;| Final Projects&nbsp;<i class="fa fa-files-o"></i>&nbsp;
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row justify-content-center">
+	<div class="col-sm-11">
+		<div class="table-responsive">
+		<!--{if !empty($finalprojects)}-->
+		<div id="dataTableId_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+			<!--{include file="paging-top.html"}-->
+			<table class="table table-striped table-hover table-bordered">
+			  <thead class="site-bg-2 text-white">
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Student Details</th>
+			      <th scope="col">Project Info</th>
+			      <th scope="col">Project Materials</th>
+			      <th scope="col">Project Review</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	<!--{$numCount=1}-->
+			  	<!--{foreach $finalprojects as $key=> $finalproject}-->
+			    <tr>
+			      <td><!--{$numCount}--></td>
+			      <td>
+			      	<!--{if !empty($finalproject->client->firstname)}--><strong>Names: </strong><!--{$finalproject->client->firstname}--> <!--{$finalproject->client->middlename}--> <!--{$finalproject->client->lastname}--><br/><!--{/if}-->
+			      	<strong>Email: </strong><!--{$finalproject->client->email}--><br/>
+			      	<!--{if !empty($finalproject->client->username)}--><strong>Username: </strong><!--{$finalproject->client->username}--><!--{/if}-->
+			      	<!--{if !empty($finalproject->client->phone)}--><strong>Phone Number: </strong><!--{$finalproject->client->phone}--><!--{/if}-->
+			      </td>
+			      <td>
+			      	<!--{if !empty($finalproject->title)}--><strong>Title: </strong><!--{$finalproject->title}--><br/><!--{/if}-->
+			      	<!--{if !empty($finalproject->title)}--><div class="border border-success py-1 px-1" style="max-height: 150px; max-width: 250px; overflow-y: auto;"><strong>Description: </strong><!--{$finalproject->description}--></div><!--{/if}-->
+			      	<!--{if !empty($finalproject->datesubmitted)}--><strong>Date Submitted: </strong><!--{$finalproject->datesubmitted}--><!--{/if}-->
+			      </td>
+			      <td>
+			      	<div style="max-height: 150px; max-width: 300px; overflow-y: auto;">
+			      	<!--{if !empty($finalproject->sfiles) and is_array($finalproject->sfiles)}-->
+			      	<!--{foreach $finalproject->sfiles as $sfile}-->
+			      		<a class="btn btn-outline-success mt-1 btn-sm btn-light" href="/<!--{$sfile->url}-->" target="__blank"><small><!--{$sfile->title}--></small></a>
+			      	<!--{/foreach}-->
+			      	<!--{/if}-->
+			      	</div>
+			      </td>
+			      <td>
+			      	<!--{if !empty($finalproject->review) or !empty($finalproject->mark)}-->
+			      		<button class="btn btn-sm badge-pill my-1 btn-warning" type="button" data-toggle="collapse" data-target="#collapseAss<!--{$key}-->" aria-expanded="false" aria-controls="collapseAss<!--{$key}-->"><i class="fa fa-pencil"></i>Edit Review</button>
+			      	<!--{else}-->
+			      		<button class="btn btn-sm badge-pill my-1 btn-success" type="button" data-toggle="collapse" data-target="#collapseAss<!--{$key}-->" aria-expanded="false" aria-controls="collapseAss<!--{$key}-->"><i class="fa fa-pencil"></i>Add Review</button>
+			      	<!--{/if}-->
+			      	<a class="btn btn-sm badge-pill my-1 btn-danger confirmTrig" what="Delete student's final project (<!--{$finalproject->title}-->)" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finalprojects?u=<!--{$finalproject->user}-->&fpid=<!--{$finalproject->id}-->&evt=delete"><i class="fa fa-trash"></i> Delete</a>
+			      </td>
+			    </tr>
+				<tr class="collapse" id="collapseAss<!--{$key}-->">
+				  	<td colspan="3">
+					  <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finalprojects">
+					  		<div class="form-group">
+					  			<h6 class="text-center">Edit Project Detail</h6>
+					  		</div>
+					  		<div class="form-group">
+			                  <input type="text" id="title" name="title" class="form-control form-control-sm input-block" placeholder="Project Title" value="<!--{$finalproject->title}-->" required/>
+			                </div>
+			                <div class="form-group">
+			                  <textarea id="description" name="description" class="form-control form-control-lg input-block" placeholder="Project Description" rows="4" required><!--{$finalproject->description}--></textarea>
+			                </div>
+					       	<div class="form-group">
+					       		<input type="hidden" name="fpid" value="<!--{$finalproject->id}-->"/>
+					       		<input type="hidden" name="userid" value="<!--{$finalproject->user}-->"/>
+					        	<button class="btn btn-sm btn-success" type="submit" name="edit_prj"><i class="fa fa-pencil"></i> Save Changes</button>
+					       	</div>
+					  </form>
+				  	</td>
+				    <td colspan="3">
+					  <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finalprojects">
+					  		<div class="form-group">
+					  			<h6 class="text-center">Add/ Edit Review</h6>
+					  		</div>
+					       	<div class="form-group">
+					       		<input type="number" name="score" value="<!--{$finalproject->mark}-->" placeholder="Project Score" class="form-control form-control-sm"/>
+					       	</div>
+					       	<div class="form-group">
+					       		<textarea name="review" class="form-control form-control-lg input-block" rows="4" placeholder="Project Comment / Review"><!--{$finalproject->review}--></textarea>
+					       	</div>
+					       	<div class="form-group">
+					       		<input type="hidden" name="fpid" value="<!--{$finalproject->id}-->"/>
+					       		<input type="hidden" name="userid" value="<!--{$finalproject->user}-->"/>
+					        	<button class="btn btn-sm btn-success" type="submit" name="review_prj"><i class="fa fa-pencil"></i> Save Changes</button>
+					       	</div>
+					  </form>
+				    </td>
+				</tr>
+			  	<!--{$numCount=$numCount+1}-->
+				<!--{/foreach}-->
+			  </tbody>
+			</table>
+			<!--{include file="paging-bottom.html"}-->
+		</div>
+		<!--{else}-->
+		<div class="alert alert-warning"><h3 class="alert-heading">No record on uploaded final project</h3></div>
+		<!--{/if}-->
+	</div>
+</section>
+<!--{/block}-->

@@ -1,0 +1,139 @@
+<div class="row justify-content-center">
+	<div class="col-md-6">
+		<div class="card border-success rounded">
+			<h3 class="card-header mt-2 has-text-weight-bold">Course Detail</h3>
+			<div class="card-body" style="max-height: 400px; overflow-y: auto;">
+				<h4><strong>Course ID: </strong> <!--{$client->matresult->material->courseid}--></h4>
+				<h4><strong>Lesson Course: </strong> <!--{$client->course->title}--></h4>
+				<h4><strong>Course Category: </strong> <!--{$client->course->category}--></h4>
+				<h4><strong>Lesson Material Title: </strong> <!--{$client->material->title}--></h4>
+				<h4><strong>Decription: </strong> <!--{$client->material->description}--></h4>
+			</div>
+		</div>
+		
+	</div>
+	<div class="col-md-6">
+		<div class="card border-success rounded">
+			<h3 class="card-header mt-2 has-text-weight-bold">Result Detail</h3>
+			<div class="card-body" style="max-height: 400px; overflow-y: auto;">
+				<h4><strong>Number of Questions: </strong> <!--{count($client->attempt->questions)}--></h4>
+				<h4><strong>Assessment Duration: </strong> <!--{$client->attempt->settimestr['hh']}-->hr <!--{$client->attempt->settimestr['mm']}-->min <!--{$client->attempt->settimestr['ss']}-->sec</h4>
+				<h4><strong>Date/Time Started:</strong> <!--{$client->attempt->startdate}--></h4>
+				<h4><strong>End Date/Time:</strong> <!--{$client->attempt->enddate}--></h4>
+				<h4><strong>Used Time:</strong> <!--{$client->attempt->usettimestr['hh']}-->hr <!--{$client->attempt->usettimestr['mm']}-->min <!--{$client->attempt->usettimestr['ss']}-->sec</h4>
+				<h4><strong>Attempted Questions: </strong><!--{count($client->attempt->answers)}--></h4>
+				<h4><strong>Score: </strong><!--{round(($client->attempt->score/$client->matresult->totalquestions)*100,2)}-->%</h4>
+			</div>
+		</div>
+	</div>
+	<!--{if in_array( $Site.session.User.userinfo->userrole, array('level0', 'level1', 'level4'))}-->
+	<div class="col-md-12 mt-2 border border-success badge-pill py-2">
+		<!--{if $client->attempt->marked=='1' or $client->attempt->marked==true}--><i class="badge badge-success my-2">Assessment marking completed</i><!--{else}--><i class="badge badge-danger mx-2 my-2">Assessment marking not completed</i><!--{/if}-->
+		<a class="btn btn-sm btn-warning" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$client->email}-->&lesresult=<!--{$client->matresult->id}-->"><i class="fa fa-undo"></i> Refresh Page</a>
+		<!--{if $client->attempt->marked=='1' or $client->attempt->marked==true}-->
+			<a class="btn btn-sm btn-danger" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$client->email}-->&lesresult=<!--{$client->matresult->id}-->&event=canclemark"><i class="fa fa-times"></i> Cancel Marking Completion and Hide Result</a>
+		<!--{else}-->
+			<a class="btn btn-sm btn-success" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$client->email}-->&lesresult=<!--{$client->matresult->id}-->&event=finish"><i class="fa fa-check"></i> Complete Marking and Display Result</a>
+		<!--{/if}-->
+	</div>
+	<!--{/if}-->
+	<div class="col-sm-12 mt-2 border border-success rounded">
+		<h3 class="card-header card-header-pills">Assessment Questions</h3>
+		<div class="card-body">
+			<div class="row">
+				<div class="col-3">
+				    <div class="list-group rounded-0" id="list-tab" role="tablist">
+				    	<!--{foreach $client->attempt->questions as $key=> $question}-->
+						<a class="list-group-item list-group-item-action py-3 <!--{if $key==0}-->active<!--{/if}-->" id="list-tab<!--{$key}-->-list" data-toggle="list" href="#list-tab<!--{$key}-->" role="tab" aria-controls="tab<!--{$key}-->"><h6 class="font-weight-bold"><!--{($key+1)}-->. <!--{$question->question}--></h6></a>
+						<!--{/foreach}-->
+				    </div>
+				</div>
+				<div class="col-9 border border-success rounded">
+				    <div class="tab-content" id="nav-tabContent">
+				    	<!--{foreach $client->attempt->questions as $key=> $question}-->
+						<div class="tab-pane fade show <!--{if $key==0}-->active<!--{/if}-->" id="list-tab<!--{$key}-->" role="tabpanel" aria-labelledby="list-tab<!--{$key}-->-list">
+							<!--{if !empty($question->qpic)}-->
+							<div class="col-md-7 py-2 text-center form-group">
+		                        <!--{if !empty($question->filetype) and $question->filetype=='video'}-->
+		                          <div style="max-width: 400px; max-height: 300px;">
+		                            <video autobuffer controls class="w-100">
+		                              <source src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$question->qpic}-->">
+		                              <source src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$question->qpic}-->">
+		                              <object type="video/ogg" data="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$question->qpic}-->" class="w-100">
+		                                <param name="src" value="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$question->qpic}-->">
+		                                <param name="autoplay" value="false">
+		                                <param name="autoStart" value="0">
+		                                <p><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$question->qpic}-->" target="__blank">Download this video file.</a></p>
+		                              </object>
+		                            </video>
+		                          </div>
+		                        <!--{else}-->
+		                          <div class="form-group">
+		                            <img src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$question->qpic}-->" class="img-thumbnail" style="max-height: 300px; max-height: 350px;">
+		                          </div>
+		                        <!--{/if}-->
+							</div>
+							<!--{/if}-->
+							<h4 class="card-title">Options</h4>
+							<p class="card-text">
+								<!--{foreach $question->options as $ky=> $option}-->
+									<!--{if !empty(trim($option))}-->
+										<!--{if $ky>0}--><br/><!--{/if}--> <!--{($ky+1)}-->. <!--{$option}-->
+									<!--{/if}-->
+								<!--{/foreach}-->
+							</p>
+							<div class="col-md-12 mt-2 py-2 border border-success badge-pill">
+								<!--{if !isset($question->marked) and $question->qtype=='theory'}-->
+									<i class="badge badge-danger my-2">question not marked</i>
+	 								<!--{if in_array( $Site.session.User.userinfo->userrole, array('level0', 'level1', 'level4'))}-->
+									<a class="btn btn-sm btn-danger" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$client->email}-->&lesresult=<!--{$client->matresult->id}-->&qid=<!--{$key}-->&mark=wrong&ansid=<!--{$question->ansKey}-->"><i class="fa fa-times"></i> Mark Question Wrong</a>
+									<a class="btn btn-sm btn-success" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$client->email}-->&lesresult=<!--{$client->matresult->id}-->&qid=<!--{$key}-->&mark=correct&ansid=<!--{$question->ansKey}-->"><i class="fa fa-check"></i> Mark Question Correct</a>
+									<!--{/if}-->
+								<!--{else}-->
+									<i class="badge badge-success mx-2 my-2">question marked</i>
+								<!--{/if}-->
+								<!--{if isset($question->marked) and $question->qtype=='theory'}-->
+									<!--{if $question->marked=='1' or $question->marked==true}-->
+										<i class="badge badge-success my-2">correct</i>
+	 									<!--{if in_array( $Site.session.User.userinfo->userrole, array('level0', 'level1', 'level4'))}-->
+										<a class="btn btn-sm btn-danger" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$client->email}-->&lesresult=<!--{$client->matresult->id}-->&qid=<!--{$key}-->&mark=wrong&ansid=<!--{$question->ansKey}-->"><i class="fa fa-times"></i> Mark Question Wrong</a>
+										<!--{/if}-->
+									<!--{else}-->
+										<i class="badge badge-danger my-2">wrong</i>
+	 									<!--{if in_array( $Site.session.User.userinfo->userrole, array('level0', 'level1', 'level4'))}-->
+										<a class="btn btn-sm btn-success" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$client->email}-->&lesresult=<!--{$client->matresult->id}-->&qid=<!--{$key}-->&mark=correct&ansid=<!--{$question->ansKey}-->"><i class="fa fa-check"></i> Mark Question Correct</a>
+										<!--{/if}-->
+									<!--{/if}-->
+								<!--{elseif $question->qtype=='objective'}-->
+									<!--{if $question->answer==$question->choice}-->
+										<i class="badge badge-success my-2">correct</i>
+									<!--{else}-->
+										<i class="badge badge-danger my-2">wrong</i>
+									<!--{/if}-->
+								<!--{/if}-->
+								
+							</div>
+							<h4 class="card-title">Set Answer</h4>
+							<p class="card-text">
+								<!--{$question->answer}-->
+							</p>
+							<h4 class="card-title">Student's Choice</h4>
+							<p class="card-text">
+								<!--{if !empty($question->choice)}--><!--{$question->choice}--><!--{/if}--><br/>
+								<!--{if $question->qtype=='theory'}-->
+									<!--{if $question->fileupload=='1'}-->
+										<!--{if ($client->attempt->answers[$question->ansKey]->picture)}-->
+										<a class="btn btn-primary btn-sm my-2" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$client->attempt->answers[$question->ansKey]->picture}-->" target="__blank">View Uploaded File / Image</a>
+										<!--{else}--><br/><span class="badge badge-pill badge-info">No file or image was uploaded for this question</span>
+										<!--{/if}-->
+									<!--{/if}-->
+								<!--{/if}-->
+							</p>
+						</div>
+						<!--{/foreach}-->
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

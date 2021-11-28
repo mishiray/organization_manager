@@ -1,0 +1,75 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Payment</h1>
+    <p class="mb-4">Update Payment</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Update Payment</h6>
+      </div>
+      <div class="card-body">
+      <!--{if !empty($payment)}-->
+      <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/update_payment?id=<!--{$payment->id}-->" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="file_upload" class="form-control-label">Upload Payment Proof</label>
+                  <input type="file" accept="image/*, application/*, video/*" id="file_upload" class="input-rounded w-100" name="file_upload"/>
+                </div>
+                  <div class="form-group">
+                    <label for="paid_by" class="form-control-label">Paid By</label>
+                    <input type="text" class="form-control form-control-user" id="serial" value="<!--{$payment->paidby}-->" name="paid_by" placeholder="Paid By">
+                  </div>
+                  <div class="form-group">
+                    <label for="amount" class="form-control-label">Amount Paid</label>
+                        <input type="number" class="form-control form-control-user" id="amount" name="amount" value="<!--{$payment->amount}-->" placeholder="Amount Paid">
+                  </div>
+                  <div class="form-group">
+                    <label for="gateway" class="form-control-label">Payment Gateway</label>
+                      <input type="text" class="form-control form-control-user" id="othergateway" name="gateway" value="<!--{$payment->gateway}-->" placeholder="Payment Purpose">
+                  </div>
+                  <div class="form-group">
+                    <label for="purpose" class="form-control-label">Payment Purpose</label>
+                    <input type="text" class="form-control form-control-user" id="purpose" name="purpose" value="<!--{$payment->purpose}-->" placeholder="Payment Purpose">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="transdate">Transaction Date</label>
+                    <input type="date" id="transdate" name="transdate" class="form-control" value="<!--{$payment->transdate|date_format:'%Y-%m-%d'}-->" />
+                  </div>
+                  <div class="form-group">
+                    <label for="status" class="form-control-label">Status</label>
+                    <select name="status" class="form-control" id="status">
+                      <option value="1">Success</option>
+                      <option value="0">Fail</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="discount" class="form-control-label">Discount</label>
+                        <input type="text" class="form-control form-control-user" id="discount" name="discount" value="<!--{$payment->discount}-->" placeholder="Discount">
+                  </div>
+                  <div class="form-group text-center">
+                    <a class="btn btn-warning mr-5" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/payments">Back</a>
+                    <button class="btn btn-success mr-5" type="submit" name="update_payment">Update Payment</button>
+                </div>
+            </div>
+            <!--{if !empty($fail)}-->
+            <div class="col">
+              <div class="form-group">
+                <!--{$fail}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <br>
+        </div>
+        
+      </form>
+      <!--{else}-->
+        <div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+      <!--{/if}-->
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

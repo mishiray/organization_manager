@@ -1,0 +1,73 @@
+Thu Feb  6 03:54:38 GMT 2020
+Running Processes:
+schooztc  3390118  7.1  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc  3394555 58.2  0.5 507764 186824 ?       S    03:54   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3394677 59.7  0.5 506740 186068 ?       R    03:54   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 148.8% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3390118  7.0  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc 3394555 61.1  0.7 637656 239132 ?       R    03:54   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3394677 61.0  0.6 524548 203652 ?       R    03:54   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3394853 33.5  0.1 427104 59664 ?        R    03:54   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3390118  7.0  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc 3394555 61.7  0.7 637656 239132 ?       R    03:54   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3394677 61.8  0.6 529924 208640 ?       R    03:54   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3394853 37.5  0.1 427092 61000 ?        R    03:54   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3390118  7.0  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc 3394555 62.1  0.7 637656 239132 ?       S    03:54   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3394677 62.8  0.6 543752 221324 ?       R    03:54   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3394853 41.5  0.1 427224 63000 ?        R    03:54   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3390118  7.0  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc 3394555 62.1  0.7 637656 239132 ?       R    03:54   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3394677 63.5  0.6 551176 228716 ?       R    03:54   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3394853 44.0  0.1 427092 64464 ?        R    03:54   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3390118  7.0  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc 3394555 62.1  0.7 637656 239132 ?       R    03:54   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3394677 63.5  0.6 551176 228716 ?       R    03:54   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3394853 44.0  0.1 427092 64464 ?        R    03:54   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  03:54:39 up 180 days, 12:26,  0 users,  load average: 0.03, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 68021664	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 68021637	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 68021633	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  03:54:39 up 180 days, 12:26,  0 users,  load average: 0.03, 0.01, 0.00
+
+

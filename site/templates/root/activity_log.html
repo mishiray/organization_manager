@@ -1,0 +1,63 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Activity Log Table</h1>
+<p class="mb-4">The table contains logs</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <!--{if !empty($logger)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Event</th>
+            <th>User Type</th>
+            <th>Content</th>
+            <th>Date Added</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Event</th>
+            <th>User Type</th>
+            <th>Content</th>
+            <th>Date Added</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount = 1}-->
+          <!--{foreach $logger as $log}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <td><!--{$log->user}--></td>
+            <td>
+			        <!--{$log->event}-->
+            </td>
+            <td>
+			        <!--{$log->usertype}-->
+            </td>
+            <td>
+                <!--{$log->content}--> 
+            </td>
+            <td>
+                <!--{$log->dateadded}--> 
+            </td>
+		    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <h2 class="m-4">Log Empty</h2>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

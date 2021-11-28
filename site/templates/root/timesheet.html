@@ -1,0 +1,56 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Timesheet</h1>
+    <!-- DataTales Example -->
+          <div class="row">
+              <div class="col-lg-6">
+                <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-dark">Log attendance for today</h6>
+                  </div>
+                  <!--{if !empty($signed_in) &&  !empty($signed_out) }-->
+                    <!--{if $signed_in=='no'}-->
+                      <div class="m-4 card-body bg-danger text-light  ">
+                        <h5>You have not logged attendance for today!</h5>
+                      </div>
+                    <!--{else}-->
+                        <!--{if $signed_out=='no' }-->
+                          <div class="m-4 card-body bg-primary text-light  ">
+                            <h5>You have signed in attendance for today!</h5>
+                            <h6>Do you want to sign out?</h6>
+                          </div>
+                        <!--{else}-->
+                      <div class="m-4 card-body bg-success text-light  ">
+                        <h5>You have signed out attendance for today!</h5>
+                      </div>
+                        <!--{/if}-->
+                    <!--{/if}-->
+                  <!-- Card Body -->
+                  <form method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/timesheet">
+                    <input id = "longitude" type="hidden" name="longitude" value = "" />
+                    <input id = "latitude" type="hidden" name="latitude" value = "" />
+                    <div class="card-body">
+                      <div class="row p-4">
+                        <!--{if $signed_in=='no'}-->
+                            <button class="btn btn-success mx-auto" type="submit" name="triggers" value="sign_in">SIGN IN</button>
+                        <!--{/if}-->
+                        <!--{if $signed_in=='yes' && $signed_out=='no'}-->
+                            <button type="submit" class="btn btn-danger mx-auto" name="triggers" value="sign_out">SIGN OUT</a>
+                        <!--{/if}-->
+                      </div>
+                    </div>
+              <!--{if !empty($fail)}-->
+                <!--{$fail}-->
+              <!--{/if}-->
+                </form>
+                <!--{else}-->
+                      <div class="m-4 card-body bg-danger text-light  ">
+                        <h4>Data not found</h4>
+                      </div>
+                <!--{/if}-->
+                </div>
+              </div>
+          </div>
+<!--{/block}-->

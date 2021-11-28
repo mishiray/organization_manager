@@ -1,0 +1,65 @@
+Mon Feb 10 03:11:59 GMT 2020
+Running Processes:
+schooztc   806448  0.1  0.0  62296  8976 ?        S    03:11   0:00 dovecot/lmtp [local READY]
+schooztc   807784 71.1  0.0      0     0 ?        Z    03:11   0:04 [php-cgi] <defunct>
+schooztc   807862 65.0  0.4 477228 155856 ?       R    03:11   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 78.1% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc  807862 69.4  0.5 516832 195256 ?       R    03:11   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc  807862 70.8  0.5 517088 195488 ?       R    03:11   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc  807862 72.0  0.5 518112 196424 ?       R    03:11   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc  807862 73.4  0.6 519136 197500 ?       R    03:11   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc  807862 74.4  0.6 520672 199216 ?       S    03:11   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  807938 11.0  0.1 423140 42304 ?        R    03:11   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  03:12:00 up 184 days, 11:43,  0 users,  load average: 0.02, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 69426646	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT 
+					cm.meta_value `rate`, COUNT(1) `count`
+				FROM
+					wp_comments c
+						INNER JOIN
+					wp_commentmeta cm ON c.comment_ID = cm.comment_id AND meta_key = '_lpr_rating'
+				WHERE
+					c.comment_approved = 1
+						AND c.comment_type = 'r
+
+Current load:  03:12:00 up 184 days, 11:43,  0 users,  load average: 0.02, 0.00, 0.00
+
+

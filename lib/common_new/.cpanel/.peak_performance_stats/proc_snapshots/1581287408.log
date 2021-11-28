@@ -1,0 +1,54 @@
+Sun Feb  9 22:30:08 GMT 2020
+Running Processes:
+schooztc  3948113 81.2  0.6 520588 199300 ?       R    22:30   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 90.6% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3948113 84.5  0.7 565604 242872 ?       R    22:30   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3948113 85.6  0.7 565604 242876 ?       S    22:30   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3948113 86.8  0.7 565604 242876 ?       R    22:30   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3948113 88.1  0.7 567676 243800 ?       S    22:30   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3948113 88.6  0.7 567676 244320 ?       R    22:30   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  22:30:09 up 184 days,  7:01,  0 users,  load average: 0.03, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 69346670	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT   wp_posts.* FROM wp_posts  WHERE 1=1  AND wp_posts.ID IN (6798,7409,7410) AND wp_posts.post_type = 'nav_menu_item' AND ((wp_posts.post_status = 'publish'))  ORDER BY wp_posts.menu_order ASC
+
+Current load:  22:30:09 up 184 days,  7:01,  0 users,  load average: 0.03, 0.01, 0.00
+
+

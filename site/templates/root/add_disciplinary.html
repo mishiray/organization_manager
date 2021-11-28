@@ -1,0 +1,108 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Disciplinary</h1>
+    <p class="mb-4">Add a new Disciplinary to the HRIS Database</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add Displinary</h6>
+      </div>
+      <div class="card-body">
+      <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_disciplinary" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="employee" class="form-control-label">Employee</label>
+                  <select name="employeeid" class="form-control" onchange="getInfo(this);" id="employee">
+                  <option selected disabled value="null">Select Employee</option>
+                  <!--{if !empty($employees)}-->
+                    <!--{foreach $employees as $employee}-->
+                    <option i = "<!--{$employee->manager}-->" value="<!--{$employee->employeeid}-->"><!--{$employee->employeeid}--> - <!--{$employee->surname|ucfirst}--> <!--{$employee->first_name|ucfirst}--></option>
+                    <!--{/foreach}-->
+                  <!--{else}-->
+                    <option value="null">none</option>
+                  <!--{/if}-->
+                  </select>   
+                </div>
+                <script>
+                    function getInfo(myRadio) {
+                        currentValue = myRadio.value;
+                        var text=myRadio.options[myRadio.selectedIndex].text;
+                        text = text.split("- ").pop();
+                        $('#name').val(text); 
+                        var manager=myRadio.options[myRadio.selectedIndex].getAttribute('i');  
+                        $('#manager').val(manager);                      
+                    }
+                </script>
+                <div class="form-group">
+                  <label for="name" class="form-control-label">Name</label>
+                  <input type="name" class="form-control form-control-user" id="name" name="name" value="" readonly placeholder="Employee Name">
+                </div>
+                <div class="form-group">
+                  <label for="manager" class="form-control-label">Manager</label>
+                  <input type="text" class="form-control form-control-user" id="manager" name="manager" placeholder="Manager">
+                </div>
+                <div class="form-group">
+                    <label for="hr_head" class="form-control-label">HR Head</label>
+                    <input type="text" class="form-control form-control-user" id="hr_head" name="hr_head" placeholder="HR_Head">
+                </div>
+                <div class="form-group">
+                    <label for="warning_date" class="form-control-label">Warning Date</label>
+                    <input type="date" class="form-control form-control-user" id="warning_date" name="warning_date" placeholder="Warning Date">
+                </div>
+                <div class="form-group">
+                    <label for="misconduct_date" class="form-control-label">Misconduct Date</label>
+                    <input type="date" class="form-control form-control-user" id="misconduct_date" name="misconduct_date" placeholder="Misconduct Date">
+                </div>
+                <div class="form-group">
+                  <label for="warning_type" class="form-control-label">Type of Warning</label>
+                  <select name="warning_type" class="form-control" id="warning_type">
+                    <option selected disabled value="null">Select Warning</option>
+                    <!--{if !empty($warnings)}-->
+                      <!--{foreach $warnings as $type}-->
+                      <option value="<!--{$type->warning}-->"><!--{$type->warning}--></option>
+                      <!--{/foreach}-->
+                    <!--{else}-->
+                      <option value="null">none</option>
+                    <!--{/if}-->
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label for="warning_description" class="form-control-label">Warning Description</label>
+                  <textarea type="text" class="form-control" rows="4" id="warning_description" name="warning_description" placeholder="Warning Description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="action_plan" class="form-control-label">Action Plan</label>
+                    <select name="action_plan" class="form-control" id="action_plan">
+                      <option selected disabled value="null">Select Action</option>
+                      <!--{if !empty($actions)}-->
+                        <!--{foreach $actions as $act}-->
+                        <option value="<!--{$act->action}-->"><!--{$act->action}--></option>
+                        <!--{/foreach}-->
+                      <!--{else}-->
+                        <option value="null">none</option>
+                      <!--{/if}-->
+                      </select>
+                </div>
+                  <div class="form-group text-center">
+                    <button class="btn btn-warning btn-sm rounded-0" type="submit" name="add_disciplinary">Add Disciplinary</button>
+                </div>
+            </div>
+            <!--{if !empty($fail)}-->
+            <div class="col">
+              <div class="form-group">
+                <!--{$fail}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <br>
+        </div>
+        
+      </form>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

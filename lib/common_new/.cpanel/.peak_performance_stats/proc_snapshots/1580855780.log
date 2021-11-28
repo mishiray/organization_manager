@@ -1,0 +1,71 @@
+Tue Feb  4 22:36:20 GMT 2020
+Running Processes:
+schooztc   640472 37.6  0.4 548276 152432 ?       R    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-admin/admin-ajax.php
+schooztc   640809 44.4  0.6 545680 223564 ?       R    22:36   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc   640822 39.0  0.5 506212 185508 ?       R    22:36   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc   641038 46.7  0.5 507744 186416 ?       R    22:36   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 127.6% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc  640809 43.0  0.7 637612 240604 ?       R    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  640822 38.9  0.6 544652 222316 ?       R    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  641038 46.1  0.7 561544 238240 ?       R    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc  640809 43.4  0.7 637612 240604 ?       S    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  640822 39.5  0.7 554380 231820 ?       R    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  641038 46.9  0.7 561544 238336 ?       R    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc  640809 43.4  0.7 637612 240604 ?       S    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  640822 40.1  0.7 561036 238156 ?       R    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  641038 47.0  0.7 561544 238336 ?       S    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc  640809 43.4  0.7 637612 240604 ?       R    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  640822 40.6  0.7 636840 238428 ?       S    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  641038 47.0  0.7 561544 238336 ?       S    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc  640809 44.0  0.7 637612 240604 ?       R    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  640822 40.7  0.7 636840 238428 ?       S    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  641038 47.0  0.7 561544 238336 ?       S    22:36   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  22:36:22 up 179 days,  7:07,  0 users,  load average: 0.04, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 67566033	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT SQL_CALC_FOUND_ROWS  wp_posts.ID FROM wp_posts  INNER JOIN wp_postmeta ON ( wp_posts.ID = wp_postmeta.post_id ) WHERE 1=1  AND wp_posts.post_parent = 7490  AND ( 
+  wp_postmeta.meta_key = '_bbp_last_active_time'
+) AND wp_posts.post_type = 'topic' AN
+ID = 67566028	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT tt.term_id, tt.term_taxonomy_id FROM wp_terms AS t INNER JOIN wp_term_taxonomy as tt ON tt.term_id = t.term_id WHERE t.slug = 'buy-modalert' AND tt.taxonomy = 'topic-tag' ORDER BY t.term_id ASC LIMIT 1
+ID = 67566027	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  22:36:22 up 179 days,  7:07,  0 users,  load average: 0.04, 0.01, 0.00
+
+

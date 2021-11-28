@@ -1,0 +1,65 @@
+Tue Feb  4 09:23:56 GMT 2020
+Running Processes:
+schooztc  1497664  0.0  0.0 139272  2492 ?        S    09:09   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc  1544912 76.3  0.4 456912 135408 ?       R    09:23   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+COMMAND       PID     USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+pure-ftpd 1497664 schooztc    4u  IPv4 1769699200      0t0  TCP *:21 (LISTEN)
+pure-ftpd 1497664 schooztc    5u  IPv6 1769699201      0t0  TCP *:21 (LISTEN)
+pure-ftpd 1497664 schooztc    6u  IPv4 1778619601      0t0  TCP 199.79.63.83:21->197.211.61.118:8239 (ESTABLISHED)
+pure-ftpd 1497664 schooztc   10u  IPv4 1778855129      0t0  TCP 199.79.63.83:38772 (LISTEN)
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 87% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 1497664  0.0  0.0 139272  2492 ?        S    09:09   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1544912 76.0  0.5 501528 180364 ?       S    09:23   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 1497664  0.0  0.0 139272  2492 ?        S    09:09   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1544912 77.5  0.5 504116 183136 ?       R    09:23   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 1497664  0.0  0.0 139272  2492 ?        S    09:09   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1544912 79.0  0.5 506720 185324 ?       R    09:23   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 1497664  0.0  0.0 139272  2492 ?        S    09:09   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1544912 80.0  0.5 507232 185848 ?       R    09:23   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 1497664  0.0  0.0 139272  2492 ?        S    09:09   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1544912 80.7  0.5 507232 186112 ?       R    09:23   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  09:23:57 up 178 days, 17:55,  0 users,  load average: 0.01, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 67354966	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = UPDATE `wp_options` SET `option_value` = 'a:17:{s:13:\"administrator\";a:2:{s:4:\"name\";s:13:\"Administrator\";s:12:\"capabilities\";a:267:{s:13:\"switch_themes\";b:1;s:11:\"edit_themes\";b:1;s:16:\"activate_plugins\";b:1;s:12:\"edit_plugins\";b:1;s:10:\"
+
+Current load:  09:23:57 up 178 days, 17:55,  0 users,  load average: 0.01, 0.00, 0.00
+
+

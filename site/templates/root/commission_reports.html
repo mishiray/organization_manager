@@ -1,0 +1,95 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Commission Payrolls</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Payrolls Reports </h6>
+      </div>
+      
+  <div class="card-body bg-primary">
+    <div class="col-lg-6 m-4">
+      <form id="mainForm" method="POST" class="d-flex" enctype="multipart/form-data" name="commissionPayrolls">
+        <div class="form-group">
+          <label class="text-light" for="Year">Enter Year</label>
+              <select class="form-control" id="Year"  name="year">
+                <!--{for $foo=2010 to 3000}-->
+                <option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+                  <!--{$foo}-->
+                </option>
+                <!--{/for}-->
+              </select>
+        </div>
+        <div class="form-group">
+          <label class="text-light"  for="month">Select Month</label>
+              <select class="form-control" id="month"  name="month">
+                <option value="">All</option>
+                <!--{foreach $months as $month}-->
+                <option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+                  <!--{$month}-->
+                </option>
+                <!--{/foreach}-->
+              </select>
+        </div>
+        <div class="form-group d-flex"> 
+          <button type="submit" class="mt-2 btn btn-success" name="triggers" id="clients" value="commission_payrolls">OK</button>
+       </div>      
+     </form>
+    </div>
+  </div>
+  <!--{if !empty($payrolls)}-->
+      <div class="card-body">
+      
+      <!--{if !empty($fail)}-->
+        <div class="col">
+          <div class="form-group">
+            <!--{$fail}-->
+          </div>
+        </div>
+      <!--{/if}-->    
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr class="bg-dark text-light">
+                <th>SN</th>
+                <th>Month</th>
+                <th>Year</th>
+                <th>Total Commission Amount</th>
+                <th>Total Marketer Commission</th>
+                <th>Total Approved</th>
+                <th>Total Disapproved</th>
+                <th>Total Payslips sent</th>
+                <th>View</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!--{$numCount=1}-->
+              <!--{foreach $payrolls as $payroll}-->
+              <tr>
+                <td><!--{$numCount}--></td>
+                <td><!--{$payroll->month}--></td>
+                <td><!--{$payroll->year}--></td>
+                <td>&#8358;<!--{$payroll->totals|number_format:2}--></td>
+                <td><!--{$payroll->total_commission}--></td>
+                <td><!--{$payroll->total_approved}--></td>
+                <td><!--{$payroll->total_disapproved}--></td>
+                <td><!--{$payroll->total_sent}--></td>
+                <td>
+                  <a class="btn btn-sm btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/commission_payroll?month=<!--{$payroll->month}-->&year=<!--{$payroll->year}-->"> Detail</a>
+                </td>
+              </tr>
+              <!--{$numCount=$numCount+1}-->
+            <!--{/foreach}-->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--{else}-->
+      <div class="alert alert-warning"><h3 class="alert-heading">No Commissions Payroll found</h3></div>
+      <!--{/if}-->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

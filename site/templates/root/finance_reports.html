@@ -1,0 +1,148 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+
+<h1 class="h3 mb-2 text-gray-800">Transaction Reports</h1>
+<p class="mb-4">The table contains finance reports sent</p>
+
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+	  <h6 class="m-0 font-weight-bold text-primary">Reports</h6>
+	</div>
+	<div class="card-body justify-content-center">
+		<div class="col-md-9 col-sm-12 bg-primary rounded pt-2">
+		  <form action="" class="d-flex" method="post">
+		  <div class="form-group">
+			<label class="text-light" for="Year">Year</label>
+				<select class="form-control" id="Year"  name="year">
+				  <!--{for $foo=2010 to 3000}-->
+					<option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+					  <!--{$foo}-->
+					</option>
+				  <!--{/for}-->
+				</select>
+		  </div>
+		  <div class="form-group">
+			<label for="month"class="text-light">Month</label>
+				<select class="form-control" id="month"  name="month">
+				  <option value="">All</option>
+				  <!--{foreach $months as $month}-->
+					<option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+					  <!--{$month}-->
+					</option>
+				  <!--{/foreach}-->
+				</select>
+		  </div>
+		  <div class="form-group">
+			<label for="week"class="text-light">Week</label>
+				<select class="form-control" id="week"  name="week">
+				  <option value="">All</option>
+				  <option <!--{if !empty($filter->week) && $filter->week == 1 }--> selected <!--{/if}-->  value="1">
+					Week 1
+				  </option>
+				  <option <!--{if !empty($filter->week) && $filter->week == 2 }--> selected <!--{/if}-->  value="2">
+					Week 2
+				  </option>
+				  <option <!--{if !empty($filter->week) && $filter->week == 3 }--> selected <!--{/if}-->  value="3">
+					Week 3
+				  </option>
+				  <option <!--{if !empty($filter->week) && $filter->week == 4}--> selected <!--{/if}-->  value="4">
+					Week 4
+				  </option>
+				  <option <!--{if !empty($filter->week) && $filter->week == 5}--> selected <!--{/if}-->  value="5">
+					Week 5
+				  </option>
+				</select>
+		  </div>
+		  <div class="form-group">
+			<label for="category"class="text-light">Category</label>
+				<select class="form-control" id="category"  name="category">
+				  <option value="">All</option>
+				  <option <!--{if !empty($filter->category)}--> <!--{if $filter->category == 'income'}-->selected <!--{/if}--> <!--{/if}--> value="income">
+					Income
+				  </option>
+				  <option <!--{if !empty($filter->category)}--> <!--{if $filter->category == 'expense'}-->selected <!--{/if}--> <!--{/if}--> value="expense">
+					Expense
+				  </option>
+				</select>
+		  </div>
+			<div class="form-group d-flex"> 
+			  <button type="submit" class="mt-2 btn btn-success" name="triggers" id="reports" value="finance_report">OK</button>
+		   </div>      
+		 </form>
+		</div>
+
+	  </div>
+	<div class="card-body">
+		<!--{if !empty($records)}-->
+		<div class="col-sm-12">
+			<div class="row w-100">
+				<div class="card shadow mb-4">
+					<div class="card-header py-3 d-flex bg-success flex-row align-items-center">
+					  <h4 class="m-0 font-weight-bold text-light">Total Transactions</h4>
+					</div>
+					<div class="card-body row w-100">
+						<div class="col-md-4 col-sm-12">
+							<h3 class="text-success">
+								<b>
+									Total Income : ₦ <!--{$sumtotal->credit|number_format}-->
+								</b>
+							</h3>
+						</div>
+						<div class="col-md-4 col-sm-12">
+							<h3 class="text-danger">
+								<b>
+									Total Expense : ₦ <!--{$sumtotal->debit|number_format}-->
+								</b>
+							</h3>
+						</div>
+						<div class="col-md-4 col-sm-12">
+							<h3 class="<!--{if $sumtotal->balance > 0}--> text-success <!--{else}--> text-danger <!--{/if}-->">
+								<b>
+									Total Balance : ₦ <!--{$sumtotal->balance|number_format}-->
+								</b>
+							</h3>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="table-responsive">
+					<table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
+					  <thead class="site-bg-1 text-dark">
+					    <tr>
+					      <th scope="col">S/N</th>
+						  <th scope="col">Category</th>
+						  <th scope="col">Details</th>
+					      <th scope="col">Amount</th>
+						  <th scope="col">Status</th>
+					      <th scope="col">Transaction Date</th>
+						  <th>View</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<!--{$numCount=1}-->
+					  	<!--{foreach $records as $record}-->
+					    <tr>
+					      <td><!--{$numCount}--></td>
+					      <td><!--{$record->category|ucwords}--></td>
+					      <td><!--{$record->details|ucwords}--></td>
+					      <td>₦<!--{$record->amount|number_format}--></td>
+					      <td><!--{$record->status}--></td>
+					      <td><!--{$record->transdate|date_format}--></td>
+						  <td> <a class="btn btn-primary" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance_detail?id=<!--{$record->financeid}-->"> Details </a> </td>
+					    </tr>
+					  	<!--{$numCount=$numCount+1}-->
+						<!--{/foreach}-->
+					  </tbody>
+					</table>
+			</div>
+		</div>
+		<div class="col-sm-12 d-none text-center">
+			<button type="button" class="btn btn-success btn-sm" id="printSect"><i class="fa fa-print"></i> Print Now</button>
+		</div>
+		<!--{else}-->
+		<div class="col-sm-12 alert alert-warning"><h3 class="alert-heading">No report found</h3></div>
+		<!--{/if}-->
+	</div>
+</div>
+<!--{/block}-->

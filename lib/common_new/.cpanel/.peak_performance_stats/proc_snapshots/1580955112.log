@@ -1,0 +1,70 @@
+Thu Feb  6 02:11:52 GMT 2020
+Running Processes:
+schooztc  2965547 42.5  0.7 637400 240808 ?       R    02:11   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  2965951 50.5  0.2 427504 65800 ?        R    02:11   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 91.8% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 2965547 41.6  0.7 640216 242536 ?       S    02:11   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2965951 49.5  0.2 433396 93860 ?        R    02:11   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2966004 26.0  0.1 426976 55292 ?        R    02:11   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 2965547 41.6  0.7 640216 242536 ?       S    02:11   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2965951 51.2  0.2 433376 94872 ?        R    02:11   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2966004 29.5  0.1 427012 57036 ?        R    02:11   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 2965547 41.6  0.7 640216 242536 ?       S    02:11   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2965951 53.2  0.2 433376 94960 ?        R    02:11   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2966004 33.5  0.1 427024 59060 ?        R    02:11   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2966031  9.0  0.1 421432 40204 ?        R    02:11   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 2965547 41.6  0.7 640216 242536 ?       S    02:11   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2965951 55.2  0.2 433384 95680 ?        R    02:11   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2966004 36.5  0.1 426992 60492 ?        R    02:11   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2966031 16.0  0.1 423200 44144 ?        R    02:11   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 2965547 41.6  0.7 640216 242536 ?       S    02:11   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2965951 55.7  0.2 433384 96088 ?        R    02:11   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2966004 37.5  0.1 427048 60960 ?        R    02:11   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2966031 18.0  0.1 423000 44624 ?        R    02:11   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  02:11:54 up 180 days, 10:43,  0 users,  load average: 0.01, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 67996318	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67996308	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67996265	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT ID FROM wp_posts WHERE post_parent IN ( 40410,40409,40408,40407,40406,40405,40404,40403,40402,40401,40400,40399,40398,40397,40396,40395,40394,40393,40392,40391,40390,40389,40388,40387,40386,40385,40384,40383,40382,40381,40380,40379,40378,40377,40376
+
+Current load:  02:11:54 up 180 days, 10:43,  0 users,  load average: 0.01, 0.00, 0.00
+
+

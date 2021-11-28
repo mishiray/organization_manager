@@ -1,0 +1,203 @@
+<!-- JavaScript Libraries -->
+
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/jquery/jquery.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/jquery/jquery-migrate.min.js"></script>
+<!--{if !empty($sitePage) and in_array($sitePage, array('stores', 'store'))}-->
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/bootstrap/js/popper.min.js"></script>
+<!--{/if}-->
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/easing/easing.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/superfish/hoverIntent.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/superfish/superfish.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/wow/wow.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/waypoints/waypoints.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/counterup/counterup.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/owlcarousel/owl.carousel.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/isotope/isotope.pkgd.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/lightbox/js/lightbox.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/touchSwipe/jquery.touchSwipe.min.js"></script>
+<!--{if !empty($sitePage) and !in_array($sitePage, array(''))}-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<!--{/if}-->
+
+<!-- Template Main Javascript File -->
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/main.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/script.js"></script>
+
+<!--{if !empty($sitePage) and in_array($sitePage, array('outlaw'))}-->
+<!--{/if}-->
+<script>
+	/*Newly Added Js*/
+	<!--{if !empty($sitePage) and !in_array($sitePage, array('admin'))}-->
+		function authenticateUser(dataUserInfo){
+			$.post('<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/login_auth', dataUserInfo, (res)=>{
+				let ret=JSON.parse(res);
+				//console.log(ret);
+				if (ret.message=='success' && ret.redirect_url) {
+					window.location.href=ret.redirect_url;
+				}else{
+					window.alert(`${ret.message}`);
+				}
+			});
+		}
+	<!--{/if}-->
+
+	<!--{if !empty($sitePage) and in_array($sitePage, array('signup'))}-->
+		
+	$(document).ready(function(){
+
+			/*Old Important JS*/
+			let globalParam = {};
+		    $(document).on('change','#country, #state', function(){
+		      let csd={ data: $(this).val(), type: $(this).attr('id') };
+		      globalParam={sp: `<!--{$sitePage}-->`, csd: csd};
+		      $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/json_call.php", globalParam, (res)=> {
+		        let ret=JSON.parse(res);
+		        // console.log(ret);
+		        let target=( $(this).attr('id')=="country"? "#state": "#city");
+		        if(ret.length>0 && ret!=null){
+		          $(target).empty();
+		          for (let re of ret) {
+		            $(target).append(`<option value="${re.name}">${re.name}</option>`);
+		          }
+		        }else{
+		          $(target).html(`<option value="">No Record Found</option>`);
+		        }
+		      });
+		    });
+		    $(document).on('change keyup', "#names1, #names2", function() {
+		      $('#username').attr('value', `${$("#names2").val().charAt(0).toLowerCase()}${$("#names1").val().toLowerCase()}`);
+		    });
+			$(document).on('click','.viewPassword', function(){
+				// console.log( $('#password').attr('type')); return false;
+			    /*$('#password').attr('type', `${($('#password').attr('type')=='text'?'password':'text')}`);
+			    $('#cpassword').attr('type', `${($('#cpassword').attr('type')=='text'?'password':'text')}`);
+			    if ($(this).find('i').hasClass('fa-eye')) {
+			      $(this).html('<i class="fa fa-no-companion fa-eye-slash"></i> Hide Password');
+			    }else{
+			      $(this).html('<i class="fa fa-no-companion fa-eye"></i> View Password');
+			    }*/
+			});
+		    $(document).on('change keyup', "#password", function() {
+		      $('.genedPass').text(`${$("#password").val()}`);
+		    });
+			$(document).on('click','.genPassword', function(){
+			    let genPass=getToken(8);
+			    $('#password').attr('value',`${genPass}`).val(genPass);
+			     $('#cpassword').attr('value',`${genPass}`).val(genPass);
+			    $('.genedPass').text(genPass);
+			});
+		});
+	<!--{/if}-->
+		
+	/*Old Important JS*/
+	$("body").addClass("js");
+	let indexer=0;
+	window.addEventListener('scroll', function() {
+		// windowScroll();
+	});
+	/*Event Executor*/
+	window.addEventListener('load', () => {
+		<!--{if !empty($msg_crime)}-->
+			$('#myModalReport').modal('show');
+		<!--{/if}-->
+		// windowScroll();
+		let globalParam={}, obj={};
+	    $(document).ready(function() {
+
+	    	$(document).on('change', '#storeNumSelect', function() {
+	    		let selectedStore= $('#storeNumSelect option:selected').attr('value');
+	    		$('.storeSpan').removeClass('active');
+	    		$(`#${selectedStore}`).addClass('active');
+	    		// console.log(selectedStore);
+	    	});
+	    	$(document).on('click', '.storeSpan', function() {
+	    		$(this).siblings().removeClass('active');
+	    		$(this).toggleClass('active');
+	    	});
+	    	$(document).on('click', '#findStore', function() {
+	    		let selectedStore= $('#storeNumSelect option:selected').attr('value');
+	    		$('.storeSpan').removeClass('active');
+	    		$(`#${selectedStore}`).addClass('active');
+	    	});
+
+
+	    	$(document).on('mouseover', '#awesome-d0', function() {
+	    		$(this).children('div#awesome-d0-effect').removeClass('d-none').addClass('animated slideInDown slower delay-3s');
+	    	});
+	    	$(document).on('mouseout', '#awesome-d0', function() {
+	    		$(this).children('div#awesome-d0-effect').addClass('d-none').removeClass('animated slideInDown slower delay-3s');
+	    	});
+	    	$(document).on('click', '#applyNow', function() {
+	    		let currDetail= {token: $(this).attr('jtk'), jobtitle: $(this).attr('jttl'), company: $(this).attr('jcp')};
+	    		// console.log(currDetail);
+	    		$("#jobToken").attr('value',currDetail.token);
+	    		$("#jobTitle").text(currDetail.jobtitle);
+	    	});
+	    	$(document).on('click', "#dropdownFacility", function() {
+		    	$('.dropdownFacility').toggleClass('d-none');
+		    });
+			$(document).on('click', '.imgPreview', function() {
+				// $("#imgPreviewShow").removeClass('animated slideinRight slower delay-3s');
+			    $("#imgPreviewShow").attr('src', `${$(this).attr('src')}`);
+			    $("#gallImgName").text(`${$(this).attr('title')}`);
+				// $("#imgPreviewShow").delay(1000).addClass('animated slideInRight slower delay-3s');
+			});
+
+	    	/*Image Uploader Script*/
+		    $(document).on('change', "#uploadImage", function() {
+		    	readURL(this, '#imgUploadFrame');
+		    	$('#imgUploadFrame').css('width', 'inherit');
+		    	$('#imgUploadFrame').css('display', 'block');
+		    });
+			/*Print Page Section*/
+			$(document).on('click',"#printNow", function() {
+				$(this).hide();
+				printData('printMe', '<!--{$Site.companyName}-->: Printing');
+				$("#printNow").show();
+			});
+	    	$(document).on('click', ".icon-bar", function() {
+	    		$("#nav-menu-container").fadeToggle('slow').toggleClass('showMenu');
+	    		if ($("#nav-menu-container").hasClass('showMenu')) {
+	    			$('div.icon-bar i.fa').removeClass('fa-bars').addClass('fa-times');
+	    		}else {
+	    			$('div.icon-bar i.fa').removeClass('fa-times').addClass('fa-bars');
+	    		}
+	    	});
+	    	$(document).on('mouseover', '.btn-success-hover', function() {
+	    		$(this).fadeIn('slow');
+	    	});
+	    });
+	});
+
+	/*Scrolling Function*/
+	/*let windowScroll=()=> {
+		// console.log(window.pageYOffset);
+		<!--{if !empty($sitePage) and in_array($sitePage, array('home','default', 'testimonial','gallery'))}-->
+		if (window.pageYOffset >= 120) {
+			$(".site-navbar").addClass('header-background');
+			$(".site-navbar").addClass('animated slower slideInDown');
+		} else {
+			$(".site-navbar").removeClass('header-background');
+			$(".site-navbar").removeClass('animated slower slideInDown');
+		}
+		<!--{elseif !empty($sitePage) and in_array($sitePage, array('about','contact','faq','admin', 'login', 'signup','testimonial'))}-->
+		if (window.pageYOffset >= 240) {
+			$(".site-navbar").addClass('header-background');
+			$(".site-navbar").addClass('animated slower slideInDown');
+		} else {
+			$(".site-navbar").removeClass('header-background');
+			$(".site-navbar").removeClass('animated slower slideInDown');
+		}
+		<!--{/if}-->
+	}*/
+
+/*	//Table Navigator
+	$('#dataTableId').DataTable({
+		// paging: false,
+		// scrollY: 400,
+		// scrollX: auto,
+		ordering: false
+	});*/
+
+</script>

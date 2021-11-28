@@ -1,0 +1,72 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard |</strong>&nbsp;Customer Care&nbsp;<i class="fa fa-headphones"></i>&nbsp;|&nbsp;Chat Thread&nbsp;<i class="fa fa-commenting"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<!--{if !empty($fail)}-->
+<!--{$fail}-->
+<!--{/if}-->
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Dashboard |</strong>&nbsp;Customer Care&nbsp;<i class="fa fa-headphones"></i>&nbsp;|&nbsp;Chat Thread&nbsp;<i class="fa fa-commenting"></i></h1>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Chat Thread</h6>
+  </div>
+  	<div class="card-body">
+		<div class="row">
+			<div class="col border p-2 border-primary">
+				<form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/chat_thread?chatid=<!--{$chatParent->chatId}-->" method="post">
+					<div class="panel panel-default p1">
+						<div class="panel-heading chatHeader">
+							<h3 class="panel-title chatTitle">Title: <!--{$chatParent->message}--></h3>
+						</div>
+						<div class="panel-body chatBody">
+							<div class="form-group text-white bg-primary p-2">
+								<div class="pull-left">
+									<strong>User:</strong> <!--{$chatParent->sender_name}--> (<!--{$chatParent->sender}-->)
+								</div>
+							</div>
+							<div class="form-group">
+								<a class="btn btn-dark pull-right" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/chat_thread?chatid=<!--{$chatParent->chatId}-->">Refresh</a>
+							</div>
+						</div>
+						<div class="panel-body chatBody">
+							<div class="form-group chatListing">
+								<!--{if !empty($chatThread)}-->
+									<!--{foreach array_reverse($chatThread) as $chatTh}-->
+									<!--{if $chatTh->id == $chatParent->id}--><!--{continue}--><!--{/if}-->
+										<div class="w-100">
+											<span class="chatListMsg <!--{if $chatTh->sender == $chatParent->sender}-->youChat pull-right<!--{else}-->meChat pull-left<!--{/if}-->"><!--{if $chatTh->sender == $chatParent->sender}--><!--{else}--><strong>Admin:</strong> <!--{/if}--><!--{$chatTh->message}--> (<!--{$chatTh->date_sent|date_format:$config.date}-->)</span>
+											&nbsp;
+										</div><hr>
+									<!--{/foreach}-->
+								<!--{/if}-->
+							</div>
+							<!--{if !empty($chatThread) && $chatParent->status== 0}-->
+							<div class="form-group">
+								<label class="form-label">Enter your reply here...</label>
+								<textarea name="message" id="chatMsg"  class="form-control messageTitle" rows="2"></textarea>
+							</div>
+							<!--{/if}-->
+						</div>
+						<div class="panel-footer">
+							<div class="form-group py-1">
+							<!--{if !empty($chatThread) && $chatParent->status== 0}-->
+								<button type="submit" name="send_chat" class="btn btn-success pull-left chatSave chatStart">Reply</button>
+								<a class="btn btn-info pull-right confEndChat" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/chat_care?endChat=true&chatId=<!--{$chatParent->chatId}-->">End Chat Thread</a>
+							<!--{else}-->
+							<span class="badge p-2 mb-2 text-white bg-danger">chat thread ended</span>
+							<br>
+							<!--{/if}-->
+								<a class="btn btn-danger pull-right" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/chat_care">Close</a>
+							</div>
+							&nbsp;
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!--{/block}-->

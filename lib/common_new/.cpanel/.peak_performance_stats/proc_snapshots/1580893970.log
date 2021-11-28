@@ -1,0 +1,111 @@
+Wed Feb  5 09:12:50 GMT 2020
+Running Processes:
+schooztc  2965788  0.0  0.0 139272  2548 ?        S    08:59   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc  2991247  0.0  0.0 139272  2552 ?        S    09:05   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc  3015019  0.0  0.0  62176  8812 ?        S    09:11   0:00 dovecot/lmtp [local READY]
+schooztc  3017594 52.3  0.7 566048 243044 ?       R    09:12   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3017654 49.5  0.7 561044 238664 ?       R    09:12   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3018445 53.0  0.2 427864 69856 ?        S    09:12   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3018465 79.0  0.1 427104 62692 ?        R    09:12   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+COMMAND       PID     USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+pure-ftpd 2965788 schooztc    4u  IPv4 1803975851      0t0  TCP *:21 (LISTEN)
+pure-ftpd 2965788 schooztc    5u  IPv6 1803975852      0t0  TCP *:21 (LISTEN)
+pure-ftpd 2965788 schooztc    6u  IPv4 1813665174      0t0  TCP 199.79.63.83:21->41.190.30.29:23636 (ESTABLISHED)
+pure-ftpd 2965788 schooztc   10u  IPv4 1813863874      0t0  TCP 199.79.63.83:34288 (LISTEN)
+pure-ftpd 2991247 schooztc    4u  IPv4 1803975851      0t0  TCP *:21 (LISTEN)
+pure-ftpd 2991247 schooztc    5u  IPv6 1803975852      0t0  TCP *:21 (LISTEN)
+pure-ftpd 2991247 schooztc    6u  IPv4 1813803575      0t0  TCP 199.79.63.83:21->41.190.30.29:23637 (ESTABLISHED)
+pure-ftpd 2991247 schooztc   10u  IPv4 1813826398      0t0  TCP 199.79.63.83:30036 (LISTEN)
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 190.9% (warning)
+      SSL: SSL error: missing certificate (warning)
+  Varnish: schoolofgreatness.africa is cached. (warning)
+  Varnish: ajahcity.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: courses.schoolofgreatness.africa is cached. (warning)
+  Varnish: uaac.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: alexihama.ajahcity.com.ng is cached. (warning)
+  Varnish: adeniyichristopher.ajahcity.com.ng is cached. (warning)
+  Varnish: spp.ajahcity.com.ng is cached. (warning)
+  Varnish: scog.ajahcity.com.ng is cached. (warning)
+  Varnish: metromedia.ajahcity.com.ng is cached. (warning)
+  Varnish: frankieslist.ajahcity.com.ng is cached. (warning)
+  Varnish: alethiaenterprise.schoolofgreatness.africa is cached. (warning)
+  Varnish: maccherithresources.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: lekkipeninsulapolice.org.schoolofgreatness.africa is cached. (warning)
+  Varnish: pecuniahouse.ajahcity.com.ng is cached. (warning)
+  Varnish: ajahcity.com.ng is cached. (warning)
+  Varnish: uaac.com.ng is cached. (warning)
+  Varnish: lekkipeninsulapolice.org is cached. (warning)
+  Varnish: maccherithresources.com.ng is cached. (warning)
+  Varnish: alethiaenterprise.com is cached. (warning)
+  Varnish: schoolofgreatness.africa.md-47.webhostbox.net is cached. (warning)
+
+
+Snapshot 1
+schooztc 2965788  0.0  0.0 139272  2548 ?        S    08:59   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 2991247  0.0  0.0 139272  2552 ?        S    09:05   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3017654 46.9  0.7 561044 238728 ?       R    09:12   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3018445 42.0  0.2 433124 87764 ?        R    09:12   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3018465 48.0  0.2 430244 79648 ?        R    09:12   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 2965788  0.0  0.0 139272  2548 ?        S    08:59   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 2991247  0.0  0.0 139272  2552 ?        S    09:05   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3017654 47.5  0.7 561044 238728 ?       R    09:12   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3018445 44.2  0.2 434192 89924 ?        R    09:12   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3018465 50.6  0.2 430724 82008 ?        R    09:12   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 2965788  0.0  0.0 139272  2548 ?        S    08:59   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 2991247  0.0  0.0 139272  2552 ?        S    09:05   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3017654 48.1  0.7 561044 238728 ?       R    09:12   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3018445 46.0  0.2 435668 92772 ?        R    09:12   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3018465 53.0  0.2 431960 85064 ?        R    09:12   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 2965788  0.0  0.0 139272  2548 ?        S    08:59   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 2991247  0.0  0.0 139272  2552 ?        S    09:05   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3017654 48.7  0.7 561044 238728 ?       S    09:12   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3018445 48.0  0.2 433688 93636 ?        R    09:12   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3018465 56.0  0.2 433120 88048 ?        S    09:12   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 2965788  0.0  0.0 139272  2548 ?        S    08:59   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 2991247  0.0  0.0 139272  2552 ?        S    09:05   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3017654 48.7  0.7 561044 238728 ?       R    09:12   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3018445 48.2  0.2 433660 93816 ?        R    09:12   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3018465 56.3  0.2 433120 88048 ?        R    09:12   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  09:12:52 up 179 days, 17:44,  1 user,  load average: 0.09, 0.02, 0.01
+
+
+MySQL User Processes:
+ID = 67738912	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67738909	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67738856	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  09:12:52 up 179 days, 17:44,  1 user,  load average: 0.09, 0.02, 0.01
+
+

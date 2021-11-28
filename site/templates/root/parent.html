@@ -1,0 +1,40 @@
+<form class="form w-100" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/development?id=<!--{$client->email}-->&p=parent">
+	<fieldset class="card p-2 mt-2">
+		<legend class="text-center">Parents/Guardian Detail</legend>
+		<div class="form-group">
+			<label for="title">Title <sup class="text-danger">(*)</sup></label><br/>
+			<label for="mr"><input type="radio" id="mr" name="title" value="mr" <!--{if $parent->title=='mr'}-->checked<!--{/if}--> required/> Mr</label>
+			<label for="mrs"><input type="radio" id="mrs" name="title" value="mrs" <!--{if $parent->title=='mrs'}-->checked<!--{/if}--> required/> Mrs</label>
+			<label for="miss"><input type="radio" id="miss" name="title" value="miss" <!--{if $parent->title=='miss'}-->checked<!--{/if}--> required/> Miss</label>
+			<label for="dr"><input type="radio" id="dr" name="title" value="dr" <!--{if $parent->title=='dr'}-->checked<!--{/if}--> required/> Dr</label>
+			<label for="other"><input type="radio" id="other" name="title" value="other" <!--{if $parent->title=='other'}-->checked<!--{/if}--> required/> Other</label>
+		</div>
+		<div class="form-group">
+			<label for="reffname">First Name <sup class="text-danger">(*)</sup></label>
+			<input type="text" id="reffname" name="reffname" value="<!--{$parent->firstname}-->" class="form-control badge-pill" required/>
+		</div>
+		<div class="form-group">
+			<label for="refsname">Surname <sup class="text-danger">(*)</sup></label>
+			<input type="text" id="refsname" name="refsname" value="<!--{$parent->surname}-->" class="form-control badge-pill" required/>
+		</div>
+		<div class="form-group">
+			<label for="refaddress">Full Address <sub>(including country)</sub> <sup class="text-danger">(*)</sup></label>
+			<textarea id="refaddress" name="refaddress" rows="3" class="form-control" required><!--{$parent->address}--></textarea>
+		</div>
+		<div class="form-group">
+			<label for="refphone">Telephone Number <sub>(including country code)</sub></label>
+			<input type="tel" id="refphone" name="refphone" value="<!--{$parent->phone}-->" class="form-control badge-pill" required/>
+		</div>
+		<div class="form-group">
+			<label for="refemail">Email Address <sup class="text-danger">(*)</sup></label>
+			<input type="email" id="refemail" name="refemail" value="<!--{$parent->email}-->" class="form-control badge-pill" required/>
+		</div>
+		<div class="form-group d-none">
+			<label for="refrelation">Relationship To The Player(s)</label>
+			<input type="text" id="refrelation" name="refrelation" class="form-control badge-pill" value="<!--{$parent->relation}-->"/>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-primary btn-block" type="submit" name="parent">Save Changes</button>
+		</div>
+	</fieldset>
+</form>

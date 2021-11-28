@@ -1,0 +1,59 @@
+Tue Feb  4 23:37:09 GMT 2020
+Running Processes:
+schooztc   824983 78.2  0.6 520616 199304 ?       R    23:37   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-login.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc  825122 55.0  0.1 427068 58716 ?        R    23:37   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  825125 39.0  0.1 425652 52568 ?        R    23:37   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc  825122 31.0  0.1 426980 60244 ?        R    23:37   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  825125 22.5  0.1 426984 55500 ?        R    23:37   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc  825122 34.0  0.1 427060 61720 ?        R    23:37   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  825125 26.0  0.1 426988 57372 ?        R    23:37   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc  825122 37.5  0.1 427068 63760 ?        R    23:37   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  825125 29.5  0.1 427004 59324 ?        R    23:37   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc  825122 40.0  0.2 427088 65988 ?        R    23:37   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  825125 31.5  0.1 426988 60892 ?        R    23:37   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  23:37:11 up 179 days,  8:08,  0 users,  load average: 0.03, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 67581997	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67581995	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT option_value FROM wp_options WHERE option_name = '_bp_ignore_deprecated_code' LIMIT 1
+
+Current load:  23:37:11 up 179 days,  8:08,  0 users,  load average: 0.03, 0.01, 0.00
+
+

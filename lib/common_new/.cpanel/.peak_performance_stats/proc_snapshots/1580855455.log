@@ -1,0 +1,65 @@
+Tue Feb  4 22:30:55 GMT 2020
+Running Processes:
+schooztc   620248  0.2  0.0  62588  9300 ?        S    22:30   0:00 dovecot/lmtp [local READY]
+schooztc   620254  0.1  0.0  62588  9240 ?        S    22:30   0:00 dovecot/lmtp [local READY]
+schooztc   620260  0.1  0.0  62612  9216 ?        S    22:30   0:00 dovecot/lmtp [local READY]
+schooztc   622807 68.2  0.7 561396 239352 ?       R    22:30   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc   623100 57.0  0.4 457876 136504 ?       R    22:30   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc   623184 44.5  0.2 427080 66668 ?        R    22:30   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 169.5% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc  623100 60.0  0.5 499968 178512 ?       R    22:30   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  623184 55.6  0.2 434268 90868 ?        R    22:30   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc  623100 61.0  0.5 502296 181028 ?       R    22:30   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  623184 58.3  0.2 433492 92016 ?        R    22:30   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc  623100 62.3  0.5 505912 184584 ?       S    22:30   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  623184 61.0  0.2 433376 94020 ?        R    22:30   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc  623100 54.1  0.5 507476 185840 ?       R    22:30   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  623184 47.7  0.2 433376 94912 ?        R    22:30   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc  623100 54.7  0.5 507476 185840 ?       R    22:30   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  623184 49.5  0.2 433376 95292 ?        R    22:30   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  22:30:57 up 179 days,  7:02,  0 users,  load average: 0.02, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 67564341	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67564331	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = UPDATE `wp_options` SET `option_value` = 'a:17:{s:13:\"administrator\";a:2:{s:4:\"name\";s:13:\"Administrator\";s:12:\"capabilities\";a:267:{s:13:\"switch_themes\";b:1;s:11:\"edit_themes\";b:1;s:16:\"activate_plugins\";b:1;s:12:\"edit_plugins\";b:1;s:10:\"
+
+Current load:  22:30:57 up 179 days,  7:02,  0 users,  load average: 0.02, 0.00, 0.00
+
+

@@ -1,0 +1,65 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Departments Table</h1>
+<p class="mb-4">The table contains Departments info</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Department</h6>
+  </div>
+  <!--{if !empty($fail)}-->
+  <div class="col">
+    <div class="form-group">
+      <!--{$fail}-->
+    </div>
+  </div>
+  <!--{/if}-->
+  <!--{if !empty($departments)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Name</th>
+            <th>No of Employees</th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <th>Name</th>
+            <th>No of Employees</th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+          <!--{foreach $departments as $department}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <td><!--{$department->name}--></td>
+			      <td>
+              <!--{$department->emp_no}-->
+            </td>
+			      <td>
+              <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/departments?id=<!--{$department->id}-->" method="post">
+                <button type="submit" name="triggers" value="delete_department" onclick="return deleteItem()" class="btn btn-danger btn-sm">Delete</button>
+              </form>
+            </td>
+		    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <h2 class="m-4">Departments Empty</h2>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

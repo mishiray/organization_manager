@@ -1,0 +1,107 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |
+	&nbsp;Gallery&nbsp;<i class="fa fa-file-image-o"></i>
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<h3>GALLERY</h3>
+<section class="container-fluid">
+<div class="row justify-content-center">
+    <!--{if !empty($fail)}-->
+      <div class="col-md-10 mt-2">
+        <!--{$fail}-->
+      </div>
+    <!--{/if}-->
+	<!--{if !empty($galleries)}-->
+	<div class="card-body">
+		<div class="table-responsive">
+		  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+			<thead>
+			  <tr>
+				<th>SN</th>
+				<th>Title</th>
+				<th>Details</th>
+				<th>Image</th>
+				<th>Added By</th>
+				<th>Date Added</th>
+				<th class="d-none" scope="col"></th>
+			  </tr>
+			</thead>
+			<tfoot>
+			  <tr>
+				<th>SN</th>
+				<th>Title</th>
+				<th>Details</th>
+				<th>Image</th>
+				<th>Added By</th>
+				<th>Date Added</th>
+				<th class="d-none" scope="col"></th>
+			  </tr>
+			</tfoot>
+			<tbody>
+			  <!--{$numCount=1}-->
+			<!--{foreach $galleries as $gallery}-->
+			<tr>
+				<td><!--{$numCount}--></td>
+				<td><!--{$gallery->title}--></td>
+				<td>
+				 	<!--{$gallery->description}-->
+				</td>
+				<td>
+					<img id="myImg<!--{$numCount}-->" onclick="modalme(this);" class="img-fluid img-thumbnail" style="max-width: 250px;" alt="<!--{$gallery->title}-->" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$gallery->image}-->" />
+					
+				</td>
+				<td>
+					<!--{$gallery->addedby}-->
+				</td>
+				<td>
+					<!--{$gallery->dateadded|date_format}-->
+				</td>
+				<td>
+					<form class="form-group" action="" method="POST">
+						<input type="hidden" name="evt" value="delete">
+						<input type="hidden" name="galid" value="<!--{$gallery->id}-->">
+						<input class="btn btn-danger btn-sm" type="submit" onclick="deleteItem();" value="Delete">
+					</form>
+					<!--{if $gallery->status == 0}-->
+					<form class="form-group"  action="" method="POST">
+						<input type="hidden" name="evt" value="activate">
+						<input type="hidden" name="galid" value="<!--{$gallery->id}-->">
+						<input class="btn btn-success btn-sm" type="submit" value="Activate">
+					</form>
+					<!--{else}-->
+					<form class="form-group"  action="" method="POST">
+						<input type="hidden" name="evt" value="deactivate">
+						<input type="hidden" name="galid" value="<!--{$gallery->id}-->">
+						<input class="btn btn-warning btn-sm" type="submit" value="Deactivate">
+					</form>
+					<!--{/if}-->
+				</td>
+			</tr>
+			<!--{$numCount=$numCount+1}-->
+			<!--{/foreach}-->
+			</tbody>
+		  </table>
+		</div>
+	  </div>
+	<!--{else}-->
+		<div class="col-sm-10">
+			<div class="alert alert-warning"><h3 class="alert-heading">No image found!</h3></div>
+		</div>
+	<!--{/if}-->
+</div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+	<!-- The Close Button -->
+	<span class="close">&times;</span>
+
+	<!-- Modal Content (The Image) -->
+	<img class="modal-content" id="img01">
+
+	<!-- Modal Caption (Image Text) -->
+	<div id="caption"></div>
+</div>
+</section>
+<!--{/block}-->

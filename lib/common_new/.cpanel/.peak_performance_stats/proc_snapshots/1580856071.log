@@ -1,0 +1,57 @@
+Tue Feb  4 22:41:11 GMT 2020
+Running Processes:
+schooztc   657453 89.4  0.7 561484 238084 ?       R    22:41   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc   657484 82.7  0.6 521224 200244 ?       S    22:41   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 157.8% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc  657453 90.0  0.7 563556 239384 ?       R    22:41   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  657484 77.2  0.7 637372 239264 ?       R    22:41   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc  657453 91.1  0.0      0     0 ?        Z    22:41   0:05 [php-cgi] <defunct>
+schooztc  657484 78.6  0.7 637372 239264 ?       R    22:41   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc  657484 80.2  0.7 637372 239528 ?       R    22:41   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc  657484 81.6  0.7 637372 239528 ?       R    22:41   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc  657484 83.2  0.7 637884 240320 ?       R    22:41   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  22:41:13 up 179 days,  7:12,  0 users,  load average: 0.02, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 67567754	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT ID FROM wp_posts WHERE post_parent = 7490 AND post_status IN ( 'publish', 'closed' ) AND post_type = 'topic' ORDER BY ID DESC
+
+Current load:  22:41:13 up 179 days,  7:12,  0 users,  load average: 0.02, 0.00, 0.00
+
+

@@ -1,0 +1,82 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard | F.A.Q. </strong>&nbsp;<i class="fa fa-question"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row no-gutters justify-content-center">
+	<div class="col-sm-12">
+		<div class="form-group">
+			<!--{if !empty($fail)}-->
+				<!--{$fail}-->
+			<!--{/if}-->
+		</div>
+	</div>
+	<div class="col-md-4">
+		<form class="form w-100" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/faq" enctype="multipart/form-data">
+			<div class="card card-body justify-content-center mt-3 mb-3">
+				<fieldset class="border border-success rounded px-4">
+					<legend class="text-center p-2 mt-2">New F.A.Q.</legend>
+					<div class="form-group">
+						<label for="question"><h5>F.A.Q. Question <sup class="text-danger">(*)</sup></h5></label>
+						<input type="text" id="question" name="question" value="" class="form-control input-block lh-3" required/>
+						<hr/>
+					</div>
+					<div class="form-group mt-4">
+						<label for="answer"><h5>Answer <sup class="text-danger">(*)</sup></h5></label>
+						<textarea id="answer" name="answer" rows="4" class="form-control lh-2" required></textarea>
+					</div>
+					<div class="form-group text-center">
+						<button class="btn btn-success btn-lg rounded-0" type="submit" name="add_faq"><i class="fa fa-save"></i> Add F.A.Q.</button>
+					</div>
+				</fieldset>
+			</div>
+		</form>
+	</div>
+	<div class="col-sm-7 mx-2 my-2">
+		<div class="table-responsive">
+			<!--{if !empty($faqs)}-->
+			<div id="dataTableId_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+				<!--{include file="paging-top.html"}-->
+				<table class="table table-striped table-hover table-bordered">
+				  <thead class="site-bg-1 text-white">
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Question</th>
+				      <th scope="col">Answer</th>
+				      <th scope="col"></th>
+				    </tr>
+				  </thead>
+				  <tbody><!--{$numCount=1}-->
+				  	<!--{foreach $faqs as $faqK=> $faq}-->
+				    <tr>
+				      <td><!--{$numCount}--></td>
+				      <td><!--{$faq->question}--></td>
+				      <td><!--{$faq->answer}--></td>
+				      <td>
+				      	<button class="btn btn-sm my-1 btn-warning" type="button" data-toggle="collapse" data-target="#collapseFaq<!--{$faqK}-->" aria-expanded="false" aria-controls="collapseFaq<!--{$faqK}-->"><i class="fa fa-pencil"></i> Edit</button>
+						<a class="btn btn-sm my-1 btn-danger deleteTrig" what="F.A.Q. (<!--{$faq->question}-->)" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/faq?faq=<!--{$faq->id}-->&delete=true"><i class="fa fa-trash"></i> Delete</a>
+				      </td>
+				    </tr>
+                    <tr class="collapse" id="collapseFaq<!--{$faqK}-->">
+                        <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/faq">
+                          <td></td>
+                          <td><input type="text" name="question" value="<!--{$faq->question1}-->" class="form-control form-control-sm"/></td>
+                          <td style="max-height: 400px; overflow-y: auto;"><textarea name="answer" class="form-control form-control-lg input-block" rows="4" required><!--{$faq->answer1}--></textarea></td>
+                          <td><input type="hidden" name="faq" value="<!--{$faq->id}-->"/>
+                            <button class="btn btn-sm btn-success" type="submit" name="edit_faq"><i class="fa fa-pencil"></i> Save Changes</button>
+                          </td>
+                        </form>
+                    </tr>
+				  	<!--{$numCount=$numCount+1}-->
+					<!--{/foreach}-->
+				  </tbody>
+				</table>
+				<!--{include file="paging-bottom.html"}-->
+			</div>
+			<!--{else}-->
+			<div class="alert alert-info rounded-0 "><h5 class="alert-heading my-2 mx-2 py-2 px-2 text-center border border-success">You currently have an empty F.A.Q.</h5></div>
+			<!--{/if}-->
+		</div>
+	</div>
+</section>
+<!--{/block}-->

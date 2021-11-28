@@ -1,0 +1,34 @@
+<div class="dash-header-container">
+	<header class="dash-header-main">
+		<div class="desktop-view side-menu-logo">
+			<img src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/logo1.JPG" class="header-logo" alt="<!--{$Site.companyName}-->">
+		</div>
+		<div class="dh-right-nav">
+			<div class="dh-dropdown d-none">
+				<div class="dh-dropdown-toggle">
+					<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/notifications" class="dropdown-main-link">
+						<i class="fa fa-bell"></i><sup id="notCount"><!--{if !empty($defaults->not['counts'])}--><!--{$defaults->not['counts']}--><!--{/if}--></sup>
+					</a>
+				</div>
+			</div>
+			<div class="dh-dropdown dh-dropdown-user">
+				<div class="dh-dropdown-toggle dropdown">
+					<a href="" class="dropdown-main-link dropdown-toggle" id="userMenu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-2x"></i></a>
+					<div class="dropdown-menu" aria-labelledby="userMenu">
+					    <a class="dropdown-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/profile"><i class="fa fa-vcard"></i> My Profile</a>
+						<!--{if in_array( $Site.session.User.userinfo->userrole, array('level0','level1')) and  $Site.session.User.userinfo->active==true}-->
+					    <a class="dropdown-item d-none" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/settings"><i class="fa fa-gear"></i> Settings</a>
+						<!--{/if}-->
+					    <div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/logout"><i class="fa fa-sign-out"></i> LOGOUT</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="openMobileMenu" class="dh-menu-icon">
+			<span class="line"></span>
+			<span class="line"></span>
+			<span class="line"></span>
+		</div>
+	</header>
+</div>

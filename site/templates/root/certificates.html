@@ -1,0 +1,144 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong>
+	&nbsp;Document Request&nbsp;<i class="fa fa-certificate"></i>
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<h3>DOCUMENT REQUESTS</h3>
+<section class="row justify-content-center">
+	
+	<!--{if !empty($fail)}-->
+	<div class="col-sm-8">
+		<!--{$fail}-->
+	</div>
+	<!--{/if}-->
+
+	<div class="col-sm-11">
+		<div class="row">
+			<div class="col-lg-6 m-4">
+			  <form id="mainForm" method="POST" enctype="multipart/form-data" name="reportsform">
+				<div class="form-group">
+				  <label for="Year">Enter Year</label>
+					  <select class="form-control" id="Year"  name="year">
+						<!--{for $foo=2010 to 3000}-->
+						  <option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+							<!--{$foo}-->
+						  </option>
+						<!--{/for}-->
+					  </select>
+				</div>
+				<div class="form-group">
+				  <label for="month">Select Month</label>
+					  <select class="form-control" id="month"  name="month">
+							<option value="">All</option>
+							<!--{foreach $months as $month}-->
+						  		<option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+									<!--{$month}-->
+								</option>
+							<!--{/foreach}-->
+					  </select>
+				</div>
+				<div class="form-group">
+				  <label for="client">Select Client</label>
+					  <select class="form-control" id="client"  name="client">
+						<option value="">All</option>
+						<!--{foreach $clients as $client}-->
+						  <option <!--{if !empty($filter->client)}--> <!--{if $client->email == $filter->client}--> selected <!--{/if}--> <!--{/if}--> value="<!--{$client->email}-->">
+							<!--{$client->name|ucfirst}-->
+						  </option>
+						<!--{/foreach}-->
+					  </select>
+				</div>
+				<div class="form-group"> 
+				  <button type="submit" class="mt-2 btn btn-primary" name="triggers" id="cert_search" value="cert_search">OK</button>
+			   </div>      
+			 </form>
+			</div>
+		</div>
+
+		<!--{if !empty($certificates)}-->
+		<div class="table-responsive">
+			<table id="dataTable" class="table table-bordered no-footer">
+				 <thead class="thead-light">
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">CLIENT DETAIL</th>
+					  <th>PROPERTY INFO</th>
+				      <th scope="col">DOCUMENT DETAIL</th>
+				      <th scope="col">UPLOADED DOCUMENT</th>
+				      <th scope="col">DATE UPDATED</th>
+				      <th></th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	<!--{$numCount=1}-->
+				  	<!--{foreach $certificates as $key=> $certificate}-->
+				    <tr>
+				      <td><!--{$numCount}--></td>
+				      <td>
+				      	<span class="font-weight-bold">Client Name:</span> <!--{$certificate->student->names}--><br/>
+				      	<span class="font-weight-bold">Username:</span> <!--{$certificate->student->username}--><br/>
+				      	<span class="font-weight-bold">Email:</span> <!--{$certificate->student->email}--><br/>
+				      	<span class="font-weight-bold">Phone No:</span> <!--{$certificate->student->phone}--><br/>
+				      </td>
+					  <!--{if !empty($certificate->details)}-->
+					  <td>
+						<!--{$certificate->item|ucfirst}--> Details <br>
+						<span class="font-weight-bold">Property Name:</span> <!--{$certificate->details->product}--><br/>
+						<span class="font-weight-bold">Reference Id:</span> <!--{$certificate->details->token}--><br/>
+						<a class="btn btn-info p-2" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_<!--{$certificate->item}-->?id=<!--{$certificate->details->token}-->">View</a>
+					  </td>
+					  <!--{else}-->
+					  <td>Empty</td>
+					  <!--{/if}-->
+				      <td>
+				      	<div class="border border-success py-1 px-1" style="max-height: 150px; max-width: 250px; overflow-y: auto;"><strong>Description: </strong><!--{$certificate->description}--></div>
+				      	<span class="text-muted">Date Uploaded: <!--{$certificate->datesent}--></span>
+				      </td>
+				      <td>
+						  <!--{foreach $certificate->images as $image}-->
+						  <a class="btn btn-outline-success mt-1 btn-sm btn-light" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$image}-->" target="__blank"><small><!--{$certificate->title}--></small></a>
+						  <!--{/foreach}-->
+					</td>
+				      <td><!--{$certificate->dateupdated}--></td>
+				      <td>
+						<button class="btn btn-sm badge-pill my-1 btn-warning" type="button" data-toggle="collapse" data-target="#collapseAss<!--{$key}-->" aria-expanded="false" aria-controls="collapseAss<!--{$key}-->"><i class="fa fa-pencil"></i> Edit </button>
+				      </td>
+				    </tr>
+					<tr class="collapse" id="collapseAss<!--{$key}-->">
+					  	<td colspan="4">
+						  <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/certificates" enctype="multipart/form-data">
+						  		<div class="form-group">
+						  			<h6 class="text-center">Edit Certificate Detail</h6>
+						  		</div>
+						  		<div class="form-group">
+				                  <input type="text" id="title" name="title" class="form-control form-control-sm input-block" placeholder="Certificate Title" value="<!--{$certificate->title}-->" required/>
+				                </div>
+				                <div class="form-group">
+				                  <textarea id="description" name="description" class="form-control form-control-lg input-block" placeholder="Certificate Description" rows="4" required><!--{$certificate->description}--></textarea>
+				                </div>
+				                <div class="form-group">
+				                  <label for="material_upload">Upload Certificate File <i class="fa fa-file"></i>  <i class="fa fa-file-pdf"></i></label>
+				                  <input type="file" accept="application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/zip" id="material_upload" class="form-control input-rounded" name="material_upload"/>
+				                </div>
+						       	<div class="form-group">
+						       		<input type="hidden" name="certid" value="<!--{$certificate->id}-->"/>
+						       		<input type="hidden" name="userid" value="<!--{$certificate->user}-->"/>
+						        	<button class="btn btn-sm btn-success" type="submit" name="edit_cert"><i class="fa fa-pencil"></i> Save Changes</button>
+						       	</div>
+						  </form>
+					  	</td>
+					    <td colspan="2"></td>
+					</tr>
+				  	<!--{$numCount=$numCount+1}-->
+					<!--{/foreach}-->
+				  </tbody>
+			</table>
+		</div>	
+		<!--{else}-->
+			<div class="alert alert-warning"><h3 class="alert-heading">No Document Uploaded found</h3></div>
+		<!--{/if}-->
+	</div>
+</section>
+<!--{/block}-->

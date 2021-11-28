@@ -1,0 +1,145 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Inventory Table</h1>
+<p class="mb-4">The table contains inventory records</p>
+
+<!-- DataTales Example -->
+<div class="card shadow col-md-6 mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Inventory Info</h6>
+  </div>
+  <!--{if !empty($inv_item)}-->
+  <div class="card-body ">
+          <div class="card-body">
+            <img src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$inv_item->image}-->" alt="Inventory Image" class="img-thumbnail">
+          </div>
+          <p>
+          <!--{if $inv_item->status == 0}-->
+            <a class="btn btn-danger btn-sm">Inactive</a>
+          <!--{else}-->
+            <a class="btn btn-success btn-sm">Active</a>
+          <!--{/if}-->
+          </p>
+          <strong>Serial Number: </strong><!--{$inv_item->serial_number}--><br/>
+          <hr>              
+          <strong>Name: </strong><!--{$inv_item->name|ucfirst}--><br/>
+          <strong>Quantity: </strong><!--{$inv_item->quantity}--><br/>
+          <strong>Price: </strong>N<!--{$inv_item->price}--><br/>
+            <hr>
+             <!--{if !empty($inv_item->manufacturer)}-->
+             <strong> ManuFacturer Info: </strong> <!--{$inv_item->manufacturer|ucfirst}--><br/>
+             <hr>
+             <!--{/if}-->
+            
+            <!--{if !empty($inv_item->network)}-->
+            <strong> Network Info:</strong><!--{$inv_item->network->name|ucfirst}--><br/>
+            <hr>
+            <!--{/if}-->
+
+            <!--{if !empty($inv_item->department)}-->
+            <strong> Department Info: </strong> <!--{$inv_item->department->name}-->
+            <hr>
+            <!--{/if}-->
+
+            <strong>Description: </strong><!--{$inv_item->description}--><br/>
+            <strong>Asset Condition: </strong><!--{$inv_item->condition_asset}--><br/>
+            <hr>
+
+            <strong>Added Date: </strong><!--{$inv_item->update_date}--><br/>
+  </div>
+  <div class="row justify-content-center">
+    <div class="form-group mb-2">
+      <a class="btn btn-warning mr-5" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/inventories">Back</a>
+      <button class="btn btn-dark mr-5" type="button" data-toggle="collapse" data-target="#editinventoryDetail" aria-expanded="true" aria-controls="editinventoryDetail" id="editinventory"><i class="fa fa-pencil"></i> Edit Item</button>
+      <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#deleteinventoryDetail" aria-expanded="true" aria-controls="deleteinventoryDetail" id="deleteinventory"><i class="fa fa-trash"></i> Delete Item</button>
+    </div>
+  </div>
+  
+  <div id="editinventoryDetail" class="mt-2 collapse row m-4" aria-labelledby="editinventory">
+    <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/inventory?id=<!--{$inv_item->token}-->" enctype="multipart/form-data">
+      <div class="row">
+          <div class="col">
+              <div class="form-group">
+                <label for="file_upload" class="form-control-label">Upload an Image</label>
+                <input type="file" accept="image/*, application/*, video/*" id="file_upload" class="input-rounded w-100" name="file_upload"/>
+              </div>
+                <div class="form-group">
+                  <label for="description" class="form-control-label">Serial Number</label>
+                  <input type="text" class="form-control form-control-user" id="serial" name="serial" value="<!--{$inv_item->serial_number}-->" placeholder="Serial Number">
+                </div>
+                <div class="form-group">
+                  <label for="description" class="form-control-label">Item Name</label>
+                      <input type="text" class="form-control form-control-user" id="name" name="name" value="<!--{$inv_item->name}-->" placeholder="Item Name">
+                </div>
+                <div class="form-group">
+                  <label for="price" class="form-control-label">Item Price</label>
+                      <input type="number" class="form-control form-control-user" id="price" name="price" value="<!--{$inv_item->price}-->" placeholder="Item Price">
+                </div>
+                <div class="form-group">
+                  <label for="quantity" class="form-control-label">Item Quantity</label>
+                      <input type="number" class="form-control form-control-user" id="quantity" name="quantity" value="<!--{$inv_item->quantity}-->" placeholder="Item Quantity">
+                </div>
+                <div class="form-group">
+                  <label for="manufacturer" class="form-control-label">Manufacturer</label>
+                  <input type="text" class="form-control form-control-user" id="manufacturer"  value="<!--{$inv_item->manufacturer}-->" name="manufacturer" placeholder="Manufacturer">
+                </div>
+                <div class="form-group">
+                  <label for="department" class="form-control-label">Department</label>
+                  <select name="department" class="form-control" id="department">
+                  <!--{if !empty($departments)}-->
+                    <!--{foreach $departments as $department}-->
+                    <option value="<!--{$department->id}-->"><!--{$department->name}--></option>
+                    <!--{/foreach}-->
+                  <!--{else}-->
+                    <option value="null">none</option>
+                  <!--{/if}-->
+                  </select>   
+                </div>
+                <div class="form-group">
+                      <label for="description" class="form-control-label">Description</label>
+                      <textarea id="description" name="description" class="form-control form-control-sm input-block" rows="3" placeholder="Description" required><!--{$inv_item->description}--></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="condition" class="form-control-label">Condition Asset</label>
+                    <textarea class="form-control" name="condition" id="condition" rows="3" placeholder="Condition Asset"><!--{$inv_item->condition_asset}--></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="condition" class="form-control-label">Status</label>
+                    <select class="form-control form-control" id="status" name="status">
+                      <option <!--{if $inv_item->status == 1}--> selected <!--{/if}--> value="1" selected>Active</option>
+                      <option <!--{if $inv_item->status == 0}--> selected <!--{/if}--> value="0">Inactive</option>
+                    </select>
+                </div>
+                <div class="form-group text-center">
+                  <button class="btn btn-primary btn-md rounded-1" type="submit" name="triggers" value="edit_inventory">Update Item</button>
+              </div>
+          </div>
+      </div>
+    </form>
+    </div>
+    <div id="deleteinventoryDetail" class="mt-2 collapse row justify-content-center" aria-labelledby="deleteinventory">
+      <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/inventory?id=<!--{$inv_item->id}-->" enctype="multipart/form-data" class="w-100">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <p>Are you sure you want to delete this item?</p>
+            <p>Note that every stored details relating to this item will be lost unrecoverably.</p>
+            <p class="text-center">
+              <button class="btn btn-danger" type="submit" name="triggers" value="delete_inventory">Proceed</button>&nbsp;
+              <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#deleteinventoryDetail" aria-expanded="true" aria-controls="deleteinventoryDetail" id="deleteinventory">Cancel</button>
+            </p>
+        </div>
+      </form>
+    </div>
+  <!--{else}-->
+  <h2 class="m-4">No Item Found</h2>
+  <!--{/if}-->
+  <!--{if !empty($fail)}-->
+  <div class="col">
+    <div class="form-group">
+      <!--{$fail}-->
+    </div>
+  </div>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

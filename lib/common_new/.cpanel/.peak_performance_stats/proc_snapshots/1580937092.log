@@ -1,0 +1,55 @@
+Wed Feb  5 21:11:32 GMT 2020
+Running Processes:
+schooztc  1954224  0.0  0.0  62164  8972 ?        S    21:10   0:00 dovecot/lmtp [local READY]
+schooztc  1957308 85.5  0.3 434196 99528 ?        R    21:11   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 73.6% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 1957308 88.0  0.5 491516 170556 ?       R    21:11   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 1957308 89.3  0.5 495868 175192 ?       R    21:11   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 1957308 91.0  0.5 498436 177860 ?       R    21:11   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 1957308 92.3  0.5 500824 180212 ?       R    21:11   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 1957308 94.0  0.5 502884 182168 ?       R    21:11   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  21:11:33 up 180 days,  5:42,  0 users,  load average: 0.02, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 67928374	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT option_value FROM wp_options WHERE option_name = 'wpb_js_groups_access_rules' LIMIT 1
+
+Current load:  21:11:33 up 180 days,  5:42,  0 users,  load average: 0.02, 0.00, 0.00
+
+

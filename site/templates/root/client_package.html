@@ -1,0 +1,175 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong>
+	&nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/clients">Clients & Students&nbsp;<i class="fa fa-users"></i></a>&nbsp;| Client&nbsp;<i class="fa fa-user"></i>&nbsp;| Package Detail
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<h3 class="font-weight-bold">CLIENT DETAIL</h3>
+	<section class="container-fluid">
+        <div class="row justify-content-around">
+        	<div class="col-sm-5 card">
+        		<div class="row justify-content-center">
+					<div class="col-md-6 mb-2 mt-3">
+					    <img class="img img-thumbnail package-img" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($client->userimg)}--><!--{$client->userimg}--><!--{else}-->site/media/i/default-icon/4-48125_this-free-icons-png-design-of-business-man.png<!--{/if}-->">
+					</div>
+		            <div class="col-md-6 mb-2 mt-2">
+		                <div class="form-group mb-2 mt-2"><h6><strong class="text-uppercase">Names:</strong> <!--{$client->firstname}--> <!--{$client->middlename}--> <!--{$client->lastname}--></h6></div>
+		                <div class="form-group mb-2 mt-2"><h6><strong class="text-uppercase">Email:</strong> <!--{$client->email}--></h6></div>
+			          	<div class="form-group mb-2 mt-2"><h6><strong class="text-uppercase">Gender:</strong> <!--{$client->gender|capitalize}--></h6></div>
+		                <div class="form-group mb-2 mt-2"><h6><strong class="text-uppercase">Username:</strong> <!--{$client->username}--></h6></div>
+			          	<div class="form-group mb-2 mt-2"><h6><strong class="text-uppercase">Phone N<sub>o</sub>:</strong> <!--{$client->phone}--></h6></div>
+			          	<div class="form-group mb-2 mt-2"><h6><strong class="text-uppercase">Address:</strong> <!--{$client->address1}-->, <!--{$client->address2}--></h6></div>
+			          	<div class="form-group mb-2 mt-2"><h6><strong class="text-uppercase">City:</strong> <!--{$client->city}--></h6></div>
+			          	<div class="form-group mb-2 mt-2"><h6><strong class="text-uppercase">State:</strong> <!--{$client->state}--></h6></div>
+			          	<div class="form-group mb-2 mt-2"><h6><strong class="text-uppercase">Nationality:</strong> <!--{$client->country}--></h6></div>
+			          	<div class="form-group mb-2 mt-2"><h6><strong class="text-uppercase">Account Type:</strong> <!--{$accType[$client->usercat]}--></h6></div>
+			          	<div class="form-group mb-2 mt-2"><h6><strong class="text-uppercase">Interest To Be An Instructor:</strong> <!--{if $client->instructor==false}--><span class="badge badge-warning">No</span><!--{else}--><span class="badge badge-success">Yes</span><!--{/if}--></h6></div>
+			          	<div class="form-group">
+							<a class="btn btn-warning" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$client->email}-->"><i class="fa fa-undo"></i> Back</a>&nbsp;
+			          	</div>
+		          	</div>        		</div>
+        	</div>
+        	<div class="col-sm-6 card">
+        		<div class="row justify-content-center">
+        			<h3 class="col-md-12 mb-2">Package Detail</h3>
+					<div class="card col-md-5 mb-2" style="text-transform: none !important;">
+					    <img class="img card-img-top package-img w-100" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($client->package->icon)}--><!--{$client->package->icon}--><!--{else}-->site/media/i/default-icon/golden-shield.jpg<<!--{/if}-->">
+					</div>
+					<div class="col-md-6 mb-2">
+						<h5 class="form-group mb-2 mt-2"><strong>Package ID:</strong> <!--{$client->package->packageid|upper}--></h5>
+					    <h5 class="form-group mb-2 mt-2"><strong>Title:</strong> <!--{$client->package->title|capitalize}--></h5>
+					    <h5 class="form-group mb-2 mt-2"><strong>Discount:</strong> <!--{$client->package->discount}-->%</h5>
+						<h5 class="form-group mb-2 mt-2"><strong>Total Courses:</strong> <!--{count($client->package->courses)}--></h5>
+						<h5 class="form-group mb-2 mt-2"><strong>Package Amount:</strong> $<!--{$client->package->fee}--></h5>
+						<h5 class="form-group mb-2 mt-2"><strong>Date Added:</strong> <!--{$client->package->datereg|date_format:"%d %a, %b, %Y"}--></h5>
+			    		<!--{if !empty($client->package->course_results) and is_array($client->package->course_results) and ( !empty($client->package->cert) or count($client->package->course_results)==count($client->package->courses) )}-->
+							<h5 class="form-group mb-2 mt-2"><strong>Certificate Status:</strong> <!--{if $client->package->cert->status==1}--><span class="badge badge-success">issued</span><!--{elseif $client->package->cert->status==0}--><span class="badge badge-warning">pending</span><!--{elseif $client->package->cert->status=='2'}--><span class="badge badge-danger">declined</span><!--{/if}--></h6></h5>
+						<!--{/if}-->
+						<div class="form-group">
+						    <button class="btn btn-sm btn-info" data-toggle="collapse" data-target="#coursePackageInfo" aria-expanded="true" aria-controls="coursePackageInfo" id="coursePackage"><i class="fa fa-ellipsis-v"></i> Package Courses</button>&nbsp;
+				            <!--{if !empty($client->package->materials)}-->
+				                <button class="btn btn-sm btn-success mb-1" type="button" data-toggle="collapse" data-target="#courseMaterialsInfo" aria-expanded="true" aria-controls="courseMaterialsInfo" id="courseMaterials"><i class="fa fa-file-video-o"></i> Package Materials</button>&nbsp;
+				            <!--{/if}-->
+					        <!--{if !empty($client->package->course_results) and is_array($client->package->course_results) and ( !empty($client->package->cert) or count($client->package->course_results)==count($client->package->courses) )}-->
+					          <button class="btn btn-sm btn-success mb-1" type="button" data-toggle="collapse" data-target="#packageCertVer" aria-expanded="true" aria-controls="packageCertVer" id="packageCert"><i class="fa fa-upload"></i> Issue Certificate</button>&nbsp;
+					        <!--{/if}-->
+						</div>
+					</div>
+        		</div>
+        	</div>
+		    <!--{if !empty($fail)}-->
+		      <div class="col-md-10 mt-2">
+		        <!--{$fail}-->
+		      </div>
+		    <!--{/if}-->
+			<div class="col-md-8 " id="accordion">
+			    <!--{if !empty($client->package->course_results) and is_array($client->package->course_results) and ( !empty($client->package->cert) or count($client->package->course_results)==count($client->package->courses) )}-->
+			        <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client_package?client=<!--{$client->email}-->&id=<!--{$client->package->packageid}-->" enctype="multipart/form-data" style="width: 100%;">
+			          <div id="packageCertVer" class="collapse mt-5" aria-labelledby="packageCert" data-parent="#accordion">
+			            	<div class="form-row">
+			            		<div class="col-sm-6">
+			          				<legend class="text-center">Certificate Issuance</legend>
+			            			<div class="form-group">
+			            				<label for="certTitle">Certificate Title</label>
+			            				<input type="text" name="certTitle" value="" class="form-control form-control-sm rounded-left rounded-right" placeholder="Enter Certificate title here... (optional)" id="certTitle">
+			            			</div>
+			            			<div class="form-group">
+			            				<label for="certFile">Upload File</label>
+			            				<input type="file" accept="image/*, application/pdf" name="file_upload" class="form-control form-control-sm rounded-left rounded-right"  placeholder="Attach Certificate" id="certFile" required>
+			            			</div>
+			            			<div class="form-group">
+			            				<button class="btn btn-success rounded-left rounded-right" type="submit" name="triggers" value="uploadCert">Upload & Send</button>
+			            			</div>
+			            		</div>
+			            		<div class="col-sm-6">
+			            			<legend>Certificate Declination</legend>
+			            			<div class="alert alert-primary alert-dismissible" role="alert">
+							            <p>To cancel request, click Decline button below to decline request.</p>
+							            <p class="text-center">
+						                	<a class="btn btn-primary" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client_package?client=<!--{$client->email}-->&id=<!--{$client->package->packageid}-->&evt=decline">Decline</a>&nbsp;
+						                </p>
+						            </div>
+			            		</div>	
+			            	</div>
+			          </div>
+			        </form>
+			    <!--{/if}-->
+		        <!--{if !empty($client->package->courses)}-->
+		        <div id="coursePackageInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="coursePackage" data-parent="#accordion">
+		              <div class="col-sm-10">
+		                    <h4>List of Package Courses</h4>
+		                    <div class="table-responsive">
+		                          <div id="dataTableId_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+		                               <table class="table table-striped table-hover table-bordered">
+										  <thead class="thead-light">
+										    <tr>
+										      <th scope="col">#</th>
+										      <th scope="col">Course ID</th>
+										      <th scope="col">Course Title</th>
+										      <th scope="col">Course Description</th>
+										       <!--{if !empty($client->package->course_results) and is_array($client->package->course_results)}-->
+										      <th scope="col">Assessment Status</th>
+										      <th scope="col">Assessment Score</th>
+										      <!--{/if}-->
+										    </tr>
+										  </thead>
+										  <tbody>
+										  	<!--{$numCount=1}-->
+										  	<!--{foreach $client->package->courses as $course}-->
+										    <tr>
+										      <td><!--{$numCount}--></td>
+										      <td><!--{$course->courseid}--></td>
+										      <td><!--{$course->title}--></td>
+										      <td><!--{$course->description}--></td>
+										      <!--{if !empty($client->package->course_results) and is_array($client->package->course_results)}-->
+										      	<td><!--{if !empty($course->results)}--><span class="badge badge-pill badge-primary">complete</span><!--{else}--><span class="badge badge-pill badge-warning">incomplete</span><!--{/if}--></td>
+						                        <td><!--{if !empty($course->results)}--><!--{round(($course->results->score/$course->results->totalquestions)*100, 2)}-->%<!--{/if}--></td>
+						                      <!--{/if}-->
+										    </tr>
+										  	<!--{$numCount=$numCount+1}-->
+											<!--{/foreach}-->
+										  </tbody>
+										</table>
+		                          </div>
+		                    </div>
+		              </div>
+		        </div>
+		        <!--{/if}-->
+		        <!--{if !empty($client->package->materials)}-->
+		        <div id="courseMaterialsInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="courseMaterials" data-parent="#accordion">
+		          <div class="col-sm-12">
+		            <h4>List of Materials In This Package</h4>
+		            <div class="table-responsive">
+		              <table class="table table-striped table-hover table-bordered" id="dataTableId">
+		                <thead class="thead-warning">
+		                  <tr>
+		                    <th scope="col">#</th>
+		                    <th scope="col">Course ID</th>
+		                    <th scope="col">Title</th>
+		                    <th scope="col">Download Link</th>
+		                    <th scope="col">Description</th>
+		                  </tr>
+		                </thead>
+		                <tbody>
+		                    <!--{$numCount=1}-->
+		                    <!--{foreach $client->package->materials as $material}-->
+		                        <tr>
+		                        <td><!--{$numCount}--></td>
+		                        <td>"<!--{$material->courseid}--></td>
+		                        <td>"<!--{$material->title}--></td>
+		                        <td><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$material->url}-->" target="__blank"><!--{$material->title}--></a></td>
+		                        <td><!--{$material->description}--></td>
+		                        </tr>
+		                    <!--{$numCount=$numCount+1}-->
+		                    <!--{/foreach}-->
+		                </tbody>
+		              </table>
+		            </div>
+		          </div>
+		        </div>
+		        <!--{/if}-->
+		    </div>
+        </div>
+    </section>
+<!--{/block}-->

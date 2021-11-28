@@ -1,0 +1,118 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Inventory Table</h1>
+<p class="mb-4">The table contains inventory records</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Inventory</h6>
+  </div>
+  <div class="row">
+    <div class="col-lg-4 m-4">
+      <form action="" method="post">
+      <div class="form-group">
+        <label for="location" class="form-control-label"><!--{$Site.companyName}--> Location</label>
+        <select name="location" class="form-control" id="location">
+          <!--{if !empty($zones)}-->
+            <option disabled>Select Location</option>
+            <option value="">All</option>
+            <!--{foreach $zones as $zone}-->
+            <option <!--{if !empty($filter->location)}--> <!--{if $zone->prefix == $filter->location}-->selected <!--{/if}--> <!--{/if}-->  value="<!--{$zone->prefix}-->"><!--{$zone->zone|ucfirst}--></option>
+            <!--{/foreach}-->
+          <!--{else}-->
+            <option value="null">none</option>
+          <!--{/if}-->
+        </select>   
+      </div>
+        <div class="form-group"> 
+          <button type="submit" class="mt-2 btn btn-primary" name="triggers" id="inventory" value="inventory_filter">OK</button>
+       </div>      
+     </form>
+    </div>
+  </div>
+  <!--{if !empty($inventories)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Serial Number</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Description</th>
+            <th>Condition Asset</th>
+            <th>Dates</th>
+            <th>Status</th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>#</th>
+            <th>Serial Number</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Description</th>
+            <th>Condition Asset</th>
+            <th>Dates</th>
+            <th>Status</th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount = 1}-->
+          <!--{foreach $inventories as $inventory}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <td class="">
+              <!--{$inventory->serial_number}-->
+            </td>
+            <td><!--{$inventory->name}--></td>
+			      <td>
+                <!--{if !empty($inventory->price)}-->
+                <!--{$inventory->price}-->
+                <!--{/if}-->
+            </td>
+            <td>
+                <!--{if !empty($inventory->quantity)}-->
+               <!--{$inventory->quantity}--><br/>
+                <!--{/if}-->
+            </td>
+            <td>
+			        <!--{$inventory->description}-->
+            </td>
+            <td>
+			        <!--{$inventory->condition_asset}-->
+            </td>
+            <td>
+                <strong>UPDATE DATE: </strong> <!--{$inventory->update_date}--> </br>
+                <strong>RENEWAL DATE: </strong> <!--{$inventory->renewal}-->
+            </td>
+            <td>
+              <!--{if $inventory->status == 0}-->
+                <a class="btn btn-danger btn-sm">Inactive</a>
+            <!--{else}-->
+                <a class="btn btn-success btn-sm">Active</a>
+            <!--{/if}-->
+            </td>
+			      <td>
+			          <a class="btn btn-sm my-1 btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/inventory?id=<!--{$inventory->token}-->"><i class="fa fa-ellipsis-v"></i> Detail</a>
+            </td>
+		    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <h2 class="m-4">Inventory Empty</h2>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

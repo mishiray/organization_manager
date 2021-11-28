@@ -1,0 +1,91 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Appraisals Records</h1>
+<p class="mb-4">The table contains Appraisals Records</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Records</h6>
+  </div>
+  <!--{if !empty($appraisals)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Appraisal_Date</th>
+            <th>Next Appraisal Date</th>
+            <th>Manager</th>
+            <th colspan="2">General Performance</th>
+            <th>Overall Performance</th>
+            <th>Overall Comment</th>
+            <th>Date Added</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+           <th>SN</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Appraisal_Date</th>
+            <th>Next Appraisal Date</th>
+            <th>Manager</th>
+            <th colspan="2">General Performance</th>
+            <th>Overall Performance</th>
+            <th>Overall Comment</th>
+            <th>Date Added</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+          <!--{foreach $appraisals as $appraisal}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <td><!--{$appraisal->employeeid}--></td>
+            <td><!--{$appraisal->name}--></td>
+            <td><!--{$appraisal->appraisal_date|date_format}--></td>
+            <td><!--{$appraisal->next_appraisal_date|date_format}--></td>
+            <td><!--{$appraisal->manager}--></td>
+            <td>
+              <strong> Timekeeping:</strong> <br>
+              <strong> Attendance:</strong> <br>
+              <strong> Performance:</strong> <br>
+              <strong> Appearance:</strong> <br>
+              <strong> Initiative:</strong> <br>
+              <strong> Decision Making:</strong> <br>
+              <strong> Communication:</strong> <br>
+              <strong> Leadership:</strong> <br>
+              <strong> Financial Contribution:</strong> <br>
+            </td>
+            <td>
+              <span class="badge   <!--{if $appraisal->timekeeping=='poor'}-->badge-danger<!--{else}--><!--{if $appraisal->timekeeping=='average'}-->badge-info<!--{else}-->badge-success<!--{/if}--><!--{/if}-->"><!--{$appraisal->timekeeping}--></span> <br>
+              <span class="badge   <!--{if $appraisal->attendance=='poor'}-->badge-danger<!--{else}--><!--{if $appraisal->attendance=='average'}-->badge-info<!--{else}-->badge-success<!--{/if}--><!--{/if}-->"><!--{$appraisal->attendance}--></span>  <br>
+              <span class="badge   <!--{if $appraisal->performance=='poor'}-->badge-danger<!--{else}--><!--{if $appraisal->performance=='average'}-->badge-info<!--{else}-->badge-success<!--{/if}--><!--{/if}-->"><!--{$appraisal->performance}--></span> <br>
+              <span class="badge   <!--{if $appraisal->appearance=='poor'}-->badge-danger<!--{else}--><!--{if $appraisal->appearance=='average'}-->badge-info<!--{else}-->badge-success<!--{/if}--><!--{/if}-->"><!--{$appraisal->appearance}--></span> <br>
+              <span class="badge   <!--{if $appraisal->initiative=='poor'}-->badge-danger<!--{else}--><!--{if $appraisal->initiative=='average'}-->badge-info<!--{else}-->badge-success<!--{/if}--><!--{/if}-->"><!--{$appraisal->initiative}--></span> <br>
+              <span class="badge   <!--{if $appraisal->decision_making=='poor'}-->badge-danger<!--{else}--><!--{if $appraisal->decision_making=='average'}-->badge-info<!--{else}-->badge-success<!--{/if}--><!--{/if}-->"><!--{$appraisal->decision_making}--></span>  <br>
+              <span class="badge   <!--{if $appraisal->communication=='poor'}-->badge-danger<!--{else}--><!--{if $appraisal->communication=='average'}-->badge-info<!--{else}-->badge-success<!--{/if}--><!--{/if}-->"><!--{$appraisal->communication}--></span>  <br>
+              <span class="badge   <!--{if $appraisal->leadership=='poor'}-->badge-danger<!--{else}--><!--{if $appraisal->leadership=='average'}-->badge-info<!--{else}-->badge-success<!--{/if}--><!--{/if}-->"><!--{$appraisal->leadership}--></span> <br>
+              <span class="badge   <!--{if $appraisal->financial_contribution=='poor'}-->badge-danger<!--{else}--><!--{if $appraisal->financial_contribution=='average'}-->badge-info<!--{else}-->badge-success<!--{/if}--><!--{/if}-->"><!--{$appraisal->financial_contribution}--></span> <br>
+            </td>
+            <td> <h4><span class="badge <!--{if $appraisal->overall_performance=='poor'}-->badge-danger<!--{else}--><!--{if $appraisal->overall_performance=='average'}-->badge-info<!--{else}-->badge-success<!--{/if}--><!--{/if}-->"><!--{$appraisal->overall_performance}--></span></h4></td>
+            <td><!--{$appraisal->overall_comment}--></td>
+            <td><!--{$appraisal->dateadded}--></td>
+		    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <h2 class="m-4">Appraisals Records Empty</h2>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

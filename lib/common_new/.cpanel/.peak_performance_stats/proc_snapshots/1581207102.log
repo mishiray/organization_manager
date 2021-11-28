@@ -1,0 +1,54 @@
+Sun Feb  9 00:11:42 GMT 2020
+Running Processes:
+schooztc  3197681 91.6  0.6 522124 200124 ?       R    00:11   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 84% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3197681 78.8  0.7 565048 242296 ?       R    00:11   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3197681 79.8  0.7 565048 242296 ?       R    00:11   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3197681 80.8  0.7 565048 242296 ?       R    00:11   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3197681 81.8  0.7 565048 242296 ?       R    00:11   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3197681 82.7  0.7 565048 242304 ?       R    00:11   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  00:11:44 up 183 days,  8:43,  0 users,  load average: 0.03, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 69045950	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT   wp_posts.* FROM wp_posts  WHERE 1=1  AND wp_posts.post_type = 'testimonials' AND (wp_posts.post_status = 'publish' OR wp_posts.post_status = 'closed' OR wp_posts.post_author = 260 AND wp_posts.post_status = 'private' OR wp_posts.post_author = 260 
+
+Current load:  00:11:44 up 183 days,  8:43,  0 users,  load average: 0.03, 0.01, 0.00
+
+

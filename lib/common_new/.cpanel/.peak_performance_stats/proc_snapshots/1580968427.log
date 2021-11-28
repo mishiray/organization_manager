@@ -1,0 +1,60 @@
+Thu Feb  6 05:53:47 GMT 2020
+Running Processes:
+schooztc  3725620  0.3  0.0  70572 17248 ?        S    05:45   0:01 dovecot/lmtp [local READY]
+schooztc  3753587 67.8  0.7 562708 239816 ?       R    05:53   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3753653 55.5  0.2 430476 81096 ?        R    05:53   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 160.7% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3753653 73.6  0.3 440488 119696 ?       R    05:53   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3753653 76.0  0.3 450196 129156 ?       R    05:53   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3753653 78.3  0.4 454104 133208 ?       R    05:53   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3753653 80.6  0.4 462268 141440 ?       R    05:53   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3753653 83.0  0.4 467388 146544 ?       R    05:53   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  05:53:48 up 180 days, 14:25,  0 users,  load average: 0.04, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 68045623	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT COLUMN_NAME 
+                                    FROM information_schema.COLUMNS 
+                                    WHERE
+                                     TABLE_SCHEMA='schooztc_scog'
+                                     AND COLUMN_NAME = 'tim
+
+Current load:  05:53:48 up 180 days, 14:25,  0 users,  load average: 0.04, 0.01, 0.00
+
+

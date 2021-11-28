@@ -1,0 +1,104 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h1 class="h3 mb-2 text-gray-800">Completion Letter</h1>
+		<!--{if !empty($client)}-->
+        <div class="row" style="margin-top: 5rem;" id="contract">
+            <div class="card-body letters">
+                <div id="printable" >
+                    <div style="background-color: #fff;" class="w-100">
+                        <div class="row justify-content-center align-items-center text-danger p-3">
+                            <div class="col-6 text-center">
+                                <h3 class="large text-center">
+                                    <strong>
+                                       <!--{$Site.companyName}-->
+                                    </strong> 
+                                </h3>
+                            </div>
+                            <div class="col-4">
+                                <img class="w-25" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/logo.png" alt="" srcset="">
+                            </div>
+                        </div>
+                        <div class="row d-none justify-content-center p-3">
+                            <div class="col-md-10 text-center">
+                                <p class="text-danger m-0">Head Office:</p>
+                                <p class="m-0"><!--{$Site.companyAddress}--></p>
+                                <p class="text-danger m-0">Tel:</p>
+                                <p class="m-0">07030561428 | 09091496533</p>
+                            </div>
+                        </div>
+                        <div class="row address justify-content-center p-3">
+                            <div class="col-md-10 pl-2">
+                                <p class="text-right"><!--{$client->reg_date|date_format}--></p>
+                                <p class="d-none m-0"><!--{$client->title|ucwords}--> <!--{$client->names}--></p>
+                                <p class="d-none m-0"><!--{$client->address|ucwords}--></p>
+                                <p class="d-none m-0"><!--{$client->state|ucfirst}--> State</p>
+                                <p class="pt-2">
+                                    Dear <!--{$client->title|ucwords}--> <!--{$client->names}-->
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row subletter d-block pt-3 px-3">
+                            <h2 class="text-center space"> <strong> <u>COMFIRMATION LETTER FOR FULL PAYMENT</u> </strong> </h2>
+                            <div class="p-4">
+                                <p>
+                                    We write to acknowledge your purchase and complete payment of <!--{$client->plot_number}--> plot(s) of land in 
+                                    (<!--{$client->product}-->) measuring <!--{$client->plot_sqm}-->sqms per plot. It is our pleasure to officially 
+                                    affirm that you have being allocated <!--{$client->plot_number}--> plot(s) within this estate and your <!--{$client->plot_number}--> plot(s) is 
+                                    measured at <!--{$client->plot_number}-->sqms.
+                                </p>
+                                <p>
+                                Consequently, you will be required to pay the following statutory fees to process your document on the land. Below is a detailed breakdown of the fees:- <br>
+                                Registered Survey: N<!--{$leg_invoice[1]->price|number_format}--> = N<!--{$leg_invoice[1]->total|number_format}--> <br>
+                                Deed of Assignment: N<!--{$leg_invoice[2]->price|number_format}--> * (<!--{$leg_invoice[2]->quantity}-->) = N<!--{$leg_invoice[2]->total|number_format}--> <br>
+                                Total:  <!--{$inv_totals->amount|number_format}-->  <br>
+
+                                </p>
+                                <p>
+                                    Upon your payment of the documentation fees to our bank account, your document will be processed within 30 working days. 
+                                    Thereafter, you will be given a later date for the ground allocation. <br> 
+                                     
+                                </p>
+                                <p>
+                                    Our bank details are:-     <br>
+                                    <div class="row w-100">
+                                        <div class="col">
+                                            <p>
+                                                <strong>
+                                                    Zenith Bank Plc			<br>	
+                                                    Atobe Construction Company Limited<br>
+                                                    Account Number: 1016639064 <br> 
+                                                </strong>
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                            <p>
+                                                <strong>
+                                                    Gtbank  Plc<br>
+                                                    Atobe Construction Company Limited<br>
+                                                    Account Number: 0513313685<br>
+                                                </strong>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    You are of assured of our best services. <br>    
+                                    Yours Faithfully<br>
+                                    <strong>For: ATOBE CONSTRUCTION COMPANY LIMITED<br></strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-center justify-content-center m-2">
+                    <button class="btn btn-success m-4" id="printNow">Print Now</button>
+                </div>
+            </div>
+        </div>
+        <!--{else}-->
+			<h3>No letter available</h3>
+		<!--{/if}-->
+		<div class="form-group">
+		<!--{if !empty($fail)}-->
+			<!--{$fail}-->
+		<!--{/if}-->
+		</div>
+<!--{/block}-->

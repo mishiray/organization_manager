@@ -1,0 +1,135 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Transaction Management</h1>
+    <p class="mb-4">View Transaction detail</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Transaction Detail</h6>
+      </div>
+      <div class="card-body">
+		<div class="row justify-content-center">
+			<!--{if !empty($record)}-->
+			<div class="col-md-6 col-sm-12">
+				<form class="form" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance_detail?id=<!--{$record->financeid}-->">
+					<fieldset class="card p-2 mt-2">
+						<div class="form-group">
+							<label for="date">Transaction Date</label>
+							<input type="date" id="date" name="date" value="<!--{$record->transdate|date_format:'%Y-%m-%d'}-->" class="form-control" required/>
+						</div>
+						<div class="form-group">
+							<label for="account">Bank Account </label>
+							<select class="form-control" id="account" name="account">
+							<!--{if !empty($accounts)}-->
+								<option selected disabled>Choose</option>
+								<!--{foreach $accounts as $acc}-->
+									<option <!--{if $record->bankaccount == $acc->account}--> selected <!--{/if}--> value="<!--{$acc->account}-->" > <!--{$acc->category|ucwords}--> - <!--{$acc->account}-->	</option>
+								<!--{/foreach}-->
+							<!--{else}-->
+								<option>No Account Added</option>
+							<!--{/if}-->
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="address">Payment Type</label>
+							<select class="form-control" id="payment" name="payment">
+								<option disabled>Choose</option>
+								<option <!--{if $record->payment == 'bank transfer'}--> selected <!--{/if}--> value="bank transfer">Bank Transfer</option>
+								<option <!--{if $record->payment == 'cheque'}--> selected <!--{/if}--> value="cheque">Cheque</option>
+								<option <!--{if $record->payment == 'cash'}--> selected <!--{/if}--> value="cash">Cash</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="beneficiary" class="form-control-label">Beneficiary Name</label>
+							<input type="text" id="person" class="form-control" name="person" value="<!--{$record->beneficiary}-->">
+								                    
+						</div>
+						<div class="form-group">
+							<label for="category" class="form-control-label">Category</label>
+							<div class="custom-control custom-radio custom-control-inline">
+							  <input type="radio" id="income" <!--{if $record->category == 'income'}--> checked <!--{/if}--> name="category" value="income" class="custom-control-input category">
+							  <label  class="custom-control-label" for="income">Income</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+							  <input type="radio" id="expense" <!--{if $record->category == 'expense'}--> checked <!--{/if}--> name="category" value="expense"  class="custom-control-input category">
+							  <label  class="custom-control-label" for="expense">Expense</label>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="detfinal">Details</label>
+							<input type="hidden" id="detfinal" name="purpose" value="<!--{$record->details}-->" i="" class="">
+							<input type="hidden" id="sub_category" name="sub_category" value="<!--{$record->sub_category}-->" i="" class="">
+							<select class="form-control expensedetail <!--{if $record->category == 'income'}--> d-none <!--{/if}-->"  id="expensedetail" name="">
+								<!--{if !empty($expense_accounts)}-->
+								<option selected disabled value="<!--{$record->details}-->"><!--{$record->details|ucwords}--></option>
+										<!--{foreach $expense_accounts as $account}-->
+											<option i="<!--{$account->category}-->" <!--{if $account->account == $record->details}--> selected <!--{/if}--> value="<!--{$account->account}-->"><!--{$account->account|ucwords}--></option>
+										<!--{/foreach}-->
+								<!--{else}-->
+								<option disabled>Choose</option>
+								<option <!--{if $record->details == 'wages salaries'}--> selected <!--{/if}--> value="wages salaries">Wages & Salaries</option>
+								<option <!--{if $record->details == 'maintenance and repair'}--> selected <!--{/if}--> value="maintenance and repair">Maintenance & Repair</option>
+								<option <!--{if $record->details == 'office expenses'}--> selected <!--{/if}--> value="office expenses">Office Expenses</option>
+								<option <!--{if $record->details == 'stationery'}--> selected <!--{/if}--> value="stationery">Stationery</option>
+								<option <!--{if $record->details == 'commission'}--> selected <!--{/if}--> value="commission">Commission</option>
+								<option <!--{if $record->details == 'petty cash'}--> selected <!--{/if}--> value="petty cash">Petty cash</option>
+								<option <!--{if $record->details == 'cost of sales'}--> selected <!--{/if}--> value="cost of sales">Cost of sales</option>
+								<option <!--{if $record->details == 'purchase of assets'}--> selected <!--{/if}--> value="purchase of assets">Purchase of assets</option>
+								<option <!--{if $record->details == 'others'}--> selected <!--{/if}--> value="others">Others</option>
+								<!--{/if}-->
+							</select>
+							<select class="form-control incomedetail <!--{if $record->category == 'expense'}--> d-none <!--{/if}-->" id="incomedetail" name="">
+								<!--{if !empty($income_accounts)}-->
+								<option selected disabled value="<!--{$record->details}-->"><!--{$record->details|ucwords}--></option>
+									<!--{foreach $income_accounts as $account}-->
+										<option i="<!--{$account->category}-->" <!--{if $account->account == $record->details}--> <!--{/if}--> value="<!--{$account->account}-->"><!--{$account->account|ucwords}--></option>
+									<!--{/foreach}-->
+								<!--{else}-->
+								<option disabled>Choose</option>
+								<option <!--{if $record->details == 'sales'}--> selected <!--{/if}--> value="sales">Sales</option>
+								<option <!--{if $record->details == 'payment'}--> selected <!--{/if}--> value="payment">Payment</option>
+								<option <!--{if $record->details == 'transfer'}--> selected <!--{/if}--> value="transfer">Transfer</option>
+								<option <!--{if $record->details == 'refund'}--> selected <!--{/if}--> value="refund">Refund</option>
+								<option <!--{if $record->details == 'deposit'}--> selected <!--{/if}--> value="deposit">Deposit</option>
+								<option <!--{if $record->details == 'others'}--> selected <!--{/if}--> value="others">Others</option>
+								<!--{/if}-->
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="description">Description</label>
+							<textarea id="description" class="form-control" rows="4" name="description" value="" placeholder="Description"><!--{$record->description}--></textarea>
+						</div>
+						<div class="form-group">
+							<label for="amount">Amount</label>
+							<input type="number" id="amount" class="form-control" name="amount"  value="<!--{$record->amount}-->" placeholder="">
+						</div>
+					</fieldset>
+					<div class="form-group">
+						<button type="submit" name="triggers" value="update_transaction" class="btn btn-primary">Update Transaction</button>
+					</div>
+				</form>
+				<!--{if !empty($fail)}-->
+				<div class="col">
+				  <div class="form-group">
+					<!--{$fail}-->
+				  </div>
+				</div>
+				<!--{/if}-->
+			</div>
+			<!--{else}-->
+				<div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+			<!--{/if}-->
+		</div>
+		<div class="row card-body justify-content-center m-4">
+				  <div class="form-group  mb-2">
+					<a class="btn px-4 btn-warning mr-5" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finance_reports">Back</a>
+				  </div>
+		</div>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

@@ -1,0 +1,165 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800"><!--{$Site.companyName}--> Employees Database</h1>
+<p class="mb-4">The table contains Employees Database</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Employees</h6>
+  </div>
+  <div class="form-group">
+    <!--{if !empty($fail)}-->
+      <!--{$fail}-->
+    <!--{/if}-->
+  </div>
+  <div class="row">
+    <div class="col-lg-6 bg-danger pt-2 m-4">
+      <form action="" class="d-flex" method="post">
+      <div class="form-group">
+        <label class="text-light"  for="location" class="form-control-label"><!--{$Site.companyName}--> Location</label>
+        <select name="location" class="form-control" id="location">
+          <!--{if !empty($zones)}-->
+            <option disabled>Select Location</option>
+            <option value="">All</option>
+            <!--{foreach $zones as $zone}-->
+            <option <!--{if !empty($filter->location)}--> <!--{if $zone->zone == $filter->location}-->selected <!--{/if}--> <!--{/if}-->  value="<!--{$zone->zone}-->" i="<!--{$zone->prefix}-->"><!--{$zone->zone|ucfirst}--></option>
+            <!--{/foreach}-->
+          <!--{else}-->
+            <option value="null">none</option>
+          <!--{/if}-->
+        </select>   
+      </div>
+      <div class="form-group">
+        <label class="text-light" for="department" class="form-control-label">Department</label>
+        <select name="department" class="form-control" id="department">
+        <!--{if !empty($departments)}-->
+            <option disabled>Select Department</option>
+            <option value="">All</option>
+          <!--{foreach $departments as $department}-->
+          <option <!--{if !empty($filter->department)}--> <!--{if $department->id == $filter->department}-->selected <!--{/if}--> <!--{/if}-->  value="<!--{$department->id}-->"><!--{$department->name}--></option>
+          <!--{/foreach}-->
+        <!--{else}-->
+          <option value="null">none</option>
+        <!--{/if}-->
+        </select> 
+      </div>
+      <div class="form-group">
+        <label class="text-light" for="roles" class="form-control-label">User Role</label>
+        <select name="role" class="form-control" id="roles">
+        <!--{if !empty($urole)}-->
+            <option disabled>Select Designation</option>
+            <option value="">All</option>
+          <!--{foreach $urole as $key=>$role}-->
+          <option <!--{if !empty($filter->role)}--> <!--{if $key == $filter->role}-->selected <!--{/if}--> <!--{/if}-->  value="<!--{$key}-->"><!--{$role}--></option>
+          <!--{/foreach}-->
+        <!--{else}-->
+          <option value="null">none</option>
+        <!--{/if}-->
+        </select> 
+      </div>
+        <div class="form-group d-flex"> 
+          <button type="submit" class="mt-2 btn btn-primary " name="triggers" id="employees" value="employee_filter">OK</button>
+       </div>      
+     </form>
+    </div>
+  </div>
+  <!--{if !empty($employees)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Photo</th>
+            <th>Employee ID</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Personal Info</th>
+            <th>Phone</th>
+            <th>Dashboard Role</th>
+            <th class="d-none">Login</th>
+            <th>Location</th>
+            <th>Date Hired</th>
+            <th> Details</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <th>Photo</th>
+            <th>Employee ID</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Personal Info</th>
+            <th>Phone</th>
+            <th>Dashboard Role</th>
+            <th class="d-none">Login</th>
+            <th>Location</th>
+            <th>Date Hired</th>
+            <th> Details</th>
+            <th>Action</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+          <!--{foreach $employees as $emp}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <td class="text-center">
+              <img class="rounded-circle" style="width: 35px;max-height: 35px;" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$emp->photo}-->" alt="photo" srcset="">
+            </td>
+            <td><!--{$emp->employeeid}--></td>
+            <td>
+              <!--{$emp->email}-->
+            </td>
+            <td>
+              <!--{$emp->department}-->
+            </td>
+            <td>
+              <!--{$emp->surname|ucfirst}--> <!--{$emp->first_name|ucfirst}-->
+            </td>
+            <td><!--{$emp->phone}--></td> 
+			      <td><!--{if !empty($emp->userProfile)}--><!--{$urole[$emp->userProfile->userrole]}--><!--{/if}--></td> 
+            <td class="d-none"><!--{$emp->hasAcc}--></td>  
+            <td><!--{$emp->location|ucfirst}--></td>
+            <td>
+              <!--{if !empty($emp->userProfile)}--> <!--{$emp->userProfile->datehired|date_format}--> <!--{else}--> <!--{$emp->date_added|date_format}--> <!--{/if}-->
+            </td>
+			      <td>
+              <a class="btn btn-sm my-1 btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/employee?id=<!--{$emp->employeeid}-->">Detail</a>
+            </td>
+            <td>
+              <!--{if $userinfo->userrole == 'level0' || ($userinfo->userrole == 'level2' && $userinfo->department == 'Human Resources')}-->
+                <!--{if !empty($emp->userProfile)}-->
+                    <!--{if $emp->userProfile->active == 0}-->
+                      <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/employee?id=<!--{$emp->employeeid}-->" method="post">
+                        <input type="hidden" name="active" value="1">
+                        <button type="submit" name="triggers" value="activate" class="btn btn-success btn-sm">Activate</button>
+                      </form>
+                    <!--{else}-->
+                    <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/employee?id=<!--{$emp->employeeid}-->" method="post">
+                      <input type="hidden" name="active" value="0">
+                      <button type="submit" name="triggers" value="activate" class="btn btn-danger btn-sm">Deactivate</button>
+                    </form>
+                    <!--{/if}-->
+                <!--{else}-->
+                  <a class="btn btn-sm my-1 btn-success"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/create_login?id=<!--{$emp->employeeid}-->">Create Login</a>
+                <!--{/if}-->
+              <!--{/if}-->
+            </td>
+		    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <h2 class="m-4">Employee Empty</h2>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

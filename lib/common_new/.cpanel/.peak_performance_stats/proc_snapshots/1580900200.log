@@ -1,0 +1,104 @@
+Wed Feb  5 10:56:40 GMT 2020
+Running Processes:
+schooztc  3414945  0.0  0.0 113424 20596 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc  3414967  0.0  0.0 117832 21088 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc  3419878 72.6  0.0      0     0 ?        Z    10:56   0:05 [php-cgi] <defunct>
+schooztc  3420200 65.5  0.2 430204 78936 ?        R    10:56   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3420218  1.0  0.0 108628 20592 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+
+Running Queries:
+
+Open connections
+COMMAND     PID     USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+cpaneld 3414945 schooztc   23u  IPv4 1816401927      0t0  TCP 199.79.63.83:2082->217.138.198.10:56526 (ESTABLISHED)
+cpaneld 3414967 schooztc   23u  IPv4 1816395499      0t0  TCP 199.79.63.83:2082->217.138.198.10:57022 (ESTABLISHED)
+cpaneld 3420218 schooztc   23u  IPv4 1816424148      0t0  TCP 199.79.63.83:2082->217.138.198.10:62392 (ESTABLISHED)
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 63.8% (warning)
+      SSL: SSL error: missing certificate (warning)
+  Varnish: schoolofgreatness.africa is cached. (warning)
+  Varnish: ajahcity.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: courses.schoolofgreatness.africa is cached. (warning)
+  Varnish: uaac.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: alexihama.ajahcity.com.ng is cached. (warning)
+  Varnish: adeniyichristopher.ajahcity.com.ng is cached. (warning)
+  Varnish: spp.ajahcity.com.ng is cached. (warning)
+  Varnish: scog.ajahcity.com.ng is cached. (warning)
+  Varnish: metromedia.ajahcity.com.ng is cached. (warning)
+  Varnish: frankieslist.ajahcity.com.ng is cached. (warning)
+  Varnish: alethiaenterprise.schoolofgreatness.africa is cached. (warning)
+  Varnish: maccherithresources.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: lekkipeninsulapolice.org.schoolofgreatness.africa is cached. (warning)
+  Varnish: pecuniahouse.ajahcity.com.ng is cached. (warning)
+  Varnish: ajahcity.com.ng is cached. (warning)
+  Varnish: uaac.com.ng is cached. (warning)
+  Varnish: lekkipeninsulapolice.org is cached. (warning)
+  Varnish: maccherithresources.com.ng is cached. (warning)
+  Varnish: alethiaenterprise.com is cached. (warning)
+  Varnish: schoolofgreatness.africa.md-47.webhostbox.net is cached. (warning)
+
+
+Snapshot 1
+schooztc 3414945  0.0  0.0 113424 20596 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3414967  0.0  0.0 121932 21100 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420200 81.6  0.3 435392 107020 ?       R    10:56   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3420218  0.5  0.0 109336 20612 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420227  0.5  0.0 109336 20516 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+
+Snapshot 2
+schooztc 3414945  0.0  0.0 113424 20596 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3414967  0.0  0.0 121932 21100 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420200 63.0  0.3 436336 110012 ?       R    10:56   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3420218  0.3  0.0 109336 20612 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420227  0.3  0.0 109336 20516 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+
+Snapshot 3
+schooztc 3414945  0.0  0.0 113424 20596 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3414967  0.0  0.0 121932 21100 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420200 65.0  0.3 436776 112400 ?       R    10:56   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3420218  0.3  0.0 109336 20612 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420227  0.3  0.0 109336 20516 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+
+Snapshot 4
+schooztc 3414945  0.0  0.0 113424 20596 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3414967  0.0  0.0 121932 21100 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420200 67.0  0.3 437924 115920 ?       R    10:56   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3420218  0.3  0.0 109336 20612 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420227  0.3  0.0 109336 20516 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+
+Snapshot 5
+schooztc 3414945  0.0  0.0 113424 20596 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3414967  0.0  0.0 121932 21100 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420200 69.0  0.3 441752 120904 ?       R    10:56   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3420218  0.3  0.0 109336 20612 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420227  0.3  0.0 109336 20516 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420374  9.0  0.0      0     0 ?        Z    10:56   0:00 [php-cgi] <defunct>
+schooztc 3420377  8.0  0.1 420792 39200 ?        R    10:56   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/OneSignalSDKWorker.js.php
+
+Current load:  10:56:42 up 179 days, 19:28,  1 user,  load average: 0.05, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 67760675	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  10:56:42 up 179 days, 19:28,  1 user,  load average: 0.05, 0.01, 0.00
+
+

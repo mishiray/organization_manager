@@ -1,0 +1,364 @@
+<?php
+$userinfo=$Site['session']['User']['userinfo'];
+$courseid=(!empty($gets->id)? $gets->id: "");
+$course=$ezDb->get_row("SELECT * FROM `courses` WHERE `courseid`='$courseid';");
+if (!empty($course) and is_object($course)) {
+	$course->questions=getQuestions($courseid);
+	$fail="";
+	$err=0;
+	$posts = (object) $Site["post"];
+	/*Editing of Course*/
+	if ( in_array($sitePage, array("course")) && ($requestMethod == 'POST') && isset($Site["post"]['edit_course']) ) {
+		$files= (object) $Site["files"];
+		// error_log(json_encode($files));
+		$targetDir="site/media/courses/icon/";
+		$extensions = array("image/jpg","image/png","image/jpe","image/jpeg", "image/jp2", "image/tiff", "image/tiff", "application/octet-stream");
+		if( empty(trim($posts->title)) ):
+			$err++;
+			$fail.='<p>Enter course title please!</p>';
+		endif;
+		if( empty(trim($posts->description)) ):
+			$err++;
+			$fail.='<p>Enter course description please!</p>';
+		endif;
+		if( empty(trim($posts->category))):
+			$err++;
+			$fail.='<p>Enter course category please!</p>';
+		endif;
+		if( empty(trim($posts->courseid)) ):
+			$err++;
+			$fail.='<p>Enter course code/ course id please!</p>';
+		endif;
+		if( !empty(trim($posts->courseid)) and !empty($ezDb->get_var("SELECT `courseid` FROM `courses` WHERE `courseid`!='$courseid' AND LCASE(TRIM(`courseid`))='".strtolower(trim($posts->courseid))."';"))):
+			$err++;
+			$fail.='<p>There is a course already attached to this course id kindly use another course id!</p>';
+		endif;
+		if( !empty(trim($posts->title)) and !empty($ezDb->get_var("SELECT `title` FROM `courses` WHERE LCASE(TRIM(`title`))='".strtolower(trim($posts->title))."' AND `courseid`!='$courseid';"))):
+			$err++;
+			$fail.='<p>There is a course already attached to this course id kindly use another course id!</p>';
+		endif;
+		if( empty(trim($posts->duration)) or $posts->duration<1):
+			$err++;
+			$fail.='<p>Enter a valid course duration in month!</p>';
+		endif;
+		/*if( is_nan($posts->fee) ):
+			$err++;
+			$fail.='<p>Enter a valid course charge please!</p>';
+		endif;*/
+		if( is_nan($posts->unit) ):
+			$err++;
+			$fail.='<p>Enter a valid course unit please!</p>';
+		endif;
+		if (!empty($files->img_upload['tmp_name']) and !in_array(strtolower(getMime($files->img_upload['tmp_name'])), $extensions)):
+	    	$fail .= '<p>The uploaded sport club logo is not an image file. Only JPG, JPEG, JP2, TIFF, PNG or JPE files is allowed.</p>';
+	        $err++;
+	    endif;
+		if( $err==0 ):
+			if ( !file_exists("$targetDir") ) :
+		        mkdir("$targetDir", 0777, true);
+		    endif;
+			$posts->courseid=strtolower(trim($posts->courseid));
+		    $posts->description=testInput(trim($posts->description));
+		    $posts->title=testInput(trim($posts->title));
+		    // $posts->category=testInput(trim($posts->category));
+
+		    $targetFile = $targetDir . $posts->packageid."_icon.png";
+		    if (!empty($files->img_upload['tmp_name'])):
+		    	@unlink($course->icon);
+			endif;
+	    	$targetFile = ((!empty($files->img_upload['tmp_name']) and @move_uploaded_file($files->img_upload['tmp_name'], $targetFile))? $targetFile: $course->icon);
+		    
+		    $ezDb->query("UPDATE `courses` SET `courseid`='$posts->courseid', `title`='$posts->title', `description`='$posts->description', `fee`='$posts->fee', `category`='$posts->category', `unit`='$posts->unit', `duration`='$posts->duration', `icon`='$targetFile' WHERE `courseid`='$courseid'");
+			$fail='<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <p>Course had been successfully updated.</p></div>';
+			$course=$ezDb->get_row("SELECT * FROM `courses` WHERE `courseid`='$courseid';");
+		else:
+			$fail='<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> '.$fail.'</div>';
+		endif;
+	}
+	/*Add Question*/
+	if ( in_array($sitePage, array("course")) && ($requestMethod == 'POST') && isset($Site["post"]['add_question']) ) {
+		if( empty(trim($posts->question)) ):
+			$err++;
+			$fail.='<p>Enter the new assessment question!</p>';
+		endif;
+		if( empty($posts->options) and !is_array($posts->options) ):
+			$err++;
+			$fail.='<p>Kindly add answer options to the questions !</p>';
+		else:
+			foreach ($posts->options as $key => $value) :
+				if (empty($value) and in_array($key, array(0, 1))) :
+					$err++;
+					$fail.='<p>Option '.($key+1).' cannot be empty!</p>';
+				endif;
+				if ($posts->answer==("option".($key+1))) :
+					$posts->theAnswer=$value;
+				endif;
+			endforeach;
+		endif;
+		if( empty(trim($posts->answer)) or !in_array($posts->answer, array("option1","option2","option3","option4")) ):
+			$err++;
+			$fail.='<p>Kindly choose a valid answer !</p>';
+		endif;
+		if( $err==0 ):
+			//id	question	options	answer	courseid	addedby	dateadded
+			$ezDb->query("INSERT INTO `questions` (`question`,`options`,`answer`,`courseid`,`addedby`,`dateadded`) VALUES ('$posts->question','".json_encode($posts->options)."','$posts->theAnswer','$courseid','$userinfo->email','$dateNow')");
+
+			$fail='<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <p>Course assessment quesion was successfully added.</p></div>';
+			$course->questions=getQuestions($courseid);
+		else:
+			$fail='<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> '.$fail.'</div>';
+		endif;
+	}
+	/*Editing Instruction*/
+	if ( in_array($sitePage, array("course")) && ($requestMethod == 'POST') && isset($Site["post"]['edit_instruction']) ) {
+		if( empty($posts->examduration) or $posts->examduration<1):
+			$err++;
+			$fail.='<p>Assessment duration cannot be lesser than a minute!</p>';
+		endif;
+		if( $err==0 ):
+		    $posts->instructions=testInput(trim($posts->instructions));  
+		    $ezDb->query("UPDATE `courses` SET `instructions`='$posts->instructions', `examduration`='$posts->examduration' WHERE `courseid`='$courseid'");
+			$fail='<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <p>Assessment instruction was successfully updated.</p></div>';
+			$course=$ezDb->get_row("SELECT * FROM `courses` WHERE `courseid`='$courseid';");
+		else:
+			$fail='<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> '.$fail.'</div>';
+		endif;
+	}
+	/*Deleting Question*/
+	if ( in_array($sitePage, array("course")) && ($requestMethod == 'GET') && isset($Site["get"]['delete_question']) && $Site["get"]['delete_question']=='true') {
+		if( empty(trim($gets->question)) or empty($ezDb->get_var("SELECT `question` FROM `questions` WHERE `id`='$gets->question' AND `courseid`='$courseid'"))):
+			$err++;
+			$fail.='<p>The selected question does not exist!</p>';
+		endif;
+		if ($err==0) {
+			$ezDb->query("DELETE FROM `questions` WHERE `id`='$gets->question' AND `courseid`='$courseid';");
+			$fail='<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <p>A question was successfully removed from this course.</p></div>';
+			$course->questions=getQuestions($courseid);
+		}else{
+			$fail='<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> '.$fail.'</div>';
+		}
+	}
+	/*Editing Question*/
+	if ( in_array($sitePage, array("course")) && ($requestMethod == 'POST') && !empty($gets->question)) {
+		if( empty(trim($posts->questiontext)) ):
+			$err++;
+			$fail.='<p>Question cannot be empty!</p>';
+		endif;
+		if( empty($posts->options) and !is_array($posts->options) ):
+			$err++;
+			$fail.='<p>Kindly add answer options to the questions !</p>';
+		else:
+			foreach ($posts->options as $key => $value) :
+				if (empty($value) and in_array($key, array(0, 1))) :
+					$err++;
+					$fail.='<p>Option '.($key+1).' cannot be empty!</p>';
+				endif;
+				if ($posts->answer==("option".($key+1))) :
+					$posts->theAnswer=$value;
+				endif;
+			endforeach;
+		endif;
+		if( empty(trim($posts->answer)) or !in_array($posts->answer, array("option1","option2","option3","option4")) ):
+			$err++;
+			$fail.='<p>Kindly choose a valid answer !</p>';
+		endif;
+		if( empty(trim($gets->question)) or empty($ezDb->get_var("SELECT `question` FROM `questions` WHERE `id`='$gets->question' AND `courseid`='$courseid'"))):
+			$err++;
+			$fail.='<p>The selected question does not exist!</p>';
+		endif;
+		if ($err==0) {
+			$ezDb->query("UPDATE `questions` SET `question`='$posts->questiontext',`options`='".json_encode($posts->options)."', `answer`='$posts->theAnswer',`courseid`='$courseid' WHERE `id`='$gets->question' AND `courseid`='$courseid';");
+			$fail='<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <p>A question detail was successfully updated.</p></div>';
+			$course->questions=getQuestions($courseid);
+		}else{
+			$fail='<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> '.$fail.'</div>';
+		}
+	}
+	/*Adding of Materials*/
+	if ( in_array($sitePage, array("course")) && ($requestMethod == 'POST') && isset($Site["post"]['add_material']) ) {
+		$files= (object) $Site["files"];
+		// error_log(json_encode($files));
+		$targetDir="site/media/course_materials/";
+		$extensionsvideos = array('application/annodex','application/mp4','application/ogg','application/vnd.rn-realmedia','application/x-matroska','video/3gpp','video/3gpp2','video/annodex','video/divx','video/flv','video/h264','video/mp4','video/mp4v-es','video/mpeg','video/mpeg-2','video/mpeg4','video/ogg','video/ogm','video/quicktime','video/ty','video/vdo','video/vivo','video/vnd.rn-realvideo','video/vnd.vivo','video/webm','video/x-bin','video/x-cdg','video/x-divx','video/x-dv','video/x-flv','video/x-la-asf','video/x-m4v','video/x-matroska','video/x-motion-jpeg','video/x-ms-asf','video/x-ms-dvr','video/x-ms-wm','video/x-ms-wmv','video/x-msvideo','video/x-sgi-movie','video/x-tivo','video/avi','video/x-ms-asx','video/x-ms-wvx','video/x-ms-wmx');
+		$extensionspdf = array("text/plain", "application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/rtf", "application/zip", "application/x-rar-compressed", "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "application/x-tar", "application/vnd.ms-powerpoint", "application/vnd.openxmlformats-officedocument.presentationml.presentation");
+
+		if( empty(trim($posts->title))):
+			$err++;
+			$fail.='<p>Kindly enter material title!</p>';
+		endif;
+		if( empty(trim($posts->description)) ):
+			$err++;
+			$fail.='<p>Kindly enter material description!</p>';
+		endif;
+		if ((!empty($files->material_upload['tmp_name']) and !in_array(strtolower(getMime($files->material_upload['tmp_name'])), $extensionsvideos)) and $posts->mattype=='video'):
+	    	$fail .='<p>Invalid File: Kindly upload a Video File</p>';
+	        $err++;
+	    elseif((!empty($files->material_upload['tmp_name']) and !in_array(strtolower(getMime($files->material_upload['tmp_name'])), $extensionspdf)) and $posts->mattype=='pdf'):
+	    	$fail .='<p>Invalid File: Kindly upload a PDF, MS Word Document, Powerpoint, MS Excel, or Zip File</p>';
+	        $err++;
+	    elseif(!in_array($posts->mattype, array("video", "pdf")) or empty($files->material_upload['tmp_name'])):
+	    	$fail .='<p>Invalid File: Kindly select a vaild file type and upload a file</p>';
+	        $err++;
+	    endif;
+		if( $err==0 ):
+			if ( !file_exists("$targetDir") ) :
+		        mkdir("$targetDir", 0777, true);
+		    endif;
+		    $targetFile = $targetDir .date("YmdHis") .($ezDb->get_var("SELECT IF(`id`=NULL,'1',(`id`+1)) FROM `course_material` ORDER BY `id` DESC LIMIT 1;")).$files->material_upload['name'];
+		    $targetFile = ((!empty($files->material_upload['tmp_name']) and @move_uploaded_file($files->material_upload['tmp_name'], $targetFile))? $targetFile: "");
+		    if (!empty($targetFile)) {
+		    	$posts->description=testInput(trim($posts->description));
+			    $posts->title=testInput(trim($posts->title));
+				$ezDb->query("INSERT INTO `course_material` (`courseid`, `title`, `filetype`, `url`, `description`, `addedby`, `dateadded`) VALUES ('$courseid', '$posts->title', '$posts->mattype', '$targetFile', '$posts->description', '".$Site['session']['User']['userinfo']->email."', '$dateNow')");
+				$fail='<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <p>Course material had been successfully added.</p></div>';
+		    }else{
+		    	$fail='<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <p>Error Encountered while trying to upload this file</p></div>';
+		    } 
+		else:
+			$fail='<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> '.$fail.'</div>';
+		endif;
+	}
+	/*Editing of Material Detail*/
+	if ( in_array($sitePage, array("course")) && ($requestMethod == 'POST') && isset($Site["post"]['edit_material']) ) {
+		if( empty(trim($posts->matid)) or empty($ezDb->get_var("SELECT `title` FROM `course_material` WHERE `id`='$posts->matid' AND `courseid`='$courseid'"))):
+			$err++;
+			$fail.='<p>The selected material does not exist!</p>';
+		endif;
+		if( empty(trim($posts->title))):
+			$err++;
+			$fail.='<p>Kindly enter material title!</p>';
+		endif;
+		if( empty(trim($posts->description)) ):
+			$err++;
+			$fail.='<p>Kindly enter material description!</p>';
+		endif;
+		if( $err==0 ):
+	    	$posts->description=testInput(trim($posts->description));
+		    $posts->title=testInput(trim($posts->title));
+			$ezDb->query("UPDATE `course_material` SET `title`='$posts->title', `description`='$posts->description' WHERE `id`='$posts->matid' AND `courseid`='$courseid';");
+			$fail='<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <p>Course material detail had been successfully updated.</p></div>';
+		else:
+			$fail='<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> '.$fail.'</div>';
+		endif;
+	}
+	/*Deleting of Material Detail*/
+	if ( in_array($sitePage, array("course")) && ($requestMethod == 'GET') && isset($Site["get"]['delete_material']) && $Site["get"]['delete_material']=='true') {
+		if( empty(trim($gets->matid)) or empty($ezDb->get_var("SELECT `title` FROM `course_material` WHERE `id`='$gets->matid' AND `courseid`='$courseid'"))):
+			$err++;
+			$fail.='<p>The selected material does not exist!</p>';
+		endif;
+		if ($err==0) {
+			$mats=$ezDb->get_row("SELECT * FROM `course_material` WHERE `id`='$gets->matid' AND `courseid`='$courseid'");
+			if (!empty($mats->url)):
+		    	@unlink($mats->url);
+			endif;
+			$ezDb->query("DELETE FROM `course_material` WHERE `id`='$gets->matid' AND `courseid`='$courseid';");
+			$fail='<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <p>Course material had been successfully removed from this course.</p></div>';
+		}else{
+			$fail='<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> '.$fail.'</div>';
+		}
+	}
+	/*Deleting of Outline*/
+	if ( in_array($sitePage, array("course")) && ($requestMethod == 'GET') && isset($Site["get"]['evt']) && $Site["get"]['evt']='delout' && isset($Site["get"]['title']) && isset($gets->outline) ) {
+		error_log(1);
+		$course->outlines=@json_decode($course->outlines);
+		if( !array_key_exists($gets->outline, $course->outlines) or empty($gets->title) or $gets->title!=$course->outlines[$gets->outline]->title):
+			$err++;
+			$fail.='<p>The selected outline does not exist!</p>';
+		endif;
+		if ($err==0) {
+			error_log(1);
+			unset($course->outlines[$gets->outline]);
+		    $course->outlines=@json_encode($course->outlines);
+			$ezDb->query("UPDATE `courses` SET `outlines`='$course->outlines' WHERE `courseid`='$courseid';");
+			$fail='<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <p>Course outline detail had been successfully deleted.</p></div>';
+			$course=$ezDb->get_row("SELECT * FROM `courses` WHERE `courseid`='$courseid';");
+		}else{
+			$fail='<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> '.$fail.'</div>';
+		}
+	}
+	/*Adding of Outline*/
+	if ( in_array($sitePage, array("course")) && ($requestMethod == 'POST') && isset($Site["post"]['add_outline']) ) {
+		if( empty(trim($posts->title))):
+			$err++;
+			$fail.='<p>Kindly enter outline title!</p>';
+		endif;
+		if( empty(trim($posts->description)) ):
+			$err++;
+			$fail.='<p>Kindly enter outline description!</p>';
+		endif;
+		if( $err==0 ):
+			$course->outlines=@json_decode($course->outlines);
+	    	$posts->description=testInput(trim($posts->description));
+		    $posts->title=testInput(trim($posts->title));
+		    $course->outlines=(is_array($course->outlines)?$course->outlines: array());
+		    $outline=new stdClass();
+		    $outline->title=$posts->title;
+		    $outline->description=$posts->description;
+		    array_push($course->outlines, $outline);
+		    $course->outlines=@json_encode($course->outlines);
+			$ezDb->query("UPDATE `courses` SET `outlines`='$course->outlines' WHERE `courseid`='$courseid';");
+			$course=$ezDb->get_row("SELECT * FROM `courses` WHERE `courseid`='$courseid';");
+			$fail='<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <p>Course outline detail had been successfully added.</p></div>';
+		else:
+			$fail='<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> '.$fail.'</div>';
+		endif;
+	}
+
+	$course->outlines=@json_decode($course->outlines);
+	$course->instructions=testInputReverse(trim($course->instructions));
+	$course->description=testInputReverse(trim($course->description));
+    $course->title=testInputReverse(trim($course->title));
+    $course->category=testInputReverse(trim($course->category));
+    /*$course->packages=$ezDb->get_results("SELECT * FROM `packages` WHERE `course_list`LIKE '%\"$courseid\"%';");*/
+    $course->materials=$ezDb->get_results("SELECT * FROM `course_material` WHERE `courseid`='$courseid';");
+	/*Deleting of Course*/
+	if ( in_array($sitePage, array("course")) && ($requestMethod == 'POST') && isset($Site["post"]['delete_course']) ) {
+		if ($err==0) {
+			$ezDb->query("DELETE FROM `courses` WHERE `courseid`='$courseid';");
+			//delete course materials optional
+			if (!empty($course->materials)) {
+				foreach ($course->materials as $key => $vals) {
+					if (!empty($vals->url)):
+				    	@unlink($vals->url);
+					endif;
+				}
+				$ezDb->query("DELETE FROM `course_material` WHERE `courseid`='$courseid';");
+			}
+			// delete course form packages
+			/*if (!empty($course->packages)) {
+				foreach ($course->packages as $key => $vals) {
+					$vals->course_list=array_values(json_decode($vals->course_list));
+					$newArrayVals=array();
+					foreach ($vals->course_list as $key => $valu) {
+						if (strtolower(trim($valu))==strtolower(trim($courseid))) {
+							continue;
+						}
+						array_push($newArrayVals, $valu);
+					}
+					$vals->course_list=$newArrayVals;
+					$vals->course_list=json_encode($vals->course_list);
+					$ezDb->query("UPDATE `packages` SET `course_list`='$vals->course_list' WHERE `packageid`='$vals->packageid'");
+				}
+			}*/
+			$fail='<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> <p>Course detail had been successfully deleted.</p></div>';
+		}
+	}
+
+    /*if (!empty($course->packages)) {
+		foreach ($course->packages as $key => $vals) {
+			$vals->description=testInputReverse(trim($vals->description));
+		    $vals->title=testInputReverse(trim($vals->title));
+		}
+	}*/
+    if (!empty($course->materials)) {
+		foreach ($course->materials as $key => $vals) {
+			$vals->description=testInputReverse(trim($vals->description));
+		    $vals->title=testInputReverse(trim($vals->title));
+		}
+	}
+}else{
+	redirect("courses");
+}
+
+$smarty->assign("course", $course);

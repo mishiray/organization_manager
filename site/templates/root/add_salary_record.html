@@ -1,0 +1,142 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Salary Records</h1>
+    <p class="mb-4">Add a new salary record</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add Salary</h6>
+      </div>
+      <div class="card-body">
+      <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_salary_record" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="employee" class="form-control-label">Employee</label>
+                  <select name="employeeid" class="form-control" onchange="getInfo(this);" id="employee">
+                  <option selected disabled value="null">Select Employee</option>
+                  <!--{if !empty($employees)}-->
+                    <!--{foreach $employees as $employee}-->
+                    <option value="<!--{$employee->empid}-->"><!--{$employee->empid}--> - <!--{$employee->surname}--> <!--{$employee->first_name}--></option>
+                    <!--{/foreach}-->
+                  <!--{else}-->
+                    <option value="null">none</option>
+                  <!--{/if}-->
+                  </select>   
+                </div>
+                <script>
+                    function getInfo(myRadio) {
+                        currentValue = myRadio.value;
+                        var text=myRadio.options[myRadio.selectedIndex].text;
+                        text = text.split("- ").pop();
+                        document.getElementById('name').value = text;
+                    }
+                </script>
+                <div class="form-group">
+                  <label for="name" class="form-control-label">Name</label>
+                  <input type="name" class="form-control form-control-user" id="name" name="name" value="" placeholder="Employee Name">
+                </div>
+                <div class="form-group">
+                  <label for="bankname" class="form-control-label">Bank Name</label>
+                  <input type="bankname" class="form-control form-control-user" id="bankname" name="bankname" value="" placeholder="Bank Name">
+                </div>
+                <div class="form-group">
+                  <label for="accnum" class="form-control-label">Account Num</label>
+                  <input type="accnum" class="form-control form-control-user" id="accnum" name="accnum" value="" placeholder="Account Number">
+                </div>
+                <div class="form-group">
+                    <label for="year" class="form-control-label">Year</label>
+                    <input type="number" class="form-control form-control-user" id="year" name="year" placeholder="Year">
+                </div>
+                <div class="form-group">
+                    <label for="position" class="form-control-label">Position</label>
+                    <input type="text" class="form-control form-control-user" id="position" name="position" placeholder="Position">
+                </div>
+                <div class="form-group">
+                    <label for="salary" class="form-control-label">Salary</label>
+                    <input type="number" class="form-control form-control-user" id="salary" name="salary" placeholder="Salary">
+                </div>
+                <div class="form-group">
+                    <label for="percent_inc" class="form-control-label">Percentage Increase</label>
+                    <input type="number" class="form-control form-control-user" id="percent_inc" name="percent_inc" placeholder="Percentage Increase">
+                </div>
+                <div class="form-group">
+                    <label for="naira_inc" class="form-control-label">Naira Increase</label>
+                    <input type="number" class="form-control form-control-user" id="naira_inc" name="naira_inc" placeholder="Naira Increase">
+                </div>
+                <div class="form-group">
+                    <label for="reason" class="form-control-label">Reason</label>
+                    <input type="text" class="form-control form-control-user" id="reason" name="reason" placeholder="Reason">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="personal_objectives" class="form-control-label">Personal Objectives</label>
+                    <input type="text" class="form-control form-control-user" id="personal_objectives" name="personal_obj" placeholder="Personal Objectives">
+                </div>
+                <div class="form-group">
+                    <label for="transport" class="form-control-label">Transport</label>
+                    <input type="number" class="form-control form-control-user" id="transport" name="transport" placeholder=Transport">
+                </div>
+                <div class="form-group">
+                    <label for="housing" class="form-control-label">Housing</label>
+                    <input type="number" class="form-control form-control-user" id="housing" name="housing" placeholder="Housing">
+                </div>
+                <div class="form-group">
+                    <label for="lunch" class="form-control-label">Lunch</label>
+                    <input type="number" class="form-control form-control-user" id="lunch" name="lunch" placeholder="Lunch">
+                </div>
+                <div class="form-group">
+                  <label for="commission" class="form-control-label">Commission</label>
+                  <input type="number" class="form-control form-control-user" id="commission" name="commission" placeholder="Commission">
+                </div>
+                <div class="form-group">
+                    <label for="pension" class="form-control-label">Pension</label>
+                    <input type="number" class="form-control form-control-user" id="pension" name="pension" placeholder="Pension">
+                </div>
+                <div class="form-group">
+                    <label for="welfare" class="form-control-label">Welfare</label>
+                    <input type="number" class="form-control form-control-user" id="welfare" name="welfare" placeholder="Welfare">
+                </div>
+                <div class="d-none form-group">
+                    <label for="tax" class="form-control-label">Tax</label>
+                    <input type="number" readonly class="form-control form-control-user" id="tax" name="tax" placeholder="Tax">
+                </div>
+                <div class="form-group">
+                  <label for="annual_salary" class="form-control-label">Annual Salary</label>
+                  <input type="number" class="form-control form-control-user" id="annual_salary" name="annual_salary" placeholder="Annual Salary">
+                </div>
+                <div class="form-group">
+                    <label for="gross_year" class="form-control-label">Gross Year</label>
+                    <input type="number" class="form-control form-control-user" id="gross_year" name="gross_year" placeholder="Gross Year">
+                </div>
+                <div class="form-group">
+                    <label for="status" class="form-control-label">Employee Salary Status</label>
+                    <select class="form-control" name="status" id="">
+                    <option selected disabled value="">Choose</option>
+                    <option value="1">Active</option>
+                    <option value="0">InActive</option>
+                    </select>
+                </div>
+                  <div class="form-group text-center">
+                    <button class="btn btn-primary btn-sm rounded-0" type="submit" name="add_salary">Add Salary</button>
+                </div>
+            </div>
+            <!--{if !empty($fail)}-->
+            <div class="col">
+              <div class="form-group">
+                <!--{$fail}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <br>
+        </div>
+        
+      </form>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

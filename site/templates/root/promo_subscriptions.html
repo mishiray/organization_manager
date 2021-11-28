@@ -1,0 +1,126 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Promo Subscriptions Table</h1>
+<p class="mb-4">The table contains promo subscriptions made by clients</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Subscriptions</h6>
+  </div>
+  <div class="form-group">
+    <!--{if !empty($fail)}-->
+      <!--{$fail}-->
+    <!--{/if}-->
+  </div>
+  <div class="card-body bg-primary justify-content-center">
+    <div class="col-lg-6 bg-primary rounded pt-2">
+      <form action="" class="d-flex" method="post">
+      <div class="form-group">
+        <label class="text-light" for="Year">Enter Year</label>
+            <select class="form-control" id="Year"  name="year">
+              <!--{for $foo=2010 to 3000}-->
+                <option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+                  <!--{$foo}-->
+                </option>
+              <!--{/for}-->
+            </select>
+      </div>
+      <div class="form-group">
+        <label for="month"class="text-light">Select Month</label>
+            <select class="form-control" id="month"  name="month">
+              <option value="">All</option>
+              <!--{foreach $months as $month}-->
+                <option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+                  <!--{$month}-->
+                </option>
+              <!--{/foreach}-->
+            </select>
+      </div>
+      <div class="form-group">
+        <label for="project_token"class="text-light">Select Promo</label>
+            <select class="form-control" id="product"  name="project_token">
+              <option value="">All</option>
+              <!--{if !empty($promos)}-->
+                <!--{foreach $promos as $project}-->
+                  <option <!--{if !empty($filter->product)}--> <!--{if $project->token == $filter->product}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$project->token}-->">
+                    <!--{$project->name|ucfirst}-->
+                  </option>
+              <!--{/foreach}-->
+              <!--{else}-->
+                <option value="">None</option>
+              <!--{/if}-->
+            </select>
+      </div>
+        <div class="form-group d-flex"> 
+          <button type="submit" class="mt-2 btn btn-success" name="triggers" id="reports" value="sub_filter">OK</button>
+       </div>      
+     </form>
+    </div>
+  </div>
+  <!--{if !empty($p_subscriptions)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th class="">Reference</th>
+            <th>Promo Details</th>
+            <th>Client Details</th>
+            <th>Subscription Date</th>
+            <th>Detail</th>
+            <th class="showOne">Action</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <th class="">Reference</th>
+            <th>Promo Details</th>
+            <th>Client Details</th>
+            <th>Subscription Date</th>
+            <th>Detail</th>   
+            <th class="showOne">Action</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+			  	<!--{foreach $p_subscriptions as $subs}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <td class="">
+              <strong><!--{$subs->token}--></strong>
+            </td>
+            <td>
+              <strong>Name: </strong><!--{$subs->promo->name|ucwords}--> 
+            </td>
+            <td>
+              <strong>First Name: </strong><!--{$subs->firstname|ucfirst}--> <br>
+              <strong>Last Name: </strong><!--{$subs->surname|ucfirst}--> <br>
+              <strong>Mobile: </strong><!--{$subs->mobile}--> <br>
+            </td>
+            <td><!--{$subs->dateadded|date_format}--></td>
+              <td>
+                <a class="btn btn-sm my-1 btn-primary"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_promo_subscription?id=<!--{$subs->token}-->"><i class="fa fa-ellipsis-v"></i> View Subscription</a>
+              </td>
+              <td class="showOne">
+                <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/promo_subscriptions" method="post">
+                  <input type="hidden" name="token" value="<!--{$subs->token}-->">
+                  <button type="submit" name="triggers" value="delete_sub" onclick="return deleteItem();" class="btn btn-danger btn-sm"><i class="fa fa-trash p-2"></i>Delete</button>
+                </form>
+              </td>
+			    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

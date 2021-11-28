@@ -1,0 +1,92 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard | Software Toolbox </strong>&nbsp;<i class="fa fa-wrench"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row no-gutters justify-content-center">
+	<div class="col-sm-12">
+		<div class="form-group">
+			<!--{if !empty($fail)}-->
+				<!--{$fail}-->
+			<!--{/if}-->
+		</div>
+	</div>
+	<div class="col-md-4">
+		<form class="form w-100" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/toolbox" enctype="multipart/form-data">
+			<div class="card card-body justify-content-center mt-3 mb-3">
+				<fieldset class="border border-success rounded px-4">
+					<legend class="text-center p-2 mt-2">New Software Toolbox</legend>
+					<div class="form-group">
+						<label for="title"><h5>Title <sup class="text-danger">(*)</sup></h5></label>
+						<input type="text" id="title" name="title" value="" class="form-control input-block lh-3" required/>
+						<hr/>
+					</div>
+					<div class="form-group mt-4">
+						<label for="description"><h5>Description <sup class="text-danger">(*)</sup></h5></label>
+						<textarea id="description" name="description" rows="3" class="form-control lh-2" required></textarea>
+					</div>
+	                <div class="form-group">
+	                  <label for="material_upload">Upload Toolbox File <i class="fa fa-file-archive"></i>  <i class="fa fa-file-pdf"></i></label>
+	                  <input type="file" accept="application/*" id="material_upload" class="form-control input-rounded" name="material_upload" required/>
+	                </div>
+					<div class="form-group text-center">
+						<button class="btn btn-success btn-lg rounded-0" type="submit" name="add_toolbox"><i class="fa fa-save"></i> Add Toolbox</button>
+					</div>
+				</fieldset>
+			</div>
+		</form>
+	</div>
+	<div class="col-sm-7 mx-2 my-2">
+		<div class="table-responsive">
+			<!--{if !empty($toolboxes)}-->
+			<div id="dataTableId_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+				<!--{include file="paging-top.html"}-->
+				<table class="table table-striped table-hover table-bordered">
+				  <thead class="site-bg-1 text-white">
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Title</th>
+				      <th scope="col">Description</th>
+				      <th scope="col">Event Control</th>
+				    </tr>
+				  </thead>
+				  <tbody><!--{$numCount=1}-->
+				  	<!--{foreach $toolboxes as $toolboxK=> $toolbox}-->
+				    <tr>
+				      <td><!--{$numCount}--></td>
+				      <td><!--{$toolbox->title}--></td>
+				      <td><!--{$toolbox->description}--></td>
+				      <td>
+				      	<!--{if !empty($toolbox->file) and file_exists($toolbox->file)}--><a class="btn btn-outline-success btn-light" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$toolbox->file}-->" target="__blank">Download <!--{$toolbox->title}--></a><!--{/if}--><br/>
+				      	<button class="btn btn-sm my-1 btn-warning" type="button" data-toggle="collapse" data-target="#collapseToolbox<!--{$toolboxK}-->" aria-expanded="false" aria-controls="collapseToolbox<!--{$toolboxK}-->"><i class="fa fa-pencil"></i> Edit</button>
+						<a class="btn btn-sm my-1 btn-danger deleteTrig" what="software toolbox (<!--{$toolbox->title}-->)" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/toolbox?toolbox=<!--{$toolbox->id}-->&delete=true"><i class="fa fa-trash"></i> Delete</a>
+				      </td>
+				    </tr>
+                    <tr class="collapse" id="collapseToolbox<!--{$toolboxK}-->">
+                        <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/toolbox" enctype="multipart/form-data">
+                          <td></td>
+                          <td>
+                          	<input type="text" name="title" value="<!--{$toolbox->title1}-->" class="form-control form-control-sm"/><br/>
+                          	<h6 class="font-weight-bold">Replace Uploaded File</h6>
+                          	<input type="file" accept="application/*" id="material_upload" class="form-control input-rounded" name="material_upload" required/>
+                          </td>
+                          <td style="max-height: 400px; overflow-y: auto;"><textarea name="description" class="form-control form-control-lg input-block" rows="4" required><!--{$toolbox->description1}--></textarea></td>
+                          <td><input type="hidden" name="toolbox" value="<!--{$toolbox->id}-->"/>
+                            <button class="btn btn-sm btn-success" type="submit" name="edit_toolbox"><i class="fa fa-pencil"></i> Save Changes</button>
+                          </td>
+                        </form>
+                    </tr>
+				  	<!--{$numCount=$numCount+1}-->
+					<!--{/foreach}-->
+				  </tbody>
+				</table>
+				<!--{include file="paging-bottom.html"}-->
+			</div>
+			<!--{else}-->
+			<div class="alert alert-primary rounded-0 "><h5 class="alert-heading my-2 mx-2 py-2 px-2 text-center border border-success">You currently have an empty Software Toolbox</h5></div>
+			<!--{/if}-->
+		</div>
+	</div>
+</section>
+
+<!--{/block}-->

@@ -1,0 +1,95 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">PaySlips Records</h1>
+<p class="mb-4">The table contains Payslips records</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Records</h6>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-lg-6 bg-success pt-2 rounded mb-2">
+        <form id="mainForm" method="POST" class="d-flex" enctype="multipart/form-data" name="payslipsform">
+          <div class="form-group">
+            <label class="text-light" for="Year">Enter Year</label>
+                <select class="form-control" id="Year"  name="year">
+                  <!--{for $foo=2010 to 3000}-->
+                  <option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+                    <!--{$foo}-->
+                  </option>
+                  <!--{/for}-->
+                </select>
+          </div>
+          <div class="form-group">
+            <label class="text-light"  for="month">Select Month</label>
+                <select class="form-control" id="month"  name="month">
+                  <option value="">All</option>
+                  <!--{foreach $months as $month}-->
+                  <option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+                    <!--{$month}-->
+                  </option>
+                  <!--{/foreach}-->
+                </select>
+          </div>
+          <!--{if $isadmin}-->
+          <div class="form-group">
+            <label class="text-light"  for="employee" class="form-control-label">Employee</label>
+            <select name="employeeid" class="form-control" onchange="getInfo(this);" id="employee">
+            <option selected disabled value="null">Select Employee</option>
+            <!--{if !empty($employees)}-->
+              <!--{foreach $employees as $employee}-->
+              <option <!--{if !empty($filter->employeeid)}--> <!--{if $filter->employeeid == $employee->employeeid}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$employee->employeeid}-->"><!--{$employee->employeeid}--> - <!--{$employee->surname}--> <!--{$employee->first_name}--></option>
+              <!--{/foreach}-->
+            <!--{else}-->
+              <option value="null">none</option>
+            <!--{/if}-->
+            </select>   
+          </div>
+          <!--{/if}-->
+          <div class="form-group d-flex"> 
+            <button type="submit" class="mt-2 btn btn-primary" name="triggers" id="payslips" value="payslips">OK</button>
+         </div>      
+       </form>
+      </div>
+    </div>
+    <!--{if !empty($payslips)}-->
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Payslip for</th>
+                    <th>Date Added</th>
+                    <th class="d-none" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--{$numCount=1}-->
+                <!--{foreach $payslips as $payslip}-->
+                <tr>
+                  <td><!--{$numCount}--></td>
+                  <td><!--{$payslip->employeeid}--></td>
+                  <td><!--{$payslip->accname|ucfirst}--></td>
+                  <td><!--{$payslip->month}--> <!--{$payslip->year}--></td>
+                  <td><!--{$payslip->date_added|date_format}--></td>
+                  <td>
+                    <a class="btn btn-sm btn-primary"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/payslip?id=<!--{$payslip->id}-->"> View Payslip</a>
+                  </td>
+                </tr>
+                <!--{$numCount = $numCount + 1}-->
+                <!--{/foreach}-->
+            </tbody>
+        </table>
+    </div>
+    <!--{else}-->
+    <h3>No record Found</h3>
+    <!--{/if}-->
+  </div>
+</div>
+<!--{/block}-->

@@ -1,0 +1,382 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Employee</h1>
+    <!-- DataTales Example -->
+          <div class="row">
+            <div class="form-group">
+              <!--{if !empty($fail)}-->
+                <!--{$fail}-->
+              <!--{/if}-->
+            </div>
+              <!--{if !empty($item)}-->
+              <div class="col-lg-6">
+                 <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex bg-primary flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-light"><!--{$item->surname|ucfirst}--> <!--{$item->middle_name|ucfirst}--> <!--{$item->first_name|ucfirst}--></h6>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <img class="w-25" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$item->photo}-->" alt="Images" class="w-100">
+                  </div>
+                  <div class="card-body">
+                    <p> Employee ID: <!--{$item->employeeid}--></p>
+                    <p> Department: <!--{$item->department}--> Department</p>
+                    <p> Date Hired: <!--{$item->userProfile->datehired}--></p>
+                    <p> Dashboard Role: <!--{if !empty($item->userProfile)}--><!--{$urole[$item->userProfile->userrole]}--><!--{/if}--></p>
+                    <!--{if !empty($item->manager)}-->
+                    <p> Manager: <!--{$item->manager|ucwords}--></p>
+                    <!--{/if}-->
+                  </div>
+                </div>
+              </div>
+              
+              
+              <!--{if $userinfo->userrole == 'level0' || ($userinfo->department == 'Human Resources')}-->
+
+              <div class="col-lg-6">  
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3 d-flex bg-danger flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-light">Personal Details</h6>
+                  </div>
+                  <div class="card-body">
+                    <p> Title: <!--{$item->title|ucfirst}--></p>
+                    <p> First Name: <!--{$item->first_name|ucfirst}--></p>
+                    <p> Middle Name: <!--{$item->middle_name|ucfirst}--></p>
+                    <p> SurName: <!--{$item->surname|ucfirst}--></p>
+                    <p> Sex: <!--{$item->sex|ucfirst}--></p>
+                    <p> Marital Status: <!--{$item->marital_status|ucfirst}--></p>
+                    <p> Date of Birth: <!--{$item->dob}--></p>
+                    <hr>
+                    <p> NIMN: <!--{$item->nimn}--></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">  
+                <div class="card shadow mb-4">
+                  <div class="card-header bg-danger py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-light">Address & Contact Details</h6>
+                  </div>
+                  <div class="card-body">
+                    <p> Address: <!--{$item->address}--></p>
+                    <p> Country: <!--{$item->country}--></p>
+                    <p> State: <!--{$item->state}--></p>
+                    <p> City: <!--{$item->city}--></p>
+                    <hr>
+                    <h5>Contact Details</h5>
+                    <p> Phone Number: <!--{$item->phone}--></p>
+                    <p> Other Phone: <!--{$item->other_phone}--></p>
+                    <p> Email: <!--{$item->email}--></p>
+                    <hr>
+                    <p> PhotoId: <!--{$item->photoid}--></p>
+                    <hr>
+                    <p>Date Added: <!--{$item->date_added}--></p>
+                  </div>
+                </div>
+              </div>
+
+              <!--{/if}-->
+
+              <div class="col-lg-6 ">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3 d-flex bg-info flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-light">Employee Log</h6>
+                  </div>
+                  <div class="card-body memo_client">
+                    <div class="">
+                      <ul id="List">
+                        <!--{if !empty($staff_log)}-->
+                          <!--{foreach $staff_log as $memo}-->
+                           <li class="p-2"><!--{$memo->content}--> <span class="float-right p-2">Added By:<!--{$memo->addedbyName}--> <!--{$memo->dateadded|date_format:"%d/%m/%y %I:%M %p"}--></span> </li>
+                          <!--{/foreach}-->
+                        <!--{/if}-->  
+                      </ul>
+                    </div>
+                    <form action="" method="post">
+                      <div class="form-group p-2">
+                        <textarea type="text" id="content" name="content" class="form-control" rows="2" placeholder="Update Log" required></textarea>                
+                      </div>
+                      <div class="form-group p-2">
+                        <button class="btn btn-info" type="submit" name="triggers" value="update_log">Update</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+            </div>          
+
+              <!--{if in_array($item->userProfile->userrole, array('level0','level1','level2','level3','level4'))}-->
+              <!--{if !empty($item->managed)}-->
+              <div class="col-lg-6">  
+                <div class="card shadow mb-4">
+                  <div class="card-header bg-danger py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-light">Employees Managed</h6>
+                  </div>
+                  <div class="p-2">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>SN</th>
+                            <th>Personal Info</th>
+                            <th>Department</th>
+                            <th>Location</th>
+                            <th>Details</th>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr>
+                            <th>SN</th>
+                            <th>Personal Info</th>
+                            <th>Department</th>
+                            <th>Location</th>
+                            <th>Details</th>
+                          </tr>
+                        </tfoot>
+                        <tbody>
+                          <!--{$numCount=1}-->
+                          <!--{foreach $item->managed as $emp}-->
+                          <tr>
+                            <td><!--{$numCount}--></td>
+                            <td>
+                              <!--{$emp->surname|ucfirst}--> <!--{$emp->first_name|ucfirst}-->
+                            </td>
+                            <td>
+                              <!--{$emp->department}-->
+                            </td>
+                            <td>
+                              <!--{$emp->location}--> 
+                            </td>
+                            <td>
+                              <a class="btn btn-sm my-1 btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/employee?id=<!--{$emp->employeeid}-->">Detail</a>
+                            </td>
+                        </tr>
+                          <!--{$numCount=$numCount+1}-->
+                        <!--{/foreach}-->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--{/if}-->
+              <!--{/if}-->
+            </div>
+            <div class="row bg-gradient-primary justify-content-center">
+              <div class="form-group m-2">
+               <!--{if $userinfo->userrole == 'level0' || $userinfo->department == 'Human Resources' || $userinfo->employeeid == $item->manager_id || ( in_array($userinfo->userrole, array('level0','level1','level2')) and $userinfo->department == $item->department) }-->
+                <a class="btn btn-warning mr-5" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_appraisal?id=<!--{$item->employeeid}-->">Add Appraisal </a>
+                <a class="btn btn-warning mr-5" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_disciplinary?id=<!--{$item->employeeid}-->">Add Disciplinary </a>
+                <!--{/if}-->
+              </div>
+            </div>
+            <div class="row bg-gradient-danger justify-content-center">
+              <div class="form-group m-2">
+                <!--{if $userinfo->userrole == 'level0' || ($userinfo->userrole == 'level2' && $userinfo->department == 'Human Resources')}-->
+                <a class="btn btn-warning mr-5" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/employees">Back</a>
+                <a class="btn btn-primary mr-5" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/salary_record?id=<!--{$item->employeeid}-->">Salary Record</a>
+                <!--{/if}-->
+                <a class="btn btn-primary mr-5" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/appraisals">Appraisal</a>
+                <a class="btn btn-info mr-5" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/disciplinaries?id=<!--{$item->employeeid}-->">Disciplinary Record</a>
+                <a class="btn btn-success mr-5" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_emergency_contact?id=<!--{$item->employeeid}-->">Emergency Contact</a>
+                <a class="btn btn-info mr-5" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_guarantors_contact?id=<!--{$item->employeeid}-->">Guarantor Contact</a>
+                <a class="btn btn-warning mr-5" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_job_details?id=<!--{$item->employeeid}-->">Job Details</a>
+                </div>
+            </div>
+            <div class="row bg-gradient-warning justify-content-center">
+              <div class="form-group m-2">
+               <!--{if $userinfo->userrole == 'level0' || ($userinfo->department == 'Human Resources')}-->
+                  <button class="btn btn-dark mr-5" type="button" data-toggle="collapse" data-target="#editempDetail" aria-expanded="true" aria-controls="editempDetail" id="editemp"><i class="fa fa-pencil"></i> Edit Employee</button>
+                  <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#deleteempDetail" aria-expanded="true" aria-controls="deleteempDetail" id="deleteemp"><i class="fa fa-trash"></i> Delete Employee</button>
+                <!--{/if}-->
+              </div>
+            </div>
+            <!--{if $userinfo->userrole == 'level0' || ($userinfo->department == 'Human Resources')}-->
+                
+            <div id="editempDetail" class="mt-2 collapse row justify-content-center" aria-labelledby="editemp">
+              
+              <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/employee?id=<!--{$item->employeeid}-->" posts="post" enctype="multipart/form-data" method="post" class="w-100">
+                
+                <div class="row bg-white shadow mb-4 m-4 p-3">
+                  <div class="form-group">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label for="img-upload">
+                          <img class="img img-thumbnail w-25" id="dataImg" src="<!--{if !empty($item->photo)}--><!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$item->photo}--><!--{/if}-->">
+                          <data class="text-center jsonly">Upload Photo (2mb max)</data>
+                      </label>
+                      <input type="file" accept="image/*" id="img-upload" class="input-rounded" name="img_upload"/>
+                      <noscript><button class="text-center" id="ppUpload" name="ppUpload" type="button">Upload Photo</button></noscript>
+                  </div>
+                  </div>
+                </div>
+                <div class="row bg-white shadow mb-4 m-4 p-3">
+                  
+                  <div class="col-lg-6">
+                    
+                    <div class="form-group">
+                      <label for="description" class="form-control-label">EmployeeID</label>
+                      <input type="text" class="form-control form-control-user" id="EmployeeID" name="id" readonly value="<!--{$item->employeeid}-->" placeholder="EmployeeID">
+                    </div>
+                    <div class="form-group">
+                      <label for="department" class="form-control-label">Department</label>
+                      <select name="department" class="form-control" id="department">
+                      <!--{if !empty($departments)}-->
+                        <!--{foreach $departments as $department}-->
+                        <option <!--{if $department->id == $item->department_id}--> selected <!--{/if}--> value="<!--{$department->id}-->"><!--{$department->name}--></option>
+                        <!--{/foreach}-->
+                      <!--{else}-->
+                        <option value="null">none</option>
+                      <!--{/if}-->
+                      </select>   
+                    </div> 
+
+                    <div class="form-group">
+                      <label for="manager" class="form-control-label">Select Manager</label>
+                      <select name="manager" class="form-control" id="manager">
+                      <!--{if !empty($managers)}-->
+                        <option disabled value="">Choose</option>
+                        <!--{foreach $managers as $manager}-->
+                        <option value="<!--{$manager->employeeid}-->" <!--{if $item->manager_id == $manager->employeeid}--> selected <!--{/if}-->><!--{$manager->department}--> : <!--{$manager->firstname|ucfirst}--> <!--{$manager->lastname|ucfirst}--></option>
+                        <!--{/foreach}-->
+                      <!--{else}-->
+                        <option value="null">none</option>
+                      <!--{/if}-->
+                      </select>   
+                    </div> 
+
+                    <div class="form-group">
+                      <label for="description" class="form-control-label">Title</label>
+                          <input type="text" class="form-control form-control-user" id="Title" name="title" value="<!--{$item->title}-->" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                      <label for="First_Name" class="form-control-label">First Name</label>
+                          <input type="text" class="form-control form-control-user" id="First_Name" name="firstname" value="<!--{$item->first_name}-->" placeholder="First Name">
+                    </div>
+                     <div class="form-group">
+                      <label for="Middle_Name" class="form-control-label">Middle Name</label>
+                          <input type="text" class="form-control form-control-user" id="Middle_Name" name="middlename" value="<!--{$item->middle_name}-->" placeholder="Middle Name">
+                    </div>
+                     <div class="form-group">
+                      <label for="SurName" class="form-control-label">SurName</label>
+                          <input type="text" class="form-control form-control-user" id="SurName" name="surname" value="<!--{$item->surname}-->" placeholder="SurName">
+                    </div>
+                    <div class="form-group">
+                      <label for="Email" class="form-control-label">Email</label>
+                          <input type="email" class="form-control form-control-user" id="Email" readonly name="email" value="<!--{$item->email}-->" placeholder="Email">
+                    </div> 
+                    <div class="form-group">
+                      <label for="sex" class="form-control-label">Sex</label>
+                      <select name="sex" id="sex" class="form-control">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                   </div>
+                   <div class="form-group">
+                    <label for="marital">Marital Status</label> <br>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="single" name="marital" value="single" <!--{if $item->marital_status=='single'}--> checked <!--{/if}--> class="custom-control-input">
+                      <label class="custom-control-label" for="single">Single</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="married" name="marital" value="married" <!--{if $item->marital_status!='single'}--> checked <!--{/if}--> class="custom-control-input">
+                      <label class="custom-control-label" for="married">Married</label>
+                    </div>
+                  </div>
+                    <div class="form-group">
+                      <label class="form-control-label" for="dob">Date of Birth</label>
+                      <input type="date" id="dob" name="dob" class="form-control" value="<!--{$item->dob}-->" required />
+                    </div>
+                    <div class="form-group">
+                      <label for="NIMN" class="form-control-label">NIMN</label>
+                          <input type="text" class="form-control form-control-user" id="NIMN" name="nimn" value="<!--{$item->nimn}-->" placeholder="NIMN">
+                    </div>
+              </div>
+              <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="Address" class="form-control-label">Address</label>
+                          <input type="text" class="form-control form-control-user" id="Address" name="address" value="<!--{$item->address}-->" placeholder="Address">
+                    </div>
+										<div class="form-group">
+											<label for="country">Nationality</label>
+											<select id="country" name="country" required class="form-control signup-input">
+												<!--{if !empty($countries)}-->
+												<!--{foreach $countries as $country}-->
+													<option value="<!--{$country->name}-->" <!--{if $item->country==$country->name}-->selected<!--{/if}-->><!--{$country->name|capitalize}--></option>
+												<!--{/foreach}-->
+												<!--{/if}-->
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="state">State of Origin</label>
+											<select id="state" name="state" required class="form-control signup-input">
+												<!--{if !empty($states)}-->
+												<!--{foreach $states as $state}-->
+													<option value="<!--{$state->name}-->" <!--{if $item->state==$state->name}-->selected<!--{/if}-->><!--{$state->name|capitalize}--></option>
+												<!--{/foreach}-->
+												<!--{/if}-->
+											</select>
+										</div>
+										<div class="form-group">
+											<label for="citi">City | Local Govt Area</label>
+											<input type="text" name="city" id="citi" class="form-control signup-input" value="<!--{$item->city}-->" list="city">
+											<datalist id="city">
+												<!--{if !empty($cities)}-->
+												<!--{foreach $cities as $city}-->
+													<option value="<!--{$city->name}-->"><!--{$city->name|capitalize}--></option>
+												<!--{/foreach}-->
+												<!--{/if}-->
+											</datalist>
+										</div>
+                    <div class="form-group">
+                      <label for="Phone" class="form-control-label">Phone</label>
+                          <input type="text" class="form-control form-control-user" id="Phone" name="phone" value="<!--{$item->phone}-->" placeholder="Phone">
+                    </div>
+                    <div class="form-group">
+                      <label for="Other_Phone" class="form-control-label">Other Phone</label>
+                          <input type="text" class="form-control form-control-user" id="Other_Phone" name="other_phone" value="<!--{$item->other_phone}-->" placeholder="Other Phone">
+                    </div>
+                    <div class="form-group">
+                      <label for="photoid" class="form-control-label">Photo Id</label>
+                          <input type="text" class="form-control form-control-user" id="photoid" name="photoid" value="<!--{$item->other_phone}-->" placeholder="Other Phone">
+                    </div>
+                    <div class="form-group"><hr/></div>
+										<div class="form-group">
+											<label for="userrole">Dashboard Role</label>
+											<select id="userrole" name="userrole" class="form-control signup-input">
+                      <!--{if !empty($item->userProfile)}-->
+											<!--{if $userinfo->userrole == 'level0'}-->	<option value="level1" <!--{if $item->userProfile->userrole=='level0'}-->selected<!--{/if}-->>Super Admin</option> <!--{/if}-->
+												<option value="level1" <!--{if $item->userProfile->userrole=='level1'}-->selected<!--{/if}-->>BDM</option>
+												<option value="level2" <!--{if $item->userProfile->userrole=='level2'}-->selected<!--{/if}-->>Manager</option>
+												<option value="level3" <!--{if $item->userProfile->userrole=='level3'}-->selected<!--{/if}-->>Supervisor</option>
+												<option value="level4" <!--{if $item->userProfile->userrole=='level4'}-->selected<!--{/if}-->>Employee</option>
+											<!--{else}-->
+                        <option value="" selected disabled>Create login first!</option>
+											<!--{/if}-->
+                      </select>
+										</div>
+              </div>
+              <div class="col">
+                <div class="form-group text-center">
+                  <button class="btn btn-success btn-sm rounded-0" type="submit" name="triggers" value="edit_employee">Update Employee</button>
+                </div>
+              </div>
+                </div>
+              </form>
+            </div>
+            <div id="deleteempDetail" class="mt-2 collapse row justify-content-center" aria-labelledby="deleteemp">
+              <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/employee?id=<!--{$item->employeeid}-->" enctype="multipart/form-data" class="w-100">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <p>Are you sure you want to delete this employee?</p>
+                    <p>Note that every stored details relating to this employee will be lost unrecoverably.</p>
+                    <p class="text-center">
+                      <button class="btn btn-danger" type="submit" name="triggers" value="delete_employee">Proceed</button>&nbsp;
+                      <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#deleteempDetail" aria-expanded="true" aria-controls="deleteempDetail" id="deleteemp">Cancel</button>
+                    </p>
+                </div>
+              </form>
+            </div>
+            <!--{/if}-->
+            <!--{else}-->
+                <h2>Not Found</h2>
+            <!--{/if}-->
+<!--{/block}-->

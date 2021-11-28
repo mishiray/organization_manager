@@ -1,0 +1,362 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong>
+	&nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/courses">Manage Courses&nbsp;<i class="fa fa-graduation-cap"></i></a>&nbsp;| Course&nbsp;<i class="fa fa-file"></i>
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<h2>COURSE DETAIL</h2>
+	<section class="container">
+        <div class="row justify-content-center">
+          <h2 class="col-md-12 mb-2 text-justify font-weight-bold mb-5"><!--{$course->title|capitalize}--></h2>
+            <div class="col-md-5 mb-2">
+              <img class="card-img-top" style="max-height: 430px;" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($course->icon)}--><!--{$course->icon}--><!--{else}-->site/media/i/course.png<!--{/if}-->" alt="<!--{$course->title|capitalize}-->">
+            </div>
+            <div class="col-md-5 mb-2 mt-2">
+              <div class="form-group mb-2 mt-2"><h4><strong class="text-uppercase">Course ID:</strong> <!--{$course->courseid|upper}--></h4></div>
+              <div class="form-group mb-2 mt-2"><h4><strong class="text-uppercase">Category:</strong> <!--{$course->category|capitalize}--></h4></div>
+              <div class="form-group d-none mb-2 mt-2"><h4><strong class="text-uppercase">Course Fee:</strong> ₦<!--{$course->fee}--></h4></div>
+              <div class="form-group mb-2 mt-2"><h4><strong class="text-uppercase">Date Added:</strong> <!--{$course->dateadded}--></h4></div>
+              <div class="form-group mb-2 mt-2"><h4>Description</h4><h6 class="text-justify"><!--{$course->description}--></h6></div>
+            </div>
+            <div class="col-md-10 pt-1">
+              <div class="form-group mb-2 text-center">
+                <a class="btn btn-sm btn-warning mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/courses"><i class="fa fa-undo"></i> Back</a>&nbsp;
+                <!--{if !empty($Site.get.evt)}-->
+                <a class="btn btn-sm btn-primary mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/course?id=<!--{$course->courseid}-->"><i class="fa fa-repeat"></i> Refresh</a>&nbsp;
+                <!--{/if}-->
+                <button class="btn btn-sm btn-info mb-1" type="button" data-toggle="collapse" data-target="#courseDetailInfo" aria-expanded="true" aria-controls="courseDetailInfo" id="courseDetail"><i class="fa fa-vcard"></i> Edit Course</button>&nbsp;
+                <button class="btn btn-sm btn-danger mb-1" type="button" data-toggle="collapse" data-target="#deleteCourseInfo" aria-expanded="true" aria-controls="deleteCourseInfo" id="deleteCourse"><i class="fa fa-trash"></i> Delete Course</button>&nbsp;
+                <button class="btn btn-sm btn-success mb-1" type="button" data-toggle="collapse" data-target="#courseOutlineInfo" aria-expanded="true" aria-controls="courseOutlineInfo" id="courseOutline"><i class="fa fa-list"></i> Course Outlines</button>&nbsp;
+                <!--{if !empty($course->materials)}-->
+                  <button class="btn btn-sm btn-success mb-1" type="button" data-toggle="collapse" data-target="#courseMaterialsInfo" aria-expanded="true" aria-controls="courseMaterialsInfo" id="courseMaterials"><i class="fa fa-files-o"></i> Lesson Materials</button>&nbsp;
+                <!--{/if}-->
+                <button class="btn btn-sm btn-success mb-1" type="button" data-toggle="collapse" data-target="#courseMaterialInfo" aria-expanded="true" aria-controls="courseMaterialInfo" id="courseMaterial"><i class="fa fa-file-pdf-o"></i> New Lesson Material <i class="fa fa-file-video-o"></i></button>
+                <button class="btn btn-sm btn-secondary mb-1" type="button" data-toggle="collapse" data-target="#courseAssessmentInfo" aria-expanded="true" aria-controls="courseAssessmentInfo" id="courseAssessment"><i class="fa fa-question-circle"></i> Manage Assessment</button>
+              </div>
+      				<div class="form-group">
+      					<!--{if !empty($fail)}-->
+      						<!--{$fail}-->
+      					<!--{/if}-->
+      				</div>
+            </div>
+            <div class="col-md-10" id="accordion">
+              <div id="courseOutlineInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="courseOutline" data-parent="#accordion">
+                <div class="card-body">
+                  <div class="row justify-content-center">
+                    <div class="col-sm-8 my-3 card">
+                      <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/course?id=<!--{$course->courseid}-->" class="w-100">
+                        <fieldset class="border border-success px-3 rounded">
+                          <legend class="text-center font-weight-bold">New Course Outline</legend>
+                          <div class="form-group">
+                            <label for="outline-title"><strong>Outline Title</strong></label>
+                            <input class="form-control border-info" type="text" id="outline-title" name="title" value="" placeholder="Enter outline title...">
+                          </div>
+                          <div class="form-group">
+                            <label for="outline-description"><strong>Outline Description</strong></label>
+                            <textarea class="form-control border-info" id="outline-description" name="description" placeholder="Enter outline description here..."></textarea>
+                          </div>
+                          <div class="form-group">
+                            <button class="btn btn-sm btn-success" type="submit" name="add_outline"><i class="fa fa-save"></i> Add Course Outline</button>
+                          </div>
+                        </fieldset>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
+                    <h4 class="font-weight-bold text-center col-12">Course Outlines</h4>
+                  <!--{if !empty($course->outlines) and is_array($course->outlines)}-->
+                    <div class="col-4">
+                      <div class="list-group rounded-0" id="list-tab" role="tablist">
+                        <!--{foreach $course->outlines as $key=> $outline}-->
+                          <a class="list-group-item list-group-item-action py-3 <!--{if $key==0}-->active<!--{/if}-->" id="list-tab<!--{$key}-->-list" data-toggle="list" href="#list-tab<!--{$key}-->" role="tab" aria-controls="tab<!--{$key}-->"><h5 class="font-weight-bold"><!--{($key+1)}-->. <!--{$outline->title}--></h5></a>
+                        <!--{/foreach}-->
+                      </div>
+                    </div>
+                    <div class="col-8">
+                      <div class="tab-content" id="nav-tabContent">
+                        <!--{foreach $course->outlines as $key=> $outline}-->
+                          <div class="tab-pane fade show <!--{if $key==0}-->active<!--{/if}-->" id="list-tab<!--{$key}-->" role="tabpanel" aria-labelledby="list-tab<!--{$key}-->-list">
+                            <p class="card-text"><!--{$outline->description}--></p>
+                            <p class="card-footer">
+                              <a class="btn btn-sm btn-danger rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/course?id=<!--{$course->courseid}-->&outline=<!--{$key}-->&evt=delout&title=<!--{$outline->title}-->" what='delete this course outline'><i class="fa fa-trash"></i> Delete</a>
+                            </p>
+                          </div>
+                        <!--{/foreach}-->
+                      </div>
+                    </div>
+                  <!--{else}-->
+                    <div class="col-sm-8 alert alert-warning"><h4 class="alert-heading">No course outline added yet</h4></div>
+                  <!--{/if}-->
+                  </div>
+                </div>
+              </div>
+              <div id="courseAssessmentInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="courseAssessment" data-parent="#accordion">
+                <div class="row justify-content-center">
+                  <div class="col-sm-10">
+                    <button class="btn btn-success mb-1" type="button" data-toggle="collapse" data-target="#newCourseAssessment" aria-expanded="true" aria-controls="newCourseAssessment" id="newCourseAssessmentHead"><i class="fa fa-plus-square"></i> Add Question</button>
+                    <button class="btn btn-secondary mb-1" type="button" data-toggle="collapse" data-target="#assessmentInst" aria-expanded="true" aria-controls="assessmentInst" id="assessmentInstructionHead"><i class="fa fa-info-circle"></i> Edit Assessment</button>
+                  </div>
+                  <div class="col-sm-10 my-3 card" id="accordion1">
+                    <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/course?id=<!--{$course->courseid}-->" class="collapse" id="newCourseAssessment" aria-labelledby="newCourseAssessmentHead" data-parent="#accordion1">
+                      <div class="row justify-content-center">
+                        <div class="col-8">
+                          <fieldset class="border border-success px-3 rounded">
+                            <legend class="text-center font-weight-bold">Question Detail</legend>
+                            <div class="form-group">
+                              <label for="question"><strong>Question</strong></label>
+                              <input class="form-control border-info" type="text" name="question" value="" placeholder="Enter assessment question here...">
+                            </div>
+                            <div class="form-group d-none">
+                              <button type="button" class="btn btn-sm btn-light" id="options"><i class="fa fa-plus"></i> add option</button>
+                            </div>
+                            <div class="row mb-3 mt-3" id="options">
+                              <div class="col-md-12">
+                                <label><strong>Options</strong></label>
+                              </div>
+                              <div class="col-md-6">
+                                <label for="option1">Option 1</label>
+                                <input class="form-control form-control-sm border-info mb-2" type="text" name="options[]" id="option1" value="" placeholder="Enter assessment question here...">
+                                <label class="ml-4"><input type="radio" class="form-check-input" name="answer" value="option1" checked> Set As Answer</label>
+                                <button type="button" class="btn btn-sm btn-danger d-none"><i class="fa fa-trash"></i>Remove</button>
+                              </div>
+                              <div class="col-md-6">
+                                <label for="option2">Option 2</label>
+                                <input class="form-control form-control-sm border-info mb-2" type="text" name="options[]" id="option2" value="" placeholder="Enter assessment question here...">
+                                <label class="ml-4"><input type="radio" class="form-check-input" name="answer" value="option2"> Set As Answer</label>
+                                <button type="button" class="btn btn-sm btn-danger d-none"><i class="fa fa-trash"></i>Remove</button>
+                              </div>
+                              <div class="col-md-6">
+                                <label for="option3">Option 3</label>
+                                <input class="form-control form-control-sm border-info mb-2" type="text" name="options[]" id="option3" value="" placeholder="Enter assessment question here...">
+                                <label class="ml-4"><input type="radio" class="form-check-input" name="answer" value="option3"> Set As Answer</label>
+                                <button type="button" class="btn btn-sm btn-danger d-none"><i class="fa fa-trash"></i>Remove</button>
+                              </div>
+                              <div class="col-md-6">
+                                <label for="option4">Option 4</label>
+                                <input class="form-control form-control-sm border-info mb-2" type="text" name="options[]" id="option4" value="" placeholder="Enter assessment question here...">
+                                <label class="ml-4"><input type="radio" class="form-check-input" name="answer" value="option4"> Set As Answer</label>
+                                <button type="button" class="btn btn-sm btn-danger d-none"><i class="fa fa-trash"></i>Remove</button>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <button class="btn btn-sm btn-primary" type="submit" name="add_question"><i class="fa fa-check"></i> Add Quesion</button>
+                            </div>
+                          </fieldset>
+                        </div>
+                      </div>
+                    </form>
+                    <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/course?id=<!--{$course->courseid}-->" class="collapse" id="assessmentInst" aria-labelledby="assessmentInstructionHead" data-parent="#accordion1">
+                      <div class="row justify-content-center">
+                        <div class="col-8">
+                          <fieldset class="border border-success px-3 rounded">
+                            <legend class="text-center font-weight-bold">Assessment Instruction</legend>
+                            <div class="form-group">
+                              <textarea class="form-control border-info" type="text" name="instructions" placeholder="Enter assessment instruction here..."><!--{$course->instructions}--></textarea>
+                            </div>
+                            <div class="form-group">
+                              <label for="examduration"><strong>Duration</strong> (in minutes)</label>
+                              <input class="form-control border-info" type="number" name="examduration" value="<!--{$course->examduration}-->" placeholder="Enter assessment duration...">
+                            </div>
+                            <div class="form-group">
+                              <button class="btn btn-sm btn-primary" type="submit" name="edit_instruction"><i class="fa fa-edit"></i> Edit Details</button>
+                            </div>
+                          </fieldset>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-sm-12 border border-success px-3 rounded">
+                    <h4>Course Assessment Questions</h4>
+                      <div class="table-responsive">
+                        <table class="table table-striped table-hover table-bordered" id="dataTableId">
+                          <thead class="thead-warning">
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Question</th>
+                              <th scope="col">Options</th>
+                              <th scope="col">Answer</th>
+                              <th scope="col">Added By</th>
+                              <th scope="col">Date Added</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              <!--{$numCount=1}-->
+                              <!--{foreach $course->questions as $question}-->
+                                  <tr>
+                                  <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/course?id=<!--{$course->courseid}-->&question=<!--{$question->id}-->">
+                                      <td><!--{$numCount}--></td>
+                                      <td><input type="text" name="questiontext" value="<!--{$question->question}-->" class="form-control form-control-sm"/></td>
+                                      <td class="pl-4">
+                                        <!--{if !empty($question->options)}-->
+                                        <!--{foreach $question->options as $qo=> $option}-->
+                                          <label for="option<!--{($qo+1)}-->">Option <!--{($qo+1)}--></label>
+                                          <input type="text" name="options[]" value="<!--{$option}-->" class="form-control-sm"/><br/>
+                                          <label class="ml-4"><input type="radio" class="form-check-input" name="answer" value="option<!--{($qo+1)}-->" <!--{if $question->answer==$option}-->checked<!--{/if}-->> Set As Answer</label>
+                                          <hr>
+                                        <!--{/foreach}-->
+                                        <!--{/if}-->
+                                      </td>
+                                      <td><!--{$question->answer}--></td>
+                                      <td><!--{$question->addedby}--></td>
+                                      <td><!--{$question->dateadded}--><hr/>
+                                        <input type="hidden" name="question" value="<!--{$question->id}-->"/>
+                                          <button class="btn btn-sm btn-warning mb-2" type="submit" name="edit_question"><i class="fa fa-pencil"></i> Edit</button><br/>
+                                          <a class="btn btn-sm btn-danger deleteTrig" what="Course Question: <!--{$numCount}-->. (<!--{$question->question}-->)" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/course?id=<!--{$course->courseid}-->&question=<!--{$question->id}-->&delete_question=true"><i class="fa fa-trash"></i> Remove</a>
+                                      </td>
+                                  </form>
+                                  </tr>
+                              <!--{$numCount=$numCount+1}-->
+                              <!--{/foreach}-->
+                          </tbody>
+                        </table>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/course?id=<!--{$course->courseid}-->" enctype="multipart/form-data" class="w-100">
+      					<div id="courseDetailInfo" class="collapse mt-2" aria-labelledby="courseDetail" data-parent="#accordion">
+      						<fieldset class="border border-success px-3 rounded">
+      							<legend class="text-center font-weight-bold">Edit Course Detail</legend>
+      							<div class="form-row">
+                      <div class="col-md-6">
+                        <div class="form-group pt-3 pb-3">
+                          <div class="text-center">
+                            <label>Course Background Image</label>
+                            <div class="img-scope">
+                              <label for="img-upload">
+                                <img class="img img-thumbnail" id="dataImg" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($course->icon)}--><!--{$course->icon}--><!--{else}-->site/media/i/course.png<!--{/if}-->">
+                                <data class="text-center jsonly">Update Photo</data>
+                              </label>
+                              <input type="file" accept="image/*" id="img-upload" name="img_upload"/>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="title" class="form-control-label">Course Title</label>
+                          <input type="text" id="title" name="title" value="<!--{$course->title}-->" class="form-control form-control-lg input-block" required/>
+                        </div>
+                        <div class="form-group">
+                          <label for="courseid" class="form-control-label">Course ID</label>
+                          <input type="text" id="courseid" name="courseid" value="<!--{$course->courseid}-->" class="form-control form-control-lg input-block" required/>
+                        </div>
+                        <div class="form-group">
+                          <label for="unit" class="form-control-label">Course Unit</label>
+                          <input type="number" id="unit" name="unit" value="<!--{$course->unit}-->" class="form-control form-control-lg input-block" required/>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="category" class="form-control-label">Course Category</label>
+                          <input type="text" id="category" name="category" value="<!--{$course->category}-->" class="form-control form-control-lg input-block" value="" list="catlist" required/>
+                          <datalist id="catlist">
+                            <!--{if !empty($catlist)}--><!--{foreach $catlist as $cl}--><option value="<!--{$cl}-->"><!--{$cl}--></option><!--{/foreach}--><!--{/if}-->
+                          </datalist>
+                        </div>
+                        <div class="form-group d-none">
+                          <label for="fee" class="form-control-label">Course Fee ₦</label>
+                          <input type="number" id="fee" name="fee" value="<!--{$course->fee}-->" class="form-control form-control-lg input-block"/>
+                        </div>
+                        <div class="form-group">
+                          <label for="duration" class="form-control-label">Course Duration <small>(in month)</small></label>
+                          <input type="number" id="duration" name="duration" value="<!--{$course->duration}-->" class="form-control form-control-lg input-block" required/>
+                        </div>
+                        <div class="form-group">
+                          <label for="description" class="form-control-label">Course Description</label>
+                          <textarea id="description" name="description" class="form-control form-control-lg input-block" rows="10" required><!--{$course->description}--></textarea>
+                        </div>
+                      </div>
+      							</div>
+      							<div class="form-group text-center">
+      								<button class="btn btn-success btn-sm" type="submit" name="edit_course">Edit Course</button>
+      							</div>
+      						</fieldset>
+      					</div>
+      				</form>
+      				<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/course?id=<!--{$course->courseid}-->" class="w-100">
+      					<div id="deleteCourseInfo" class="collapse" aria-labelledby="deleteCourse" data-parent="#accordion">
+      						<div class="alert alert-danger alert-dismissible border border-success px-3 rounded" role="alert">
+      							<p>Are you sure to delete this course?</p>
+      							<p>Note that every stored details relating to the course will be lost and unrecoverable afther this event is triggered</p>
+      							<p class="text-center">
+      								<button class="btn btn-danger" type="submit" name="delete_course">Proceed</button>&nbsp;
+      								<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#deleteCourseInfo" aria-expanded="true" aria-controls="deleteCourseInfo" id="deleteCourse">Cancel</button>
+      							</p>
+      						</div>
+      					</div>
+      				</form>
+              <!--{if !empty($course->materials)}-->
+              <div id="courseMaterialsInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="courseMaterials" data-parent="#accordion">
+                    <div class="col-sm-12 border border-success px-3 rounded">
+                          <h4>List of Lesson Materials</h4>
+                          <div class="table-responsive">
+                                  <table class="table table-striped table-hover table-bordered" id="dataTableId">
+                                    <thead class="thead-warning">
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Course Material</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Date Added</th>
+                                        <th scope="col"></th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!--{$numCount=1}-->
+                                        <!--{foreach $course->materials as $material}-->
+                                            <tr>
+                                        		<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/course?id=<!--{$course->courseid}-->">
+                                                <td><!--{$numCount}--></td>
+                                                <td><input type="text" name="title" value="<!--{$material->title}-->" class="form-control form-control-sm"/></td>
+                                                <td><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$material->url}-->" target="__blank"><!--{$material->title}--></a></td>
+                                                <td><textarea name="description" class="form-control form-control-lg input-block" rows="4" required><!--{$material->description}--></textarea></td>
+                                                <td><!--{$material->dateadded}--></td>
+                                                <td><input type="hidden" name="matid" value="<!--{$material->id}-->"/>
+                    												      	<button class="btn btn-sm btn-warning" type="submit" name="edit_material"><i class="fa fa-pencil"></i> Edit</button>
+                    												      	<a class="btn btn-sm btn-danger deleteTrig" what="Course Material (<!--{$material->title}-->)" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/course?id=<!--{$course->courseid}-->&matid=<!--{$material->id}-->&delete_material=true"><i class="fa fa-trash"></i> Remove</a>
+                    												    </td>
+                                            </form>
+                                            </tr>
+                                        <!--{$numCount=$numCount+1}-->
+                                        <!--{/foreach}-->
+                                    </tbody>
+                                  </table>
+                          </div>
+                    </div>
+              </div>
+              <!--{/if}-->
+              <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/course?id=<!--{$course->courseid}-->" enctype="multipart/form-data" class="w-100">
+                <div id="courseMaterialInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="courseMaterial" data-parent="#accordion">
+                	<fieldset class="border border-success px-3 rounded">
+      							<legend class="text-center font-weight-bold">Add Lesson Material</legend>
+      							<div class="row">
+      								<div class="form-group col-md-6">
+      									<label for="mattitle">Material Title</label>
+      									<input type="text" id="mattitle" name="title" class="form-control input-rounded" required/>
+      								</div>
+      								<div class="form-group col-md-6">
+      									<label for="material_upload">Upload Material <i class="fa fa-file-video-o"></i>  <i class="fa fa-file-pdf"></i></label>
+      									<input type="file" accept="video/*, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/zip, application/x-rar-compressed" id="material_upload" class="form-control input-rounded" name="material_upload" required/>
+      								</div>
+      							</div>
+                    <div class="form-group">
+                      <label for="mattype" class="form-control-label">Material Type</label>
+                      <select name="mattype" id="mattype" class="form-control input-rounded">
+                        <option value="pdf">PDF File, Powerpoint, MS Excel, MS Word Document, or Zip File</option>
+                        <option value="video">Video File</option>
+                      </select>
+                    </div>
+      							<div class="form-group">
+      								<label for="description" class="form-control-label">Description</label>
+      								<textarea id="description" name="description" class="form-control form-control-lg input-block" rows="8" required></textarea>
+      							</div>
+      							<div class="form-group">
+      								<button class="btn btn-success btn-lg btn-block" type="submit" name="add_material">Add Material</button>
+      							</div>
+      						</fieldset>
+                </div>
+             </form>
+            </div>
+        </div>
+    </section>
+<!--{/block}-->

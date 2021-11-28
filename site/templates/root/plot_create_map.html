@@ -1,0 +1,54 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800"><!--{$item->name}--> Plot View</h1>
+    <!-- DataTales Example -->
+	    <div class="container">
+          <div class="row w-100 justify-content-center">
+            <!--{if !empty($item)}-->
+	          <div class="col-md-12">
+              <div class="imagemaps-wrapper">
+                <img src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$item->plot_image}-->" draggable="false">
+                
+              </div>
+              <div class="imagemaps-control">
+                <fieldset>
+                  <legend>Settings</legend>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Links</th>
+                        <th scope="col">Target</th>
+                        <th scope="col">Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody class="imagemaps-output">
+                      <tr class="item-###">
+                        <th scope="row">###</th>
+                        <td><input type="text" class="form-control area-href"></td>
+                        <td>
+                          <select class="form-control area-target">
+                            <option value="_self">_self</option>
+                            <option value="_blank">_blank</option>
+                          </select>
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-danger btn-delete">Delete</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </fieldset>
+                <div>
+                  <button type="button" class="btn btn-info btn-add-map">Add New</button>
+                  <button type="button" class="btn btn-success btn-get-map">Get Code</button>
+                </div>
+              </div>
+            </div>
+            <!--{else}-->
+                <h2>Not Found</h2>
+            <!--{/if}-->
+          </div>
+        </div>
+<!--{/block}-->

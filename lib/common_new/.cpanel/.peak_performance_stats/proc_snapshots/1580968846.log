@@ -1,0 +1,72 @@
+Thu Feb  6 06:00:46 GMT 2020
+Running Processes:
+schooztc  3774725  0.3  0.0  63652 10340 ?        S    06:00   0:00 dovecot/lmtp [local READY]
+schooztc  3776890 58.0  0.5 507872 186672 ?       S    06:00   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3777146 20.5  0.1 425564 51280 ?        R    06:00   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-login.php
+schooztc  3777147 19.0  0.1 425476 50080 ?        R    06:00   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+COMMAND     PID     USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+php-cgi 3776890 schooztc   51u  IPv4 1839351619      0t0  UDP 199.79.63.83:44688->1.1.1.1:53 
+php-cgi 3777147 schooztc   38u  IPv4 1839362345      0t0  UDP 199.79.63.83:48794->8.8.4.4:53 
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 153.8% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3776890 60.2  0.6 538644 216692 ?       R    06:00   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3777146 48.0  0.2 428912 75380 ?        R    06:00   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-login.php
+schooztc 3777147 47.3  0.2 428640 73640 ?        R    06:00   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3776890 60.2  0.6 539668 217748 ?       R    06:00   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3777146 48.0  0.2 428912 75380 ?        R    06:00   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-login.php
+schooztc 3777147 47.3  0.2 428644 73672 ?        R    06:00   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3776890 60.2  0.6 539668 217748 ?       R    06:00   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3777146 48.0  0.2 428912 75380 ?        R    06:00   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-login.php
+schooztc 3777147 47.3  0.2 428644 73672 ?        R    06:00   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3776890 60.2  0.6 539924 218012 ?       R    06:00   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3777146 48.0  0.2 428896 75500 ?        R    06:00   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-login.php
+schooztc 3777147 47.6  0.2 428628 73720 ?        S    06:00   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3776890 61.1  0.6 547604 225404 ?       R    06:00   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3777146 50.0  0.2 430088 78276 ?        R    06:00   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-login.php
+schooztc 3777147 49.3  0.2 428884 75508 ?        R    06:00   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  06:00:48 up 180 days, 14:32,  0 users,  load average: 0.03, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 68047244	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 68047243	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 68047232	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  06:00:48 up 180 days, 14:32,  0 users,  load average: 0.03, 0.01, 0.00
+
+

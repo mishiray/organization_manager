@@ -1,0 +1,130 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Payment</h1>
+    <p class="mb-4">Add a new payment to the records</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add Payment</h6>
+      </div>
+      <div class="card-body">
+      <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_payment" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="subscription">Select Subscription Item</label>
+                    <select class="form-control" id="project1"  name="subs_token">
+                      <!--{if !empty($subscriptions)}-->
+                        <option selected disabled value="">
+                          Choose
+                        </option>
+                        <!--{foreach $subscriptions as $subs}-->
+                          <option i='<!--{json_encode($subs)}-->' value="<!--{$subs->token}-->">
+                            <!--{$subs->token}--> - <!--{$subs->surname|ucfirst}--> <!--{$subs->firstname|ucfirst}--> - <!--{$subs->reg_date|date_format}-->
+                          </option>
+                          <!--{/foreach}-->
+                      <!--{else}-->
+                        <option value="none">Not Found</option>
+                      <!--{/if}-->
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label for="file_upload" class="form-control-label">Upload Payment Proof</label>
+                  <input type="file" accept="image/*, application/*, video/*" id="file_upload" class="input-rounded w-100" name="file_upload"/>
+                </div>
+                  <div class="form-group">
+                    <label for="paid_by" class="form-control-label">Paid By</label>
+                    <input type="email" class="form-control form-control-user" id="serial" name="paid_by" value="" placeholder="Email here">
+                  </div>
+                  <div class="form-group">
+                    <label for="amount" class="form-control-label">Amount Paid</label>
+                        <input type="number" class="form-control form-control-user" id="amount" name="amount" placeholder="Amount Paid">
+                  </div>
+                  <div class="form-group">
+                    <label for="gateway" class="form-control-label">Payment Gateway</label>
+                    <select name="gateway" class="form-control" id="gateway" onchange="handleChange(this);">
+                      <option selected disabled value="">Choose</option>
+                      <option value="paystack">Paystack</option>
+                      <option value="paypal">PayPal</option>
+                      <option value="bank_transfer">Transfer</option>
+                      <option value="cash">Cash</option>
+                      <option value="cheque">Cheque</option>
+                      <option value="other">Other</option>
+                    </select>   
+                  </div>
+                  <div id="other_gateway" class="form-group d-none">
+                    <label for="othergateway" class="form-control-label">Other Payment Gateway</label>
+                        <input type="text" class="form-control form-control-user" id="othergateway" name="gateway" placeholder="Other Payment Gateway">
+                  </div>
+                  <script>
+                    function handleChange(myselect){
+                      if(myselect.value=='other'){
+                        document.getElementById('other_gateway').classList.remove("d-none");
+                      }else{
+                        //document.getElementById('other_gateway').classList.add("d-none");
+                        document.getElementById('othergateway').value = myselect.value;
+                      }
+                    }
+                  </script>
+                  <div class="form-group">
+                    <label for="purpose" class="form-control-label">Select Payment</label>
+                    <select name="purpose[]" class="form-control" id="purpose" multiple onchange="handleChange2(this);">
+                      <option value="full_payment">Full Payment</option>
+                      <option value="installment_payment">Installment Payment</option>
+                      <option value="survey_payment">Survey Payment</option>
+                      <option value="legal_payment">Legal Payment</option>
+                      <option value="other">Others</option>
+                    </select>
+                  </div>
+                  <div id="other_purpose" class="form-group d-none">
+                    <label for="otherpurpose" class="form-control-label">Other Purpose</label>
+                        <input type="text" class="form-control form-control-user" id="otherpurpose" name="purpose[]
+                        " placeholder="Other Purpose">
+                  </div>
+                  <script>
+                    function handleChange2(myselect){
+                      if(myselect.value.includes('other')){
+                        document.getElementById('other_purpose').classList.remove("d-none");
+                      }else{
+                        //document.getElementById('otherpurpose').value = myselect.value;
+                        document.getElementById('other_purpose').classList.add("d-none");
+                      }
+                    }
+                  </script>
+                  <div class="form-group">
+                    <label class="form-label" for="transdate">Transaction Date</label>
+                    <input type="date" id="transdate" name="transdate" class="form-control" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="status" class="form-control-label">Status</label>
+                    <select name="status" class="form-control" id="status">
+                      <option value="1">Success</option>
+                      <option value="0">Fail</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="discount" class="form-control-label">Discount</label>
+                        <input type="text" class="form-control form-control-user" id="discount" name="discount" placeholder="Discount">
+                  </div>
+                  <div class="form-group text-center">
+                    <button class="btn btn-success btn-sm rounded-0" type="submit" name="payment">Add Payment</button>
+                </div>
+            </div>
+            <!--{if !empty($fail)}-->
+            <div class="col">
+              <div class="form-group">
+                <!--{$fail}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <br>
+        </div>
+        
+      </form>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

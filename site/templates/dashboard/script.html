@@ -1,0 +1,650 @@
+ <!-- Bootstrap core JavaScript-->
+	<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/js/html2canvas.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+ <script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/vendor/jquery/jquery.min.js"></script>
+ <script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+ <!-- Core plugin JavaScript-->
+ <script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+ <!-- Custom scripts for all pages-->
+ <script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/js/admin.min.js"></script>
+
+ <!-- Page level plugins -->
+ <script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/vendor/chart.js/Chart.min.js"></script>
+
+ <!-- Page level custom scripts -->
+ <script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/js/demo/chart-area-demo.js"></script>
+ <script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/js/demo/chart-pie-demo.js"></script>
+
+ 
+  <!-- Page level plugins -->
+  <script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/js/demo/datatables-demo.js"></script>
+
+<!--{if !empty($sitePage) and in_array($sitePage, array('plot_view'))}-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/js/jquery.imagemapster.min.js"></script>
+<!--{/if}-->
+
+  <script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/script.js"></script>
+
+<script>
+  
+const refreshNotifications = ()=>{
+    let arguement = {
+			send: true,
+			sendMode: 'getFresh', 
+		};
+		$.post('<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/refresh', arguement, function(resp) {
+      //console.log(resp)
+      let chatResp = JSON.parse(resp);
+      let memo = chatResp.memo;
+      var memo_value = '';
+      let alertBar = chatResp.alertBar;
+      var alertBar_value = '';
+      let messages = chatResp.messages;
+      var messages_value = '';
+      let count = chatResp.count;
+      var count_value = '';
+      let counter = chatResp.counter;
+      var counter_value = '';
+
+      if(memo != null){
+        for (mem of memo) {
+          memo_value += `<div id="" class="col-sm-12 col-lg-4">                    
+                    <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/memos?id=${mem.token}" class="text-decoration-none">
+                      <div style="z-index: 99999;" class="alert text-center alert-danger flicker alert-dismissible" role="alert">
+                        <strong>${mem.sendername}: </strong> <br>${mem.content}
+                      </div>
+                    </a>
+                  </div>
+                `;
+        }
+      }
+
+      if(messages != null){
+        for (mess of messages) {
+        messages_value += `
+            <a class="dropdown-item d-flex align-items-center" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/inbox?id=${mess.messageid}">
+              <div class="dropdown-list-image mr-3">
+                <img class="rounded-circle" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${mess.senderimg}" alt="">
+                <div class="status-indicator bg-success"></div>
+              </div>
+              <div class="font-weight-bold">
+                <div class="text-truncate">${mess.content}</div>
+                <div class="small text-gray-500">${mess.sendername} <br> ${mess.datesent}</div>
+              </div>
+            </a>
+          `;
+        }
+      }else{
+        messages_value = `<p class="dropdown-item text-center">No new Messages</p>`
+      }
+      if(alertBar != null){
+        for (alert of alertBar) {
+          alertBar_value += `
+              <a class="dropdown-item d-flex align-items-center" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/<!--{$sitePage}-->?alertid=${alert.token}">
+                <div class="mr-3">
+                  <div class="icon-circle ${alert.severity==0 ? 'bg-primary' : ' ' } ${alert.severity==1 ? 'bg-warning' : ' ' } ${alert.severity==2 ? 'bg-danger' : ' ' }">
+                    <i class="fas fa-exclamation-triangle text-white"></i>
+                  </div>
+                </div>
+                <div>
+                  <div class="small text-gray-500">${alert.dateadded}</div>
+                    ${alert.content}
+                  </div>
+              </a>`;
+          }
+        }
+        else{
+          alertBar_value = `<p class="dropdown-item text-center">No Alerts</p>`
+        }
+
+			$('#memo_messages').html(memo_value);
+			$('#message_messages').html(messages_value);
+			$('#alert_messages').html(alertBar_value);
+
+      counter_value = counter > 0 ? " badge-danger flicker " : " badge-success ";
+      count_value = count > 0 ? " badge-danger flicker " : " badge-success ";
+      $('#counter').html(counter);
+      $('#counter').addClass(counter_value);
+      $('#count').html(count);
+      $('#count').addClass(count_value);
+
+
+		});
+	}
+
+
+    setInterval(refreshNotifications, 500);
+
+
+    <!--{if !empty($sitePage) and in_array($sitePage, array('subscription_letter'))}-->
+    var doc = new jsPDF();
+    $(document).on('click','#printNow',function(){
+      printDiv('printable','Letter To <!--{$client->names|ucwords}-->');    
+    })
+    $(document).on('click','#acknowledge',function(){
+      setTimeout(() => {  screenshot(); }, 2000);
+    })
+    function screenshot(){
+      window.scrollTo(0,0);
+      html2canvas(document.getElementById('printable')).then(function(canvas) {
+      //document.body.appendChild(canvas);
+      //console.log(document.getElementById('printable'));
+      // Get base64URL
+      //var base64URL = canvas.toDataURL('image/png');
+      var base64URL = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+      
+      //console.log(base64URL);
+      // AJAX request
+        $.ajax({
+          url: '<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/upload_letter',
+          type: 'post',
+          data: {image: base64URL,id:'<!--{$client->token}-->'},
+          success: function(data){
+              alert("Saved to <!--{$Site.companyName}--> Docs");
+          }
+        });
+      });  
+    }
+<!--{/if}-->
+<!--{if !empty($sitePage) and in_array($sitePage, array('completion_letter'))}-->
+
+    var doc = new jsPDF();
+    $(document).on('click','#printNow',function(){
+      printDiv('printable','Letter To <!--{$client->names|ucwords}-->');    
+    })
+    $(document).on('click','#acknowledge',function(){
+      setTimeout(() => {  screenshot(); }, 2000);
+    })
+    function screenshot(){
+      window.scrollTo(0,0);
+      html2canvas(document.getElementById('printable')).then(function(canvas) {
+      //document.body.appendChild(canvas);
+      //console.log(document.getElementById('printable'));
+      // Get base64URL
+      //var base64URL = canvas.toDataURL('image/png');
+      var base64URL = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+      
+      //console.log(base64URL);
+      // AJAX request
+        $.ajax({
+          url: '<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/upload_completion_letter',
+          type: 'post',
+          data: {image: base64URL,id:'<!--{$client->token}-->'},
+          success: function(data){
+              alert("Saved to <!--{$Site.companyName}--> Docs");
+          }
+        });
+      });  
+    }
+<!--{/if}-->
+<!--{if !empty($sitePage) and in_array($sitePage, array('contract_of_sales'))}-->
+  //signature
+  (function() {
+  window.requestAnimFrame = (function(callback) {
+    return window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.oRequestAnimationFrame ||
+      window.msRequestAnimaitonFrame ||
+      function(callback) {
+        window.setTimeout(callback, 1000 / 60);
+      };
+  })();
+
+  var canvas = document.getElementById("sig-canvas");
+  var ctx = canvas.getContext("2d");
+  ctx.strokeStyle = "#222222";
+  ctx.lineWidth = 4;
+
+  var drawing = false;
+  var mousePos = {
+    x: 0,
+    y: 0
+  };
+  var lastPos = mousePos;
+
+  canvas.addEventListener("mousedown", function(e) {
+    drawing = true;
+    lastPos = getMousePos(canvas, e);
+  }, false);
+
+  canvas.addEventListener("mouseup", function(e) {
+    drawing = false;
+  }, false);
+
+  canvas.addEventListener("mousemove", function(e) {
+    mousePos = getMousePos(canvas, e);
+  }, false);
+
+  // Add touch event support for mobile
+  canvas.addEventListener("touchstart", function(e) {
+
+  }, false);
+
+  canvas.addEventListener("touchmove", function(e) {
+    var touch = e.touches[0];
+    var me = new MouseEvent("mousemove", {
+      clientX: touch.clientX,
+      clientY: touch.clientY
+    });
+    canvas.dispatchEvent(me);
+  }, false);
+
+  canvas.addEventListener("touchstart", function(e) {
+    mousePos = getTouchPos(canvas, e);
+    var touch = e.touches[0];
+    var me = new MouseEvent("mousedown", {
+      clientX: touch.clientX,
+      clientY: touch.clientY
+    });
+    canvas.dispatchEvent(me);
+  }, false);
+
+  canvas.addEventListener("touchend", function(e) {
+    var me = new MouseEvent("mouseup", {});
+    canvas.dispatchEvent(me);
+  }, false);
+
+  function getMousePos(canvasDom, mouseEvent) {
+    var rect = canvasDom.getBoundingClientRect();
+    return {
+      x: mouseEvent.clientX - rect.left,
+      y: mouseEvent.clientY - rect.top
+    }
+  }
+
+  function getTouchPos(canvasDom, touchEvent) {
+    var rect = canvasDom.getBoundingClientRect();
+    return {
+      x: touchEvent.touches[0].clientX - rect.left,
+      y: touchEvent.touches[0].clientY - rect.top
+    }
+  }
+
+  function renderCanvas() {
+    if (drawing) {
+      ctx.moveTo(lastPos.x, lastPos.y);
+      ctx.lineTo(mousePos.x, mousePos.y);
+      ctx.stroke();
+      lastPos = mousePos;
+    }
+  }
+
+  // Prevent scrolling when touching the canvas
+  document.body.addEventListener("touchstart", function(e) {
+    if (e.target == canvas) {
+      e.preventDefault();
+    }
+  }, false);
+  document.body.addEventListener("touchend", function(e) {
+    if (e.target == canvas) {
+      e.preventDefault();
+    }
+  }, false);
+  document.body.addEventListener("touchmove", function(e) {
+    if (e.target == canvas) {
+      e.preventDefault();
+    }
+  }, false);
+
+  (function drawLoop() {
+    requestAnimFrame(drawLoop);
+    renderCanvas();
+  })();
+
+  function clearCanvas() {
+    canvas.width = canvas.width;
+  }
+
+  // Set up the UI
+  var sigText = document.getElementById("sig-dataUrl");
+  var sigImage = document.getElementById("sig-image");
+  var clearBtn = document.getElementById("sig-clearBtn");
+  var submitBtn = document.getElementById("sig-submitBtn");
+  clearBtn.addEventListener("click", function(e) {
+    clearCanvas();
+    sigText.innerHTML = "Data URL for your signature will go here!";
+    sigImage.setAttribute("src", "");
+  }, false);
+  submitBtn.addEventListener("click", function(e) {
+    var dataUrl = canvas.toDataURL();
+    sigText.innerHTML = dataUrl;
+    sigImage.setAttribute("src", dataUrl);
+    //console.log('hmmmm');
+    $.ajax({
+          url: '<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/upload_subscription_signature',
+          type: 'post',
+          data: {image: dataUrl,id:'<!--{$client->token}-->'},
+          success: function(data){
+            let resp = JSON.parse(data);
+            if(resp.status == 1){
+              $('#signModal').modal('hide');
+              $('#signButton').addClass('d-none');
+              alert(resp.content);
+            }
+            else{
+              console.log(resp.content);
+            }
+          }
+    });
+  }, false);
+
+})();
+  //end
+    $(document).on('click','#acknowledge',function(){
+      document.getElementById("removewatermark1").classList.add("d-none");
+      this.classList.add("d-none");
+      setTimeout(() => {  screenshot(); }, 3000);
+    })
+    var doc = new jsPDF();
+    $(document).on('click','#printNow',function(){
+      printDiv('printable',' Contract To <!--{$client->surname|ucfirst}--> <!--{$client->middlename|ucfirst}--> <!--{$client->firstname|ucfirst}-->');    
+    })
+    
+    function screenshot(){
+      window.scrollTo(0,0);
+      html2canvas(document.getElementById('printable')).then(function(canvas) {
+      //document.body.appendChild(canvas);
+      //console.log(document.getElementById('printable'));
+      // Get base64URL
+      //var base64URL = canvas.toDataURL('image/png');
+      var base64URL = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+      
+      //console.log(base64URL);
+      // AJAX request
+        $.ajax({
+          url: '<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/upload_contract',
+          type: 'post',
+          data: {image: base64URL,id:'<!--{$client->token}-->'},
+          success: function(data){
+              alert("Saved to <!--{$Site.companyName}--> Docs");
+          }
+        });
+      });  
+    }
+    
+<!--{/if}-->
+
+function copyToClipboardMsg(elem, msgElem) {
+    elemem = document.getElementById(elem);
+	  var succeed = copyToClipboard(elemem);
+    var msg;
+    if (!succeed) {
+        msg = "Copy not supported or blocked.  Press Ctrl+c to copy."
+    } else {
+        msg = "Text copied to the clipboard."
+    }
+    if (typeof msgElem === "string") {
+        msgElem = document.getElementById(msgElem);
+    }
+    msgElem.innerHTML = msg;
+    setTimeout(function() {
+        msgElem.innerHTML = "";
+    }, 2000);
+}
+function copyToClipboard(elem) {
+	  // create hidden text element, if it doesn't already exist
+    var targetId = "_hiddenCopyText_";
+    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+    var origSelectionStart, origSelectionEnd;
+    if (isInput) {
+        // can just use the original source element for the selection and copy
+        target = elem;
+        origSelectionStart = elem.selectionStart;
+        origSelectionEnd = elem.selectionEnd;
+    } else {
+        // must use a temporary form element for the selection and copy
+        target = document.getElementById(targetId);
+        if (!target) {
+            var target = document.createElement("textarea");
+            target.style.position = "absolute";
+            target.style.left = "-9999px";
+            target.style.top = "0";
+            target.id = targetId;
+            document.body.appendChild(target);
+        }
+        target.textContent = elem.textContent;
+    }
+    // select the content
+    var currentFocus = document.activeElement;
+    target.focus();
+    target.setSelectionRange(0, target.value.length);
+    
+    // copy the selection
+    var succeed;
+    try {
+    	  succeed = document.execCommand("copy");
+    } catch(e) {
+        succeed = false;
+    }
+    // restore original focus
+    if (currentFocus && typeof currentFocus.focus === "function") {
+        currentFocus.focus();
+    }
+    
+    if (isInput) {
+        // restore prior selection
+        elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+    } else {
+        // clear temporary content
+        target.textContent = "";
+    }
+    return succeed;
+}
+function printDiv(divId, title) {
+  
+  var doc = new jsPDF();
+  let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
+  
+  mywindow.document.write(`<html><head><title>${title}</title> <!--{include file="style.html"}--> `);
+  mywindow.document.write('</head><body>');
+  mywindow.document.write(document.getElementById(divId).innerHTML);
+  mywindow.document.write('</body></html>');
+  //doc.fromHTML(mywindow);
+  //doc.save('div.pdf');
+  mywindow.document.close(); // necessary for IE >= 10
+  mywindow.focus(); // necessary for IE >= 10*/
+
+  mywindow.print();
+  mywindow.close();
+
+  return true;
+}
+
+<!--{if !empty($sitePage) and in_array($sitePage, array('docs'))}-->
+  function modalme(item){
+    var img = item;
+    var modal = document.getElementById("myModal");
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img.onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+  };
+ 
+<!--{/if}-->
+
+<!--{if !empty($sitePage) and in_array($sitePage, array('plot_view'))}-->
+  const plots = [];
+  let main = JSON.parse('<!--{$taken_plot}-->');
+  console.log(main);
+  $('#myimage')
+    .mapster({
+      mapKey: 'data-key',
+      fillOpacity: 0.5,
+      render_highlight: {
+          fillColor: '000000',
+          stroke: true
+      },
+      stroke: true,
+      strokeWidth: 1,
+      strokeColor: '000000',
+      fadeInterval: 50,
+      render_select: {
+          fillColor: '24a148'
+      },
+      onClick: function (e) {
+        
+      },
+      areas: main
+    });
+    
+
+<!--{/if}-->
+
+	<!--{if !empty($sitePage) and in_array($sitePage, array('invest_registration','subscribe_estate','agric_subscription'))}-->
+			var employees = <!--{$employees}-->;
+
+			function searchRef(array, key){
+				var result = '';
+				var subArrayIndex;
+				
+				employees.forEach(element => {
+					if(element['refid'])
+						var checker = element['refid'].slice(element['refid'].length - 4);
+						if(checker == key){
+							result = element['refid'];
+							subArrayIndex = employees.indexOf(element);
+						}
+				});					
+			   return subArrayIndex;
+			}
+
+			$(document).on('change keyup', "#refCode", function() {	
+		      var index = searchRef(employees,this.value);
+			  if(index){
+					$('#employeeid').val(employees[index]['refid']);
+				  $('#refname').val(employees[index]['surname'].toUpperCase()+' '+employees[index]['firstname'].toUpperCase());
+			  }else{
+				$('#refname').val('');
+			  }
+		    });
+	<!--{/if}-->
+    /*Changing of Country State City*/
+  <!--{if in_array($sitePage, array('profile'))}-->
+    $(document).on('change','#country, #state', function(){
+        //console.log("hellllo");
+        let csd={ data: $(this).val(), type: $(this).attr('id') };      
+        //console.log(csd);
+        globalParam={sp: `<!--{$sitePage}-->`, csd: csd};
+        $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, (res)=> {
+          //console.log(res);
+          let ret=JSON.parse(res);
+          let target=( $(this).attr('id')=="country"? "#state": "#city");
+          console.log(target);
+          if(ret!=null){
+            if(ret.length>0 && ret!=null){
+            $(target).empty();
+            for (let re of ret) {
+              $(target).append(`<option value="${re.name}">${re.name}</option>`);
+            }
+            }else{
+              $(target).html(`<option value="">No Record Found</option>`);
+            }
+          }else{
+            $(target).html(`<option value="">No Record Found</option>`);
+          }
+          
+        });
+      });
+  <!--{/if}-->
+
+    $(document).on('change keyup', "#password", function() {
+		  $('.genedPass').text(`${$("#password").val()}`);
+		});
+
+		$(document).on('click','.genPassword', function(){
+			let genPass=getToken(8);
+			$('#password').attr('value',`${genPass}`).val(genPass);
+			$('#cpassword').attr('value',`${genPass}`).val(genPass);
+			$('.genedPass').text(genPass);
+	  });
+
+    <!--{if !empty($sitePage) and in_array($sitePage, array('change_password'))}-->
+      /*  $(document).ready(function(){
+
+          $( "#salary" ).keyup(function() {
+            var salary = $( "#salary" ).val();
+            var tax = 0.01*salary;
+            $("#tax").val(tax);
+          });
+            
+        });
+      */$("input[type=password]").keyup(function(){
+    var ucase = new RegExp("[A-Z]+");
+    var lcase = new RegExp("[a-z]+");
+    var num = new RegExp("[0-9]+");
+	
+	if($("#password1").val().length >= 8){
+		$("#8char").removeClass("fa-times");
+		$("#8char").addClass("fa-check");
+		$("#8char").css("color","#00A41E");
+	}else{
+		$("#8char").removeClass("fa-check");
+		$("#8char").addClass("fa-times");
+		$("#8char").css("color","#FF0004");
+	}
+	
+	if(ucase.test($("#password1").val())){
+		$("#ucase").removeClass("fa-times");
+		$("#ucase").addClass("fa-check");
+		$("#ucase").css("color","#00A41E");
+	}else{
+		$("#ucase").removeClass("fa-check");
+		$("#ucase").addClass("fa-times");
+		$("#ucase").css("color","#FF0004");
+	}
+	
+	if(lcase.test($("#password1").val())){
+		$("#lcase").removeClass("fa-times");
+		$("#lcase").addClass("fa-check");
+		$("#lcase").css("color","#00A41E");
+	}else{
+		$("#lcase").removeClass("fa-check");
+		$("#lcase").addClass("fa-times");
+		$("#lcase").css("color","#FF0004");
+	}
+	
+	if(num.test($("#password1").val())){
+		$("#num").removeClass("fa-times");
+		$("#num").addClass("fa-check");
+		$("#num").css("color","#00A41E");
+	}else{
+		$("#num").removeClass("fa-check");
+		$("#num").addClass("fa-times");
+		$("#num").css("color","#FF0004");
+	}
+	
+	if($("#password1").val() == $("#password2").val()){
+		$("#pwmatch").removeClass("fa-times");
+		$("#pwmatch").addClass("fa-check");
+		$("#pwmatch").css("color","#00A41E");
+	}else{
+		$("#pwmatch").removeClass("fa-check");
+		$("#pwmatch").addClass("fa-times");
+		$("#pwmatch").css("color","#FF0004");
+	}
+});
+    <!--{/if}-->
+</script>
+

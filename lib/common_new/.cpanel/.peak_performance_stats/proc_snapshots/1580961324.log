@@ -1,0 +1,62 @@
+Thu Feb  6 03:55:24 GMT 2020
+Running Processes:
+schooztc  3390118  4.9  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc  3396882 80.2  0.5 507760 186592 ?       S    03:55   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 76.5% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3390118  4.9  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc 3396882 78.8  0.7 561832 238952 ?       S    03:55   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3390118  4.9  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc 3396882 78.8  0.7 561832 238952 ?       S    03:55   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3390118  4.9  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc 3396882 78.8  0.7 561832 238952 ?       S    03:55   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3390118  4.9  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc 3396882 65.6  0.7 561832 238952 ?       S    03:55   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3390118  4.9  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc 3396882 65.6  0.7 561832 238952 ?       S    03:55   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  03:55:26 up 180 days, 12:26,  0 users,  load average: 0.02, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 68021819	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT SQL_CALC_FOUND_ROWS  wp_posts.ID FROM wp_posts  INNER JOIN wp_postmeta ON ( wp_posts.ID = wp_postmeta.post_id ) WHERE 1=1  AND wp_posts.post_parent = 7490  AND ( 
+  wp_postmeta.meta_key = '_bbp_last_active_time'
+) AND wp_posts.post_type = 'topic' AN
+
+Current load:  03:55:26 up 180 days, 12:26,  0 users,  load average: 0.02, 0.00, 0.00
+
+

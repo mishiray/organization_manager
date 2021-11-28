@@ -1,0 +1,259 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+  <!-- Sidebar - Brand -->
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/home">
+    <div class="sidebar-brand-icon">
+    <!--  <i class="fas fa-laugh-wink"></i> -->
+    <img src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/logo.png" alt="" class="img-thumbnail">
+    </div>
+    <div class="sidebar-brand-text mx-3"><!--{$userinfo->usercat}--> </div>
+  </a>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider my-0">
+
+  <!-- Nav Item - Dashboard -->
+  <li class="nav-item <!--{if in_array($sitePage, array('home'))}--> active <!--{/if}-->">
+    <a class="nav-link" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/home">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>Dashboard</span></a>
+  </li>
+
+  <!-- Nav Item - Dashboard -->
+  <li class="nav-item <!--{if in_array($sitePage, array('memos'))}--> active <!--{/if}-->">
+    <a class="nav-link" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/memos">
+      <i class="fas fa-fw fa-bell"></i>
+      <span>Announcements</span></a>
+  </li>
+  
+  <!-- Divider -->
+  <hr class="sidebar-divider">
+  <div class="sidebar-heading">
+    My Documents
+  </div>
+  <li class="nav-item showall <!--{if in_array($sitePage, array('docs'))}--> active <!--{/if}-->">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDocs" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-file-word"></i>
+      <span>Documents Manager</span>
+    </a>
+    <div id="collapseDocs" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Contracts Of Sale</h6>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/docs?type=contract_of_sale">Saved Contracts</a>
+        <h6 class="collapse-header">Letters</h6>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/docs?type=letter">Saved Letters</a>
+        <a class="collapse-item d-none" href="#">Receipts</a>
+      </div>
+    </div>
+  </li>
+
+  <!-- Heading -->
+  <div class="sidebar-heading">
+    Menu
+  </div>
+  
+  <li class="nav-item <!--{if in_array($sitePage, array('profile','bank'))}-->isactive<!--{/if}-->">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseprofile" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-user-alt"></i>
+      <span>Profile</span>
+    </a>
+    <div id="collapseprofile" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/profile">Profile</a>
+        <!--{if $userinfo->userrole == 'level1'}--> 
+        <h6 class="collapse-header">Bank Info</h6>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/bank">Bank Detail</a>
+        <!--{/if}-->
+      </div>
+    </div>
+  </li>
+  
+  <!--{if $userinfo->userrole == 'level1'}--> 
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item showall<!--{if in_array($sitePage, array('tree'))}--> active <!--{/if}-->">
+    <a class="nav-link" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/tree">
+      <i class="fas fa-fw fa-users"></i>
+      <span>My Referral Tree</span></a>
+  </li>
+
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item <!--{if in_array($sitePage, array('property-request-list','property-request'))}-->isactive<!--{/if}-->">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapserequest" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-question-circle"></i>
+      <span>Property Request</span>
+    </a>
+    <div id="collapserequest" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/property-request-list">Property Requests</a>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/property-request">Property Request Form</a>
+      </div>
+    </div>
+  </li>
+  <!--{/if}-->
+
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item  <!--{if in_array($sitePage, array('plot_allocation'))}--> active <!--{/if}-->">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePlotAlloc" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-home"></i>
+      <span>Plot Allocation</span>
+    </a>
+    <div id="collapsePlotAlloc" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+      <h6 class="collapse-header">Estates Allocations</h6>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/plot_allocation?type=projects">My Allocations</a>
+      <h6 class="collapse-header">Agric Allocations</h6>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/plot_allocation?type=agriculture">My Allocations</a>
+      </div>
+    </div>
+  </li>
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item  <!--{if in_array($sitePage, array('plot_view'))}--> active <!--{/if}-->">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePlotView" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-home"></i>
+      <span>Plot View</span>
+    </a>
+    <div id="collapsePlotView" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+      <h6 class="collapse-header">Estates Allocations</h6>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/plot_view?type=projects">My Allocations</a>
+      <h6 class="collapse-header">Agric Allocations</h6>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/plot_view?type=agriculture">My Allocations</a>
+      </div>
+    </div>
+  </li>
+  
+
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item  <!--{if in_array($sitePage, array('subscriptions','subscribe_estate'))}--> active <!--{/if}-->">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsesubscription" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-home"></i>
+      <span>Subscriptions</span>
+    </a>
+    <div id="collapsesubscription" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+      <h6 class="collapse-header">Estates Subscriptions</h6>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/subscriptions">My Subscriptions</a>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/subscribe_estate">New Subscription</a>
+      <h6 class="collapse-header">Agric Subscriptions</h6>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/agric_subscriptions">My Subscriptions</a>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/subscribe_agric">New Subscription</a>
+      </div>
+    </div>
+  </li>
+
+
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item <!--{if in_array($sitePage, array('estates'))}--> active <!--{/if}-->">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProjects" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-home"></i>
+      <span>Estates</span>
+    </a>
+    <div id="collapseProjects" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Estates</h6>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/estates">Available Estates</a>
+      </div>
+    </div>
+  </li>
+
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item <!--{if in_array($sitePage, array('agric_properties','agric_property'))}--> active <!--{/if}-->">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgric" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-home"></i>
+      <span>Atobe Agric</span>
+    </a>
+    <div id="collapseAgric" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Agriculture</h6>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/agric_properties">Available Properties</a>
+      </div>
+    </div>
+  </li>
+  
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item <!--{if in_array($sitePage, array('invest_registration','investment_details'))}--> active <!--{/if}-->">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInvestments" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-home"></i>
+      <span>Investments</span>
+    </a>
+    <div id="collapseInvestments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Investment</h6>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/invest_registration">New Investment</a>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/investment_details">My Investment Details</a>
+      </div>
+    </div>
+  </li>
+  
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item <!--{if in_array($sitePage, array('payments','pending_payments'))}--> active <!--{/if}-->">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsepayments" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-credit-card"></i>
+        <span>Payments</span>
+      </a>
+      <div id="collapsepayments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Subscriptions</h6>
+          <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/payments?type=subscription">My Payments</a>
+          <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/pending_payments?type=subscription">My Pending Payments</a>
+          <h6 class="collapse-header">Investments</h6>
+          <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/payments?type=investment">My Payments</a>
+          <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/pending_payments?type=investment">My Pending Payments </a>
+        </div>
+      </div>
+  </li>
+  
+  <!-- Divider -->
+  <hr class="sidebar-divider">
+  
+   <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item <!--{if in_array($sitePage, array('invoices'))}--> active <!--{/if}-->">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDocumentcentre" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-file"></i>
+      <span>Document Centre</span>
+    </a>
+    <div id="collapseDocumentcentre" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">All Documents</h6>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/invoices?type=subscription">Estate Invoices </a>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/invoices?type=agric_subscription">Agric Invoices </a>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/documents">Subscription Attachments</a>
+      </div>
+    </div>
+  </li>
+
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item <!--{if in_array($sitePage, array('compose','inbox','messages'))}--> active <!--{/if}-->">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMessaging" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-comments"></i>
+      <span>Messaging</span>
+    </a>
+    <div id="collapseMessaging" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Instant Messaging</h6>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/compose">Compose</a>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/inbox">Inbox</a>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/messages">Sent Messages</a>
+      </div>
+    </div>
+  </li>
+
+  <!-- Nav Item - Dashboard -->
+  <li class="nav-item <!--{if in_array($sitePage, array('transactions'))}--> active <!--{/if}-->">
+    <a class="nav-link" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/transactions">
+      <i class="fas fa-fw fa-coins"></i>
+      <span>Transaction History</span></a>
+  </li>
+  
+
+  <!-- Divider -->
+  <hr class="sidebar-divider d-none d-md-block">
+
+  <!-- Sidebar Toggler (Sidebar) -->
+  <div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+  </div>
+
+</ul>
+<!-- End of Sidebar -->

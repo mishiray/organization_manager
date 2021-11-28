@@ -1,0 +1,86 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong>
+	&nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/clients">Students&nbsp;<i class="fa fa-users"></i></a>&nbsp;| Study Assessment Results&nbsp;<i class="fa fa-list"></i>&nbsp;
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row justify-content-center">
+	<div class="col-sm-10">
+		<div class="form-group">
+			<!--{if !empty($fail)}-->
+				<!--{$fail}-->
+			<!--{/if}-->
+		</div>
+	</div>
+	<div class="col-sm-11">
+      <h4>Study Assessment Results</h4>
+      <div class="table-responsive">
+		<!--{if !empty($results)}-->
+		<div id="dataTableId_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+			<!--{include file="paging-top.html"}-->
+	        <table class="table table-striped table-hover table-bordered">
+	          <thead class="thead-warning">
+	            <tr>
+	              <th scope="col">#</th>
+			      <th scope="col">Student Details</th>
+	              <th scope="col">Course Detail</th>
+	              <th scope="col">Lesson Material Detail</th>
+	              <th scope="col">Assessment Detail</th>
+	              <th class="d-none"></th>
+	              <th class="d-none"></th>
+	              <th scope="col" class="d-none">Description</th>
+	              <th scope=""></th>
+	            </tr>
+	          </thead>
+	          <tbody>
+              <!--{$numCount=1}-->
+              <!--{foreach $results as $vKey=> $result}-->
+                  <tr>
+	                  <td><!--{$numCount}--></td>
+				      <td>
+				      	<!--{if !empty($result->client->firstname)}--><strong>Names: </strong><!--{$result->client->firstname}--> <!--{$result->client->middlename}--> <!--{$result->client->lastname}--><br/><!--{/if}-->
+				      	<strong>Email: </strong><!--{$result->client->email}--><br/>
+				      	<!--{if !empty($result->client->username)}--><strong>Username: </strong><!--{$result->client->username}--><!--{/if}-->
+				      	<!--{if !empty($result->client->phone)}--><strong>Phone Number: </strong><!--{$result->client->phone}--><!--{/if}-->
+				      </td>
+	                  <td>
+	                  	<h6>Course ID: <!--{$result->course->courseid}--></h6>
+				      	Title: <!--{$result->course->title}--><br/>
+				      	Category: <!--{$result->course->category}--><br/>
+				      	<div class="border border-success py-1 px-1" style="max-height: 100px; width: 200px; overflow-y: auto;"><!--{$result->course->description}--></div>
+	                  </td>
+	                  <td>
+				      	<h6> Study Material</h6>
+				      	<span class="font-weight-bold"><!--{$result->material->study}--></span><br/>
+				      	Title: <!--{$result->material->title}--><br/>
+				      	<div class="border border-success py-1 px-1" style="max-height: 100px; width: 200px; overflow-y: auto;"><!--{$result->material->description}--></div>
+				      </td>
+				      <td>
+				      	<span class="font-weight-bold">Duration: </span> <!--{$result->settimestr.hh}--> hr : <!--{$result->settimestr.mm}--> min : <!--{$result->settimestr.ss}--> sec<br/>
+				      	<span class="font-weight-bold">Used Duration: </span> <!--{$result->usedtimestr.hh}--> hr : <!--{$result->usedtimestr.mm}--> min : <!--{$result->usedtimestr.ss}--> sec<br/>
+				      	<span class="font-weight-bold">Total Questions: </span> <!--{$result->totalquestions}--><br/>
+				      	<span class="font-weight-bold">Attempted Questions: </span> <!--{$result->attempted}--><br/>
+				      	<span class="font-weight-bold">Score (%): </span> <!--{round(($result->score/$result->totalquestions)*100, 2)}-->%<br/>
+	                  </td>
+	                  <td class="d-none"><button class="btn btn-info btn-sm" video="<!--{$result->material->url}-->" data-toggle="collapse" data-target="#video<!--{$vKey}-->Info" aria-expanded="true" aria-controls="video<!--{$vKey}-->Info" id="video<!--{$vKey}-->"><!--{$result->material->title}--></button></td>
+	                  <td class="d-none"><!--{if $result->material->filetype=='video'}-->Video<!--{else}-->Document or Other Files<!--{/if}--></td>
+	                  <td class="d-none"><!--{$result->material->description}--></td>
+	                  <td>
+	                  	<a class="btn btn-sm btn-info my-2" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$result->user}-->&lesresult=<!--{$result->id}-->"><i class="fa fa-ellipsis-v"></i> Result Info</a>
+	                  	<a class="btn btn-sm btn-warning my-2 confirmTrig" what="Reset student's assessments (<!--{$numCount}-->)" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/assessments?id=<!--{$result->user}-->&result=<!--{$result->id}-->&reset=true"><i class="fa fa-refresh"></i> Reset Assessment</a>
+	                  </td>
+                  </tr>
+              <!--{$numCount=$numCount+1}-->
+              <!--{/foreach}-->
+	          </tbody>
+	        </table>
+			<!--{include file="paging-bottom.html"}-->
+		</div>
+		<!--{else}-->
+		<div class="alert alert-warning"><h3 class="alert-heading">No record on assessment</h3></div>
+		<!--{/if}-->
+      </div>
+    </div>
+</section>
+<!--{/block}-->

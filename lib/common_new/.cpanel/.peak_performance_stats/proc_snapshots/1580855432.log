@@ -1,0 +1,63 @@
+Tue Feb  4 22:30:32 GMT 2020
+Running Processes:
+schooztc   411391  1.1  0.3 248380 99960 ?        S    21:20   0:46 spamd child
+schooztc   607319  0.0  0.0  32548  4844 ?        S    22:25   0:00 dovecot/quota-status -p postfix
+schooztc   620260  0.2  0.0  62612  9216 ?        S    22:30   0:00 dovecot/lmtp [local READY]
+schooztc   621970 70.8  0.7 561544 238324 ?       R    22:30   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+COMMAND    PID     USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+spamd   411391 schooztc    5u  IPv6 1768410054      0t0  TCP [::1]:783 (LISTEN)
+spamd   411391 schooztc    6u  IPv4 1768410056      0t0  TCP 127.0.0.1:783 (LISTEN)
+spamd   411391 schooztc    7u  IPv4 1768416453      0t0  UDP 199.79.63.83:52330->5.9.124.53:24441 
+spamd   411391 schooztc    9u  IPv4 1800485488      0t0  TCP 127.0.0.1:783->127.0.0.1:38930 (CLOSE_WAIT)
+spamd   411391 schooztc   13u  IPv4 1800489116      0t0  UDP 127.0.0.1:62769->127.0.0.1:53 
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 67.3% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc  621970 72.2  0.7 561544 238396 ?       R    22:30   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc  621970 73.2  0.7 561544 238404 ?       R    22:30   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc  621970 74.4  0.7 561544 238404 ?       R    22:30   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc  621970 75.1  0.7 563616 239272 ?       S    22:30   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc  621970 75.7  0.7 563616 239792 ?       R    22:30   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  22:30:33 up 179 days,  7:01,  0 users,  load average: 0.01, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 67564232	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  22:30:33 up 179 days,  7:01,  0 users,  load average: 0.01, 0.00, 0.00
+
+

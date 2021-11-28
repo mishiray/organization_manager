@@ -1,0 +1,47 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong>
+	&nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/clients">Students&nbsp;<i class="fa fa-users"></i></a>&nbsp;| Student Detail&nbsp;<i class="fa fa-user"></i>&nbsp;| Course Detail
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<h2>CLIENT DETAIL</h2>
+	<section class="container-fluid">
+        <div class="row justify-content-center">
+			<div class="col-md-4 mb-2">
+			    <img class="img img-thumbnail package-img" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($client->userimg)}--><!--{$client->userimg}--><!--{else}-->site/media/i/icon-student.png<!--{/if}-->">
+			</div>
+            <div class="col-md-7 mb-2 mt-2">
+                <div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">Names:</strong> <!--{$client->firstname}--> <!--{$client->middlename}--> <!--{$client->lastname}--></h5></div>
+                <div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">Email:</strong> <!--{$client->email}--></h5></div>
+	          	<div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">Gender:</strong> <!--{$client->gender|capitalize}--></h5></div>
+                <div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">Username:</strong> <!--{$client->username}--></h5></div>
+	          	<div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">Phone N<sub>o</sub>:</strong> <!--{$client->phone}--></h5></div>
+	          	<div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">Address:</strong> <!--{$client->address1}-->, <!--{$client->address2}--></h5></div>
+	          	<div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">City:</strong> <!--{$client->city}--></h5></div>
+	          	<div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">State:</strong> <!--{$client->state}--></h5></div>
+	          	<div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">Nationality:</strong> <!--{$client->country}--></h5></div>
+	          	<div class="form-group mb-2 mt-2 d-none"><h5><strong class="text-uppercase">Interest To Be An Instructor:</strong> <!--{if $client->instructor==false}--><span class="badge badge-warning">No</span><!--{else}--><span class="badge badge-success">Yes</span><!--{/if}--></h5></div>
+	          	<div class="form-group">
+					<a class="btn btn-warning" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$client->email}-->"><i class="fa fa-undo"></i> Back</a>&nbsp;
+	          	</div>
+          	</div>
+          	<h3 class="col-md-9 mb-2">Course Detail</h3>
+          	<div class="col-md-5 mb-2">
+            	<div class="form-group mb-2 mt-2"><h4><strong class="text-uppercase">Course ID:</strong> <!--{$client->course->courseid|upper}--></h4></div>
+            	<div class="form-group mb-2 mt-2"><h4><strong class="text-uppercase">Title:</strong> <!--{$client->course->title|capitalize}--></h4></div>
+            	<div class="form-group mb-2 mt-2"><h4><strong class="text-uppercase">Unit:</strong> <!--{$client->course->unit}--></h4></div>
+            </div>
+            <div class="col-md-5 mb-2 mt-2">
+            	<div class="form-group mb-2 mt-2"><h4><strong class="text-uppercase">Category:</strong> <!--{$client->course->category|capitalize}--></h4></div>
+            	<div class="d-none form-group mb-2 mt-2"><h4><strong class="text-uppercase">Course Fee:</strong> $<!--{$client->course->fee}--></h4></div>
+                <div class="form-group">
+                    <h4>Description</h4>
+                    <h6 class="text-justify"><!--{$client->course->description}--></h6>
+                </div>
+            </div>
+            <div class="d-none col-md-8 mb-2">
+            </div>
+        </div>
+    </section>
+<!--{/block}-->

@@ -1,0 +1,31 @@
+<div class="dash-header-container">
+	<header class="dash-header-main">
+		<div class="desktop-view side-menu-logo">
+			<img src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/logo1.JPG" class="header-logo" alt="<!--{$Site.companyName}-->">
+		</div>
+		<div class="dh-right-nav">
+			<div class="dh-dropdown d-none">
+				<div class="dh-dropdown-toggle">
+					<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/notification" class="dropdown-main-link">
+						<i class="fa fa-globe"></i><sup id="notCount"><!--{if !empty($counts)}--><!--{$counts->nots}--><!--{else}-->0<!--{/if}--></sup>
+					</a>
+				</div>
+			</div>
+			<div class="dh-dropdown dh-dropdown-user">
+				<div class="dh-dropdown-toggle dropdown">
+					<a href="" class="dropdown-main-link dropdown-toggle" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i></a>
+					<div class="dropdown-menu" aria-labelledby="userMenu">
+					    <a class="dropdown-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/profile"><i class="fa fa-vcard"></i> My Profile</a>
+					    <a class="dropdown-item d-none" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/courses"><i class="fa fa-list"></i> Courses</a>
+					    <a class="dropdown-item d-none" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/transactions"><i class="fa fa-list"></i> Transactions</a>
+					    <div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/logout"><i class="fa fa-sign-out"></i> LOGOUT</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="openMobileMenu" class="dh-menu-icon">
+			<span class="fa fa-ellipsis-v"></span>
+		</div>
+	</header>
+</div>

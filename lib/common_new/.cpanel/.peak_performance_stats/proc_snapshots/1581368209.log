@@ -1,0 +1,75 @@
+Mon Feb 10 20:56:49 GMT 2020
+Running Processes:
+schooztc   917065 21.3  0.0      0     0 ?        Z    20:55   0:12 [php-cgi] <defunct>
+schooztc   917406 22.5  0.7 570520 246684 ?       S    20:55   0:11 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc   919862 83.7  0.5 517132 196004 ?       R    20:56   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 139.6% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc  917065 21.0  0.0      0     0 ?        Z    20:55   0:12 [php-cgi] <defunct>
+schooztc  917406 22.0  0.7 570520 246684 ?       S    20:55   0:11 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  919862 78.4  0.7 562704 240040 ?       S    20:56   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  919966 75.0  0.1 426988 60144 ?        R    20:56   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc  917065 20.6  0.0      0     0 ?        Z    20:55   0:12 [php-cgi] <defunct>
+schooztc  917406 21.6  0.7 570520 246684 ?       S    20:55   0:11 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  919862 65.3  0.7 562704 240040 ?       S    20:56   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  919966 41.0  0.1 427020 61980 ?        R    20:56   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc  917065 20.6  0.0      0     0 ?        Z    20:55   0:12 [php-cgi] <defunct>
+schooztc  917406 21.6  0.7 570520 246684 ?       S    20:55   0:11 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  919862 65.3  0.7 562704 240040 ?       S    20:56   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  919966 45.5  0.1 426952 64252 ?        R    20:56   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc  917065 20.6  0.0      0     0 ?        Z    20:55   0:12 [php-cgi] <defunct>
+schooztc  917406 21.6  0.7 570520 246684 ?       S    20:55   0:11 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  919862 65.3  0.7 562704 240040 ?       S    20:56   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  919966 50.0  0.2 427076 66364 ?        R    20:56   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc  917065 20.6  0.0      0     0 ?        Z    20:55   0:12 [php-cgi] <defunct>
+schooztc  917406 21.6  0.7 570520 246684 ?       S    20:55   0:11 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  919862 65.3  0.7 562704 240040 ?       S    20:56   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  919966 54.0  0.2 429980 69872 ?        R    20:56   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  20:56:51 up 185 days,  5:28,  0 users,  load average: 0.04, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 69680883	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 69680865	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT SQL_CALC_FOUND_ROWS  wp_posts.ID FROM wp_posts  INNER JOIN wp_postmeta ON ( wp_posts.ID = wp_postmeta.post_id ) WHERE 1=1  AND wp_posts.post_parent = 7490  AND ( 
+  wp_postmeta.meta_key = '_bbp_last_active_time'
+) AND wp_posts.post_type = 'topic' AN
+ID = 69680725	TIME = 15	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  20:56:51 up 185 days,  5:28,  0 users,  load average: 0.04, 0.01, 0.00
+
+

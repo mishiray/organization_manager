@@ -1,0 +1,142 @@
+Tue Feb  4 16:08:15 GMT 2020
+Running Processes:
+schooztc  3093137  0.0  0.0 139272  2036 ?        S    15:49   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc  3117577  0.0  0.0 139272  2040 ?        S    15:57   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc  3170670  0.0  0.0 139272  2032 ?        S    15:58   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc  3377275 23.2  0.4 462420 141260 ?       R    16:07   0:08 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3377479 21.8  0.6 520352 199712 ?       R    16:07   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3377663 21.6  0.5 508780 187208 ?       R    16:07   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc  3377758 22.7  0.5 507876 186336 ?       R    16:07   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3378966 22.5  0.4 481176 160380 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3379323 22.8  0.4 476520 155308 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3379440 22.7  0.4 477224 156144 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3382915 15.2  0.2 430388 80548 ?        R    16:08   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-admin/admin-ajax.php
+schooztc  3386295 21.8  0.2 428888 75956 ?        R    16:08   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3390307 12.5  0.1 423976 46380 ?        R    16:08   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+COMMAND       PID     USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+pure-ftpd 3093137 schooztc    4u  IPv4 1769699200      0t0  TCP *:21 (LISTEN)
+pure-ftpd 3093137 schooztc    5u  IPv6 1769699201      0t0  TCP *:21 (LISTEN)
+pure-ftpd 3093137 schooztc    6u  IPv4 1788250360      0t0  TCP 199.79.63.83:21->185.209.179.26:38988 (ESTABLISHED)
+pure-ftpd 3093137 schooztc   10u  IPv4 1788336912      0t0  TCP 199.79.63.83:47409 (LISTEN)
+pure-ftpd 3117577 schooztc    4u  IPv4 1769699200      0t0  TCP *:21 (LISTEN)
+pure-ftpd 3117577 schooztc    5u  IPv6 1769699201      0t0  TCP *:21 (LISTEN)
+pure-ftpd 3117577 schooztc    6u  IPv4 1788431702      0t0  TCP 199.79.63.83:21->185.209.179.26:53356 (ESTABLISHED)
+pure-ftpd 3117577 schooztc   10u  IPv4 1788744115      0t0  TCP 199.79.63.83:44831 (LISTEN)
+pure-ftpd 3170670 schooztc    4u  IPv4 1769699200      0t0  TCP *:21 (LISTEN)
+pure-ftpd 3170670 schooztc    5u  IPv6 1769699201      0t0  TCP *:21 (LISTEN)
+pure-ftpd 3170670 schooztc    6u  IPv4 1788459005      0t0  TCP 199.79.63.83:21->185.209.179.26:52168 (ESTABLISHED)
+pure-ftpd 3170670 schooztc   10u  IPv4 1788584639      0t0  TCP 199.79.63.83:40843 (LISTEN)
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 201.3% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3093137  0.0  0.0 139272  2036 ?        S    15:49   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3117577  0.0  0.0 139272  2040 ?        S    15:57   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3170670  0.0  0.0 139272  2032 ?        S    15:58   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3377479 21.9  0.6 520352 199712 ?       R    16:07   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3377663 21.6  0.5 514488 192608 ?       R    16:07   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc 3377758 22.2  0.5 508132 186600 ?       R    16:07   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3378966 22.5  0.5 491516 170728 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3379323 22.7  0.4 483940 162812 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3379440 22.6  0.5 485836 164760 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3382915 15.4  0.2 431332 84128 ?        R    16:08   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-admin/admin-ajax.php
+schooztc 3386295 22.3  0.2 430728 82036 ?        R    16:08   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3390307 17.3  0.1 425616 52832 ?        R    16:08   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3093137  0.0  0.0 139272  2036 ?        S    15:49   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3117577  0.0  0.0 139272  2040 ?        S    15:57   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3170670  0.0  0.0 139272  2032 ?        S    15:58   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3377479 21.9  0.6 520352 199712 ?       R    16:07   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3377663 21.6  0.5 514488 192608 ?       R    16:07   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc 3377758 22.2  0.5 508132 186600 ?       R    16:07   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3378966 22.5  0.5 491516 170728 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3379323 22.7  0.4 483940 162812 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3379440 22.6  0.5 485836 164760 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3382915 15.4  0.2 431332 84128 ?        R    16:08   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-admin/admin-ajax.php
+schooztc 3386295 22.3  0.2 430728 82036 ?        R    16:08   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3390307 17.3  0.1 425616 52832 ?        R    16:08   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3093137  0.0  0.0 139272  2036 ?        S    15:49   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3117577  0.0  0.0 139272  2040 ?        S    15:57   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3170670  0.0  0.0 139272  2032 ?        S    15:58   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3377479 21.9  0.6 520352 199712 ?       R    16:07   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3377663 21.6  0.5 514488 192608 ?       R    16:07   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc 3377758 22.2  0.5 508132 186600 ?       R    16:07   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3378966 22.5  0.5 491516 170728 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3379323 22.7  0.4 483940 162812 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3379440 22.6  0.5 485836 164760 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3382915 15.4  0.2 431332 84128 ?        R    16:08   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-admin/admin-ajax.php
+schooztc 3386295 22.3  0.2 430728 82036 ?        R    16:08   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3390307 17.3  0.1 425616 52832 ?        R    16:08   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3093137  0.0  0.0 139272  2036 ?        S    15:49   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3117577  0.0  0.0 139272  2040 ?        S    15:57   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3170670  0.0  0.0 139272  2032 ?        S    15:58   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3377479 21.9  0.6 520352 199712 ?       S    16:07   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3377663 21.6  0.5 514476 192768 ?       R    16:07   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc 3377758 22.3  0.5 508132 186600 ?       R    16:07   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3378966 22.6  0.5 491784 170948 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3379323 22.8  0.4 484404 163384 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3379440 22.7  0.5 486652 165464 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3382915 15.4  0.2 431424 84680 ?        R    16:08   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-admin/admin-ajax.php
+schooztc 3386295 22.5  0.2 431048 82472 ?        R    16:08   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3390307 18.0  0.1 425612 53140 ?        R    16:08   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3093137  0.0  0.0 139272  2036 ?        S    15:49   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3117577  0.0  0.0 139272  2040 ?        S    15:57   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3170670  0.0  0.0 139272  2032 ?        S    15:58   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 3377479 22.2  0.6 520608 199836 ?       R    16:07   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3377663 22.0  0.5 515756 194236 ?       S    16:07   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc 3377758 22.4  0.5 508132 186600 ?       R    16:07   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3378966 23.1  0.5 496100 175244 ?       R    16:07   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3379323 23.3  0.5 489820 168856 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3379440 23.2  0.5 492256 171020 ?       R    16:07   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3382915 16.1  0.2 433028 87264 ?        R    16:08   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-admin/admin-ajax.php
+schooztc 3386295 23.6  0.2 431952 85348 ?        R    16:08   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3390307 22.0  0.1 427076 56800 ?        R    16:08   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  16:08:16 up 179 days, 39 min,  0 users,  load average: 0.08, 0.02, 0.01
+
+
+MySQL User Processes:
+ID = 67454350	TIME = 2	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67454338	TIME = 2	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67454313	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67454284	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67454283	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67454282	TIME = 2	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67454263	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = UPDATE `wp_options` SET `option_value` = 'a:17:{s:13:\"administrator\";a:2:{s:4:\"name\";s:13:\"Administrator\";s:12:\"capabilities\";a:267:{s:13:\"switch_themes\";b:1;s:11:\"edit_themes\";b:1;s:16:\"activate_plugins\";b:1;s:12:\"edit_plugins\";b:1;s:10:\"
+ID = 67454257	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67454247	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (8354,8319,8299,7523,7123,7121,6786,4526,2901,125,87) ORDER BY meta_id ASC
+
+Current load:  16:08:16 up 179 days, 39 min,  0 users,  load average: 0.08, 0.02, 0.01
+
+

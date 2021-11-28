@@ -1,0 +1,93 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Company Documents</h1>
+<h3 class="mb-4">Upload</h3>
+
+<section class="row no-gutters justify-content-center">
+	<!--{if !empty($companydoc)}-->
+		<!--{$content_stripe=$companydoc->content_stripe}-->
+		<!--{if !empty($fail)}-->
+			<div class="col-md-12">
+				<!--{$fail}-->
+			</div>
+		<!--{/if}-->
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-body" style="overflow-y: auto; max-height: 300px;">
+					<h4 class="card-title">
+						<!--{$companydoc->title}-->
+					</h4>
+					<div class="card-text">
+						<!--{if !empty($companydoc->file) and file_exists($companydoc->file)}--><a class="btn btn-outline-success btn-light" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$companydoc->file}-->" target="__blank">Download <!--{$companydoc->title}--></a><!--{/if}-->
+					</div>
+					<div class="card-text">
+						<!--{$companydoc->content_stripe}-->
+					</div>
+				</div>
+				<span class="card-footer">
+					<!--{$companydoc->dateadded|date_format}--> <br>
+					<!--{if !$companydoc->acknowledged}-->
+						<a class="btn btn-sm my-1 btn-warning" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/companydoc?id=<!--{$companydoc->id}-->&acknowledge=true"><i class="fa fa-mark"></i>Acknowledge</a>
+					<!--{else}-->
+						<a class="btn btn-sm my-1 btn-success" href="#"><i class="fa fa-mark"></i>Acknowledged</a>
+					<!--{/if}-->
+					<!--{if $companydoc->addedby == $userinfo->email}-->
+						<a class="btn btn-sm btn-success text-white rounded-0" type="button" data-toggle="collapse" data-target="#newBlogInfo" aria-expanded="true" aria-controls="newBlogInfo" id="newBlog"><i class="fa fa-pencil-square"></i>Edit Update</a>
+						<button class="btn btn-sm btn-danger mb-1" type="button" data-toggle="collapse" data-target="#deleteNewsInfo" aria-expanded="true" aria-controls="deleteNewsInfo" id="deleteNews"><i class="fa fa-trash"></i> Delete Update</button>&nbsp;
+					<!--{/if}-->
+				</span>
+			</div>
+		</div>
+		
+		<!--{if $companydoc->addedby == $userinfo->email}-->
+        <div class="col-md-6" id="accordion">
+			<div class="collapse" id="newBlogInfo" aria-labelledby="newBlog" data-parent="#accordion">
+				<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/companydoc?id=<!--{$companydoc->id}-->" enctype="multipart/form-data">
+					<div class="row justify-content-center">	
+						<div class="col-md-12 card card-body">
+							<fieldset>
+								<legend>Edit Doc Detail</legend>
+								<div class="form-group">
+									<label for="title"><h5>Title <sup class="text-danger">(*)</sup></h5></label>
+									<input type="text" id="title" name="title" value="<!--{$companydoc->title}-->" class="form-control input-block lh-3" required/>
+									<hr/>
+								</div>
+				                <div class="form-group">
+				                 	<label for="doc_upload">Upload File <i class="fa fa-file-archive"></i>  <i class="fa fa-file-pdf"></i></label>
+				                 	<input type="file" accept="application/*" id="doc_upload" class="form-control input-rounded" name="doc_upload"/>
+				                </div>
+								<div class="form-group">
+									<label for="content" class="form-control-label"><h5>Briefing <sup class="text-danger">(*)</sup></h5></label>
+									<!-- <textarea id="content" name="content" class="form-control form-control-sm input-block" rows="10" required></textarea> -->
+									<div id="editcontent"></div>
+									<input type="hidden" name="content" id="content" class="addContent" value="<!--{$companydoc->content}-->" required/>
+								</div>
+								<div class="form-group text-center">
+									<button class="btn btn-success btn-lg rounded-0" type="submit" name="edit_update"><i class="fa fa-save"></i> Save Changes</button>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div id="deleteNewsInfo" class="collapse" aria-labelledby="deleteNews" data-parent="#accordion">
+				<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/companydoc?id=<!--{$companydoc->id}-->" class="w-100">
+						<div class="alert alert-danger alert-dismissible border border-success px-3 rounded" role="alert">
+							<p>Are you sure to delete this document?</p>
+							<p>Note that every stored details relating to the document will be lost and unrecoverable afther this event is triggered</p>
+							<p class="text-center">
+								<input type="hidden" name="delete" value="true">
+								<button class="btn btn-danger" type="submit" name="delete_upload">Proceed</button>&nbsp;
+								<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#deleteNewsInfo" aria-expanded="true" aria-controls="deleteNewsInfo" id="deleteNews">Cancel</button>
+							</p>
+						</div>
+				</form>
+			</div>
+		</div>
+	<!--{/if}-->
+	<!--{else}-->
+		<h4 class="col-9">Cannot find this update.</h4>
+	<!--{/if}-->
+</section>
+<!--{/block}-->

@@ -1,0 +1,65 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Create Login</h1>
+    <!-- DataTales Example -->
+          <div class="row justify-content-center">
+              <!--{if !empty($item)}-->
+              <div class="col-lg-6">
+                 <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-dark">Employee Detail</h6>
+                  </div>
+                  <div class="card-body">
+                    <p> Employee ID: <!--{$item->employeeid}--></p>
+                    <hr>
+                    <h5>Personal Details</h5>
+                    <p> Name: <!--{$item->surname|ucfirst}--> <!--{$item->first_name|ucfirst}--> </p>
+                    <p> Email: <!--{$item->email}--></p>
+                    <p> Department: <!--{$item->department}--></p>
+                    <hr>
+                    <h5>Create Login Details</h5>
+                    <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/create_login?id=<!--{$item->employeeid}-->" method="post">
+                      <div class="form-group"><hr/></div>
+                      <div class="form-group">
+                        <label for="userrole">Official Role</label>
+                        <select id="userrole" name="userrole" required class="form-control signup-input">
+                        <!--{if $userinfo->userrole == 'level0'}--> <option  value="level0">Super Admin</option> <!--{/if}--> 
+                          <option value="level1">BDM</option>
+                          <option value="level2">Manager</option>
+                          <option value="level3">Supervisor</option>
+                          <option selected value="level4">Employee</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="username" class="form-control-label">Date Hired</label>
+                        <input type="date" class="form-control form-control-user" id="datehired" name="datehired" value="">
+                      </div>
+                      <div class="form-group">
+                        <label for="username" class="form-control-label">Username</label>
+                        <input type="text" class="form-control form-control-user" id="username" name="username" value="<!--{$item->username}-->" readonly placeholder="Username">
+                      </div>
+                      <div class="form-group">
+                        <label for="password" class="form-control-label">Password</label>
+                            <input type="text" class="form-control form-control-user genedPass" name="password" id="password">
+                            <input type="button" class="btn btn-info m-2 genPassword" id="genPassword" value="Generate Password">
+                      </div>
+                      <div class="form-group text-center">
+                          <button type="submit" class="btn btn-success" name="triggers" value="create_login">Create Login</button>
+                      </div>
+                    </form>
+                    <!--{if !empty($fail)}-->
+                      <!--{$fail}-->
+                    <!--{/if}-->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--{else}-->
+                <h2>Not Found</h2>
+            <!--{/if}-->
+            <div class="form-group">
+              
+            </div>
+<!--{/block}-->

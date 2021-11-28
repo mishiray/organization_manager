@@ -1,0 +1,179 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Marketing Business Report</h1>
+<p class="mb-4">The table contains marketing report  for the business</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"><!--{if !empty($type)}--> <!--{$type|capitalize}--> <!--{/if}--> Reports</h6>
+  </div>
+  
+  <div class="card-body">
+    <div class="col-lg-6 bg-primary pt-4 m-4">
+      <form id="mainForm" method="POST" class="d-flex" enctype="multipart/form-data" name="reportsform">
+        <div class="form-group">
+          <label class="text-light" for="Year">Enter Year</label>
+              <select class="form-control" id="Year"  name="year">
+                <!--{for $foo=2010 to 3000}-->
+                  <option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+                    <!--{$foo}-->
+                  </option>
+                <!--{/for}-->
+              </select>
+        </div>
+        <div class="form-group">
+          <label class="text-light" for="month">Select Month</label>
+              <select class="form-control" id="month"  name="month">
+                <option value="">All</option>
+                <!--{foreach $months as $month}-->
+                  <option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+                    <!--{$month}-->
+                  </option>
+                <!--{/foreach}-->
+              </select>
+        </div>
+        <div class="form-group">
+          <label class="text-light" for="week">Select Week</label>
+              <select class="form-control" id="week"  name="week">
+                <option value="">All</option>
+                <option <!--{if !empty($filter->week) && $filter->week == 1 }--> selected <!--{/if}-->  value="1">
+                  Week 1
+                </option>
+                <option <!--{if !empty($filter->week) && $filter->week == 2 }--> selected <!--{/if}-->  value="2">
+                  Week 2
+                </option>
+                <option <!--{if !empty($filter->week) && $filter->week == 3 }--> selected <!--{/if}-->  value="3">
+                  Week 3
+                </option>
+                <option <!--{if !empty($filter->week) && $filter->week == 4}--> selected <!--{/if}-->  value="4">
+                  Week 4
+                </option>
+                <option <!--{if !empty($filter->week) && $filter->week == 5}--> selected <!--{/if}-->  value="5">
+                  Week 5
+                </option>
+              </select>
+        </div>
+        <div class="form-group d-flex"> 
+          <button type="submit" class="mt-2 btn btn-success" name="triggers" id="reports" value="reports">OK</button>
+       </div>      
+     </form>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="form-group d-none col-4">
+        <select class="form-control"name="forma" onchange="location = this.value;">
+          <option selected disabled value="">Select Report Filter</option>
+          <option value="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/reports">All Reports</option>
+          <option value="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/reports?type=daily">Todays Report</option>
+          <option value="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/reports?type=weekly">Weekly Reports</option>
+        </select>
+    </div>
+    <div class="table-responsive">
+        <!--{if !empty($reports)}-->
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th scope="col">S/N</th>
+				      <th scope="col">Marketer's Detail</th>
+				      <th scope="col">Client Detail</th>
+				      <th scope="col">Other Detail</th>
+				      <!--{if in_array($userinfo->userrole, array('level1','level0'))}-->
+				      <!--{/if}-->
+				      <th scope="col">Status <!approved by supervisor, confirmed by md, declined by supervisor, rejected by md, deleted by both on priority bases, pending></th>
+				      <th scope="col">Report Date</th>
+				      <th scope="col"></th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th scope="col">S/N</th>
+				      <th scope="col">Marketer's Detail</th>
+				      <th scope="col">Client Detail</th>
+				      <th scope="col">Other Detail</th>
+				      <!--{if in_array($userinfo->userrole, array('level1','level0'))}-->
+				      <!--{/if}-->
+				      <th scope="col">Status <!approved by supervisor, confirmed by md, declined by supervisor, rejected by md, deleted by both on priority bases, pending></th>
+				      <th scope="col">Report Date</th>
+				      <th scope="col"></th>
+          </tr>
+        </tfoot>
+        <tbody>
+            <!--{$numCount=1}-->
+            <!--{foreach $reports as $report}-->
+          <tr>
+            <td><!--{$numCount}--></td>
+            <td>
+                <h6><span class="font-weight-bold">Name: </span><!--{$report->marketerDetail->firstname}--> <!--{$report->marketerDetail->lastname}--> </h6>
+                <h6><span class="font-weight-bold">Username: </span><!--{$report->marketerDetail->username}--> </h6>
+                <h6><span class="font-weight-bold">Email: </span> <!--{$report->user}--></h6>
+            </td>
+            <td>
+                <h6><span class="font-weight-bold">Clients Name: </span> <!--{$report->client}--></h6>
+                <h6><span class="font-weight-bold">Clients Phone No: </span> <!--{$report->clientphone}--></h6>
+                <h6><span class="font-weight-bold">Clients Email: </span> <!--{$report->clientemail}--></h6>
+                <h6><span class="font-weight-bold">Clients Address: </span> <!--{$report->address}--></h6>
+            </td>
+            <td>
+                <h6 class=""><span class="font-weight-bold">Project Name: </span> <!--{$report->project}--></h6>
+                <h6 class="d-none"><span class="font-weight-bold">Report Title: </span> <!--{$report->title1}--></h6>
+                <h6><span class="font-weight-bold">Clients Budget: </span># <!--{$report->budget}--></h6>
+                <h6><span class="font-weight-bold">Clients Request Type: </span> <!--{$report->requesttype}--></h6>
+                <h6><span class="font-weight-bold">Clients Location: </span> <!--{$report->location}--></h6>
+              <div style="max-height: 200px; overflow-y: auto;">
+                    <h6 class="float-left"><span class="font-weight-bold">Marketer's Comment: </span> </h6>
+                  <!--{$report->content_stripe}-->
+              </div>
+            </td>
+            <!--{if in_array($userinfo->userrole, array('level1','level0'))}-->
+            <!--{/if}-->
+            <td>
+                <!--{if in_array($userinfo->userrole, array('level3')) }-->
+                    <!--{if $report->status==0}--><span class="badge badge-pill badge-warning">submited to supervisor</span>
+                    <!--{elseif $report->status==1}--><span class="badge badge-pill badge-info">approved by supervisor</span>
+                    <!--{elseif $report->status==2}--><span class="badge badge-pill badge-success">fully approved</span>
+                    <!--{elseif $report->status==3}--><span class="badge badge-pill badge-danger">declined by supervisor</span>
+                    <!--{elseif $report->status==4}--><span class="badge badge-pill badge-danger">fully declined</span>
+                    <!--{/if}-->
+                <!--{elseif in_array($userinfo->userrole, array('level5'))}-->
+                    <!--{if $report->status==0}--><span class="badge badge-pill badge-warning">pending report</span>
+                    <!--{elseif $report->status==1}--><span class="badge badge-pill badge-info">submitted to MD</span>
+                    <!--{elseif $report->status==2}--><span class="badge badge-pill badge-success">approved by MD</span>
+                    <!--{elseif $report->status==3}--><span class="badge badge-pill badge-danger">declined</span>
+                    <!--{elseif $report->status==4}--><span class="badge badge-pill badge-danger">declined by MD</span>
+                    <!--{/if}-->
+                <!--{elseif in_array($userinfo->userrole, array('level1'))}-->
+                    <!--{if $report->status==0}--><span class="badge badge-pill badge-info">pending report</span>
+                    <!--{elseif $report->status==1}--><span class="badge badge-pill badge-info">pending report</span>
+                    <!--{elseif $report->status==2}--><span class="badge badge-pill badge-success">approved</span>
+                    <!--{elseif $report->status==3}--><span class="badge badge-pill badge-danger">declined by supervisor</span>
+                    <!--{elseif $report->status==4}--><span class="badge badge-pill badge-danger">declined</span>
+                    <!--{/if}-->
+                <!--{else}-->
+                    <!--{if $report->status==0}--><span class="badge badge-pill badge-warning">pending (marketer)</span>
+                    <!--{elseif $report->status==1}--><span class="badge badge-pill badge-success">approved (by supervisor)</span>
+                    <!--{elseif $report->status==2}--><span class="badge badge-pill badge-success">approved (by MD)</span>
+                    <!--{elseif $report->status==3}--><span class="badge badge-pill badge-danger">declined (by supervisor)</span>
+                    <!--{elseif $report->status==4}--><span class="badge badge-pill badge-danger">declined (by MD)</span>
+                    <!--{/if}-->
+                <!--{/if}-->
+            </td>
+            <td><!--{$report->dateadded}--></td>
+            <td>
+                <a class="btn btn-sm btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/report?id=<!--{$report->reportid}-->"> Detail</a>
+            </td>
+          </tr>
+            <!--{$numCount=$numCount+1}-->
+          <!--{/foreach}-->
+        </tbody>
+      </table>
+      <!--{else}-->
+			<div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+	  <!--{/if}-->
+    </div>
+  </div>
+</div>
+
+
+<!--{/block}-->

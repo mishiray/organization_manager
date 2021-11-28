@@ -1,0 +1,107 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h1 class="h3 mb-2 text-gray-800">Subscription Letter</h1>
+<div class="row" style="margin-top: 5rem;" id="contract">
+	<div class="card-body">
+		<!--{if !empty($client)}-->
+		<div id="printable" style="background-color: #fff;" class="w-100 container">
+            <div class="row justify-content-center align-items-center text-danger p-3">
+                <div class="col-6 text-center">
+                    <h3 class="large text-center">
+                        <strong>
+                           <!--{$Site.companyName}-->
+                        </strong> 
+                    </h3>
+                </div>
+                <div class="col-4">
+                    <img class="w-25" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/logo.png" alt="" srcset="">
+                </div>
+            </div>
+            <div class="row d-none justify-content-center p-3">
+                <div class="col-md-10 text-center">
+                    <p class="text-danger m-0">Head Office:</p>
+                    <p class="m-0"><!--{$Site.companyAddress}--></p>
+                    <p class="text-danger m-0">Tel:</p>
+                    <p class="m-0">07030561428 | 09091496533</p>
+                </div>
+            </div>
+            <div class="row address justify-content-center p-3">
+                <div class="col-md-10 pl-2">
+                    <p class="text-right"><!--{$client->reg_date|date_format}--></p>
+                    <p class="d-none m-0"><!--{$client->title|ucwords}--> <!--{$client->names}--></p>
+                    <p class="d-none m-0"><!--{$client->address|ucwords}--></p>
+                    <p class="d-none m-0"><!--{$client->state|ucfirst}--> State</p>
+                    <p class="pt-2">
+                        Dear <!--{$client->title|ucwords}--> <!--{$client->names}-->
+                    </p>
+                </div>
+            </div>
+            <div class="row subletter d-block pt-3 px-3">
+                <h2 class="text-center space"> <u> <strong> LETTER FOR SUBCRIPTION AND PAYMENT DETAILS </strong> </u> </h2>
+                <div class="p-4">
+                    <p>
+                        We are delighted to welcome you to Atobe Construction Company Limited; a real estate marketing and construction company, where we put our customers’ interests first especially where property acquisition/investment is concerned. Our team of experienced customer management will be ready to assist you through the process from start to finish.
+                    </p>
+                    <p>
+                        Sequel to your interest to purchase of one our properties – (<!--{$client->product}-->), situated at (<!--{$client->property->location|ucwords}-->), 
+                        please fill our subscription form and find below transaction 
+                        dynamics and payment details:-
+                    </p>
+                    <p>
+                        Product unit cost of <!--{$client->plot_sqm}-->sqm plot - N <!--{$client->amount|number_format}--> <br>
+                        Quantity to be bought is <!--{$client->plot_number}--> plot(s) * <!--{$client->amount|number_format}--> = N <!--{$client->init_total}--> <br>
+                        For Instalment, Initial deposit of <!--{$client->initial_percent}-->% on product value = N <br>
+                        Balance after Initial deposit to be divided by duration of (<!--{$client->duration}-->) month = N
+                    </p>
+                    <p>
+                        For payment options, please choose any of our banks:- <br>
+                        <div class="row w-100">
+                            <div class="col">
+                                <p>
+                                    <strong>
+                                        Zenith Bank Plc			<br>	
+                                        Atobe Construction Company Limited<br>
+                                        Account Number: 1016639064 <br> 
+                                    </strong>
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>
+                                    <strong>
+                                        Gtbank  Plc<br>
+                                        Atobe Construction Company Limited<br>
+                                        Account Number: 0513313685<br>
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+                        Thank you, as we look forward to consummating this business deal as soon as possible.<br>
+
+                        Yours Faithfully<br>
+                        <strong>For: Andromedal Homes Limited<br></strong>
+
+
+                    </p>
+
+                </div>
+            </div>
+        </div>
+		<div class="row text-center justify-content-center m-2">
+            <!--{if $userinfo->email == $client->email}-->
+			<!--{if !$client->saved}-->
+			<button class="btn btn-info m-4" id="acknowledge">Save to My Documents</button>
+			<!--{/if}-->
+		    <!--{/if}-->
+			<button class="btn btn-success m-4" id="printNow">Print Now</button>
+		</div>
+		<!--{else}-->
+			<h3>No letter available</h3>
+		<!--{/if}-->
+		<div class="form-group">
+		<!--{if !empty($fail)}-->
+			<!--{$fail}-->
+		<!--{/if}-->
+		</div>
+	</div>
+</div>
+<!--{/block}-->

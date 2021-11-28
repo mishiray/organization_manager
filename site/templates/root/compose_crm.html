@@ -1,0 +1,68 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard | MESSAGING </strong>&nbsp;<i class="fa fa-envelope"></i> &nbsp;| Compose&nbsp;<i class="fa fa-pencil"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+	<!--{block name="content-main"}-->
+	<section class="container-fluid row justify-content-center">
+		<div class="col-md-7">
+			<form class="form w-100" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/compose_crm" enctype="multipart/form-data">
+				<div class="card card-body justify-content-center mt-3 mb-3">
+					<fieldset class="border border-success rounded px-4">
+						<legend class="text-center p-2 mt-2">Compose Message For Client</legend>
+						<div class="form-group">
+							<!--{if !empty($fail)}-->
+								<!--{$fail}-->
+							<!--{/if}-->
+						</div>
+						<div class="form-group">
+							<label for="sendto"><h5>Send To <sup class="text-danger">(*)</sup></h5></label>
+							<select name="sendto" id="sendto" class="form-control input-block lh-3" onchange="doSomething(this);" required>
+								<option value="*">To All Members</option>
+								<option value="#">To Selected Members</option>
+								<!--{if !empty($projects)}-->
+									<!--{foreach $projects as $project}-->
+									<option value="<!--{$project->token}-->" class="text-dark">To <!--{$project->name|ucwords}--> Subscribers</option>
+									<!--{/foreach}-->		
+								<!--{/if}-->
+							</select>
+							<script>
+								function doSomething(rar){
+									if(rar.selectedIndex==1){
+										$("#select-search").removeClass("d-none");
+									}else{
+										$("#select-search").addClass("d-none");
+									}
+								}
+							</script>
+							<hr/>
+							<div id="select-search" class="text-center d-none">
+							<select name="receivers[]" id="receivers" class="form-control input-block d-none lh-3 lister" multiple>
+								<!--{if !empty($clients)}-->
+									<!--{foreach $clients as $client}-->
+										<option value="<!--{$client->email}-->" class="text-dark">Name: <!--{$client->names|lower|ucwords}-->&nbsp; (<!--{$client->email}-->)</option>
+									<!--{/foreach}-->		
+								<!--{/if}-->
+							</select>
+							</div>
+						</div>
+						<div id="singles" class="form-group d-none">
+						</div>
+						<div class="form-group">
+							<label for="title"><h5>Message Heading | Title <sup class="text-danger">(*)</sup></h5></label>
+							<input type="text" id="title" name="title" value="" class="form-control input-block lh-3" required/>
+							<hr/>
+						</div>
+						<div class="form-group mt-4">
+							<label for="content"><h5>Compose Message <sup class="text-danger">(*)</sup></h5></label>
+							<textarea id="content" name="content" rows="8" class="form-control lh-2" required></textarea>
+						</div>
+						<div class="form-group text-center">
+							<button class="btn btn-success btn-lg rounded-0" type="submit" name="send_message"><i class="fa fa-send"></i> Send</button>
+						</div>
+					</fieldset>
+				</div>
+			</form>
+		</div>
+	<!--{/block}-->
+<!--{/block}-->

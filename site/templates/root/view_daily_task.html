@@ -1,0 +1,137 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Activity Report</h1>
+    <p class="mb-4">View report for the day</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Activity Report</h6>
+      </div>
+      <div class="card-body">
+		<div class="row justify-content-center">
+			<!--{if !empty($task)}-->
+			<div class="col-12">
+				<div class="col-lg-6">  
+					<div class="card shadow mb-4">
+					  <div class="card-header py-3 d-flex bg-info flex-row align-items-center justify-content-between">
+						<h6 class="m-0 font-weight-bold text-light">Task Details</h6>
+					  </div>
+					  <div class="card-body">
+						<p> Employee: <!--{$task->name|ucwords}--></p>
+						<p> Manager: <!--{$employee->manager->name}--></p>
+						<p> Department: <!--{$task->department}--></p>
+						<p> Project: <!--{$task->project}--></p>
+						<p> Task: <!--{$task->task|ucfirst}--></p>
+						<p> Start Date: <!--{$task->start_date|date_format}--></p>
+						<p> End Date: <!--{$task->end_date|date_format}--></p>
+						<p>
+						<!--{if !empty($task->manager_review->comment)}--> <h6><span class="font-weight-bold my-2">Manager/Supervisor Comment: </span> <!--{$task->manager_review	->comment}--> <!--{/if}-->
+						</p>
+						<p>
+							Status:
+							<!--{if $task->status==0}--><span class="badge badge-pill badge-warning">pending</span>
+								<!--{elseif $task->status==1}--><span class="badge badge-pill badge-success">approved</span>
+								<!--{elseif $task->status==2}--><span class="badge badge-pill badge-danger">declined</span>
+							<!--{/if}-->
+						</p>
+					  </div>
+					</div>
+				</div>
+				
+				<div class="row card-body justify-content-center m-4">
+					<p class="text-center">
+						<a class="btn px-4 btn-info" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/daily_tasks">Back</a>
+						<!--{if in_array($userinfo->userrole, array('level0','level1')) or ($userinfo->email == $employee->manager->email) or ($userinfo->email == $employee->email)}-->
+							<button class="btn  btn-warning rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#managetaskInfo" aria-expanded="true" aria-controls="managetaskInfo" id="managetask"><i class="fa fa-pencil"></i> Edit Daily Task</button>
+						<!--{/if}-->
+						<!--{if $userinfo->userrole =='level0'  or ($userinfo->email == $employee->manager->email)}-->
+							<a class="btn  btn-danger rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_daily_task?id=<!--{$task->token}-->&evt=delete" what='delete this task'><i class="fa fa-trash"></i> Delete</a>
+							<button class="btn  btn-primary rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#mangerApprove" aria-expanded="true" aria-controls="mangerApprove" id="manApp"><i class="fa fa-check-circle"></i> Review Task</button>
+						<!--{/if}-->
+					</p>
+				</div>
+				<!--{if !empty($fail)}-->
+				<div class="col">
+				  <div class="form-group">
+					<!--{$fail}-->
+				  </div>
+				</div>
+				<!--{/if}-->
+				<div class="row justify-content-center">
+					<div class="card-body text-justify" id="accordion">
+						<!--{if in_array($userinfo->userrole, array('level0','level1')) or $userinfo->email == $employee->email or ($userinfo->email == $employee->manager->email) }-->
+						<div id="managetaskInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="managetask" data-parent="#accordion">
+							<div class="col-lg-6">  
+								<div class="card shadow mb-4">
+								<div class="card-header py-3 d-flex bg-danger flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-light">Update report Details</h6>
+								</div>
+								<div class="card-body">
+									<form class="" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_daily_task?id=<!--{$task->token}-->" enctype="multipart/form-data">
+												<div class="form-group">
+												<label for="task" class="form-control-label">Task</label>
+													<textarea class="form-control form-control" id="task" name="task" row='4' placeholder="Task"><!--{$task->task}--></textarea>
+												</div>
+												<div class="form-group">
+												<label for="completion_rate" class="form-control-label">Completion Rate</label>
+												<input type="text" class="form-control form-control-user" value="<!--{$task->completion_rate}-->" id="completion_rate" name="completion_rate" placeholder="Completion Rate">
+												</div>
+												<div class="form-group">
+													<label for="end_date" class="form-control-label">End Date</label>
+													<input type="date" class="form-control form-control-user" id="end_date" value="<!--{$task->end_date}-->" name="end_date" placeholder="End Date">
+												</div>
+												<div class="form-group">
+													<label for="note" class="form-control-label">Note</label>
+													<textarea class="form-control form-control" id="task" name="note" rows='4'  placeholder="Notes.."><!--{$task->note}--></textarea>
+												</div>
+												<div class="form-group text-center">
+													<button class="btn btn-danger btn-sm rounded-0" type="submit" name="update_daily_task">Update Daily Task</button>
+												</div>
+									</form>
+								</div>
+								</div>
+							</div>
+							
+						</div>
+						<!--{/if}-->
+					</div>
+				</div>
+
+				
+				<!--{if in_array($userinfo->userrole, array('level0','level1')) or ($userinfo->email == $employee->manager->email)}-->
+	            	<div id="mangerApprove" class="collapse mt-2 row justify-content-center" aria-labelledby="manApp" data-parent="#accordion">
+						<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_daily_task?id=<!--{$task->token}-->" enctype="multipart/form-data" class="w-100">
+							<div class="card card-body">
+								<fieldset class="border rounded border-success px-5 text-justify">
+									<legend class="text-center">Review report</legend>
+									<div class="form-group">
+										<label for="comment" class="form-control-label">Comment</label>
+										<textarea id="comment" name="comment" rows="5" class="form-control form-control-sm input-rounded" required><!--{if !empty($task->manager_review->comment)}--><!--{$task->manager_review->comment}--><!--{/if}--></textarea>
+									</div>
+									<div class="form-group">
+										<label for="status" class="form-control-label">Review Status</label>
+										<select id="status" name="status" class="form-control form-control-sm input-rounded" required>
+											<option value="1" <!--{if $task->status=='2'}-->selected<!--{/if}-->>Approve</option>
+											<option value="2" <!--{if $task->status=='4'}-->selected<!--{/if}-->>Decline</option>
+										</select>
+									</div>
+									<div class="form-group text-center">
+										<button class="btn btn-success btn-sm rounded-0" type="submit" name="mreview">Update Review</button>
+									</div>
+								</fieldset>
+							</div>
+						</form>
+	            	</div>
+	            <!--{/if}-->
+			</div>
+			<!--{else}-->
+				<div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+			<!--{/if}-->
+		</div>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

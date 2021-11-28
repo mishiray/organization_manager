@@ -1,0 +1,64 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h3>My Documents</h3>
+<section class="row justify-content-center">
+	<div class="col-sm-11">
+		<div class="card shadow mb-4">
+			<div class="card-header py-3">
+			<h6 class="m-0 font-weight-bold text-primary">My <!--{$type|ucfirst}--></h6>
+		  	</div>
+			<!--{if !empty($fail)}-->
+			<div class="col">
+				<div class="form-group">
+				<!--{$fail}-->
+				</div>
+			</div>
+			<!--{/if}-->
+			<!--{if !empty($documents)}-->
+			<div class="card-body">
+				<div class="table-responsive">
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+					<thead>
+						<tr>
+							<th>S/N</th>
+							<th>DOCUMENT DETAIL</th>
+							<th>UPLOADED DOC</th>
+							<th>DATE UPLOADED</th>	
+						</tr>
+					</thead>
+					<tbody>
+						<!--{$numCount=1}-->
+						<!--{foreach $documents as $key=> $docs}-->
+						<tr>
+						<td><!--{$numCount}--></td>
+						<td>
+							<h4 class="font-weight-bold"><!--{$docs->description}--></h4> 
+						</td>
+						<td><img id="myImg<!--{$numCount}-->" onclick="modalme(this);" class="img-fluid img-thumbnail" style="max-width: 250px;" alt="<!--{$docs->title}-->" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$docs->file}-->" /></td>
+						<td><!--{$docs->dateadded|date_format}--></td>
+						</tr>
+						<!--{$numCount=$numCount+1}-->
+						<!--{/foreach}-->
+					</tbody>
+				</table>
+				</div>
+			</div>
+			<!--{else}-->
+			<div class="alert alert-warning"><h3 class="alert-heading">No Documents found</h3></div>
+			<!--{/if}-->
+	</div>
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+		<!-- The Close Button -->
+		<span class="close">&times;</span>
+	
+		<!-- Modal Content (The Image) -->
+		<img class="modal-content" id="img01">
+	
+		<!-- Modal Caption (Image Text) -->
+		<div id="caption"></div>
+	</div>
+	</div>
+</section>
+<!--{/block}-->

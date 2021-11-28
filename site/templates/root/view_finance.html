@@ -1,0 +1,286 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<!--{if !empty($finance)}-->
+<section class="row justify-content-center" id="printMe">
+	<div class="col-md-12 card">
+	<div class="card-header py-3">
+		<h6 class="m-0 font-weight-bold text-primary">Finance Report</h6>
+	  </div>
+		<div class="card-body text-center pt-4">
+			<div class="row no-gutters justify-content-center">
+				<div class="col-sm-6 card-body text-dark site-bg-1 px-4">
+					<h4 class="card-title text-center mb-4 font-weight-bold">Creator's Detail</h4>
+					<h6><span class="font-weight-bold my-2">Name: </span> <!--{$finance->recorder->firstname}--> <!--{$finance->recorder->lastname}--></h6>
+			      	<h6><span class="font-weight-bold my-2">Username: </span> <!--{$finance->recorder->username}--></h6>
+			      	<h6><span class="font-weight-bold my-2">Email: </span> <!--{$finance->user}--></h6>
+				</div>
+				<div class="col-sm-6 card-body text-dark site-bg-2 px-4">
+					<h4 class="card-title mb-4 font-weight-bold">Finance Detail</h4>
+					<h5><span class="font-weight-bold my-2">Finance ID: </span> <!--{$finance->financeid}--></h5>
+					<h5><span class="font-weight-bold my-2">Total Credit: </span> ₦<!--{if isset($finance->expenses->credittotal)}--><!--{$finance->expenses->credittotal}--> <!--{else}--> 0.0 <!--{/if}--></h5>
+					<h5><span class="font-weight-bold my-2">Total Debit: </span> ₦<!--{if isset($finance->expenses->credittotal)}--><!--{$finance->expenses->debittotal}--><!--{else}--> 0.0 <!--{/if}--></h5>
+					<h5><span class="font-weight-bold my-2">Total Balance: </span> ₦<!--{if isset($finance->expenses->credittotal)}--><!--{$finance->expenses->grandtotal}--><!--{else}--> 0.0 <!--{/if}--></h5>
+					<h6><span class="font-weight-bold my-2">Status: </span> 
+			      		<!--{if $finance->status==0}--><span class="badge badge-pill badge-warning">pending</span>
+				      	<!--{elseif $finance->status==1}--><span class="badge badge-pill badge-success">approved</span>
+				      	<!--{elseif $finance->status==2}--><span class="badge badge-pill badge-danger">declined</span>
+				      	<!--{/if}-->
+			      	</h6>
+				</div>
+				<div class="col-sm-12 card-body px-4">
+					<p class="text-center">
+						<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finance_reports" class="btn btn-sm btn-warning rounded-0 btn-success-hover mb-1"><i class="fa fa-undo"></i> BACK</a>
+						<!--{if in_array($userinfo->userrole, array('level0','level1')) or $userinfo->email==$finance->user}-->
+							<button class="btn btn-sm btn-secondary rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#manageFinInfo" aria-expanded="true" aria-controls="manageFinInfo" id="manageFin"><i class="fa fa-calculator"></i> Edit Finance</button>
+						<!--{/if}-->
+						<!--{if in_array($userinfo->userrole, array('level0','level1'))}-->
+							<a class="btn btn-sm btn-danger rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance?id=<!--{$finance->financeid}-->&evt=delete" what='delete this finance'><i class="fa fa-trash"></i> Delete</a>
+							<button class="btn btn-sm btn-primary rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#mdApprove" aria-expanded="true" aria-controls="mdApprove" id="mdApp"><i class="fa fa-check-circle"></i> Review Finance</button>
+							<a class="btn d-none btn-sm btn-warning rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance?id=<!--{$finance->financeid}-->&evt=dec" what='decline this finance'><i class="fa fa-times-circle"></i> Decline</a>
+						<!--{/if}-->
+					</p>
+					<!--{if !empty($fail)}-->
+						<p>
+						  <!--{$fail}-->
+						</p>
+					<!--{/if}-->
+				</div>
+	            <div class="col-md-12 card-body text-justify" id="accordion">
+	            	<!--{if in_array($userinfo->userrole, array('level0','level1')) or $userinfo->email==$finance->user}-->
+	            	<div id="manageFinInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="manageFin" data-parent="#accordion">
+						<div class="card card-body">
+							<fieldset class="border rounded border-success px-4 text-justify">
+								<legend class="text-center">Finance Expense Management</legend>
+								<div class="row  text-right">
+									<div class="col justify-content-end p-2 text-right d-flex">
+										<div class="well clearfix m-1">
+											<a class="btn btn-primary pull-right add-record" data-added="0"><i class="fa fa-plus"></i> Add Row</a>
+										</div>
+									</div>
+								</div>
+								<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance?id=<!--{$finance->financeid}-->" enctype="multipart/form-data" class="w-100">
+									<div class="form-group">
+							            <div class="table-responsive">
+							              <table id="financetbl"  class="table table-striped table-hover table-bordered">
+							                <thead class="thead-light">
+											  <tr>
+							                    <th scope="col">S/N</th>
+							                    <th scope="col">Date</th>
+							                    <th scope="col">Bank Account</th>
+							                    <th scope="col">Payment Type</th>
+							                    <th scope="col">Beneficiary Name</th>
+							                    <th scope="col">Expense Category</th>
+							                    <th scope="col">Description</th>
+							                    <th scope="col">Credit</th>
+							                    <th scope="col">Debit</th>
+							                    <th scope="col">Balance</th>
+							                  </tr>
+							                </thead>
+											
+							                <tbody id="financebody">
+												<!--{for $idXX=0; $idXX < $data_length; $idXX++}-->
+								                  <tr id="rec-<!--{$idXX}-->" class="<!--{if $idXX == 0 }--> <!--{/if}-->">
+								                    <td>
+								                    	<span class="font-weight-bold sn"><!--{($idXX+1)}-->.</span>
+								                    </td>
+								                    <td>
+								                      <input type="date" id="date<!--{$idXX}-->" class="form-control form-control-sm border border-success badge-pill" name="date[]" i="<!--{$idXX}-->" value="<!--{if !empty($finance->expenses->date[$idXX])}--><!--{date('Y-m-d',strtotime($finance->expenses->date[$idXX]))}--><!--{/if}-->" placeholder="" <!--{if $idXX==0}-->required<!--{/if}-->>
+													</td>
+													<td>
+														<select class="form-control" id="account<!--{$idXX}-->" name="account[]">
+														<!--{if !empty($accounts)}-->
+															<option selected disabled>Choose</option>
+															<!--{foreach $accounts as $acc}-->
+																<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses->account[$idXX])}--><!--{if $finance->expenses->account[$idXX] == $acc->id}--> selected <!--{/if}--><!--{/if}--> value="<!--{$acc->id}-->" > <!--{$acc->bank_name|ucfirst}-->-<!--{$acc->number}-->-<!--{$acc->currency}--></option>
+															<!--{/foreach}-->
+														<!--{else}-->
+															<option>No Account Added</option>
+														<!--{/if}-->
+														</select>
+													</td>
+													<td>
+														<select class="form-control" id="payment<!--{$idXX}-->" name="payment[]">
+															<option selected disabled>Choose</option>
+															<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses->payment[$idXX])}--><!--{if $finance->expenses->payment[$idXX] == 'bank transfer'}--> selected <!--{/if}--><!--{/if}--> value="bank transfer">Bank Transfer</option>
+															<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses->payment[$idXX])}--><!--{if $finance->expenses->payment[$idXX] == 'cheque'}--> selected <!--{/if}--><!--{/if}-->value="cheque">Cheque</option>
+															<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses->payment[$idXX])}--><!--{if $finance->expenses->payment[$idXX] == 'cash'}--> selected <!--{/if}--><!--{/if}-->value="cash">Cash</option>
+														</select>
+													</td>
+								                    <td>
+								                      <input type="text" id="person<!--{$idXX}-->" class="form-control form-control-sm border border-success badge-pill" name="person[]" i="<!--{$idXX}-->" value="<!--{if !empty($finance->expenses->person[$idXX])}--><!--{$finance->expenses->person[$idXX]}--><!--{/if}-->" placeholder="" <!--{if $idXX==0}-->required<!--{/if}-->>
+								                    </td>
+								                    <td>
+													  <select class="form-control" id="purpose<!--{$idXX}-->" name="purpose[]">
+														<option selected disabled>Choose</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses->purpose[$idXX])}--><!--{if $finance->expenses->purpose[$idXX] == 'wages_alaries'}--> selected <!--{/if}--><!--{/if}-->  value="wages_salaries">Wages & Salaries</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses->purpose[$idXX])}--><!--{if $finance->expenses->purpose[$idXX] == 'maintenance_repair'}--> selected <!--{/if}--><!--{/if}--> value="maintenance_repair">Maintenance & Repair</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses->purpose[$idXX])}--><!--{if $finance->expenses->purpose[$idXX] == 'office_expenses'}--> selected <!--{/if}--><!--{/if}--> value="office_expenses">Office Expenses</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses->purpose[$idXX])}--><!--{if $finance->expenses->purpose[$idXX] == 'stationery'}--> selected <!--{/if}--><!--{/if}--> value="stationery">Stationery</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses->purpose[$idXX])}--><!--{if $finance->expenses->purpose[$idXX] == 'commission'}--> selected <!--{/if}--><!--{/if}--> value="commission">Commission</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses->purpose[$idXX])}--><!--{if $finance->expenses->purpose[$idXX] == 'petty_cash'}--> selected <!--{/if}--><!--{/if}--> value="petty_cash">Petty cash</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses->purpose[$idXX])}--><!--{if $finance->expenses->purpose[$idXX] == 'cost_of_sales'}--> selected <!--{/if}--><!--{/if}--> value="cost_of_sales">Cost of sales</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses->purpose[$idXX])}--><!--{if $finance->expenses->purpose[$idXX] == 'purchase_of_assets'}--> selected <!--{/if}--><!--{/if}--> value="purchase_of_assets">Purchase of assets</option>
+														<option i="<!--{$idXX}-->" <!--{if !empty($finance->expenses->purpose[$idXX])}--><!--{if $finance->expenses->purpose[$idXX] == 'others'}--> selected <!--{/if}--><!--{/if}--> value="others">Others</option>
+													  </select>
+								                    </td>
+								                    <td>
+								                      <textarea id="description" class="form-control  border border-success " name="description[]" value="" i="<!--{$idXX}-->" placeholder=""><!--{if isset($finance->expenses->description[$idXX])}--><!--{$finance->expenses->description[$idXX]}--><!--{/if}--></textarea>
+								                    </td>
+								                    <td>
+								                      <input type="number" id="credit<!--{$idXX}-->" class="form-control form-control-sm border border-success creditInput badge-pill" name="credit[]" i="<!--{$idXX}-->" value="<!--{if isset($finance->expenses->credit[$idXX])}--><!--{$finance->expenses->credit[$idXX]}--><!--{/if}-->" placeholder="" <!--{if $idXX==0}-->required<!--{/if}-->>
+								                    </td>
+								                    <td>
+								                      <input type="number" id="debit<!--{$idXX}-->" class="form-control form-control-sm border border-success debitInput badge-pill" name="debit[]" i="<!--{$idXX}-->" value="<!--{if isset($finance->expenses->debit[$idXX])}--><!--{$finance->expenses->debit[$idXX]}--><!--{/if}-->" placeholder="" <!--{if $idXX==0}-->required<!--{/if}-->>
+								                    </td>
+								                    <td>
+								                      <input type="number" id="balance<!--{$idXX}-->" class="form-control form-control-sm border border-success balanceInput badge-pill" name="balance[]" i="<!--{$idXX}-->" value="<!--{if isset($finance->expenses->balance[$idXX])}--><!--{$finance->expenses->balance[$idXX]}--><!--{elseif $idXX==0}-->0<!--{/if}-->" placeholder="" readonly <!--{if $idXX==0}-->required<!--{/if}-->>
+								                    </td>
+													<td><a class="btn btn-xs <!--{if $idXX == 0 }--> d-none <!--{/if}--> delete-record" data-id="<!--{$idXX+1}-->"><i class="fa fa-trash"></i></a></td>
+     
+								                  </tr>
+							                  <!--{/for}-->
+							                </tbody>
+							                <tfoot>
+							                  <tr> 
+							                    <th colspan="4" class="text-center">
+							                      Total Balance
+							                    </th>
+							                    <td class="text-center">
+								                    <input type="number" class="form-control form-control-sm border border-success creditTotal badge-pill" name="credittotal" value="<!--{if isset($finance->expenses->credittotal)}--><!--{$finance->expenses->credittotal}--><!--{/if}-->" placeholder="" required readonly>
+							                    </td>
+							                    <td class="text-center">
+								                    <input type="number" class="form-control form-control-sm border border-success debitTotal badge-pill" name="debittotal" value="<!--{if isset($finance->expenses->debittotal)}--><!--{$finance->expenses->debittotal}--><!--{/if}-->" placeholder="" required readonly>
+							                    </td>
+							                    <td class="text-center">
+								                    <input type="number" class="form-control form-control-sm border border-success balanceTotal badge-pill" name="grandtotal" value="<!--{if isset($finance->expenses->grandtotal)}--><!--{$finance->expenses->grandtotal}--><!--{/if}-->" placeholder="" required readonly>
+							                    </td>
+							                  </tr>
+							                </tfoot>
+							              </table>
+							            </div>
+									</div>
+									<div class="form-group text-center">
+										<button class="btn btn-success btn-sm rounded-0" type="submit" name="managexpense"><i class="fa fa-plus"></i> Update Expense</button>
+									</div>
+								</form>
+							</fieldset>
+						</div>
+					</div>
+	            	<!--{/if}-->
+					<div class="d-none">
+						<table>
+							<tr>
+								<td></td>
+							</tr>
+							<tr class="sample-row d-none" id = "rec-1">
+								<td>
+									<span class="font-weight-bold sn">1</span>
+								</td>
+								<td>
+								  <input type="date" id="date" class="form-control  border border-success" name="date[]" i="" value="" placeholder="" >
+								</td>
+								<td>
+									<select class="form-control" id="account" name="account[]">
+									<!--{if !empty($accounts)}-->
+										<option selected disabled>Choose</option>
+										<!--{foreach $accounts as $acc}-->
+											<option i="" value="<!--{$acc->id}-->" > <!--{$acc->bank_name|ucfirst}-->-<!--{$acc->number}-->-<!--{$acc->currency}--></option>
+										<!--{/foreach}-->
+									<!--{else}-->
+										<option>No Account Added</option>
+									<!--{/if}-->
+									</select>
+								</td>
+								<td>
+									<select class="form-control" id="payment" name="payment[]">
+										<option selected disabled>Choose</option>
+										<option i="" value="bank transfer">Bank Transfer</option>
+										<option i="" value="cheque">Cheque</option>
+										<option i="" value="cash">Cash</option>
+									</select>
+								</td>
+								<td>
+								  <input type="text" id="person" class="form-control  border border-success" name="person[]" i="" value="">
+								</td>
+								<td>
+								  <select class="form-control" id="purpose" name="purpose[]">
+									<option selected disabled>Choose</option>
+									<option i="" value="wages_salaries">Wages & Salaries</option>
+									<option i="" value="maintenance_repair">Maintenance & Repair</option>
+									<option i="" value="office_expenses">Office Expenses</option>
+									<option i="" value="stationery">Stationery</option>
+									<option i="" value="commission">Commission</option>
+									<option i="" value="petty_cash">Petty cash</option>
+									<option i="" value="cost_of_sales">Cost of sales</option>
+									<option i="" value="purchase_of_assets">Purchase of assets</option>
+									<option i="" value="others">Others</option>
+								  </select>
+								</td>
+								<td>
+								  <textarea id="description" class="form-control  border border-success " name="description[]" value="" placeholder=""></textarea>
+								</td>
+								<td>
+								  <input type="number" id="credits" class="form-control  border border-success creditInput " name="credit[]" i="0" value="" placeholder="">
+								</td>
+								<td>
+								  <input type="number" id="debits" class="form-control  border border-success debitInput " name="debit[]" i="0" value="" placeholder="">
+								</td>
+								<td>
+								  <input type="number" id="balances" class="form-control  border border-success balanceInput " name="balance[]" i="0" value="" placeholder="" readonly >
+								</td>
+								<td><a class="btn btn-xs delete-record" data-id="0"><i class="fa fa-trash"></i></a></td>
+	
+							</tr>
+						</table>
+						
+					</div>
+		            <!--{if !empty( (array)$finance->md_review)}-->
+	            	<div id="lawyerInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="lawyerP" data-parent="#accordion">
+	            		<div class="row no-gutters justify-content-center">
+							<div class="col-sm-6 card-body text-white site-bg-1 px-4">
+								<h4 class="card-title text-center my-4 font-weight-bold">MD Detail</h4>
+								<h6><span class="font-weight-bold my-2">Name: </span> <!--{$finance->md->firstname}--> <!--{$finance->md->lastname}--></h6>
+						      	<h6><span class="font-weight-bold my-2">Email: </span> <!--{$finance->md->email}--></h6>
+						      	<h6><span class="font-weight-bold my-2">Phone No: </span> <!--{$finance->md->phone}--></h6>
+								<div class="overflow-v-auto h-max200px my-2 text-justify">
+									<span class="font-weight-bold my-2">Comment: </span><!--{$finance->md_review->comment}-->
+								</div>
+							</div>
+	            		</div>
+	            	</div>
+	            	<!--{/if}-->
+					<!--{if in_array($userinfo->userrole, array('level0','level1'))}-->
+	            	<div id="mdApprove" class="collapse mt-2 row justify-content-center" aria-labelledby="mdApp" data-parent="#accordion">
+						<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance?id=<!--{$finance->financeid}-->" enctype="multipart/form-data" class="w-100">
+							<div class="card card-body">
+								<fieldset class="border rounded border-success px-5 text-justify">
+									<legend class="text-center">Review Finance</legend>
+									<div class="form-group">
+										<label for="comment" class="form-control-label">Comment</label>
+										<textarea id="comment" name="comment" rows="5" class="form-control form-control-sm input-rounded" required><!--{if !empty($finance->md_review->comment)}--><!--{$finance->md_review->comment}--><!--{/if}--></textarea>
+									</div>
+									<div class="form-group">
+										<label for="status" class="form-control-label">Review Status</label>
+										<select id="status" name="status" class="form-control form-control-sm input-rounded" required>
+											<option value="1" <!--{if $finance->status=='2'}-->selected<!--{/if}-->>Approve</option>
+											<option value="2" <!--{if $finance->status=='4'}-->selected<!--{/if}-->>Decline</option>
+										</select>
+									</div>
+									<div class="form-group text-center">
+										<button class="btn btn-success btn-sm rounded-0" type="submit" name="mreview">Update Review</button>
+									</div>
+								</fieldset>
+							</div>
+						</form>
+	            	</div>
+	            	<!--{/if}-->
+	            </div>
+			</div>
+		</div>
+		<div class="card-footer d-none">
+			<button type="button" class="btn btn-primary btn-sm" id="printSect"><i class="fa fa-print"></i> Print Now</button>
+		</div>
+	</div>
+</section>
+<!--{/if}-->
+<!--{/block}-->

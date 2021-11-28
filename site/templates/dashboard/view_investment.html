@@ -1,0 +1,217 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Investment</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Investment Details</h6>
+  </div>
+  <!--{if !empty($subs)}-->
+  <div class="card-body">
+    <h2 class="bg-dark text-light">
+      Reference : <!--{$subs->token}--> 
+    </h2>
+    <h4>
+      <span class="badge badge-<!--{if $subs->paid =='1'}-->success<!--{else}-->warning<!--{/if}-->"><!--{if $subs->paid=='1'}-->PAID<!--{else}-->NOT PAID<!--{/if}--></span>
+    </h4>   
+    <!--{if $subs->status==1}-->
+    <h4><i class="fa fa-check bg-success text-light"></i> You've Cashed Out This Investment</h4> 
+    <!--{/if}-->
+    <!--{if $subs->status==2}-->
+    <h4><i class="fa fa-check bg-success text-light"></i> You Reinvested on Property</h4> 
+    <!--{/if}-->
+    <!--{if $subs->status==3}-->
+    <h4><i class="fa fa-check bg-success text-light"></i> You Took Possession of land</h4>
+    <!--{/if}-->
+  </div> 
+  
+  <div class="row justify-content-center">  
+  
+    <!--{if !empty($subs->img_filename)}-->
+    <div class="col-lg-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex bg-danger flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-light">Profile Photo</h6>
+        </div>
+        <div class="card-body text-center">
+          <img class="w-50" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$subs->img_filename}-->" alt="" srcset="">
+        </div>
+      </div>
+    </div> 
+    <!--{/if}-->
+    <div class="col-lg-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex bg-info flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-light">Property Details</h6>
+        </div>
+        <div class="card-body">
+          <p> <strong>Reference: </strong><!--{$subs->token}--> </p>
+          <hr>
+          <p><strong>Name: </strong><!--{$subs->product}--> </p>
+          <p><strong>Plan Percentage: </strong><!--{$subs->percentage}--> </p>
+          <p><strong>Plot Square Meter: </strong><!--{$subs->category}--> </p>
+          <p><strong>Principal: </strong>&#8358;<!--{$subs->principal|number_format:2}--> </p>
+          <p><strong>Rate Of Interest(ROI): </strong>&#8358;<!--{$subs->roi|number_format:2}--> </p>
+          <p><strong>Matunity: </strong>&#8358;<!--{$subs->maturity|number_format:2}--> </p>
+    
+        </div>
+      </div>
+    </div>  
+    
+    <div class="col-lg-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex bg-info flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-light">Payment Details</h6>
+        </div>
+        <div class="card-body">
+            <p> <strong>Payment Type: </strong><!--{$subs->payment_type}--> </p>
+            <p> <strong>Total Amount: </strong>&#8358;<!--{$subs->total_amount|number_format:2}--> </p> </p>
+            <p> <strong>Total Paid:</strong>&#8358;<!--{$subs->total_paid|number_format:2}--> </p>
+         </div>
+      </div>
+  </div>  
+  
+  <div class="col-lg-6">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex bg-info flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-light">Personal Details</h6>
+      </div>
+      <div class="card-body">
+          <p> <strong>Title: </strong><!--{$subs->title}--> </p>
+          <p> <strong>First Name: </strong><!--{$subs->firstname}--> </p>
+          <p> <strong>Last Name: </strong><!--{$subs->surname}--> </p>
+          <p> <strong>Middle Name: </strong><!--{$subs->middlename}--> </p>
+          <p> <strong>Gender: </strong><!--{$subs->sex}--> </p>
+          <p> <strong>Date of Birth: </strong><!--{$subs->dob}--> </p>
+          <!--{if $subs->marital_status=='married'}-->
+          <hr>
+          <h4 class="bg-info p-3 text-light">Spouse Info</h4>
+          <p> <strong>Spouse First Name: </strong><!--{$subs->spouse_firstname}--> </p>
+          <p> <strong>Spouse Last Name: </strong><!--{$subs->spouse_surname}--> </p>
+          <!--{/if}-->
+          <h4 class="bg-info p-3 text-light">Contact Info</h4>
+          <p> <strong>Mobile: </strong><!--{$subs->mobile}--> </p>
+          <p> <strong>Phone: </strong><!--{$subs->phone}--> </p>
+          <p> <strong>Email: </strong><!--{$subs->email}--> </p>
+        </div>
+      </div>
+  </div>
+  
+      <div class="col-lg-6">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3 d-flex bg-info flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-light">Address Details</h6>
+          </div>
+          <div class="card-body">
+                <p> <strong>Address: </strong><!--{$subs->address}--> </p>
+                <p> <strong>City: </strong><!--{$subs->city}--> </p>
+                <p> <strong>LGA: </strong><!--{$subs->lga}--> </p>
+                <p> <strong>State: </strong><!--{$subs->state}--> </p>
+                <p> <strong>Country: </strong><!--{$subs->country}--> </p>
+              <hr>
+              <h4 class="bg-info p-3 text-light">Next Of Kin</h4>
+                <p> <strong>First Name: </strong><!--{$subs->nok_firstname}--> </p>
+                <p> <strong>Last Name: </strong><!--{$subs->nok_surname}--> </p>
+                <p> <strong>Middle Name: </strong><!--{$subs->nok_middlename}--> </p>
+                <p> <strong>Phone: </strong><!--{$subs->nok_phone}--> </p>
+                <p> <strong>Address: </strong><!--{$subs->nok_address}--> </p>
+              <hr>
+              <h4 class="bg-info p-3 text-light">Refree</h4>
+                <p> <strong>Full Name: </strong><!--{$subs->ref_fullname}--> </p>
+                <p> <strong>Phone: </strong><!--{$subs->ref_phone}--> </p>
+                <p> <strong>Email: </strong><!--{$subs->ref_email}--> </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12"> 
+          <!--{if !empty($payments)}-->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex bg-info flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-light">Client Payments</h6>
+                </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>SN</th>
+                    <th>Transaction Id</th>
+                    <th>Paid By</th>
+                    <th>Amount</th>
+                    <th>Purpose</th>
+                    <th>Transaction Date</th>
+                    <th>Gate Way</th>
+                    <th>Status</th>
+                    <th>Proof</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>SN</th>
+                    <th>Transaction Id</th>
+                    <th>Paid By</th>
+                    <th>Amount</th>
+                    <th>Purpose</th>
+                    <th>Transaction Date</th>
+                    <th>Gate Way</th>
+                    <th>Status</th>
+                    <th>Proof</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  <!--{$numCount=1}-->
+                  <!--{foreach $payments as $pay}-->
+                  <tr>
+                    <td><!--{$numCount}--></td>
+                    <td>
+                      <strong><!--{$pay->transid1}--></strong>
+                    </td>
+                    <td>
+                      <!--{$pay->paidby}-->
+                    </td>
+                    <td>
+                      <strong>Amount: </strong><!--{$pay->amount}--> <br>
+                    </td>
+                    <td>
+                      <!--{$pay->purpose}-->
+                    </td>
+                    <td>
+                      <!--{$pay->transdate}-->
+                    </td>
+                    <td>
+                      <!--{$pay->gateway}-->
+                    </td>
+                    <td>
+                        <span class="badge badge-<!--{if $pay->status =='1'}-->success<!--{else}-->warning<!--{/if}-->"><!--{if $pay->status=='1'}-->Success<!--{else}-->Failed<!--{/if}--></span></td>
+                    </td>
+                    <td>
+                      <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$pay->proof}-->"><!--{$pay->proof}--></a>
+                    </td>
+                  </tr>
+                  <!--{$numCount=$numCount+1}-->
+                <!--{/foreach}-->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </div>
+          <!--{else}-->
+          <div class="alert alert-warning"><h3 class="alert-heading">No Payments Made</h3></div>
+          <!--{/if}-->
+          </div>
+      <!--{if !empty($fail)}-->
+          <!--{$fail}-->
+      <!--{/if}-->
+      <div class="row card-body justify-content-center m-4">
+          <div class="form-group  mb-2">
+            <a class="btn px-4 btn-warning mr-5" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/investment_details">Back</a>
+          </div>
+      </div>
+ <!--{else}-->
+  <div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

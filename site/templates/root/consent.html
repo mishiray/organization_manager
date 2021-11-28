@@ -1,0 +1,25 @@
+<form class="form w-100" method="post">
+	<fieldset class="card p-2 mt-2">
+		<legend class="text-center">Parents/Guardian Consent</legend>
+		<div class="form-group">
+			<input type="checkbox" name="consent0" required value="1" <!--{if !empty($consents->consent0) and '1'==$consents->consent0 }-->checked<!--{/if}--> class="form-control-xs"/> <span class=" text-capitalize">I give permission for my child's videos to be used by CSS media team for promotional purpose on our website and social media platforms.</span>
+		</div>
+		<div class="form-group">
+			<input type="checkbox" name="consent1" required value="1" <!--{if !empty($consents->consent1) and '1'==$consents->consent1 }-->checked<!--{/if}--> class="form-control-xs"/> <span class=" text-capitalize">We cannot accept responsibility for injuries that may occur as a result of drills (We advise that all drills be undertaken with parent/adult supervision)</span>
+		</div>
+		<div class="form-group d-none">
+			<input type="checkbox" name="consent2" value="1" <!--{if !empty($consents->consent2) and '1'==$consents->consent2 }-->checked<!--{/if}--> class="form-control-xs"/> <span class=" text-capitalize">I give permission for my child to be photographed or filmed by our media team for promotional purpose on our website and social media platforms</span>
+		</div>
+		<div class="form-group d-none">
+			<input type="checkbox" name="consent3" value="1" <!--{if !empty($consents->consent3) and '1'==$consents->consent3 }-->checked<!--{/if}--> class="form-control-xs"/> <span class=" text-capitalize">We cannot accept responsibility for injuries that may occur as a result of academy training or games/matches.</span>
+		</div>
+		<!--{if !empty($fail)}-->
+			<div class="form-group">
+				<!--{$fail}-->
+			</div>
+		<!--{/if}-->
+		<div class="form-group text-center">
+			<button class="btn btn-primary btn-block input-rounded" type="submit" name="consent">Save Changes</button>
+		</div>
+	</fieldset>
+</form>

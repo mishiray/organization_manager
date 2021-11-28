@@ -1,0 +1,81 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Activity Report</h1>
+    <p class="mb-4">Add a new report to the Database</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add Activity Report</h6>
+      </div>
+      <div class="card-body">
+          <!--{if !empty($employee)}-->
+      <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_daily_task" enctype="multipart/form-data">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="name" class="form-control-label">Name</label>
+                  <input type="name" class="form-control form-control-user" id="name" name="name" value="<!--{$employee->surname}--> <!--{$employee->first_name}-->" readonly placeholder="Employee Name">
+                </div>
+                <div class="form-group">
+                    <label for="department" class="form-control-label">Department</label>
+                    <input type="text" class="form-control form-control-user" id="department" readonly name="department" value="<!--{$employee->dept}-->" placeholder="Department">
+                </div>
+                <div class="form-group">
+                    <label for="manager" class="form-control-label">Manager</label>
+                    <input type="text" class="form-control form-control-user" id="manager" name="manager" value="<!--{$employee->manager}-->" placeholder="Manager">
+                </div>
+                <div class="form-group">
+                    <label for="project" class="form-control-label">Project</label>
+                    <input type="text" class="form-control form-control-user" id="project" name="project" placeholder="Project">
+                </div>
+                <div class="form-group">
+                  <label for="task" class="form-control-label">Task</label>
+                    <textarea class="form-control form-control" id="task" name="task" row='4' placeholder="Task"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="completion_rate" class="form-control-label">Completion Rate</label>
+                  <input type="text" class="form-control form-control-user" id="completion_rate" name="completion_rate" placeholder="Completion Rate">
+                </div>
+                <div class="form-group">
+                  <label for="start_date" class="form-control-label">Start Date</label>
+                  <input type="date" class="form-control form-control-user" id="start_date" name="start_date" placeholder="Start Date">
+                </div>
+                <div class="form-group">
+                  <label for="end_date" class="form-control-label">End Date</label>
+                  <input type="date" class="form-control form-control-user" id="end_date" name="end_date" placeholder="End Date">
+                </div>
+                <div class="form-group d-none">
+                    <label for="Duration" class="form-control-label">Duration</label>
+                    <input type="text" class="form-control form-control-user" id="Duration" name="duration" placeholder="Duration">
+                </div>
+                <div class="form-group">
+                    <label for="note" class="form-control-label">Note</label>
+                    <textarea class="form-control form-control" id="task" name="note" rows='4' placeholder="Notes.."></textarea>
+                </div>
+                  <div class="form-group text-center">
+                    <button class="btn btn-primary btn-sm rounded-0" type="submit" name="add_daily_task">Add Daily Task</button>
+                </div>
+            </div>
+            <!--{if !empty($fail)}-->
+            <div class="col">
+              <div class="form-group">
+                <!--{$fail}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <br>
+        </div>
+        
+      </form>
+      <!--{else}-->
+        <div class="form-group">
+            <h2>No report found</h2>
+        </div>
+      <!--{/if}-->
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

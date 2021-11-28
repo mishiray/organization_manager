@@ -1,0 +1,503 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Add new Client</h1>
+    <p class="mb-4">Add a new client to the records</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add Client</h6>
+      </div>
+      <div class="card-body">
+        <form id="mainForm" method="POST" enctype="multipart/form-data" name="propertyForm">
+          
+              <div class="mb-4">
+                <h5 style="background-color: #007bff!important;" class="bg-primary text-light p-2">CUSTOMER INFORMATION</h5>
+                <p>Preferred names for Land Document Preparation</p>
+              </div>
+              <div class="row" id="precheck">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="project">Select Property</label>
+                    <select class="form-control" id="project1"  name="project">
+                      <!--{if !empty($properties)}-->
+                        <!--{foreach $properties as $property}-->
+                          <option value="<!--{$property->token}-->">
+                            <!--{$property->name}-->
+                          </option>
+                          <!--{/foreach}-->
+                      <!--{else}-->
+                        <option value="none">Not Found</option>
+                      <!--{/if}-->
+                    </select>
+                    <button type="submit" class="mt-2 btn btn-primary" name="triggers" id="getProject" value="getProject">OK</button>
+                  </div>
+                </div>
+              </div>
+              <!--{if !empty($project_item)}-->
+              <script>
+                document.getElementById('precheck').classList.add('d-none');
+              </script>
+              <div class="form-group">
+                <div class="row m-4 w-25">
+                  <div class="col">
+                      <p><img style="width: 120px; height: 120px; border-color: #e0e0e0;" id="img_div"/></p>
+                      <p><input type="file" name="uploadfile" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+                      <p><label for="file" style="background-color: #007bff!important; cursor: pointer" class="btn btn-primary mt-1">Upload Image</label></p>
+                  </div>
+                      <script>
+                      var loadFile = function(event) {
+                          var image = document.getElementById('img_div');
+                          image.src = URL.createObjectURL(event.target.files[0]);
+                      };
+                      </script>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="project">Property</label>
+                    <input type="text" id="property" name="property" class="form-control" readonly value="<!--{$project_item->name}-->" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <div class="form-group">
+                      <label for="title">Title</label>
+                      <select name="title" id="title" class="form-control">
+                          <option value="mr">MR</option>
+                          <option value="mrs">MRS</option>
+                          <option value="miss">MISS</option>
+                      </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="surname">Surname</label>
+                    <input type="hidden" name="project" value="<!--{$project_item->name}-->">
+                    <input type="hidden" name="project_token" value="<!--{$project_item->token}-->">
+                    <input type="text" id="surname" name="surname" class="form-control" required />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="middlename">Middle Name</label>
+                    <input type="text" id="middlename" name="middlename" class="form-control"  />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="firstname">First Name</label>
+                    <input type="text" id="firstname" name="firstname" class="form-control" required />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="gender">Sex</label>
+                    <select name="gender" id="gender" class="form-control">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                      <label for="marital">Marital Status</label> <br>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="single" name="marital" value="single" class="custom-control-input">
+                        <label class="custom-control-label" for="single">Single</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="married" name="marital" value="married" class="custom-control-input">
+                        <label class="custom-control-label" for="married">Married</label>
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-2">
+                  <h5>Name of Spouse</h5>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="spousesurname">Surname</label>
+                    <input type="text" id="spousesurname" name="spousesurname" class="form-control"  />                 
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="spousefirstname">First Name</label>
+                    <input type="text" id="spousefirstname" name="spousefirstname" class="form-control"  />
+                  </div>
+                </div>
+              </div>
+  
+              <h5 style="background-color: #007bff!important;" class="bg-primary text-light p-2">CONTACT INFORMATION</h5>
+              <div class="row">
+                <div class="col-2">
+                  <h5>Mobile Number</h5>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="number">Mobile</label>
+                    <input type="text" id="number" name="number" class="form-control" required />                 
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="number1">Phone</label>
+                    <input type="text" id="number1" name="number1" class="form-control"  />                 
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="text" id="email" name="email" class="form-control" required />                 
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="address">Residential Address</label>
+                    <textarea type="text" id="address" name="address" class="form-control" rows="4" required></textarea>                
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="city">City/Town</label>
+                    <input type="text" id="city" name="city" class="form-control" required />                 
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="lga">Local Govt</label>
+                    <input type="text" id="lga" name="lga" class="form-control" required />                 
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="state">State</label>
+                    <input type="text" id="state" name="state" class="form-control" required />                 
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="country">Country of Residence</label>
+                    <input type="text" id="country" name="country" class="form-control" required />                 
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label class="form-label" for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" class="form-control" required />
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="idmode">Mode of Identification</label> <br>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="natid" name="idmode" value="natid" class="custom-control-input">
+                      <label class="custom-control-label" for="natid">Nat Id</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="drivno" name="idmode" value="driverlicense" class="custom-control-input">
+                      <label class="custom-control-label" for="drivno">Drivers LNo</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="passport" name="idmode" value="intpassport" class="custom-control-input">
+                      <label class="custom-control-label" for="passport">Int'l Passport</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="votecard" name="idmode" value="votercard" class="custom-control-input">
+                      <label class="custom-control-label" for="votecard">Voters Card</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="text" class="form-control col" name="otheridmode" id="othersmode" placeholder="others">
+                    </div>
+                   </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <div class="form-group">
+                    <label for="idno">ID Number</label> 
+                    <input type="text" id="idno" name="idno" class="form-control" required />     
+                               
+                  </div>
+                </div>
+                <div class="col-4">
+                  <p class="mt-4">RC NO <small>(For Comany ID only)</small></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="nationality">Nationality</label>
+                    <input type="text" id="nationality" name="nationality" class="form-control" required />                 
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="stateofrigin">State Of Origin</label>
+                    <input type="text" id="stateofrigin" name="stateoforigin" class="form-control" required />                 
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="occupation">Occupation</label>
+                    <input type="text" id="occupation" name="occupation" class="form-control" required />                 
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="empname">Employers Name</label>
+                    <input type="text" id="empname" name="empname" class="form-control"  />                 
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="empaddress">Employers Address</label>
+                    <textarea type="text" id="address" name="empaddress" class="form-control" rows="4"></textarea>                
+                  </div>
+                </div>
+              </div>
+              <h5 style="background-color: #007bff!important;" class="bg-primary text-light p-2">NEXT OF KIN INFORMATION</h5>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="noksurname">Surname</label>
+                    <input type="text" id="noksurname" name="noksurname" class="form-control" required />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="nokmiddlename">Middle Name</label>
+                    <input type="text" id="nokmiddlename" name="nokmiddlename" class="form-control" />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="nokfirstname">First Name</label>
+                    <input type="text" id="nokfirstname" name="nokfirstname" class="form-control" required />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="noknumber">Mobile Number</label>
+                    <input type="text" id="noknumber" name="noknumber" class="form-control" required />                 
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="nokaddress">Residential Address</label>
+                    <textarea type="text" id="nokaddress" name="nokaddress" class="form-control" rows="4" required></textarea>                
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="marital">Plot of Land Options</label> <br>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="residential" name="landuse" value="residential" class="custom-control-input">
+                      <label class="custom-control-label" for="residential">Residential</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="commercial" name="landuse" value="commercial" class="custom-control-input">
+                      <label class="custom-control-label" for="commercial">Commercial</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="number" class="form-control col" name="numplots" id="numplots" onchange="getNumPlots();" placeholder="Number of Plots">
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="600" name="plotsqm" value="600" onclick="getAmt(this);" class="custom-control-input">
+                      <label class="custom-control-label" for="600">550SQM</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="450" name="plotsqm" value="450" onclick="getAmt(this);" class="custom-control-input">
+                      <label class="custom-control-label" for="450">600SQM</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="350" name="plotsqm" value="350" onclick="getAmt(this);" class="custom-control-input">
+                      <label class="custom-control-label" for="350">350SQM</label>
+                    </div>
+                    <script>
+                      function getNumPlots(){
+                        var num = document.getElementById('numplots').value;
+                      var sqm = document.getElementById('sqmeter').value;
+                      var survey = <!--{$project_item->amt_survey}-->;
+                      var newsurvey = num*survey;
+                      document.getElementById('survey').value = newsurvey;
+                      //console.log(num);
+                      //console.log(sqm);
+                      document.getElementById('totalpay').value = 0;
+                      document.getElementById('600').checked = false;
+                      document.getElementById('450').checked = false;
+                      document.getElementById('350').checked = false;
+                      document.getElementById('totalpay').value ="";
+
+                      //console.log(totalpay);
+                      }
+                      var currentValue = 0;
+                        function getAmt(myRadio) {
+                            currentValue = myRadio.value;
+                            var amt = 0;
+                            if(myRadio.value=='350'){
+                                 amt = "<!--{$project_item->amt_350sqm}-->";
+                            }else if(myRadio.value=='450'){
+                               amt = "<!--{$project_item->amt_450sqm}-->";
+                            }else{
+                              amt = "<!--{$project_item->amt_600sqm}-->";
+                            }
+                            var num = document.getElementById('numplots').value;
+                            var survey = document.getElementById('survey').value;
+                            var legal = document.getElementById('legalfee').value;
+  
+                            //console.log(num);
+                            var x = +survey + +legal;
+                            var totalpay = (num * amt) + +x ;
+                            document.getElementById('amount').value = amt;
+                            document.getElementById('sqmeter').value = num * amt;
+                            document.getElementById('totalpay').value = totalpay;
+                            //console.log(totalpay);
+                        }
+                    </script>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-2">
+                  <h5>Referred By</h5>
+                  <small>Please select a refree if you were referred</small>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="marketer" class="form-control-label">Input 4 digit refree code</label>
+                    <input type="text" maxlength="4"  class="form-control"  id="refCode"/>
+                    <input type="hidden"  name="employeeid"  id="employeeid"/>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="refname">Full name</label>
+                    <input type="text"  id="refname" name="refname" readonly class="form-control"  />                 
+                  </div>
+                </div>
+                <div class="col d-none">
+                  <div class="form-group">
+                    <label for="refnumber">Phone Number</label>
+                    <input type="text" id="refnumber" name="refnumber" class="form-control"  />
+                  </div>
+                </div>
+                <div class="col d-none">
+                  <div class="form-group">
+                    <label for="refemail">Email</label>
+                    <input type="text" id="refemail" name="refemail" class="form-control"  />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-2">
+                  <h5>Payment Details</h5>
+                </div>
+                <div class="col-3">
+                  <div class="form-group">
+                    <label for="">Amount:</label>
+                    <input readonly  id="sqmeter" type="number" name="tamount" value="" class="form-control"  />                 
+                    <input   id="amount" type="hidden" name="amount" value="" class="form-control"  />                 
+              
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group">
+                    <label for="">Survey:</label>
+                    <input readonly  id="survey" type="number" name="survey" value="<!--{$project_item->amt_survey}-->" class="form-control"  />                 
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group">
+                    <label for="">Legal Fee</label>
+                    <input readonly  id="legalfee" type="number" name="legal"  value="<!--{$project_item->legal_fee}-->" class="form-control"  />                 
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="">Total Payable</label> <br>
+                <input readonly  id="totalpay" type="number" name="totalpay" value="" class="form-control"  />                 
+              </div>
+              <div class="form-group">
+                <label for="marital">Payment Options</label> <br>
+  
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="paystackpay" name="paymenttype" value="paystack" onclick="handleClick(this);" class="custom-control-input">
+                  <label class="custom-control-label" for="paystackpay">Paystack now</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="laterpay" name="paymenttype" value="laterpay" onclick="handleClick(this);" class="custom-control-input">
+                  <label class="custom-control-label" for="laterpay">Later</label>
+                </div>
+              </div>
+              <script>
+                var currentValue = 0;
+                  function handleClick(myRadio) {
+                      console.log('New value: ' + myRadio.value);
+                      currentValue = myRadio.value;
+                      if(myRadio.value=='paystack'){
+                          document.getElementById('mainButton').classList.add("d-none");
+                          document.getElementById('secButton').classList.remove("d-none");
+                      }else{
+                          document.getElementById('secButton').classList.add("d-none");
+                          document.getElementById('mainButton').classList.remove("d-none");
+                      }
+                  }
+              </script>
+            <div class="form-check mb-4">
+              <input type="checkbox" class="form-check-input" id="formcheck" required>
+              <label class="form-check-label" for="formcheck">I hereby affirm that all information filled in as requirement for land purchase in <!--{$project_item->name}--> at <!--{$project_item->location}--> is true and any false information provided by me may result in termination of my application.</label>
+            </div>
+            <div class="form-check mb-4">
+              <input type="checkbox" class="form-check-input" id="formcheck2" required>
+              <label class="form-check-label" for="formcheck2">I hereby affirm that i have read the <a target="_Blank" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/property-faq?id=<!--{$project_item->token}-->">FAQ</a> for <!--{$project_item->name}--> </label>
+            </div>
+          <div id="mainButton" class="form-group text-center d-none">
+          <button  type="submit" class="btn btn-md btn-warning mainButton" name="triggers" value="subscribeProduct">Submit</button>
+          </div>
+  
+          <div id="secButton" class="form-group text-center d-none">
+             <div  id="paypal-member-signup"></div>
+            <button class="btn btn-md btn-success " type="submit" name="triggers" value="signup">Pay and Submit</button>
+          </div>
+          <!--{else}-->
+          <h3>Select a property</h3>
+          <!--{/if}-->
+          <div class="form-row">
+            <!--{if !empty($fail)}-->
+                <!--{$fail}-->
+            <!--{/if}-->
+        </div>
+        </form>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

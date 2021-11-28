@@ -1,0 +1,65 @@
+Wed Feb  5 15:34:34 GMT 2020
+Running Processes:
+schooztc   464608  0.4  0.0  79484 19856 ?        S    15:30   0:01 dovecot/lmtp [local READY]
+schooztc   523985 63.3  0.2 433384 95152 ?        R    15:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 83% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc  523985 77.0  0.4 468524 147724 ?       R    15:34   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  524049  133  0.2 428912 75188 ?        R    15:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc  523985 71.8  0.5 495656 174396 ?       R    15:34   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  524049 70.5  0.2 430080 77780 ?        R    15:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc  523985 73.4  0.5 498696 177308 ?       R    15:34   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  524049 74.5  0.2 430232 79776 ?        R    15:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc  523985 74.6  0.5 499484 178364 ?       S    15:34   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  524049 78.0  0.2 431048 82224 ?        R    15:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc  523985 76.0  0.5 501532 180520 ?       R    15:34   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  524049 81.5  0.2 432892 85820 ?        R    15:34   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  15:34:36 up 180 days, 5 min,  0 users,  load average: 0.04, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 67832305	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67832290	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT      t1.term_id, t2.name
+				  FROM        wp_term_taxonomy AS t1
+				  INNER JOIN wp_terms AS t2 ON t1.term_id = t2.term_id
+				  WHERE t1.taxonomy = 'course_category'
+				  AND t1.count > 0
+
+Current load:  15:34:36 up 180 days, 5 min,  0 users,  load average: 0.04, 0.01, 0.00
+
+

@@ -1,0 +1,137 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Facility Report</h1>
+<!--{if !empty($report)}-->
+<section class="row justify-content-center" id="printMe">
+	<div class="card">
+		<div class="card-body text-center pt-4">
+			<div class="row no-gutters justify-content-center">
+				<div class="col-sm-6 card-body text-dark">
+					<h4 class="card-title text-center mb-4 font-weight-bold">Employee Details</h4>
+			      	
+					<h6><span class="font-weight-bold my-2">Name: </span><!--{$report->name|ucfirst}--></h6>
+					<h6><span class="font-weight-bold my-2">Email: </span> <!--{$report->email}--></h6>
+					<h6><span class="font-weight-bold my-2">Department: </span> <!--{$report->department}--></h6>
+					<hr class="bg-white">
+					<h4 class="card-title text-center mb-4 font-weight-bold">Report Details</h4>
+					<h6><span class="font-weight-bold my-2">Facility Affected: </span> <!--{$report->facility}--> : <!--{$report->fac_name|ucfirst}--> </h6>
+			      	<h6><span class="font-weight-bold my-2">Desceiption: </span> <!--{$report->report}--></h6>
+			      	<h6><span class="font-weight-bold my-2">Severity: </span> <!--{$report->severity}--></h6>
+			      	<h6><span class="font-weight-bold my-2">Note:  </span> <!--{$report->note}--></h6>
+					<!--{if !empty($report->image)}--> 
+					<h6><span class="font-weight-bold my-2">Uploaded Image:  </span> <a class="btn btn-outline-success mt-1 btn-sm btn-light" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$report->image}-->" target="__blank"><small>View Image</small></a></h6>
+					<!--{/if}-->
+					   
+					<h6><span class="font-weight-bold my-2">Date Added:  </span> <!--{$report->dateadded|date_format:"%D, %l:%m %p"}--></h6>
+					<h6><span class="font-weight-bold my-2">Date Completed:  </span> <!--{$report->datecompleted|date_format:"%D, %l:%m %p"}--></h6>
+					<hr class="bg-white">
+					  <h6><span class="font-weight-bold my-2">Status: </span>
+						
+				      		<!--{if $report->status==1}--><span class="badge badge-pill badge-warning">Not Done</span>
+								<!--{elseif $report->status==2}--><span class="badge badge-pill badge-info">Acknowledged</span>
+								<!--{elseif $report->status==3}--><span class="badge badge-pill badge-info">Done</span>
+								<!--{elseif $report->status==4}--><span class="badge badge-pill badge-success">Fully Accepted</span>
+							<!--{/if}-->
+			      	</h6>
+				</div>
+
+				<div class="col-sm-12 card-body px-4">
+					<p class="text-center">
+						<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/facility_reports" class="btn btn-sm btn-warning rounded-0 btn-success-hover mb-1"><i class="fa fa-undo"></i> BACK</a>
+						<!--{if $report->status == 1}-->
+							<button class="btn btn-sm btn-primary rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#editReportInfo" aria-expanded="true" aria-controls="editReportInfo" id="editReport"><i class="fa fa-pencil-square"></i> Edit Report</button>
+							<a class="btn btn-sm btn-info rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/facility_report?token=<!--{$report->token}-->&evt=acknowledge" what='acknowledge this report'></i> Acknowledge</a>
+							<a class="btn btn-sm btn-danger rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/facility_report?token=<!--{$report->token}-->&evt=delete" what='delete this report'><i class="fa fa-trash"></i> Delete</a>
+						<!--{/if}-->
+
+						<!--{if $report->status == 2}-->
+							<button class="btn btn-sm btn-primary rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#editReportInfo" aria-expanded="true" aria-controls="editReportInfo" id="editReport"><i class="fa fa-pencil-square"></i> Edit Report</button>
+							<a class="btn btn-sm btn-info rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/facility_report?token=<!--{$report->token}-->&evt=done" what='are you done with this report'></i> Done</a>
+						<!--{/if}-->
+
+						<!--{if $report->status == 3 and $userinfo->email==$report->email}-->
+							<button class="btn btn-sm btn-primary rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#editReportInfo" aria-expanded="true" aria-controls="editReportInfo" id="editReport"><i class="fa fa-pencil-square"></i> Edit Report</button>
+							<a class="btn btn-sm btn-success rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/facility_report?token=<!--{$report->token}-->&evt=accept" what='do you want to accept this report'></i>Accept</a>
+							<a class="btn btn-sm btn-danger rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/facility_report?token=<!--{$report->token}-->&evt=reject" what='do you want to reject this report'></i>Reject</a>
+						<!--{/if}-->
+
+					</p>
+					
+									<!--{if !empty($fail)}-->
+									<div class="form-group">
+										<!--{$fail}-->
+									</div>
+								<!--{/if}-->
+				</div>
+	            <div class="col-md-11 card-body text-justify" id="accordion">
+	            	<div id="editReportInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="editReport" data-parent="#accordion">
+						<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/facility_report?token=<!--{$report->token}-->" enctype="multipart/form-data" class="w-100">
+							<div class="card card-body">
+								<fieldset class="border rounded border-success px-5 text-justify">
+									<legend class="text-center">Edit Report Detail</legend>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label for="facility" class="form-control-label">Choose Facility</label>
+											<select name="facility" class="form-control" id="facility">
+											<!--{if !empty($inventories)}-->
+											  <option selected disabled value="">Choose Facility</option>
+											  <option value="">None</option>
+											  <!--{foreach $inventories as $inv}-->
+												<option <!--{if $inv->serial_number == $report->facility}--> selected <!--{/if}--> value="<!--{$inv->serial_number}-->"><!--{$inv->serial_number}--> : <!--{$inv->name|ucfirst}--></option>
+											  <!--{/foreach}-->
+											<!--{else}-->
+											<option value="">Empty</option>
+											<!--{/if}-->
+											</select>
+										</div>
+										<div class="form-group">
+										  <label for="task" class="form-control-label">Report Description</label>
+											<textarea class="form-control form-control" id="report" name="report" rows='4' placeholder="Report Description"><!--{$report->report}--></textarea>
+										</div>
+										<div class="form-group">
+										  <label for="severity" class="form-control-label">Severity</label>
+										  <select name="severity" id="" class="form-control">
+											<option <!--{if $report->severity == 'emergency' }--> selected <!--{/if}--> value="emergency">Emergency</option>
+											<option <!--{if $report->severity == 'alert' }--> selected <!--{/if}--> value="alert">Alert</option>
+											<option <!--{if $report->severity == 'critical' }--> selected <!--{/if}--> value="critical">Critical</option>
+											<option <!--{if $report->severity == 'error' }--> selected <!--{/if}--> value="error">Error</option>
+											<option <!--{if $report->severity == 'warning' }--> selected <!--{/if}--> value="warning">Warning</option>
+											<option <!--{if $report->severity == 'notification' }--> selected <!--{/if}--> value="notification">Notification</option>
+											<option <!--{if $report->severity == 'informational' }--> selected <!--{/if}--> value="informational">Informational</option>
+											<option <!--{if $report->severity == 'debugging' }--> selected <!--{/if}--> value="debugging">Debugging</option>
+										  </select>
+										</div>
+										<div class="form-group">
+										  <label for="status" class="form-control-label">Status</label>
+										  <select name="status" id="" class="form-control">
+											<option <!--{if $report->status == 1 }--> selected <!--{/if}--> value="1">Not Done</option>
+											<option <!--{if $report->status == 2 }--> selected <!--{/if}--> value="2">Acknowledged</option>
+											<option <!--{if $report->status == 3 }--> selected <!--{/if}--> value="3">Done</option>
+											<option <!--{if $report->status == 4 }--> selected <!--{/if}--> value="4">Accepted</option>
+										  </select>
+										</div>
+										<div class="form-group">
+											<label for="note" class="form-control-label">Note</label>
+											<textarea class="form-control form-control" id="task" name="note" rows='4' placeholder="Notes.."> <!--{$report->note}--> </textarea>
+										</div>
+									</div>
+									<!--{if !empty($fail)}-->
+										<div class="form-group">
+											<!--{$fail}-->
+										</div>
+									<!--{/if}-->
+									<div class="form-group text-center">
+										<button class="btn btn-success btn-sm rounded-0" type="submit" name="report_update">Update Report</button>
+									</div>
+								</fieldset>
+							</div>
+						</form>
+	            	</div>
+	            </div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--{/if}-->
+<!--{/block}-->

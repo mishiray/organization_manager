@@ -1,0 +1,1230 @@
+<!-- JavaScript Libraries -->
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/jquery/jquery.min.js"></script>
+
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/datatables/js/jquery.datatables.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/datatables/js/datatables.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/bootstrap/popper.js"></script>
+
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/easing/easing.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/mobile-nav/mobile-nav.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/wow/wow.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/waypoints/waypoints.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/counterup/counterup.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/owlcarousel/owl.carousel.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/isotope/isotope.pkgd.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/lightbox/js/lightbox.min.js"></script>
+<!-- Contact Form JavaScript File -->
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/contactform/contactform.js"></script>
+
+<!--{if !empty($sitePage) and in_array($sitePage, array('blog-new', 'blog', 'project-new', 'project', 'news-new', 'news-info', 'event-new', 'event'))}-->
+<script type="text/javascript" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/quilljs/quill.min.js"></script>
+<!--{/if}-->
+
+<!--{if !empty($sitePage) and in_array($sitePage, array('home'))}-->
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/canvasjs-2.3.2/canvasjs.min.js"></script>
+<!--{/if}-->
+
+
+<script type="text/javascript" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/script.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  /*Handle currency*/
+    let format={lang: 'en-US', code:'CAD'};
+      // console.log(formatCurrency(Number($(".spanCurrency").text()),format));
+      // console.log($(".spanCurrency"));
+      if ($(".spanCurrency").length && $(".spanCurrency").length>1) {
+        for (spcon of $(".spanCurrency")) {
+          // console.log($(spcon));console.log(spcon);
+          $(spcon).text(formatCurrency(Number($(spcon).text().trim()),format));
+        }
+      }else{
+        $(".spanCurrency").text(formatCurrency(Number($(".spanCurrency").text().trim()),format));
+      }
+  /*End handle currency*/
+  <!--{if in_array($sitePage, array('development')) and  !empty($menu) and $menu=='kit'}-->
+    $(document).on('change keyup', '#kit_number', function() {
+      $('#kitNum').text($(this).val());
+    });
+    $(document).on('change keyup', '#kit_name', function() {
+      $('#kitName').text($(this).val());
+    });
+    $(document).on('click', '.jNumber', function() {
+      $('#kit_number').attr('value', $(this).text());
+      $('#kit_number').val($(this).text());
+      $('#kitNum').text(`${$('#kit_number').val()}`);
+    });
+  <!--{/if}-->
+  <!--{if in_array($sitePage, array('development')) and  !empty($menu) and $menu=='sport'}-->
+    $(document).on('change', '#sport', function() {
+      let sportDetail=JSON.parse($("#sport option:selected").attr('i').trim());
+      $('.imagi').attr('src',`<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${sportDetail.logo}`);
+      $('.imagi').attr('alt',`${sportDetail.name}`);
+      $('.sname').html(`<strong class="text-uppercase">${sportDetail.name}</strong>`);
+      $('.categori').html(`<strong class="text-uppercase">Category:</strong> ${sportDetail.category}`);
+      $('.country').html(`<strong class="text-uppercase">Country:</strong> ${sportDetail.country}`);
+      $('.state').html(`<strong class="text-uppercase">State:</strong> ${sportDetail.state}`);
+      $('.city').html(`<strong class="text-uppercase">City:</strong> ${sportDetail.city}`);
+      $('.location').html(`<strong class="text-uppercase">Location:</strong> ${sportDetail.location}`);
+      $('.description').html(`${sportDetail.description}`);
+    });
+  <!--{/if}-->
+  $("body").addClass("js");
+  let globalParam={};
+  let indexer=0;
+  let printTitle= `Dunis Edu Online`;
+  /*Outer Logics*/
+  <!--{if $sitePage=='security'}-->
+    <!--{if !empty($Site.session.Site.User.security2)}-->
+      $('.login-shield').hide();
+    <!--{/if}-->
+  <!--{/if}-->
+  /*General Event Controller*/
+  $(document).on('click','.side-menu-link',function(){
+    $(this).toggleClass('isactive')
+    $(this).siblings().removeClass('isactive');
+  });
+  $(document).on('click','#rootEvt', function(){
+    /*Security Page Access Control*/
+    <!--{if $sitePage=='security'}-->
+      var secDetail={username: $("#vUsername").val(), password: $("#vPassword").val()};
+       globalParam= {sp: `<!--{$sitePage}-->`, sd: secDetail};
+      $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, (res)=> {
+        if (res=='success') {
+          $('.alert1').addClass('alert-success').removeClass('alert-danger');
+          $('.alert1').html(`<p><strong>Notice:</strong> ${res}</p>`);
+          $('.login-shield').hide(2000);
+        }else{
+          $('.alert1').addClass('alert-danger').removeClass('alert-success');
+          $('.login-shield').show(2000);
+          $('.alert1').html(`<p><strong>Notice:</strong> ${res}</p>`);
+        }
+        // $(this).addClass("hidden");
+        // $(".sec-token-request").html('<a class="btn btn-sm">Security token sent</a>');
+      });
+    <!--{/if}-->
+  });
+  /*Changing of Country State City*/
+  <!--{if in_array($sitePage, array('profile', 'add_client', 'client', 'project-new', 'project', 'event', 'event-new', 'blog', 'blog-new', 'news-new', 'news-info'))}-->
+    $(document).on('change','#country, #state', function(){
+      let csd={ data: $(this).val(), type: $(this).attr('id') };
+      globalParam={sp: `<!--{$sitePage}-->`, csd: csd};
+      $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, (res)=> {
+        let ret=JSON.parse(res);
+        // console.log(ret);
+        let target=( $(this).attr('id')=="country"? "#state": "#city");
+        if(ret.length>0 && ret!=null){
+          $(target).empty();
+          for (let re of ret) {
+            $(target).append(`<option value="${re.name}">${re.name}</option>`);
+          }
+        }else{
+          $(target).html(`<option value="">No Record Found</option>`);
+        }
+      });
+    });
+    $(document).on('change', "#img-upload", function() {
+      readURL(this, '#dataImg');
+      $('#dataImg').css('width', 'inherit');
+      $('#dataImg').css('display', 'block');
+    });
+    $(document).on('change', "#img-upload1", function() {
+      readURL(this, '#dataImg1');
+      $('#dataImg1').css('width', 'inherit');
+      $('#dataImg1').css('display', 'block');
+    });
+  <!--{/if}-->
+  $(document).on('click','.deleteTrig', function(){
+    let deleConf=confirm(`Are you Sure to Remove This ${$(this).attr(`what`)}?`);
+    if (deleConf!==true) {
+      return false;
+    }
+  });
+  $(document).on('click','.confirmTrig', function(){
+    let deleConf=confirm(`Are you sure to ${$(this).attr(`what`)}?`);
+    if (deleConf!==true) {
+      return false;
+    }
+  });
+  $(document).on('click','.viewPassword', function(){
+    $('#password').attr('type', `${($('#password').attr('type')=='text'?'password':'text')}`);
+    if ($(this).find('i').hasClass('fa-eye')) {
+      $(this).html('<i class="fa fa-eye-slash"></i> Hide Password');
+    }else{
+      $(this).html('<i class="fa fa-eye"></i> View Password');
+    }
+  });
+  $(document).on('click','.genPassword', function(){
+    let genPass=getToken(8);
+    $('#password').attr('value',`${genPass}`).val(genPass);
+    $('.genedPass').text(genPass);
+  });
+  <!--{if in_array($sitePage, array('package', 'course'))}-->
+  $('#dataTableId').DataTable({
+    // paging: false,
+    // scrollY: 400,
+    // scrollX: auto,
+    ordering: false
+  });
+  <!--{/if}-->
+
+
+
+
+
+
+
+
+/*Ajah City Admin Script Starts*/
+    <!--{if in_array($sitePage, array('news', 'police', 'blogs'))}-->
+      // Initialize Quill editor
+      let toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        ['blockquote', 'code-block', 'code'],
+
+        //[{ 'header': 1 }, { 'header': 2 }],               // custom button values
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+        [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+        [{ 'direction': 'rtl' }],                         // text direction
+
+         //[{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+        // [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        [{ 'header': [4, 5, 6, false] }],
+
+        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+        ['image', 'formula', 'link', 'video'], 
+        ['clean']                                         // remove formatting button
+      ]
+      let quillOptions = {
+        modules: {
+          toolbar: toolbarOptions
+        },
+        placeholder: 'Edit your news content here...',
+        theme: 'snow'
+      };
+      var quill = new Quill('#editcontent', quillOptions);
+      var quill1 = new Quill('#editcontent1', quillOptions);
+
+      /*Event Triggerers*/
+      quill.on('text-change', function(delta, oldDelta, source) {
+        // if (source == 'api') {
+        //   console.log("An API call triggered this change.");
+        // } else if (source == 'user') {
+        //   console.log("A user action triggered this change.");
+        // }
+        $('#content').attr('value',htmlEntities($('#editcontent .ql-editor').html()));
+        // console.log($('#content').attr('value'));
+      });
+      quill1.on('text-change', function(delta, oldDelta, source) {
+        $('#content1').attr('value',htmlEntities($('#editcontent1 .ql-editor').html()));
+        // console.log($('#content1').attr('value'));
+      });
+      // $(document).on('change', '.ql-editor', function(){
+      // console.log($(this).html());
+      // });
+      // Initializing Drop Zone jQuery News Post
+      var myDropzone = new Dropzone("div#uploadFiles", { url: "<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/image-uploader"});
+      // $("div#uploadFiles").dropzone({ url: "<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/image-uploader" });
+      myDropzone.on("complete", function(file) {
+        myDropzone.removeFile(file);
+      });
+      myDropzone.on("success", function(file) {
+        $('#uploadedfilelists').append(`<span class="badge badge-success" style="margin-right:2px;">Successfull upload of ${file.name}</span>`);
+      });
+      myDropzone.on("error", function(file) {
+        $('#uploadedfilelists').append(`<span class="badge badge-danger" style="margin-right:2px;">Unable to upload file ${file.name}</span>`);
+      });
+      // Dropzone.options.myDropzone = {
+      //   init: function() {
+      //     this.on("addedfile", function(file) { 
+      //       $('#uploadedfilelists').append(`<span class="badge badge-success">Successfull upload ${file.name}</span>`);
+      //     });
+      //   }
+      // };
+      // Initializing Drop Zone JQuery News Update
+      var myDropzone1 = new Dropzone("div#uploadFiles1", { url: "<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/image-uploader"});
+      myDropzone1.on("complete", function(file) {
+        myDropzone1.removeFile(file);
+      });
+      myDropzone1.on("success", function(file) {
+        $('#uploadedfilelists1').append(`<span class="badge badge-success" style="margin-right:2px;">Successfull upload of ${file.name}</span>`);
+      });
+      myDropzone1.on("error", function(file) {
+        $('#uploadedfilelists1').append(`<span class="badge badge-danger" style="margin-right:2px;">Unable to upload file ${file.name}</span>`);
+      });
+
+      <!--{if !empty($gets->p) and $gets->p=='new' }-->
+        $("#newPost").modal("show");
+        $("#editPost").modal("hide");
+        $("#deletePost").modal("hide");
+      <!--{/if}-->
+      <!--{if !empty($gets->p) and $gets->p=='edit' }-->
+        $("#newPost").modal("show");
+        $("#editPost").modal("hide");
+        $("#deletePost").modal("hide");
+      <!--{/if}-->
+      <!--{if !empty($gets->p) and $gets->p=='delete' }-->
+        $("#deletePost").modal("hide");
+        $("#newPost").modal("hide");
+        $("#editPost").modal("hide");
+      <!--{/if}-->
+      $(document).on('click', '#viewMe', function(){
+        globalParam={ newsId: $(this).siblings().attr('newsid').trim(), evt:'viewNews' };
+        $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, function(res, err){
+          let newsDetail=JSON.parse(res); 
+          if(newsDetail && $.isEmptyObject(newsDetail)==false ){
+            $(`#newsid`).text(newsDetail.token);
+            $('#newstitle').html(`<strong>${newsDetail.title} </strong>`);
+            $('#newscategory').text(newsDetail.category);
+            $('#newssource').html(`<strong>Source:</strong> ${newsDetail.source}<br/>
+              <!--{if in_array($sitePage, array('news'))}--><strong>URL:</strong> ${newsDetail.sourceurl}<!--{elseif in_array($sitePage, array('police'))}--><strong>Officer's Name:</strong> ${newsDetail.officer}<!--{/if}-->`);
+            $('#newspublisher').text(newsDetail.publisher);
+            $('#newscontent').html(htmlReverseEntities(newsDetail.content));
+            $("#newsimages").html((newsDetail.media.length>0 ?`<div class="row justify-content-center" style="max-height: 200px; overflow-y: auto; margin-left: unset; margin-right: unset; padding-top: 3px; margin-bottom: 3px;">${Array(newsDetail.media.length).fill().map((item, x) =>`<div class="card col-md-11"><img class="card-img-top" style="height: 170px; margin-top: 3px;" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/<!--{if in_array($sitePage, array('news'))}-->news<!--{elseif in_array($sitePage, array('police'))}-->police<!--{/if}-->/${newsDetail.token}/${newsDetail.media[x]}"></div>`).join(' ')}</div>`:'no uploaded images'));
+            $('#newsdateposted').text(newsDetail.dateposted);
+            $('#newspostedby').text(newsDetail.postedby);
+          }
+        });
+      });
+      $(document).on('click', '#editMe', function(){
+        globalParam={ newsId: $(this).attr('newsid').trim(), evt:'viewNews' };
+        $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, function(res, err){
+          let newsDetail=JSON.parse(res); 
+          if(newsDetail && $.isEmptyObject(newsDetail)==false ){
+            let revContent=htmlReverseEntities(newsDetail.content);
+            // console.log(`${newsDetail.content}\n\n ${revContent}`);
+            $(`#token1`).attr('value', newsDetail.token);
+            $(`#title1`).attr('value', newsDetail.title);
+            $(`#source1`).attr('value', newsDetail.source);
+            <!--{if in_array($sitePage, array('news'))}-->
+              $(`#sourceurl1`).attr('value', newsDetail.sourceurl);
+            <!--{elseif in_array($sitePage, array('police'))}-->
+              $(`#officer1`).attr('value', newsDetail.officer);
+            <!--{/if}-->
+            $(`#publisher1`).attr('value', newsDetail.publisher);
+            $('#content1').attr('value', newsDetail.content);
+              $('#editcontent1 .ql-editor').html(revContent);
+            $('#savedfiles1').html(`${newsDetail.media.length>0 ? Array(newsDetail.media.length).fill().map((item, x) =>`<div class="card col-md-4"><img class="card-img-top" style="height: 100px; margin-top: 3px;" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/<!--{if in_array($sitePage, array('news'))}-->news<!--{elseif in_array($sitePage, array('police'))}-->police<!--{/if}-->/${newsDetail.token}/${newsDetail.media[x]}"><div class="card-footer"><button type="button" class="delImGPost btn btn-danger btn-sm" path="${newsDetail.token}/${newsDetail.media[x]}">Delete Image</button></div></div>`).join(' '):'no uploaded images'}`);
+            $(`#category1 option[value='${newsDetail.category}']`).attr("selected", "selected");
+            // $(`#title1`).attr('value', newsDetail.title);//for image
+          }
+        });
+      });
+      $(document).on('click', '.delImGPost', function(){
+        let conF=confirm('Are you sure to delete tins image?');
+        if(conF == true) {
+         let thisParent=$(this).parent().parent();
+          globalParam={ 
+            imageID: $(this).attr('path').trim(), 
+            evt: 'deleteIMG' ,
+            section: `<!--{if in_array($sitePage, array('news'))}-->news<!--{elseif in_array($sitePage, array('police'))}-->police<!--{/if}-->`
+          };
+          $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, function(res, err){
+            alert(`${(res=='success'? 'image was successfully deleted':'undable to delete because file does not exist')}`);
+            thisParent.remove();
+          });
+        }
+      })
+      $(document).on('click', '#deleteMe', function(){
+        globalParam={ 
+          newsId: ($(this).attr('newsid').trim()), 
+          evt: 'viewNews' 
+        };
+        $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, function(res, err){
+          let newsDetail=JSON.parse(res); 
+          if(newsDetail && $.isEmptyObject(newsDetail)==false ){
+            let revContent=htmlReverseEntities(newsDetail.content);
+            $(`#token2`).attr('value', newsDetail.token);
+            $(`#newsid1`).text(newsDetail.token);
+            $(`#newstitle1`).text(newsDetail.title);
+            $(`#newscontent1`).html(revContent);
+          }
+        });
+      });
+    <!--{/if}-->
+
+    <!--{if in_array($sitePage, array('business','advert', 'jobs', 'job', 'real-estates'))}-->  
+      $(document).on('change', ".upload-img", function() {
+        readURL(this, '#img-upload');
+        $('#img-upload').css('width', 'inherit');
+        $('#img-upload').css('display', 'block');
+      });
+      $(document).on('change', ".upload-img1", function() {
+        readURL(this, '#img-upload1');
+        $('#img-upload1').css('width', 'inherit');
+        $('#img-upload1').css('display', 'block');
+      });
+      $(document).on('click', '.viewAd', function(){
+        let htmlCopy=$(this).parent().parent().parent().html();
+        // console.log(htmlCopy);
+        $("#ads-div").html(htmlCopy);
+        let selectedBanner=$("#ads-div").children().find('div.card-body').css('background-image');
+        selectedBanner=selectedBanner.replace("url(\"","").replace("\")","");
+        $("#ads-div").children().find('div.card-body').html(`<img src="${selectedBanner}" style="width: 100% !important;">`);
+        $("#ads-div").children().find('div.card-body').css('background-image','none');
+        // console.log(selectedBanner);
+      });
+    <!--{/if}-->
+    <!--{if in_array($sitePage, array('advert'))}-->
+      $(document).on('click', '#payAds', function(){
+        let adDetail=JSON.parse($(this).siblings().attr('i').trim());
+        globalParam={ bizId: adDetail.token, evt:'payDetail', payType: 'ads' };
+        $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, function(res, err){
+          let adDetail=JSON.parse(res); 
+          if(adDetail && $.isEmptyObject(adDetail)==false ){
+            $(`#transid4`).text(adDetail.transid);
+            $('#adsname5').html(`<strong>${adDetail.prodname}</strong>`);
+            $('#adsid5').text(adDetail.token);
+            $('#amountpaid4').html(`&#8358; ${adDetail.amount}`);
+            $('#paymenttype4').text(`${(adDetail.paymenttype=='adm'? 'Admin Registration': (adDetail.paymenttype=='ps'? 'Paystack Gateway': 'Unknown Gateway'))}`);
+            $("#paidby4").text(`${adDetail.addedby}`);
+            $('#transdate4').text(adDetail.transdate);
+            $('#paymentstatus4').text(`${(adDetail.paymentstatus==1? 'success': 'failed')}`);
+          }
+        });
+      });
+      $(document).on('click', '#edAds', function(){
+        // globalParam={ bizId: $(this).siblings().attr('bizid').trim(), evt:'payDetail' };
+        let adDetail=JSON.parse($(this).siblings().attr('i').trim());
+        // $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, function(res, err){
+          // let bizDetail=JSON.parse(res); 
+          if(adDetail && $.isEmptyObject(adDetail)==false ){
+            $('#adztoken1').val(adDetail.token);
+            $(`#category1 option[value='${adDetail.category}']`).attr("selected", 'selected');
+            $('#subcategory1').val(`${adDetail.subcategory}`);
+            $('#prodname1').val(adDetail.prodname);
+            $('#img-upload1').attr('src',`<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${adDetail.prodbanner}`);
+            $('#prevadzlogo1').attr('value',`${adDetail.prodbanner}`);
+            $('#prevadzreq1').attr('value',`${adDetail.devrequirement}`);
+            $('#prodemail1').val(`${adDetail.prodemail}`);
+            $('#prodphone1').val(`${adDetail.prodphone}`);
+            $("#prodaddr1").val(`${adDetail.prodaddr}`);
+            $('#city1').val(adDetail.city);
+            $('#adnote1').text(`${adDetail.adnote}`);
+            $('#produrl1').val(`${adDetail.produrl}`);
+            if(adDetail.subtype=='inline'){
+              $('#inline1').attr('checked', 'checked');
+            }else if(adDetail.subtype=='fullpage'){
+              $('#fullpage1').attr('checked', 'checked');
+            }
+            $(`#repnotedisplay1 option[value='${adDetail.repnotedisplay}']`).attr("selected", 'selected');
+            $(`#adsstatus1 option[value='${adDetail.substatus}']`).attr("selected", 'selected');
+            $('#repname1').val(`${adDetail.repname}`);
+          }
+        // });
+      });
+      $(document).on('click', '#delAds', function(){
+        let adDetail=JSON.parse($(this).siblings().attr('i').trim());
+        if(adDetail && $.isEmptyObject(adDetail)==false ){
+          $('#adstoken2').text(adDetail.token);
+          $('#token2').val(adDetail.token);
+          $('#adsname2').text(adDetail.prodname);
+        }
+      });
+      $(document).on('click', '#unblAds', function(){
+        let adDetail=JSON.parse($(this).attr('i').trim());
+        if(adDetail && $.isEmptyObject(adDetail)==false ){
+          $('#adstoken3').text(adDetail.token);
+          $('#token3').val(adDetail.token);
+          $('#adsname3').text(adDetail.prodname);
+        }
+      });
+      $(document).on('click', '#blAds', function(){
+        let adDetail=JSON.parse($(this).attr('i').trim());
+        if(adDetail && $.isEmptyObject(adDetail)==false ){
+          $('#adstoken4').text(adDetail.token);
+          $('#token4').val(adDetail.token);
+          $('#adsname4').text(adDetail.prodname);
+        }
+      });
+    <!--{/if}--> 
+    <!--{if in_array($sitePage, array('business'))}-->
+      $(document).on('click', '#payDetail', function(){
+        globalParam={ bizId: $(this).siblings().attr('bizid').trim(), evt:'payDetail', payType: 'biz' };
+        $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, function(res, err){
+          let bizDetail=JSON.parse(res); 
+          if(bizDetail && $.isEmptyObject(bizDetail)==false ){
+            $(`#transid4`).text(bizDetail.transid);
+            $('#bizname4').html(`<strong>${bizDetail.bizname}</strong>`);
+            $('#bizid4').text(bizDetail.token);
+            $('#amountpaid4').html(`&#8358; ${bizDetail.amount}`);
+            $('#paymenttype4').text(`${(bizDetail.paymenttype=='adm'? 'Admin Registration': (bizDetail.paymenttype=='ps'? 'Paystack Gateway': 'Unknown Gateway'))}`);
+            $("#paidby4").text(`${bizDetail.addedby}`);
+            $('#transdate4').text(bizDetail.transdate);
+            $('#paymentstatus4').text(`${(bizDetail.paymentstatus==1? 'success': 'failed')}`);
+          }
+        });
+      });
+      $(document).on('click', '#editMe', function(){
+        // globalParam={ bizId: $(this).siblings().attr('bizid').trim(), evt:'payDetail' };
+        let bizDetail=JSON.parse($(this).siblings().attr('i').trim());
+        // $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, function(res, err){
+          // let bizDetail=JSON.parse(res); 
+          if(bizDetail && $.isEmptyObject(bizDetail)==false ){
+            // $(`#category1`).val(bizDetail.category);
+            $('#biztoken1').val(bizDetail.token);
+            $(`#category1 option[value='${bizDetail.category}']`).attr("selected", 'selected');
+            $('#subcategory1').val(`${bizDetail.subcategory}`);
+            $('#bizname1').val(bizDetail.bizname);
+            $('#img-upload1').attr('src',`<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${bizDetail.bizlogo}`);
+            $('#prevbizlogo1').attr('value',`${bizDetail.bizlogo}`);
+            $('#contactdetail1').val(`${bizDetail.email}`);
+            $('#contactdetail2').val(`${bizDetail.phone}`);
+            $("#bizaddr1").val(`${bizDetail.bizaddr}`);
+            $('#city1').val(bizDetail.city);
+            $('#briefing1').text(`${bizDetail.briefing}`);
+            $('#bizurl1').val(`${bizDetail.url}`);
+            $(`#bizstatus1 option[value='${bizDetail.substatus}']`).attr("selected", 'selected');
+          }
+        // });
+      });
+      $(document).on('click', '#deleteMe', function(){
+        let bizDetail=JSON.parse($(this).siblings().attr('i').trim());
+        if(bizDetail && $.isEmptyObject(bizDetail)==false ){
+          $('#biztoken2').text(bizDetail.token);
+          $('#token2').val(bizDetail.token);
+          $('#bizname2').text(bizDetail.bizname);
+        }
+      });
+      $(document).on('click', '#deactMe', function(){
+        let bizDetail=JSON.parse($(this).attr('i').trim());
+        if(bizDetail && $.isEmptyObject(bizDetail)==false ){
+          $('#biztoken3').text(bizDetail.token);
+          $('#token3').val(bizDetail.token);
+          $('#bizname3').text(bizDetail.bizname);
+        }
+      });
+      $(document).on('click', '#actMe', function(){
+        let bizDetail=JSON.parse($(this).attr('i').trim());
+        if(bizDetail && $.isEmptyObject(bizDetail)==false ){
+          $('#biztoken4').text(bizDetail.token);
+          $('#token4').val(bizDetail.token);
+          $('#bizname5').text(bizDetail.bizname);
+        }
+      });
+    <!--{/if}--> 
+    <!--{if in_array($sitePage, array('jobs'))}-->
+      $(document).on('click', '#payDetail', function(){
+        globalParam={ bizId: $(this).attr('jobid').trim(), evt:'payDetail', payType: 'job' };
+        $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, function(res, err){
+          let jobDetail=JSON.parse(res); 
+          if(jobDetail && $.isEmptyObject(jobDetail)==false ){
+            $(`#transid5`).text(jobDetail.transid);
+            $('#compname5').html(`<strong>${jobDetail.company}</strong>`);
+            $('#jobid5').text(jobDetail.token);
+            $('#jobtitle5').text(jobDetail.jobtitle);
+            $('#amountpaid5').html(`&#8358; ${jobDetail.amount}`);
+            $('#paymenttype5').text(`${(jobDetail.paymenttype=='adm'? 'Admin Registration': (jobDetail.paymenttype=='ps'? 'Paystack Gateway': 'Unknown Gateway'))}`);
+            $("#paidby5").text(`${jobDetail.addedby}`);
+            $('#transdate5').text(jobDetail.transdate);
+            $('#paymentstatus5').text(`${(jobDetail.paymentstatus==1? 'success': 'failed')}`);
+          }
+        });
+      });
+      $(document).on('click', '#editMe', function(){
+        // globalParam={ bizId: $(this).siblings().attr('bizid').trim(), evt:'payDetail' };
+        let jobDetail=JSON.parse($(this).attr('i').trim());
+        if(jobDetail && $.isEmptyObject(jobDetail)==false ){
+          // $(`#category1`).val(jobDetail.category);
+          //id token jobtitle category company description role expirydate postedby addedby updatedby logo email phone dateadded  dateupdated salary  salarytype  payment url city location status
+          $('#jobtoken1').val(jobDetail.token);
+          // $(`#category1 option[value='${jobDetail.category}']`).attr("selected", 'selected');
+          $("#category1").val(`${jobDetail.category}`);
+          $('#fullname1').val(`${jobDetail.postedby}`);
+          $('#compname1').val(jobDetail.company);
+          $('#img-upload1').attr('src',`<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${jobDetail.logo}`);
+          $('#prevjoblogo1').attr('value',`${jobDetail.logo}`);
+          $('#jobtitle1').val(jobDetail.jobtitle);
+          $('#expirydate1').val(`${jobDetail.expirydate}`);
+          $('#email1').val(`${jobDetail.email}`);
+          $('#phone1').val(`${jobDetail.phone}`);
+          $("#location1").val(`${jobDetail.location}`);
+          $('#city1').val(jobDetail.city);
+          $('#description1').text(`${jobDetail.description}`);
+          $('#role1').val(`${jobDetail.role}`);
+          $('#joburl1').val(`${jobDetail.url}`);
+          $('#salary1').val(`${jobDetail.salary}`);
+          $(`#paymentMode1 option[value='${jobDetail.salarytype}']`).attr("selected", 'selected');
+        }
+      });
+      $(document).on('click', '#deleteMe', function(){
+        // console.log($(this).attr('i'));
+        let jobDetail=JSON.parse($(this).attr('i').trim());
+        if(jobDetail && $.isEmptyObject(jobDetail)==false ){
+          $('#jobtoken2').text(jobDetail.token);
+          $('#token2').val(jobDetail.token);
+          $('#jobntitle2').text(jobDetail.jobtitle);
+          $('#companyname2').text(jobDetail.company);
+        }
+      });
+      $(document).on('click', '#deactMe', function(){
+        // console.log($(this).attr('i'));
+        let jobDetail=JSON.parse($(this).attr('i').trim());
+        if(jobDetail && $.isEmptyObject(jobDetail)==false ){
+          $('#jobtoken3').text(jobDetail.token);
+          $('#token3').val(jobDetail.token);
+          $('#jobntitle3').text(jobDetail.jobtitle);
+          $('#companyname3').text(jobDetail.company);
+        }
+      });
+      $(document).on('click', '#actMe', function(){
+        // console.log($(this).attr('i'));
+        let jobDetail=JSON.parse($(this).attr('i').trim());
+        if(jobDetail && $.isEmptyObject(jobDetail)==false ){
+          $('#jobtoken4').text(jobDetail.token);
+          $('#token4').val(jobDetail.token);
+          $('#jobntitle4').text(jobDetail.jobtitle);
+          $('#companyname4').text(jobDetail.company);
+        }
+      });
+    <!--{/if}-->
+    <!--{if in_array($sitePage, array('real-estates'))}-->
+      $(document).on('click', '#payDetail', function(){
+        globalParam={ bizId: $(this).attr('propid').trim(), evt:'payDetail', payType: 'res' };
+        $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, function(res, err){
+          let propDetail=JSON.parse(res); 
+          console.log(propDetail);
+          if(propDetail && $.isEmptyObject(propDetail)==false ){
+            $(`#transid5`).text(propDetail.transid);
+            $('#company5').html(`<strong>${propDetail.company}</strong>`);
+            $('#propid5').text(propDetail.token);
+            $('#propname5').text(propDetail.title);
+            $('#amount5').html(`&#8358; ${propDetail.amount}`);
+            $('#paymenttype5').text(`${(propDetail.paymenttype=='adm'? 'Admin Registration': (propDetail.paymenttype=='ps'? 'Paystack Gateway': 'Unknown Gateway'))}`);
+            $("#paidby5").text(`${propDetail.addedby}`);
+            $('#transdate5').text(propDetail.transdate);
+            $('#paymentstatus5').text(`${(propDetail.paymentstatus==1? 'success': 'failed')}`);
+          }
+        });
+      });
+      $(document).on('click', '#editMe', function(){
+        // globalParam={ bizId: $(this).siblings().attr('bizid').trim(), evt:'payDetail' };
+        let propDetail=JSON.parse($(this).attr('i').trim());
+        if(propDetail && $.isEmptyObject(propDetail)==false ){
+          //id token jobtitle category company description role expirydate postedby addedby updatedby logo email phone dateadded  dateupdated salary  salarytype  payment url city location status
+          $('#proptoken1').val(propDetail.token);
+          $(`#category1 option[value='${propDetail.category}']`).attr("selected", 'selected');
+          // $("#category1").val(`${propDetail.category}`);
+          $('#person1').val(`${propDetail.person}`);
+          $('#company1').val(propDetail.company);
+          $('#img-upload1').attr('src',`<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${propDetail.logo}`);
+          $('#prevproplogo1').attr('value',`${propDetail.logo}`);
+          $('#description1').text(`${propDetail.description}`);
+          $('#title1').val(propDetail.title);
+          $("#location1").val(`${propDetail.location}`);
+          $('#email1').val(`${propDetail.email}`);
+          $('#phone1').val(`${propDetail.phone}`);
+          $(`#purchase1 option[value='${propDetail.purchase}']`).attr("selected", 'selected');
+          $('#worth1').val(`${propDetail.worth}`);
+          $('#expirydate1').val(`${propDetail.expirydate}`);
+          $('#imagesall1').empty();
+          $('#prevpropimages1').val(`${JSON.stringify(propDetail.images)}`);
+          let imgIdx=0;
+          for(let propImage of propDetail.images){
+            imgIdx++;
+            $('#imagesall1').append(`<div class="col-sm-4">
+              <div class="dropup">
+                      <img class="img img-thumbnail pinned-img1" id="imgDrp${imgIdx}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${propImage}" style=" height: 150px;">
+                      <div class="dropdown-menu" style="min-width: 320px;" aria-labelledby="imgDrp${imgIdx}">
+                        <img style="max-height: 450px;" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${propImage}">
+                      </div>
+                    </div>
+              </div>`);
+          }
+        }
+      });
+      $(document).on('click', '#deleteMe', function(){
+        // console.log($(this).attr('i'));
+        let propDetail=JSON.parse($(this).attr('i').trim());
+        if(propDetail && $.isEmptyObject(propDetail)==false ){
+          $('#proptoken2').text(propDetail.token);
+          $('#token2').val(propDetail.token);
+          $('#proptitle2').text(propDetail.title);
+          $('#company2').text(propDetail.company);
+        }
+      });
+      $(document).on('click', '#deactMe', function(){
+        // console.log($(this).attr('i'));
+        let propDetail=JSON.parse($(this).attr('i').trim());
+        if(propDetail && $.isEmptyObject(propDetail)==false ){
+          $('#proptoken3').text(propDetail.token);
+          $('#token3').val(propDetail.token);
+          $('#proptitle3').text(propDetail.title);
+          $('#company3').text(propDetail.company);
+        }
+      });
+      $(document).on('click', '#actMe', function(){
+        // console.log($(this).attr('i'));
+        let propDetail=JSON.parse($(this).attr('i').trim());
+        if(propDetail && $.isEmptyObject(propDetail)==false ){
+          $('#proptoken4').text(propDetail.token);
+          $('#token4').val(propDetail.token);
+          $('#proptitle4').text(propDetail.title);
+          $('#company4').text(propDetail.company);
+        }
+      });
+    <!--{/if}-->
+    <!--{if in_array($sitePage, array('gig'))}--> 
+      $(document).on('click', '#editMe', function(){
+        // globalParam={ bizId: $(this).siblings().attr('bizid').trim(), evt:'payDetail' };
+        let gigDetail=JSON.parse($(this).siblings().attr('i').trim());
+        // $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, function(res, err){
+          // let bizDetail=JSON.parse(res);
+          if(gigDetail && $.isEmptyObject(gigDetail)==false ){
+            $('#gigtoken0').val(gigDetail.token);
+            $('#title0').val(gigDetail.title);
+            $(`#category1 option[value='${gigDetail.category}']`).attr("selected", 'selected');
+            $('#theme0').val(`${gigDetail.theme}`);
+            $('#email0').val(gigDetail.email);
+            $('#phone0').val(`${gigDetail.phone}`);
+            $('#event_date0').val(`${gigDetail.eventDate}`);
+            $("#no_of_days0").val(`${gigDetail.no_of_days}`);
+            $('#prevgiglogo1').val(`${gigDetail.banner}`);
+            $("#venue0").val(`${gigDetail.venue}`);
+            $('#img-upload12').attr('src',`<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${gigDetail.banner}`);
+            $('#names0').val(`${gigDetail.names}`);
+            $('#organizer0').val(gigDetail.organizer);
+            $('#briefing0').text(`${gigDetail.briefing}`);
+            $('#direction0').val(`${gigDetail.direction}`);
+            $('#url0').val(`${gigDetail.url}`);
+
+          }
+        // });
+      });
+      $(document).on('click', '#payDetail', function(){
+        let gigDetail=JSON.parse($(this).siblings().attr('i').trim());
+        globalParam={ bizId: gigDetail.token, evt:'payDetail', payType: 'gig' };
+        $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, function(res, err){
+          let gigDetail=JSON.parse(res); 
+          if(gigDetail && $.isEmptyObject(gigDetail)==false ){
+            $(`#transid4`).text(gigDetail.transid);
+            $('#gigname4').html(`<strong>${gigDetail.title}</strong>`);
+            $('#gigid4').text(gigDetail.token);
+            $('#amountpaid4').html(`&#8358; ${gigDetail.amount}`);
+            $('#paymenttype4').text(`${(gigDetail.paymenttype=='adm'? 'Admin Registration': (gigDetail.paymenttype=='ps'? 'Paystack Gateway': 'Unknown Gateway'))}`);
+            $("#paidby4").text(`${gigDetail.addedby}`);
+            $('#transdate4').text(gigDetail.transdate);
+            $('#paymentstatus4').text(`${(gigDetail.paymentstatus==1? 'success': 'failed')}`);
+          }
+        });
+      });
+      $(document).on('click', '#deleteMe', function(){
+        let gigDetail=JSON.parse($(this).siblings().attr('i').trim());
+        if(gigDetail && $.isEmptyObject(gigDetail)==false ){
+          $('#gigtoken1').text(gigDetail.token);
+          $('#token1').val(gigDetail.token);
+          $('#gigname1').text(gigDetail.title);
+        }
+      });
+      $(document).on('click', '#disMe', function(){
+        let gigDetail=JSON.parse($(this).attr('i').trim());
+        if(gigDetail && $.isEmptyObject(gigDetail)==false ){
+          $('#gigtoken2').text(gigDetail.token);
+          $('#token2').val(gigDetail.token);
+          $('#gigname2').text(gigDetail.title);
+        }
+      });
+      $(document).on('click', '#enaMe', function(){
+        let gigDetail=JSON.parse($(this).attr('i').trim());
+        if(gigDetail && $.isEmptyObject(gigDetail)==false ){
+          $('#gigtoken3').text(gigDetail.token);
+          $('#token3').val(gigDetail.token);
+          $('#gigname3').text(gigDetail.title);
+        }
+      });
+    <!--{/if}-->
+    /*Ajah City Admin Script Ends*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--{if in_array($sitePage, array('add_client', 'client'))}-->
+    $(document).on('change keyup', "#firstName, #lastName", function() {
+      $('#username').attr('value', `${$("#lastName").val().charAt(0).toLowerCase()}${$("#firstName").val().toLowerCase()}`);
+    });
+  <!--{/if}-->
+  <!--{if in_array($sitePage, array('add_course', 'add_package', 'package', 'course'))}-->
+    $(document).on('change', ".chCourse", function() {
+      let crsDetail=JSON.parse($(".chCourse option:selected").attr('i').trim());
+      $("#cID").text(`${crsDetail.courseid}`);
+      $("#cTitle").text(`${crsDetail.title}`);
+      $("#cUnit").text(`${crsDetail.unit}`);
+      $("#cCateg").text(`${crsDetail.category}`);
+      $("#cFee").text(`${crsDetail.fee}`);
+      $("#cDesc").text(`${crsDetail.description}`);
+    });
+    /*Doubt Removal*/
+    $(document).on('change', "#offtype", function() {
+      if ($(this).val()=='official') {
+        $('#userrole').parent().removeClass('d-none');
+      }else{
+        $('#userrole').parent().addClass('d-none');
+      }
+    });
+    $(document).on('change keyup', "#password", function() {
+      $('.cpassword').text($(this).val());
+    });
+  /*End Doubt Removal*/
+  <!--{/if}-->
+  <!--{if !empty($sitePage) and in_array($sitePage, array('blog-new', 'blog', 'project-new', 'project', 'news-new', 'news-info', 'event-new', 'event'))}-->
+    // Initialize Quill editor
+    let toolbarOptions = [
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote', 'code-block', 'code'],
+
+      //[{ 'header': 1 }, { 'header': 2 }],               // custom button values
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+      [{ 'direction': 'rtl' }],                         // text direction
+
+       //[{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+      // [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      [{ 'header': [4, 5, 6, false] }],
+
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+      ['image', 'formula', 'link', 'video'], 
+      ['clean']                                         // remove formatting button
+    ]
+    let quillOptions = {
+      modules: {
+        toolbar: toolbarOptions
+      },
+      placeholder: 'Type your blog content here...',
+      theme: 'snow'
+    };
+    var quill = new Quill('#editcontent', quillOptions);
+
+    /*Event Triggerers*/
+    quill.on('text-change', function(delta, oldDelta, source) {
+      // if (source == 'api') {
+      //   console.log("An API call triggered this change.");
+      // } else if (source == 'user') {
+      //   console.log("A user action triggered this change.");
+      // }
+      $('#content').attr('value',htmlEntities($('#editcontent .ql-editor').html()));
+      // console.log($('#content').attr('value'));
+    });
+  <!--{/if}-->
+  <!--{if !empty($sitePage) and in_array($sitePage, array( 'blog', 'event', 'project', 'news-info', 'event'))}-->
+    $('#editcontent .ql-editor').html(`<!--{$content_stripe}-->`);
+  <!--{/if}-->
+  <!--{if !empty($sitePage) and in_array($sitePage, array('certupload'))}-->
+    $(document).on('change', "#student", function() {
+      let crsDetail=JSON.parse($("#student option:selected").attr('i').trim());
+      $(".stdName").text(`Student Name:  ${crsDetail.names}`);
+      $(".stdPhone").text(`Contact number: ${crsDetail.phone}`);
+    });
+  <!--{/if}-->
+  <!--{if in_array($sitePage, array('compose'))}-->
+    $(document).on('change', '#sendto', function() {
+      let sendto=$("#sendto option:selected").attr('value').trim();
+      if (sendto=='*') {$('#singles').addClass('d-none').html(``);
+      }else if (sendto=='#') {
+        $('#singles').removeClass('d-none').html(`
+          <label for="receiver"><h5>Receiver <sup class="text-danger">(*)</sup></h5></label>
+          <select id="receiver" name="receivers[]" class="form-control input-block lh-3" multiple="" required>
+            <!--{if !empty($clients)}-->
+                <!--{foreach $clients as $ky => $client}-->
+                <option value="<!--{$client->email}-->" style="word-break: break-word;">(<!--{$client->names}-->) <!--{$client->email}--></option>
+                <!--{/foreach}-->
+            <!--{else}-->
+              <option value="">No Registered Member</option>
+            <!--{/if}--><hr/>
+          </select>
+          <hr/>`);
+      }else{
+        $('#singles').removeClass('d-none').html(`
+          <label for="receivers"><h5>Receivers <sup class="text-danger">(*)</sup></h5></label>
+          <select id="receivers" name="receivers[]" class="form-control input-block lh-3" multiple="" required>
+            <!--{if !empty($clients)}-->
+                <!--{foreach $clients as $ky => $client}-->
+                <option value="<!--{$client->email}-->" style="word-break: break-word;">(<!--{$client->names}-->) <!--{$client->email}--></option>
+                <!--{/foreach}-->
+            <!--{else}-->
+              <option value="">No Registered Member</option>
+            <!--{/if}--><hr/>
+          </select>
+          <hr/>`);
+      }
+    });
+  <!--{/if}-->
+
+  /*Chatting Control*/
+  $(document).on('click','.chatAdmin', function(){
+    alert('Currently under development');
+  });
+
+  $(document).on('click', '.imgPreview', function() {
+    $("#imgPreviewShow").attr('src', `${$(this).attr('src')}`);
+    $("#gallImgName").text(`${$(this).attr('title')}`);
+  });
+
+  // $(document).on('click', '#min-det', function(){
+  //   $(this).children().find('.fa-angle-down').css('-webkit-transform', 'rotate(-180deg)');
+  //   $(this).children().find('.fa-angle-down').css('transform', 'rotate(-180deg)');
+  // });
+  /*Toggling of Menu*/
+  $(document).on("click", "#openMobileMenu", function () {
+    $(this).toggleClass("open");
+    $('.dashboard-wrapper').toggleClass('mobile-menu-open');
+  });
+});
+  /*Print Event Handler*/
+  $(document).on('click',"#printSect", function() {
+    $("#printSect").hide();
+    printData('printMe', '<!--{$Site.companyName}-->: Manage');
+    $("#printSect").show();
+  });
+  /*Side Menu Controller*/
+  // const sideMenu = document.getElementsByClassName("side-menu-main-link");
+  // let i;
+  // for (i = 0; i < sideMenu.length; i++) {
+  //   sideMenu[i].addEventListener("click", function(e) {
+  //     e.preventDefault();
+  //     const subSideMenu = this.nextElementSibling;
+  //     if (subSideMenu) {
+  //       if (subSideMenu.style.maxHeight) {
+  //         this.classList.remove("isopened");
+  //         subSideMenu.style.maxHeight = null;
+  //       } else {
+  //         this.classList.add("isopened");
+  //         subSideMenu.style.maxHeight = subSideMenu.scrollHeight + "px";
+  //       }
+  //     }
+  //   });
+  // }
+  
+/* Table Navigator*/
+/*  $('#dataTableId').DataTable({
+    // paging: false,
+    // scrollY: 400,
+    // scrollX: auto,
+    ordering: false
+  });*/
+function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function htmlReverseEntities(str) {
+    return String(str).replace(/&quot;/g, '"').replace(/&gt;/g, '>').replace(/&lt;/g, '<').replace(/&amp;/g, '&');
+    // return String(str).replace('&amp;', /&/g).replace('&lt;', '<');
+}
+  <!--{if !empty($sitePage) and in_array($sitePage, array('none'))}-->
+ 
+    /* DateTime Picker*/
+    
+    /*Statistics Scripts*/
+    let dt = new Date();
+    window.onload = function () {
+      /*Trip Type Engagement Ove VS Round Trip*/
+      var chart ={ 
+        <!--{if !empty($defaultDetail->loggerW)}-->
+          /*Activity Logging Progress*/
+          chart: new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            exportEnabled: true,
+            theme: "dark2", // "light1", "light2", "dark1", "dark2"
+            title:{
+              text: "Activity Logging Progress"
+            },
+            subtitles: [{
+              text: "Contains the daily logs of users & members activity in the latest week"
+            }], 
+            axisX: {
+              title: "Dates",
+              valueFormatString: "DD MMM YYYY"
+            },
+            axisY: {
+              title: "Total Activity",
+              titleFontColor: "#4F81BC",
+              lineColor: "#4F81BC",
+              labelFontColor: "#4F81BC",
+              tickColor: "#4F81BC"
+            },
+            toolTip: {
+              shared: true
+            },
+            legend: {
+              cursor: "pointer",
+              itemclick: toggleDataSeries
+            },
+            data: [{
+              type: "column",
+              name: "Amount",
+              showInLegend: true,      
+              yValueFormatString: "#,##0.#",
+              dataPoints: [
+              <!--{foreach $defaultDetail->loggerW as $loggerW}-->
+                { y: <!--{$loggerW->count}-->, label: "<!--{$loggerW->dateadded}-->"  },
+              <!--{/foreach}-->
+              ]
+            }]
+          }),
+        <!--{/if}-->
+        <!--{if !empty($defaultDetail->loggerM)}-->
+          chart1 : new CanvasJS.Chart("chartContainer1", {
+            exportEnabled: true,
+            animationEnabled: true,
+            title:{
+              text: "Monthly Activity Log"
+            },
+            subtitles: [{
+              text: "Contains the monthly logs of users & members activity in the laast 12 months"
+            }], 
+            axisX: {
+              title: "Dates",
+              valueFormatString: "DD MMM YYYY"
+            },
+            axisY: {
+              title: "Total Activity",
+              titleFontColor: "#4F81BC",
+              lineColor: "#4F81BC",
+              labelFontColor: "#4F81BC",
+              tickColor: "#4F81BC"
+            },
+            toolTip: {
+              shared: true
+            },
+            legend: {
+              cursor: "pointer",
+              itemclick: toggleDataSeries
+            },
+            data: [
+
+            {
+              type: "column",
+              name: "Amount",
+              showInLegend: true,      
+              yValueFormatString: "#,##0.#",
+              dataPoints: [
+              <!--{foreach $defaultDetail->loggerM as $loggerM}-->
+                { y: <!--{$loggerM->count}-->, label: "<!--{$loggerM->dateadded}-->"  },
+              <!--{/foreach}-->
+              ]
+            }]
+          }),
+        <!--{/if}-->
+        <!--{if !empty($defaultDetail->regStudW)}-->
+          chart2 : new CanvasJS.Chart("chartContainer2", {
+            exportEnabled: true,
+            animationEnabled: true,
+            title:{
+              text: "Daily Members Registration"
+            },
+            subtitles: [{
+              text: "Contains the daily members registration in the laast 7 days"
+            }], 
+            axisX: {
+              title: "Dates",
+              valueFormatString: "DD MMM YYYY"
+            },
+            axisY: {
+              title: "Total Members",
+              titleFontColor: "#4F81BC",
+              lineColor: "#4F81BC",
+              labelFontColor: "#4F81BC",
+              tickColor: "#4F81BC"
+            },
+            toolTip: {
+              shared: true
+            },
+            legend: {
+              cursor: "pointer",
+              itemclick: toggleDataSeries
+            },
+            data: [
+
+            {
+              type: "column",
+              name: "Amount",
+              showInLegend: true,      
+              yValueFormatString: "#,##0.#",
+              dataPoints: [
+              <!--{foreach $defaultDetail->regStudW as $regStudW}-->
+                { y: <!--{$regStudW->count}-->, label: "<!--{$regStudW->dateadded}-->"  },
+              <!--{/foreach}-->
+              ]
+            }]
+          }),
+        <!--{/if}-->
+        <!--{if !empty($defaultDetail->regStudM)}-->
+          chart3 : new CanvasJS.Chart("chartContainer3", {
+            exportEnabled: true,
+            animationEnabled: true,
+            title:{
+              text: "Monthly Members Registration"
+            },
+            subtitles: [{
+              text: "Contains the monthly registration of members in the last 12 months"
+            }], 
+            axisX: {
+              title: "Dates",
+              valueFormatString: "DD MMM YYYY"
+            },
+            axisY: {
+              title: "Total Members",
+              titleFontColor: "#4F81BC",
+              lineColor: "#4F81BC",
+              labelFontColor: "#4F81BC",
+              tickColor: "#4F81BC"
+            },
+            toolTip: {
+              shared: true
+            },
+            legend: {
+              cursor: "pointer",
+              itemclick: toggleDataSeries
+            },
+            data: [
+
+            {
+              type: "column",
+              name: "Amount",
+              showInLegend: true,      
+              yValueFormatString: "#,##0.#",
+              dataPoints: [
+              <!--{foreach $defaultDetail->regStudM as $regStudM}-->
+                { y: <!--{$regStudM->count}-->, label: "<!--{$regStudM->dateadded}-->"  },
+              <!--{/foreach}-->
+              ]
+            }]
+          }),
+        <!--{/if}-->
+        <!--{if !empty($defaultDetail->assignW)}-->
+          chart4 : new CanvasJS.Chart("chartContainer4", {
+            exportEnabled: true,
+            animationEnabled: true,
+            title:{
+              text: "Daily Assignment Submission"
+            },
+            subtitles: [{
+              text: "Contains the daily assignment submission in the last 7 days"
+            }], 
+            axisX: {
+              title: "Dates",
+              valueFormatString: "DD MMM YYYY"
+            },
+            axisY: {
+              title: "Total Assignments",
+              titleFontColor: "#4F81BC",
+              lineColor: "#4F81BC",
+              labelFontColor: "#4F81BC",
+              tickColor: "#4F81BC"
+            },
+            toolTip: {
+              shared: true
+            },
+            legend: {
+              cursor: "pointer",
+              itemclick: toggleDataSeries
+            },
+            data: [
+
+            {
+              type: "column",
+              name: "Amount",
+              showInLegend: true,      
+              yValueFormatString: "#,##0.#",
+              dataPoints: [
+              <!--{foreach $defaultDetail->assignW as $assignW}-->
+                { y: <!--{$assignW->count}-->, label: "<!--{$assignW->dateadded}-->"  },
+              <!--{/foreach}-->
+              ]
+            }]
+          }),
+        <!--{/if}-->
+        <!--{if !empty($defaultDetail->assignM)}-->
+          chart5 : new CanvasJS.Chart("chartContainer5", {
+            exportEnabled: true,
+            animationEnabled: true,
+            title:{
+              text: "Monthly Assignment Submission"
+            },
+            subtitles: [{
+              text: "Contains the monthly submission of assignments in the last 12 months"
+            }], 
+            axisX: {
+              title: "Dates",
+              valueFormatString: "DD MMM YYYY"
+            },
+            axisY: {
+              title: "Total Assignments",
+              titleFontColor: "#4F81BC",
+              lineColor: "#4F81BC",
+              labelFontColor: "#4F81BC",
+              tickColor: "#4F81BC"
+            },
+            toolTip: {
+              shared: true
+            },
+            legend: {
+              cursor: "pointer",
+              itemclick: toggleDataSeries
+            },
+            data: [
+
+            {
+              type: "column",
+              name: "Amount",
+              showInLegend: true,      
+              yValueFormatString: "#,##0.#",
+              dataPoints: [
+              <!--{foreach $defaultDetail->assignM as $assignM}-->
+                { y: <!--{$assignM->count}-->, label: "<!--{$assignM->dateadded}-->"  },
+              <!--{/foreach}-->
+              ]
+            }]
+          })
+        <!--{/if}-->
+      }
+      for (chartVar in chart) {
+        chart[chartVar].render();
+      }
+    }
+    function explodePie (e) {
+      if(typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+        e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+      } else {
+        e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+      }
+      e.chart.render();
+
+    }
+    function toggleDataSeries(e) {
+      if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+        e.dataSeries.visible = false;
+      } else {
+        e.dataSeries.visible = true;
+      }
+      e.chart.render();
+    }
+  <!--{/if}-->
+</script>

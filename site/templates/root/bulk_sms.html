@@ -1,0 +1,88 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong> &nbsp;BULK SMS&nbsp;<i class="fa fa-envelope-o"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="jumbotron text-center mt-2">
+	<div class="row justify-content-center">
+		<!--{if !empty($bulk_sms)}-->
+		<div class="col-sm-6">
+			<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/bulk_sms" enctype="multipart/form-data">
+				<div class="card card-body">
+					<fieldset class="border rounded border-success px-5 text-justify">
+						<legend class="text-center">BULK SMS</legend>
+						<select name="sendto" id="sendto" class="form-control input-block lh-3" onchange="doSomething(this);" required>
+							<option disabled selected>Select Group</option>
+							<option value="client">To All Clients</option>
+							<option value="staff">To All Staff</option>
+							<option value="manual">Input Manually</option>
+						</select>
+						<script>
+							function doSomething(rar){
+								if(rar.selectedIndex==3){
+									$("#receivers").removeClass("d-none");
+								}else{
+									$("#receivers").addClass("d-none");
+								}
+							}
+						</script>
+						<hr/>
+						<div id="receivers" class="form-group d-none">
+							<label for="numbers" class="form-control-label">Enter Numbers</label>
+							<small>Separate numbers with comma(,)</small>
+							<textarea id="numbers" name="numbers" value="" class="form-control" placeholder="0812233445543, 0704532567453,...." ></textarea>
+						</div>
+						<div class="form-group">
+							<label for="content" class="form-control-label">Content *</label>
+							<textarea id="content" name="content" class="form-control form-control-sm  input-block"rows="10" required></textarea>
+						</div>
+						<!--{if !empty($fail)}-->
+							<div class="form-group">
+								<!--{$fail}-->
+							</div>
+						<!--{/if}-->
+						<div class="form-group text-center">
+							<button class="btn btn-success btn-sm rounded-0" type="submit" name="bulk_sms">Send sms</button>
+						</div>
+					</fieldset>
+				</div>
+			</form>
+		</div>
+		<div class="col-sm-6 d-none">
+			<div class="table-responsive">
+				<div id="dataTableId_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+					<!--{include file="paging-top.html"}-->
+					<table class="table table-striped table-hover table-bordered">
+					  <thead class="thead-light">
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">Phone</th>
+					      <th scope="col">Date Requested</th>
+					      <th scope="col"></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<!--{$numCount=1}-->
+					  	<!--{foreach $bulk_sms as $sms}-->
+					    <tr>
+					      <td><!--{$numCount}--></td>
+					      <td><!--{$sms->number}--></td>
+					      <td><!--{$sms->dateupdated|date_format}--></td>
+					      <td>
+							<a class="btn btn-sm btn-danger deleteTrig float-right" title="Delete <!--{$sms->number}-->" what="number" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/bulk_sms?id=<!--{$sms->number}-->&event=delete"><i class="fa fa-trash"></i></a>
+					      </td>
+					    </tr>
+					  	<!--{$numCount=$numCount+1}-->
+						<!--{/foreach}-->
+					  </tbody>
+					</table>
+					<!--{include file="paging-bottom.html"}-->
+				</div>
+			</div>
+		</div>
+		<!--{else}-->
+		<div class="col-sm-7 alert alert-warning"><h3 class="alert-heading">No registered bulk sms subscribers</h3></div>
+		<!--{/if}-->
+	</div>
+</section>
+<!--{/block}-->

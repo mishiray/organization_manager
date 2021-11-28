@@ -1,0 +1,517 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<!--{/block}-->
+<!--{block name="addbutton"}-->
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard | Job Listing </strong>&nbsp;<i class="fa fa-briefcase"></i></section>
+<h2>JOBS</h2>
+
+	<!--{if !empty($fail)}-->
+	<!--{$fail}-->
+	<!--{/if}-->
+<section class="jumbotron">
+	<div class="table-responsive">
+		<!--{if !empty($rjobs)}-->
+		<div id="dataTableId_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+			<table class="table table-striped table-hover">
+				<thead><th></th></thead>
+				<tbody>
+				<!--{foreach $rjobs as $kY=> $job}-->
+					<tr>
+						<td>
+							<div class="card">
+								<div class="card-header bg-light">
+									<h5><!--{$job->jobtitle}--></h5>
+								</div>
+								<div class="card-body row">
+									<div class="col-sm-2">
+										<img style=" width: 100%; max-height: 150px;" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$job->logo}-->" title="<!--{$job->jobtitle}-->">
+										<br/>
+										<span class="text-dark"><strong><!--{$job->company}--></strong></span>
+									</div>
+									<div class="col-sm-3">
+										<h5 class="card-title"><!--{$job->location}--></h5>
+										<small>
+											<span><strong>City:</strong> <!--{$job->city}--></span><br/>
+											<span><strong>Salary Expectation:</strong> <!--{if !empty($job->salary) and $job->salary>=1.00}--> <!--{$job->salary}--> <!--{$payTypes[$job->salarytype]}--><!--{else}-->not specified<!--{/if}--></span><br/>
+											<span><strong>Application Expires:</strong> <!--{$job->expirydate}--></span><br/>
+											<span><strong>Dateposted:</strong> <!--{$job->dateadded}--></span><br/>
+											<span><strong>Job Status:</strong> <!--{if $job->open=='1'}--><i class="text-success">open</i><!--{else}-->close<!--{/if}--></span><br/>
+											<p class="card-text">
+												<strong>Contact Details</strong><br/>
+												<!--{if !empty($job->phone)}--><i class="fa fa-phone"></i> <!--{$job->phone}--><br/> <!--{/if}-->
+												<i class="fa fa-envelope"></i> <!--{$job->email}--><br/>
+												<!--<a href="#" class="btn btn-sm btn-link">More Info...</a><br/>-->
+												<!--{if !empty($job->url)}--><a href="<!--{$job->url}-->" class="btn btn-sm btn-link"><!--{$job->url}--></a><!--{/if}-->
+											</p>
+										</small>
+									</div>
+									<div class="col-sm-4">
+										<h5>Job Role</h5>
+										<div id="carSel<!--{$kY}-->" class="card-text">
+											<div style="max-height: 150px; overflow-y: auto; color: #000 !important; width: 100%; padding-top: 20px;">
+												<p><!--{$job->role}--></p>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-3">
+										<h6>Total Applicants: <span class="text-success"><!--{if !empty($job->applicantDetails) and is_array($job->applicantDetails)}--><!--{count($job->applicantDetails)}--><!--{else}-->0<!--{/if}--></span>
+										</h6>
+										<div>
+											<small>
+												<div id="applicantLists">
+													<h5 style="padding: 5px;">List of Applicants</h5>
+													<!--{if !empty($job->applicantDetails) and is_array($job->applicantDetails)}-->
+														<ul class="list-group">
+														<!--{foreach $job->applicantDetails as $jap}-->
+														<!--{$userdetails=json_decode($jap->userdetails)}-->
+															<li class="list-group-item"><strong>Names:</strong> <!--{$userdetails->names}--><br/> <strong>Contact:</strong> <!--{$jap->email}--> (<!--{$userdetails->phone}-->) </li>
+														<!--{/foreach}-->
+														</ul>
+													<!--{/if}-->
+												</div>
+												<!--{if $job->status==1}-->
+													<button class="btn btn-sm btn-danger mt-1" id="deactMe" data-toggle="modal" data-target="#deActivateMe" jobid="<!--{$job->token}-->" i='<!--{json_encode($job)}-->'><i class="fa fa-close"></i> Deactivate</button>
+												<!--{else}-->
+													<button class="btn btn-sm btn-success mt-1" id="actMe" data-toggle="modal" data-target="#activateMe" jobid="<!--{$job->token}-->" i='<!--{json_encode($job)}-->'><i class="fa fa-check"></i> Activate</button>
+												<!--{/if}-->
+												<button class="btn btn-sm btn-secondary mt-1" id="editMe" data-toggle="modal" data-target="#editJob" jobid="<!--{$job->token}-->" i='<!--{json_encode($job)}-->'><i class="fa fa-pencil"></i> Edit</button>
+                        <button class="btn btn-sm btn-danger mt-1" id="deleteMe" data-toggle="modal" data-target="#deleteJob" jobid="<!--{$job->token}-->" i='<!--{json_encode($job)}-->'><i class="fa fa-trash"></i> Delete</button>
+											</small>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<footer class="blockquote-footer ordered-quote-50px"><!--{$job->description}--></footer>
+									</div>
+								</div>
+							</div>
+							<strong></strong>
+						</td>
+					</tr>
+				<!--{/foreach}-->
+				</tbody>
+			</table>
+		</div>
+		<!--{else}-->
+			<div class="alert alert-info alert-dismissible" role="alert" style="width: 90% !important;"><h5>No Job Post Found in the Database</h5></div>
+		<!--{/if}-->
+	</div>
+</section>
+<!--{block name="modal-section"}-->
+	<!--{*Add Modal*}-->
+	<div class="modal fade" id="newJobs" tabindex="-1" role="dialog" aria-labelledby="jobsTitle" aria-hidden="true" style="z-index: 9999;">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body" id="business-div">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header text-center" id="jobsTitle">
+								<h4 class="slow flash infinite">New Job Posting</h4>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							</div>
+							<div class="card-body">
+								<form action="?p=new" posts="post" enctype="multipart/form-data" method="post">
+									<div class="form-group row">
+										<div class="col-md-6">
+										    <label for="category" class="control-label">Job Category:</label>
+										    <input type="text" class="form-control form-control-sm" id="category" name="category" list="jobcatlists" required>
+										    <datalist id="jobcatlists">
+										    	<!--{if !empty($jobcatlists)}-->
+											    	<!--{foreach $jobcatlists as $jcats}-->
+											    	<option><!--{$jcats}--></option>
+											    	<!--{/foreach}-->
+										    	<!--{/if}-->
+										    </datalist>
+										</div>
+										<div class="col-md-6">
+										    <label for="fullname" class="control-label">Representative's Full Name:</label>
+										    <input type="text" class="form-control form-control-sm" id="fullname" name="fullname" required>
+										</div>
+									</div>
+									<div class="form-group row">
+										<div class="col-md-6">
+										    <label for="compname" class="control-label">Company's Name:</label>
+										    <input type="text" class="form-control form-control-sm" id="compname" name="compname" placeholder="Compamy's Name" required>
+										</div>
+										<div class="col-md-6">
+										    <label for="complogo" class="control-label">Company's Logo:</label>
+										    <input type="file" class="form-control form-control-sm upload-img" id="complogo" name="complogo" placeholder="Company's Logo">
+										    <img src="" class="img text-center img-thumbnail" id="img-upload" style="max-height: 300px; max-height: 300px;">
+										</div>
+									</div>
+									<div class="form-group row">
+									    <div class="form-group col-md-6">
+									    	<label for="jobtitle" class="col-form-label">Job Title:</label>
+									    	<input type="text" class="form-control form-control-sm" id="jobtitle" name="jobtitle" placeholder="Job Title" required>
+									    </div>
+										<div class="form-group col-md-6">
+									    	<label for="expirydate" class="col-form-label">Expiration Date:</label>
+									    	<input type="date" class="form-control form-control-sm" id="expirydate" name="expirydate" placeholder="Expiry Date" required>
+									    </div>
+									</div>
+									<div class="form-row">
+								    	<div class="form-group col-md-6">
+									    	<label for="email" class="col-form-label">Email:</label>
+									    	<input type="email" class="form-control form-control-sm" id="email" name="email" placeholder="Email" required>
+									    </div>
+								    	<div class="form-group col-md-6">
+									    	<label for="phone" class="col-form-label">Phone:</label>
+									    	<input type="tel" class="form-control form-control-sm" id="phone" name="phone" placeholder="Phone No" required>
+									    </div>
+									</div>
+									<div class="form-row">
+									    <div class="form-group col-md-6">
+										    <label for="location" class="col-form-label">Location (Optional):</label>
+									    	<input type="text" class="form-control form-control-sm" id="location" name="location" placeholder="Location Address" required>
+									    </div>
+									    <div class="form-group col-md-6">
+										    <label for="city" class="col-form-label">City:</label>
+									    	<input type="text" class="form-control form-control-sm" id="city" name="city" placeholder="City" required>
+									    </div>
+									</div>
+									<div class="form-row">
+								    	<div class="form-group col-md-6">
+									    	<label for="description" class="col-form-label">Job Description:</label>
+									    	<textarea class="form-control form-control-sm" id="description" rows="4" name="description" placeholder="Enter Job Description Here..." required></textarea>
+									    </div>
+								    	<div class="form-group col-md-6">
+									    	<label for="role" class="col-form-label">Roles & Responslibilties:</label>
+									    	<textarea class="form-control form-control-sm" id="role" rows="4" name="role" placeholder="Enter Job Roles Here..." required></textarea>
+									    </div>
+									</div>
+									<div class="form-row">
+								    	<div class="form-group col-md-6">
+									    	<label for="salary" class="col-form-label">Salary Expectation:</label>
+									    	<div class="input-group">
+									    		<input type="number" id="salary" name="salary" class="form-control form-control-sm" placeholder="Salary Expectation">
+									    		<select class="form-control form-control-sm" id="paymentMode" name="paymentMode" required>
+									    			<option value="h">Hourly</option>
+									    			<option value="d">Daily</option>
+									    			<option value="w">Weekly</option>
+									    			<option value="m" selected>Monthly</option>
+									    			<option value="q">Quarterly</option>
+									    			<option value="a">Annually</option>
+									    		</select>
+									    	</div>
+									    </div>
+								    	<div class="form-group col-md-6">
+									    	<label for="joburl" class="col-form-label"> Website URL (if any):</label>
+									    	<input type="url" class="form-control form-control-sm" id="joburl" name="joburl" placeholder="Website URL...">
+									    	<small>Format: https://your_website.com</small>
+									    </div>
+									</div>
+									<div class="form-group">
+									    <label for="subdetail" class="col-form-label">Annual Subscription</label>
+								    	<div class="input-group">
+									    	<strong>Total Fee:&nbsp;</strong>&#8358; <!--{$settings->jobs->subamount}--> per month
+									    </div>
+									</div>
+									<div class="form-group"><!--₦-->
+										<button type="submit" name="triggers" value="saveJob" class="btn btn-sm btn-info">Post Job</button>&nbsp;
+										<button type="button" class="pull-right close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span> Close</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--{*Edit Modal*}-->
+	<div class="modal fade" id="editJob" tabindex="-1" role="dialog" aria-labelledby="jobsTitle" aria-hidden="true" style="z-index: 9999;">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-body" id="business-div">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header text-center" id="jobsTitle">
+								<h4 class="slow flash infinite">Job Post Update</h4>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							</div>
+							<div class="card-body">
+								<form action="?p=new" posts="post" enctype="multipart/form-data" method="post">
+									<div class="form-group row">
+										<div class="col-md-6">
+										    <label for="category1" class="control-label">Job Category:</label>
+                        <select id="category" name="category" class="form-control" required>
+                          <option value="">Choose Category</option>
+                          <option class="select-option" value="information technology">Information Technology</option>
+                          <option class="select-option" value="media">Media</option>
+                          <option class="select-option" value="business development">Business Development</option>
+                          <option class="select-option" value="logistics and deliveries">Logistics and Deliveries</option>
+                          <option class="select-option" value="Executive Marketer">Executive Marketer</option>
+                          <option class="select-option" value="marketing manager">Marketing Manager</option>
+                          <option class="select-option" value="comporate manager/content developer">Comporate Manager/Content Developer</option>
+                          <option class="select-option" value="accounting">Accounting</option>
+                        </select>
+										</div>
+										<div class="col-md-6">
+										    <label for="fullname1" class="control-label">Representative's Full Name:</label>
+										    <input type="text" class="form-control form-control-sm" id="fullname1" name="fullname" required>
+										</div>
+									</div>
+									<div class="form-group row">
+										<div class="col-md-6">
+										    <label for="compname1" class="control-label">Company's Name:</label>
+										    <input type="text" class="form-control form-control-sm" id="compname1" name="compname" placeholder="Compamy's Name" required>
+										</div>
+										<div class="col-md-6">
+										    <label for="complogo1" class="control-label">Company's Logo:</label>
+										    <input type="file" class="form-control form-control-sm upload-img1" id="complogo1" name="complogo" placeholder="Company's Logo">
+										    <img src="" class="img text-center img-thumbnail1" id="img-upload1" style="width: 200px; height: 200px; padding: 5px;">
+										    <input type="hidden" name="prevjoblogo" id="prevjoblogo1" value="">
+										</div>
+									</div>
+									<div class="form-group row">
+									    <div class="form-group col-md-6">
+									    	<label for="jobtitle1" class="col-form-label">Job Title:</label>
+									    	<input type="text" class="form-control form-control-sm" id="jobtitle1" name="jobtitle" placeholder="Job Title" required>
+									    </div>
+										<div class="form-group col-md-6">
+									    	<label for="expirydate1" class="col-form-label">Expiration Date:</label>
+									    	<input type="date" class="form-control form-control-sm" id="expirydate1" name="expirydate" placeholder="Expiry Date" required>
+									    </div>
+									</div>
+									<div class="form-row">
+								    	<div class="form-group col-md-6">
+									    	<label for="email1" class="col-form-label">Email:</label>
+									    	<input type="email" class="form-control form-control-sm" id="email1" name="email" placeholder="Email" required>
+									    </div>
+								    	<div class="form-group col-md-6">
+									    	<label for="phone1" class="col-form-label">Phone:</label>
+									    	<input type="tel" class="form-control form-control-sm" id="phone1" name="phone" placeholder="Phone No" required>
+									    </div>
+									</div>
+									<div class="form-row">
+									    <div class="form-group col-md-6">
+										    <label for="location1" class="col-form-label">Location (Optional):</label>
+									    	<input type="text" class="form-control form-control-sm" id="location1" name="location" placeholder="Location Address" required>
+									    </div>
+									    <div class="form-group col-md-6">
+										    <label for="city1" class="col-form-label">City:</label>
+									    	<input type="text" class="form-control form-control-sm" id="city1" name="city" placeholder="City" required>
+									    </div>
+									</div>
+									<div class="form-row">
+								    	<div class="form-group col-md-6">
+									    	<label for="description1" class="col-form-label">Job Description:</label>
+									    	<textarea class="form-control form-control-sm" id="description1" rows="4" name="description" placeholder="Enter Job Description Here..." required></textarea>
+									    </div>
+								    	<div class="form-group col-md-6">
+									    	<label for="role1" class="col-form-label">Roles & Responslibilties:</label>
+									    	<textarea class="form-control form-control-sm" id="role1" rows="4" name="role" placeholder="Enter Job Roles Here..." required></textarea>
+									    </div>
+									</div>
+									<div class="form-row">
+								    	<div class="form-group col-md-6">
+									    	<label for="salary1" class="col-form-label">Salary Expectation:</label>
+									    	<div class="input-group">
+									    		<input type="number" id="salary1" name="salary" class="form-control form-control-sm" placeholder="Salary Expectation">
+									    		<select class="form-control form-control-sm" id="paymentMode1" name="paymentMode" required>
+									    			<option value="h">Hourly</option>
+									    			<option value="d">Daily</option>
+									    			<option value="w">Weekly</option>
+									    			<option value="m" selected>Monthly</option>
+									    			<option value="q">Quarterly</option>
+									    			<option value="a">Annually</option>
+									    		</select>
+									    	</div>
+									    </div>
+								    	<div class="form-group col-md-6">
+									    	<label for="joburl1" class="col-form-label"> Website URL (if any):</label>
+									    	<input type="url" class="form-control form-control-sm" id="joburl1" name="joburl" placeholder="Website URL...">
+									    	<small>Format: https://your_website.com</small>
+									    </div>
+									</div>
+									<div class="form-group">
+										<button type="submit" name="triggers" value="editJob" class="btn btn-block btn-info">Update Job Detail</button>&nbsp;
+										<input type="hidden" name="token" id="jobtoken1" value="">
+										<button type="button" class="pull-right close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span> Close</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--{*Delete Modal*}-->
+	<div class="modal fade" id="deleteJob" tabindex="-1" role="dialog" aria-labelledby="vpTitle" aria-hidden="true" style="z-index: 9999;">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-project">
+					<h5 class="modal-title text-center" id="vpTitle" style="margin-left: 40%;">Job Post Deletion</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="card table-responsive">
+						<table class="special-table table table-bordered table-striped table-hover table-sm">
+							<tr>
+								<th>Job ID:</th><td id="jobtoken2"></td>
+							</tr>
+							<tr>
+								<th>Company's Name:</th><td id="companyname2"></td>
+							</tr>
+							<tr>
+								<th>Job Title:</th><td id="jobntitle2"></td>
+							</tr>
+						</table>
+					</div>
+					<div class="card alert alert-warning">
+						<div class="card-body">
+							<h6>Are you sure to delete this job post record?</h6>
+							<p>Click continue to proceed or Cancel to Close.</p>
+						</div>
+						<div class="card-footer">
+							<form method="post" class="pull-left" action="?p=delete">
+								<input type="hidden" name="token" id="token2" required readonly>
+								<button type="submit" class="btn btn-danger" name="triggers" value="deljob">Proceed</button>&nbsp;
+							</form>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+	  	</div>
+	</div>
+	<!--{*Deactivate Modal*}-->
+	<div class="modal fade" id="deActivateMe" tabindex="-1" role="dialog" aria-labelledby="vpTitle" aria-hidden="true" style="z-index: 9999;">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-project">
+					<h5 class="modal-title text-center" id="vpTitle" style="margin-left: 40%;">Job Post Deactivation</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="card table-responsive">
+                <table class="special-table table table-bordered table-striped table-hover table-sm">
+                  <tr>
+                    <th>Job ID</th><td id="jobtoken3"></td>
+                  </tr>
+                  <tr>
+                    <th>Company's Name:</th><td id="companyname3"></td>
+                  </tr>
+                  <tr>
+                    <th>Job Title:</th><td id="jobntitle3"></td>
+                  </tr>
+                </table>
+					</div>
+					<div class="card alert alert-warning">
+						<div class="card-body">
+							<h6>Are you sure to deacitvate this job post record?</h6>
+							<p>Click continue to proceed or Cancel to Close.</p>
+						</div>
+						<div class="card-footer">
+							<form method="post" class="pull-left" action="?p=deactivate">
+								<input type="hidden" name="token" id="token3" required readonly>
+								<button type="submit" class="btn btn-danger" name="triggers" value="deactivatejob">Proceed</button>&nbsp;
+							</form>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+	  	</div>
+	</div>
+	<!--{*Activate Modal*}-->
+	<div class="modal fade" id="activateMe" tabindex="-1" role="dialog" aria-labelledby="vpTitle" aria-hidden="true" style="z-index: 9999;">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-project">
+					<h5 class="modal-title text-center" id="vpTitle" style="margin-left: 40%;">Job Post Activation</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="card table-responsive">
+						<table class="special-table table table-bordered table-striped table-hover table-sm">
+							<tr>
+								<th>Job ID</th><td id="jobtoken4"></td>
+							</tr>
+							<tr>
+								<th>Company's Name:</th><td id="companyname4"></td>
+							</tr>
+							<tr>
+								<th>Job Title:</th><td id="jobntitle4"></td>
+							</tr>
+						</table>
+					</div>
+					<div class="card alert alert-warning">
+						<div class="card-body">
+							<h6>Are you sure to acitvate this job post record?</h6>
+							<p>Click continue to proceed or Cancel to Close.</p>
+						</div>
+						<div class="card-footer">
+							<form method="post" class="pull-left" action="?p=activate">
+								<input type="hidden" name="token" id="token4" required readonly>
+								<button type="submit" class="btn btn-danger" name="triggers" value="activatejob">Proceed</button>&nbsp;
+							</form>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+	  	</div>
+	</div>
+	<!--{*View Modal*}-->
+	<div class="modal fade" id="paymentDetail" tabindex="-1" role="dialog" aria-labelledby="pdTitle" aria-hidden="true" style="z-index: 9999;">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-project">
+					<h5 class="modal-title text-center" id="pdTitle" style="margin-left: 40%;">Job Post Payment Details</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+						<!--div class="form-group">
+							<div class="alert alert-warning"> This Section is currently Unsatble kindly bear with its utilization as we update correct the faults in a later date</div>
+						</div-->
+					<div class="card table-responsive">
+						<table class="special-table table table-bordered table-striped table-hover table-sm">
+							<tr>
+								<th>Transaction ID</th><td id="transid5"></td>
+							</tr>
+							<tr>
+								<th>Job Post ID</th><td id="jobid5"></td>
+							</tr>
+							<tr>
+								<th>Company's Name</th><td id="compname5"></td>
+							</tr>
+							<tr>
+								<th>Job Title</th><td id="jobtitle5"></td>
+							</tr>
+							<tr>
+								<th>Amount Paid</th><td id="amountpaid5"></td>
+							</tr>
+							<tr>
+								<th>Payment Type</th><td id="paymenttype5"></td>
+							</tr>
+							<tr>
+								<th>Paid By</th><td id="paidby5"></td>
+							</tr>
+							<tr>
+								<th>Transaction Date</th><td id="transdate5"></td>
+							</tr>
+							<tr>
+								<th>Payment Status</th><td id="paymentstatus5"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer pull-left">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+	  	</div>
+  </div>
+<!--{/block}-->
+<!--{/block}-->

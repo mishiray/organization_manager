@@ -1,0 +1,85 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Ticket</h1>
+    <p class="mb-4">Please fill and submit the ticket</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add Ticket</h6>
+      </div>
+      <div class="card-body">
+      <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_variance_report" enctype="multipart/form-data">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="department" class="form-control-label">Department</label>
+                    <input type="text" class="form-control form-control-user" id="department" readonly name="department" value="<!--{$employee->dept}-->" placeholder="Department">
+                </div>
+                <div class="form-group">
+                    <label for="project" class="form-control-label">Employee Name</label>
+                    <input type="text" class="form-control form-control-user" id="name" readonly value="<!--{$employee->name}-->" name="emp_name" placeholder="Employee Name">
+                </div>
+                <div class="form-group">
+                    <label for="pages" class="form-control-label">Affected Pages</label>
+                    <input type="text" class="form-control form-control-user" id="pages" name="pages" placeholder="Affected Pages">
+                </div>
+                <div class="form-group">
+                    <label for="img-upload">
+                      <data class="text-center jsonly">Attach Photo</data>
+                    </label>
+                    <input type="file" accept="image/*" id="img-upload" class="input-rounded w-100" name="img_upload"/>
+                    <noscript><button class="text-center" id="ppUpload" name="ppUpload" type="button">Upload Photo</button></noscript>
+                </div>
+                <div class="form-group">
+                  <label for="task" class="form-control-label">Report Description</label>
+                    <textarea class="form-control form-control" id="report" name="report" rows='4' placeholder="Report Description"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="severity" class="form-control-label">Severity</label>
+                  <select name="severity" id="" class="form-control">
+                    <option selected> Choose </option>
+                    <option value="emergency">Emergency</option>
+                    <option value="alert">Alert</option>
+                    <option value="critical">Critical</option>
+                    <option value="error">Error</option>
+                    <option value="warning">Warning</option>
+                    <option value="notification">Notification</option>
+                    <option value="informational">Informational</option>
+                    <option value="debugging">Debugging</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="status" class="form-control-label">Status</label>
+                  <select name="status" id="" class="form-control">
+                    <option selected value=""> Choose </option>
+                    <option value="1">Not Done</option>
+                    <option value="2">Acknowledged</option>
+                    <option value="3">Done</option>
+                    <option value="4">Accepted</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                    <label for="note" class="form-control-label">Note</label>
+                    <textarea class="form-control form-control" id="task" name="note" rows='4' placeholder="Notes.."></textarea>
+                </div>
+                  <div class="form-group text-center">
+                    <button class="btn btn-primary btn-sm rounded-0" type="submit" name="add_report">Send Ticket</button>
+                </div>
+            </div>
+            <!--{if !empty($fail)}-->
+            <div class="col">
+              <div class="form-group">
+                <!--{$fail}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <br>
+        </div>
+      </form>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

@@ -1,0 +1,197 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Investments Table</h1>
+<p class="mb-4">The table contains investments made by clients</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Investments</h6>
+  </div>
+  <div class="form-group">
+    <!--{if !empty($fail)}-->
+      <!--{$fail}-->
+    <!--{/if}-->
+  </div>
+  <div class="card-body bg-primary justify-content-center">
+    <div class="col-lg-6 bg-primary rounded pt-2">
+      <form action="" class="d-flex" method="post">
+      <div class="form-group">
+        <label class="text-light" for="Year">Enter Year</label>
+            <select class="form-control" id="Year"  name="year">
+              <!--{for $foo=2010 to 3000}-->
+                <option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+                  <!--{$foo}-->
+                </option>
+              <!--{/for}-->
+            </select>
+      </div>
+      <div class="form-group">
+        <label for="month"class="text-light">Select Month</label>
+            <select class="form-control" id="month"  name="month">
+              <option value="">All</option>
+              <!--{foreach $months as $month}-->
+                <option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+                  <!--{$month}-->
+                </option>
+              <!--{/foreach}-->
+            </select>
+      </div>
+      <div class="form-group">
+        <label for="project_token"class="text-light">Select Property</label>
+            <select class="form-control" id="product"  name="project_token">
+              <option value="">All</option>
+              <!--{if !empty($projects)}-->
+                <!--{foreach $projects as $project}-->
+                  <option <!--{if !empty($filter->product)}--> <!--{if $project->name == $filter->product}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$project->name}-->">
+                    <!--{$project->name|ucfirst}-->
+                  </option>
+              <!--{/foreach}-->
+              <!--{else}-->
+                <option value="">None</option>
+              <!--{/if}-->
+            </select>
+      </div>
+      <div class="form-group">
+        <label for="status"class="text-light">Select Investment Status</label>
+            <select class="form-control" id="status"  name="status">
+              <option value="">All</option>
+              <option <!--{if !empty($filter->status)}--> <!--{if $filter->status == 0}-->selected <!--{/if}--> <!--{/if}--> value="0">
+                Normal
+              </option>
+              <option <!--{if !empty($filter->status)}--> <!--{if $filter->status == 1}-->selected <!--{/if}--> <!--{/if}--> value="1">
+                Cashed Out
+              </option>
+              <option <!--{if !empty($filter->status)}--> <!--{if $filter->status == 2}-->selected <!--{/if}--> <!--{/if}--> value="2">
+                Re-Investment
+              </option>
+              <option <!--{if !empty($filter->status)}--> <!--{if $filter->status == 3}-->selected <!--{/if}--> <!--{/if}--> value="3">
+                Possession of Land
+              </option>
+            </select>
+      </div>
+        <div class="form-group d-flex"> 
+          <button type="submit" class="mt-2 btn btn-success" name="triggers" id="reports" value="inv_filter">OK</button>
+       </div>      
+     </form>
+    </div>
+  </div>
+  <!--{if !empty($investment_details)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th class="">Reference</th>
+            <th>Product Details</th>
+            <th>Client Details</th>
+            <th>Payment Details</th>
+            <th>Investment Period</th>
+            <th>Investment Status</th>
+            <th>Status</th>
+            <th>Details</th>
+            <th class="showOne">Action</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <th class="">Reference</th>
+            <th>Product Details</th>
+            <th>Client Details</th>
+            <th>Payment Details</th>
+            <th>Investment Period</th>
+            <th>Investment Status</th>
+            <th>Status</th>
+            <th>Details</th>
+            <th class="showOne">Action</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+			  	<!--{foreach $investment_details as $subs}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <td class="">
+              <strong><!--{$subs->token}--> </strong>
+            </td>
+            <td>
+              <!--{if !empty($subs->invest)}-->
+              <strong>Name: </strong><!--{$subs->product}--> <br>
+              <strong>Plan Percentage: </strong><!--{$subs->percentage}--> <br>
+              <strong>Plot Square Meter: </strong><!--{$subs->category}--> <br>
+              <strong>Principal: </strong>&#8358;<!--{$subs->principal|number_format:2}--> <br>
+              <strong>Rate Of Interest(ROI): </strong>&#8358;<!--{$subs->roi|number_format:2}--> <br>
+              <strong>Maturity: </strong>&#8358;<!--{$subs->maturity|number_format:2}--> <br>
+              <!--{/if}-->
+            </td>
+            <td>
+              <strong>Title: </strong><!--{$subs->title}--> <br>
+              <strong>First Name: </strong><!--{$subs->firstname}--> <br>
+              <strong>Last Name: </strong><!--{$subs->surname}--> <br>
+              <strong>Middle Name: </strong><!--{$subs->middlename}--> <br>
+              <!--{if $subs->marital_status=='married'}-->
+              <strong>Spouse First Name: </strong><!--{$subs->spouse_firstname}--> <br>
+              <strong>Spouse Last Name: </strong><!--{$subs->spouse_surname}--> <br>
+              <!--{/if}-->
+              <strong>Mobile: </strong><!--{$subs->mobile}--> <br>
+              <strong>Phone: </strong><!--{$subs->phone}--> <br>
+              <strong>Email: </strong><!--{$subs->email}--> <br>
+            </td>
+            <td>
+              <strong>Payment Type: </strong><!--{$subs->payment_type}--> <br>
+              <strong>Total Amount: </strong>&#8358;<!--{$subs->total_amount|number_format:2}--> <br> <br>
+              <strong>Total Paid:</strong>&#8358;<!--{$subs->total_paid|number_format:2}--> 
+            </td>
+            <td>
+              <strong>Start Date: </strong><!--{$subs->reg_date|date_format}--> <br>
+              <strong>End Date: </strong><!--{$subs->end_date|date_format}--> <br>
+            </td>
+            <td>
+            <!--{if $subs->isDone=='YES'}--> 
+            Investment Period Over <br>
+              <!--{if $subs->status==1}-->
+              Client Cashed Out
+              <!--{/if}-->
+              <!--{if $subs->status==2}-->
+              Client Re-invested
+              <!--{/if}-->
+              <!--{if $subs->status==3}-->
+              Client Took Possession of land
+              <!--{/if}-->
+            <!--{else}-->
+              Investment Period still Ongoing
+            <!--{/if}-->
+            </td>
+			      <td>	
+              <!--{if $subs->paid =='0'}-->
+                <span class="badge badge-<!--{if $subs->paid =='1'}-->success<!--{else}-->warning<!--{/if}-->"><!--{if $subs->paid=='1'}-->PAID<!--{else}-->NOT PAID<!--{/if}--></span> <br>
+            	  <a class="btn btn-sm my-1 btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/make_payment?type=investment&id=<!--{$subs->token}-->"> <i class="fa fa-plus"></i> Make Payment </a>
+              <!--{else}-->
+                <span class="badge badge-success">PAID</span>
+              <!--{/if}-->
+            </td>
+			      <td>
+			      	<a class="btn btn-sm my-1 btn-primary"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_investment?id=<!--{$subs->token}-->"><i class="fa fa-ellipsis-v"></i> View </a>
+			      </td>
+            <td class="showOne">
+              <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/investment_details" method="post">
+                <input type="hidden" name="token" value="<!--{$subs->token}-->">
+                <button type="submit" name="triggers" value="delete_inv" onclick="return deleteItem();" class="btn btn-danger btn-sm"><i class="fa fa-trash p-2"></i>Delete</button>
+              </form>
+            </td>
+			    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

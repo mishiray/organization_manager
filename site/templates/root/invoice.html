@@ -1,0 +1,203 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<div class="row" style="margin-top: 5rem;" id="payslip">
+	<div class="col-lg-8">
+		<!--{if !empty($invoices)}-->
+		<div id="printable" >
+			<div class="card mb-4">
+				<div class="card-body justify-content-center">
+					<div class="invoice-box">
+						<div class="table-responsive">
+							<table class="table" cellpadding="0" cellspacing="0">
+								<tr class="top">
+									<td colspan="2">
+										<table>
+											<tr>
+												<td class="title">
+													<img class="w-50 img-responsive" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/logo.png">
+												</td>
+												<td class="heading">
+													 <!--{$Site.companyName}-->
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr class="information">
+									<td colspan="2">
+										<table width="100%" cellspacing="0">
+											<tr>
+												<td>
+													<a href="mailto:info@<!--{$domainName}-->"><i class="fa fa-envelope"></i> info@<!--{$domainName}--></a><br>
+													<a href="http://<!--{$domainName}-->"><i class="fa fa-globe"></i> <!--{$domainName}--></a>
+												</td>
+												
+												<td>
+													<!--{$Site.companyAddress}--> <br>
+													+2348034699002, +2347030561428
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="m-4">
+							<table width="100%" class="" cellspacing="0">
+								<tr class="information">
+									<td colspan="2">
+										<h4>Invoice</h4> #<!--{$invoiceid}-->
+									</td>
+									<td class="text-right">
+										Balance Due: &#8358; <!--{$totals->balance|number_format:2}-->
+									</td>
+								</tr>
+								<tr class="information">
+									<td colspan="2">
+													
+									</td>
+									<td class="text-right">
+										Invoice Date: <!--{$subscription->reg_date|date_format:"d/m/y"}-->
+									</td>
+								</tr>
+								<tr class="information">
+									<td colspan="2">
+										Invoice To: <!--{$subscription->surname|ucfirst}--> <!--{$subscription->middlename|ucfirst}--> <!--{$subscription->firstname|ucfirst}-->
+									</td>
+									<td class="text-right">
+										Due Date: <!--{$duedate|date_format:"d/m/y"}-->
+									</td>
+								</tr>
+							</table>
+						</div>
+								<div class="table-responsive">
+									<table class="table table-bordered" id="" width="100%" cellspacing="0">
+										<thead>
+											<tr>
+												<th>SN</th>
+												<th>Item & Description</th>
+												<th>Price</th>
+												<th>Qty</th>
+												<th>Item Discount</th>
+												<th>Total</th>
+											</tr>
+										</thead>
+										<tbody>
+											<!--{$numCount=1}-->
+											<!--{foreach $invoices as $invoice}-->
+											<tr>
+											<td><!--{$numCount}--></td>
+											<td><!--{$invoice->item}--></td>
+											<td>&#8358;<!--{$invoice->price|number_format:2}--></td>
+											<td><!--{$invoice->quantity}--></td>
+											<td>&#8358;<!--{$invoice->discount|number_format:2}--></td>
+											<td>&#8358;<!--{$invoice->total|number_format:2}--></td>
+											</tr>
+											<!--{$numCount=$numCount+1}-->
+											<!--{/foreach}-->
+										</tbody>
+									</table>
+								</div>
+								<div class="row text-right" style="justify-content: flex-end;">
+									<div class="col-lg-6 ">
+										<table width="100%" class="text-right" cellspacing="0">
+											<tr class="total">
+												<td class="" colspan="2">
+													Sub Total:
+												</td>
+												<td class="text-right">
+													&#8358; <!--{$totals->subtotal|number_format:2}-->
+												</td>
+											</tr>
+											<tr class="total">
+												<td colspan="2">
+													Discount:			
+												</td>
+												<td class="text-right">
+													&#8358; <!--{$totals->totaldiscount|number_format:2}-->
+												</td>
+											</tr>
+											<tr class="total">
+												<td colspan="2">
+													Exclusive 
+												</td>
+												<td class="text-right">
+													&#8358; 0
+												</td>
+											</tr>
+											<tr class="total">
+												<td colspan="2">
+													VAT
+												</td>
+												<td class="text-right">
+													&#8358; 0
+												</td>
+											</tr>
+											<tr class="total">
+												<td colspan="2">
+													Total	
+												</td>
+												<td class="text-right">
+													&#8358; <!--{$totals->totalamount|number_format:2}-->
+												</td>
+											</tr>
+											<tr class="total">
+												<td colspan="2">
+													Payment Made	
+												</td>
+												<td class="text-right">
+													<span class="text-danger">(-) &#8358; <!--{$totals->paymentmade|number_format:2}--> </span>
+												</td>
+											</tr>
+											<tr class="total">
+												<td colspan="2">
+													Balance Due	
+												</td>
+												<td class="text-right">
+													&#8358; <!--{$totals->balance|number_format:2}-->
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!--{if !empty($receipts)}-->
+								<div class="table-responsive">
+									<h4>Receipts</h4>
+									<table class="table table-bordered" id="" width="100%" cellspacing="0">
+										<thead>
+											<tr>
+												<th>DATE</th>
+												<th>DESCRIPTION</th>
+												<th>AMOUNT</th>
+											</tr>
+										</thead>
+										<tbody>
+											<!--{foreach $receipts as $receipt}-->
+											<tr>
+												<td><!--{$receipt->transdate|date_format:"d/m/y"}--></td>
+												<td><!--{$receipt->purpose|ucfirst}--></td>
+												<td>&#8358;<!--{$receipt->amount|number_format:2}--></td>
+											</tr>
+											<!--{/foreach}-->
+										</tbody>
+									</table>
+								</div>
+								<!--{/if}-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row text-center justify-content-center m-2">
+			<button class="btn btn-success m-4" id="printNow">Print Now</button>
+		</div>
+		<div class="form-group">
+		<!--{if !empty($fail)}-->
+			<!--{$fail}-->
+		<!--{/if}-->
+		</div>
+		<!--{else}-->
+		<h3>Not Found</h3>
+		<!--{/if}-->
+	</div>
+</div>
+<!--{/block}-->

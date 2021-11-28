@@ -1,0 +1,269 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h1 class="h3 mb-2 text-gray-800">Bills</h1>
+<p class="mb-4">Bill Details</p>
+
+<section class="row" id="printMe">
+	<!--{if !empty($bill)}-->
+	<div class="col-md-12 card">
+		<div class="card-body pt-4">
+			<div class="row">
+			<!--{if !empty($fail)}-->
+				<div class="form-group">
+				<!--{$fail}-->
+				</div>
+			<!--{/if}-->
+			<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/bill?id=<!--{$bill->token}-->" enctype="multipart/form-data" class="w-100">
+				<div class="row w-100">
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="vendor" class="form-control-label">Vendor</label>
+							<input type="text" class="form-control" name="vendor_name" readonly value="<!--{$bill->vendor_name|ucwords}-->" id="">
+						</div>					
+						<div class="form-group">
+							<div id="vendor_address">
+								<p class="m-0 p-0"><!--{$bill->vendor->firstname|ucfirst}--> <!--{$bill->vendor->lastname|ucfirst}--></p>
+								<p class="m-0 p-0"><!--{$bill->vendor->address}--></p>
+								<p class="m-0 p-0"><!--{$bill->vendor->email}--></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="date" class="form-control-label">Date</label>
+							<input type="date" name="date" required class="form-control" readonly value="<!--{$bill->date|date_format:'%Y-%m-%d'}-->" id="date">
+						</div>
+						<div class="form-group">
+							<label for="due_date" class="form-control-label">Due Date</label>
+							<input type="date" name="due_date" required class="form-control" value="<!--{$bill->due_date|date_format:'%Y-%m-%d'}-->"  id="due_date">
+						</div>
+					</div>
+				</div>
+
+				<div class="row text-right">
+					<div class="col justify-content-end p-2 text-right d-flex">
+						<div class="well clearfix mr-4">
+							<a class="btn btn-danger pull-right add-record" data-added="0"><i class="fa fa-plus"></i> Add Row</a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<div class="form-group">
+							<div class="table-responsive">
+							<table id="financetbl" class="table table-hover table-bordered">
+								<thead class=" text-light bg-primary">
+									<tr>
+										<th scope="col">S/N</th>
+										<th scope="col" style="min-width: 300px;">Item</th>
+										<th scope="col" style="min-width: 200px;">Expense Category</th>
+										<th scope="col">Description</th>
+										<th scope="col" style="width: 3	0px;">Quantity</th>
+										<th scope="col">Price</th>
+										<th scope="col">Tax</th>
+										<th scope="col">Amount</th>
+									  </tr>
+									</thead>
+									<tbody id="financebody">
+										<!--{$numcount = 0}-->
+										<!--{foreach $data as $da}-->
+
+										  <tr id = "rec-0">
+											<td>
+												<span class="font-weight-bold sn"><!--{$numcount + 1}--></span>
+											</td>
+											<td>
+												<select class="form-control product" id="products0" i="<!--{$numcount}-->" name="products">
+												<!--{if !empty($products)}-->
+													<option selected disabled>Choose</option>
+													<!--{foreach $products as $product}-->
+														<option i='<!--{json_encode($product)}-->' <!--{if $da->item == $product->product_name}--> selected <!--{/if}--> value="<!--{$product->product_name}-->" > <!--{$product->product_name}--></option>
+													<!--{/foreach}-->
+												<!--{else}-->
+													<option>No Products Added</option>
+												<!--{/if}-->
+												</select>
+											</td>
+											<td>
+												<select class="form-control" id="expenses0" i = "<!--{$numcount}-->" name="expenses">
+													<!--{if !empty($expense_accounts)}-->
+														<option selected disabled>Choose</option>
+														<!--{foreach $expense_accounts as $expense}-->
+															<option i="" <!--{if $da->expense_category == $expense->account}--> selected <!--{/if}--> value="<!--{$expense->account}-->" > <!--{$expense->account}--></option>
+														<!--{/foreach}-->
+													<!--{else}-->
+														<option>No Expense Added</option>
+													<!--{/if}-->
+													</select>
+											</td>
+											<td>
+												<textarea id="description0" class="form-control border" name="description[]" value="" placeholder=""><!--{$da->description}--></textarea>
+											</td>
+											<td>
+											  <input type="number" id="quantity0" class="form-control  border  quantity " name="quantity" i="<!--{$numcount}-->" value="<!--{$da->quantity}-->" placeholder="">
+											</td>
+											<td>
+											  <input type="number" id="price0" class="form-control  border  price " name="price" i="<!--{$numcount}-->" value="<!--{$da->price}-->" placeholder="">
+											</td>
+											<td>
+											  <input type="number" id="tax0" class="form-control  border  tax " name="tax" i="<!--{$numcount}-->" value="<!--{$da->tax}-->" placeholder="">
+											</td>
+											<td>
+											  <input type="number" id="amount0" class="form-control  border  amount " name="amount" i="<!--{$numcount}-->" value="<!--{$da->amount}-->" placeholder="">
+											</td>
+											<td><a class="btn btn-xs delete-record" data-id="0"><i class="fa fa-trash"></i></a></td>
+										  </tr>
+										<!--{$numcount = $numcount + 1}-->
+										<!--{/foreach}-->
+									</tbody>
+									<tfoot>
+									  <tr> 
+										<th colspan="7" class="text-center">
+										  Totals 
+										</th>
+										<td class="text-center">
+											<label for="" class="form-control-label">Total</label>
+											<input id="creditTotal" type="number" class="form-control  border  creditTotal badge-pill" name="total_amount" value="" placeholder="" required readonly>
+										</td>
+									  </tr>
+									</tfoot>
+								  </table>
+								  <div class="d-none">
+									<textarea name="allData" id="allData"></textarea>
+								  </div>
+								</div>
+								<div class="d-none">
+									<table>
+										<tr>
+											<td></td>
+										</tr>
+										<tr class="sample-row d-none" id = "rec-1">
+											<td>
+												<span class="font-weight-bold sn">1</span>
+											</td>
+											<td>
+												<select class="form-control product" id="products" name="products">
+												<!--{if !empty($products)}-->
+													<option selected disabled>Choose</option>
+													<!--{foreach $products as $product}-->
+														<option i='<!--{json_encode($product)}-->' value="<!--{$product->product_name}-->" > <!--{$product->product_name}--></option>
+													<!--{/foreach}-->
+												<!--{else}-->
+													<option>No Products Added</option>
+												<!--{/if}-->
+												</select>
+											</td>
+											<td>
+												<select class="form-control" id="expenses" name="expenses">
+													<!--{if !empty($expense_accounts)}-->
+														<option selected disabled>Choose</option>
+														<!--{foreach $expense_accounts as $expense}-->
+															<option i='' value="<!--{$expense->account}-->" > <!--{$expense->account}--></option>
+														<!--{/foreach}-->
+													<!--{else}-->
+														<option>No Expense Added</option>
+													<!--{/if}-->
+													</select>
+											</td>
+											<td>
+												<textarea id="description" class="form-control border" name="description[]" value="" placeholder=""></textarea>
+											</td>
+											<td>
+											  <input type="number" id="quantity" class="form-control  border  quantity " name="quantity" i="" value="1" placeholder="">
+											</td>
+											<td>
+											  <input type="number" id="price" class="form-control  border  price " name="price" i="" value="" placeholder="">
+											</td>
+											<td>
+											  <input type="number" id="tax" class="form-control  border  tax " name="tax" i="" value="" placeholder="">
+											</td>
+											<td>
+											  <input type="number" id="amount" class="form-control  border  amount " name="amount" i="0" value="" placeholder="">
+											</td>
+											<td><a class="btn btn-xs delete-record" data-id="0"><i class="fa fa-trash"></i></a></td>
+										</tr>
+									</table>
+								</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group text-center">
+					<button class="btn btn-primary rounded-0 p-2" type="submit" name="update_bill">Update Bill </button>
+				</div>				
+			</form>
+			</div>
+	    </div>
+	</div>
+	<div class="col-lg-12 mt-4 card"> 
+		<div class="card shadow mb-4">
+			  <div class="card-header py-3 d-flex bg-info flex-row align-items-center justify-content-between">
+				<h6 class="m-0 font-weight-bold text-light">Payments</h6>
+			  </div>
+			<div class="card-body">
+			<div class="table-responsive">
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				<thead>
+					<tr>
+					<th>SN</th>
+					<th>Transaction Id</th>
+					<th>Payment Account</th>
+					<th>Amount</th>
+					<th>Transaction Date</th>
+					<th>Memo</th>
+					<th>Gate Way</th>
+					<th>Status</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+					<th>SN</th>
+					<th>Transaction Id</th>
+					<th>Payment Account</th>
+					<th>Amount</th>
+					<th>Transaction Date</th>
+					<th>Memo</th>
+					<th>Gate Way</th>
+					<th>Status</th>
+					</tr>
+				</tfoot>
+				<tbody>
+					<!--{if !empty($bill->payment)}-->
+					<!--{$numCount=1}-->
+					<!--{foreach $bill->payment as $pay}-->
+					<tr>
+					<td><!--{$numCount}--></td>
+					<td>
+						<strong><!--{$pay->transid}--></strong>
+					</td>
+					<td>
+						<!--{$pay->payment_account}-->
+					</td>
+					<td>
+						₦<!--{$pay->amount}--> <br>
+					</td>
+					<td>
+						<!--{$pay->transdate}-->
+					</td>
+					<td><!--{$pay->memo}--></td>
+					<td>
+						<!--{$pay->gateway}-->
+					</td>
+					<td>
+						<span class="badge badge-<!--{if $pay->status =='1'}-->success<!--{else}-->warning<!--{/if}-->"><!--{if $pay->status=='1'}-->Success<!--{else}-->Failed<!--{/if}--></span></td>
+					</td>
+					</tr>
+					<!--{$numCount=$numCount+1}-->
+					<!--{/foreach}-->
+				
+					<!--{/if}-->
+				</tbody>
+				</table>
+			</div>
+			</div>
+		</div>
+	</div>
+	<!--{else}-->
+	<h2 class="m-4">No bill found</h2>
+	<!--{/if}-->
+</section>
+<!--{/block}-->

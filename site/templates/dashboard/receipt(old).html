@@ -1,0 +1,44 @@
+<!--{extends file="dashboard.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard | &nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/subscriptions">Subscriptions</a>&nbsp;<i class="fa fa-list"></i> |</strong>&nbsp;Receipt&nbsp;<i class="fa fa-file"></i>
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row justify-content-center">
+	<div class="col-sm-6">
+	  <!--{if !empty($fail)}-->
+	    <div class="form-group">
+	      <!--{$fail}-->
+	    </div>
+	  <!--{/if}-->
+	</div>
+</section>
+<!--{if !empty($payment)}-->
+<section class="row justify-content-center" id="printMe">
+	<div class="col-md-6">
+		<div class="card w-100">
+			<h4 class="card-header bg-primary text-center">
+				<img class="img float-left" style="max-width: 100px;" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/logo1.JPG" alt="<!--{$Site.companyName}-->"> <!--{$Site.companyName}--> <!--{$payment->purpose|capitalize}--> Receipt
+			</h4>
+			<div class="card-body text-center pt-4">
+				<h6 class="mb-5"><span  class="font-weight-bold">Ref ID: </span><!--{$payment->transid1}--></h6>
+				<h6 class="mb-5"><span  class="font-weight-bold">Payment Date: </span><!--{$payment->transdate}--></h6>
+				<h6 class="mb-5"><span  class="font-weight-bold">Payer's Email: </span><!--{$payment->paidby}--></h6>
+				<h6 class="mb-5"><span  class="font-weight-bold">Purpose: </span><!--{$payment->purpose|capitalize}--></h6>
+				<h6 class="mb-5"><span  class="font-weight-bold">Amount Paid: </span><!--₦--> <span class="spanCurrency"><!--{$payment->amount}--></span></h6>
+			</div>
+			<!--{if !empty($payment->programme)}-->
+			<div class="card-body text-center pt-4">
+				<h5 class="card-title">Program Detail</h5>
+				<h6 class="mb-5"><span  class="font-weight-bold">Program Title: </span><!--{$payment->programme->title}--></h6>
+				<h6 class="mb-5"><span  class="font-weight-bold">Program ID: </span><!--{$payment->program}--></h6>
+			</div>
+			<!--{/if}-->
+			<div class="card-footer">
+				<button type="button" class="btn btn-primary btn-sm rounded-0" id="printSect"><i class="fa fa-print"></i> Print Now</button>
+			</div>
+		</div>
+	</div>
+</section>
+<!--{/if}-->
+<!--{/block}-->

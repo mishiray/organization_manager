@@ -1,0 +1,88 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Marketing Report</h1>
+    <p class="mb-4">Add a new report to the records</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add Report</h6>
+      </div>
+      <div class="card-body">
+      <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_report" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="type" class="form-control-label">Report For:</label>
+                  <select disabled name="type" id="type" class="form-control">
+                    <option selected value="daily">Daily Report</option>
+                    <option value="weekly">Weekly Report</option>
+                  </select>
+                </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" id="fullname" name="client" placeholder="Clients Name">
+                  </div>
+                  <div class="form-group">
+                      <input type="email" class="form-control form-control-user" id="email" name="clientemail" placeholder="Clients Email Address">
+                  </div>
+                  <div class="form-group">
+                      <input type="text" class="form-control form-control-user" id="phone" name="clientphone" placeholder="Clients Phone Number">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" id="project" name="project" placeholder="Project Name">
+                </div>
+                  <div class="form-group">
+                      <textarea class="form-control" name="address" id="address" rows="3" placeholder="Clients Address"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" id="requesttype" name="requesttype" placeholder="Clients Request Type">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-user" id="requesttitle" name="title" placeholder="Clients Request Title">
+                  </div>
+                 <div class="form-group">
+                    <input type="text" class="form-control form-control-user" id="requestloc" name="location" placeholder="Clients Request Location">
+                 </div>
+                 <div class="form-group">
+                    <input type="number" class="form-control form-control-user" id="budget" name="budget" placeholder="Clients Budget">
+                 </div>
+            </div>
+                
+            <div class="col-lg-6">
+                  <div class="form-group">
+                    <div class="form-group-row">
+                        <label for="content" class="form-control-label">Marketer's Comment Box</label>
+                        <textarea id="content" name="content" class="form-control form-control-sm input-block" rows="10" required></textarea>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label for="author" class="form-control-label">Author</label>
+                        <input type="text" id="author" name="author" value="<!--{$userinfo->firstname}--> <!--{$userinfo->lastname}-->" class="form-control form-control-sm input-rounded"  <!--{if !in_array($userinfo->userrole, array('level0', 'level2'))}--> readonly <!--{/if}--> />
+                    </div>
+                    <div class="form-group">
+                      <label for="file_upload" class="form-control-label">Upload a File</label>
+                      <input type="file" accept="image/*, application/*, video/*" id="file_upload" class="input-rounded w-100" name="file_upload"/>
+                    </div>
+                    
+                  </div>
+            </div>
+            <!--{if !empty($fail)}-->
+            <div class="col">
+              <div class="form-group">
+                <!--{$fail}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <br>
+            <div class="col" style="margin-top: 100px;">
+                <div class="form-group text-center">
+                    <button class="btn btn-success btn-sm rounded-0" type="submit" name="report">Send Report</button>
+                </div>
+            </div>
+        </div>
+        
+      </form>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

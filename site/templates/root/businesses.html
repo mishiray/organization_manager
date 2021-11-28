@@ -1,0 +1,35 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard |&nbsp;Businesses&nbsp;<i class="fa fa-briefcase"></i></strong></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row justify-content-center">
+	<!--{if !empty($businesses)}-->
+		<!--{foreach $businesses as $business}-->
+		<div class="col-4 mt-2">
+			<div class="card">
+				<div class="card-header">
+					<img class="imge card-img-top" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($business->image)}--><!--{$business->image}--><!--{else}-->site/media/i/default-icon/event-icon.png<!--{/if}-->" style="height: 250px;" >
+				</div>
+				<div class="card-body" style="overflow-y: auto; height: 200px;">
+					<h4 class="card-title">
+						<!--{$business->business_name}-->
+					</h4>
+					<div class="card-text">
+						<!--{$business->business_desc}-->
+					</div>
+				</div>
+				<span class="card-footer">
+					<!--{$business->dateadded|date_format}-->
+					<a class="btn btn-sm btn-info float-right mx-1" title="Delete <!--{$business->business_name}-->" what="Business" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/business?id=<!--{$business->token}-->"><i class="fa fa-ellipsis-v"></i> Detail</a>
+					<a class="btn btn-sm btn-danger deleteTrig float-right" title="Delete <!--{$business->business_name}-->" what="Business" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/businesses?id=<!--{$business->token}-->&business=delete"><i class="fa fa-trash"></i> Delete</a>
+				</span>
+			</div>
+		</div>
+		<!--{/foreach}-->
+		<div class="col-sm-12"><!--{include file="paging-bottom.html"}--></div>
+	<!--{else}-->
+	<div class="alert alert-info">No record found.</h4>
+	<!--{/if}-->
+</section>
+<!--{/block}-->

@@ -1,0 +1,84 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Guarantors</h1>
+    <p class="mb-4">View Guarantors Contact</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Guarantors Contacts</h6>
+      </div>
+      <div class="card-body">
+		<div class="row justify-content-center">
+			<!--{if !empty($guarantors)}-->
+			<!--{foreach $guarantors as $guarantor}-->
+			<div class="col-6">
+				<form class="form" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_guarantors_contact">
+					<fieldset class="card p-2 mt-2">
+						<legend class="text-center">Guarantors Contact Details For <!--{$guarantor->employee|ucwords}--> </legend>
+						<div class="form-group">
+							<label for="firstname">First Name <sup class="text-danger">(*)</sup></label>
+							<input type="text" id="firstname" name="firstname" readonly value="<!--{if !empty($guarantor->firstname)}--><!--{$guarantor->firstname|ucfirst}--><!--{/if}-->" class="form-control badge-pill" required/>
+						</div>
+						<div class="form-group">
+							<label for="surname">Surname <sup class="text-danger">(*)</sup></label>
+							<input type="text" id="surname" name="surname" readonly value="<!--{if !empty($guarantor->surname)}--><!--{$guarantor->surname|ucfirst}--><!--{/if}-->" class="form-control badge-pill" required/>
+						</div>
+						<div class="form-group">
+							<label for="address">Full Address</label>
+							<textarea id="address" name="address" rows="3" readonly class="form-control" required><!--{if !empty($guarantor->address)}--><!--{$guarantor->address}--><!--{/if}--></textarea>
+						</div>
+						<div class="form-group">
+							<label for="office_address" class="form-control-label">Office Address</label>
+							<textarea class="form-control" readonly id="office_address" name="work_address" placeholder="Office Address"><!--{if !empty($guarantor->work_address)}--><!--{$guarantor->work_address}--><!--{/if}--> </textarea>
+						</div>
+						<div class="form-group">
+							<label for="phone">Telephone Number <sup class="text-danger">(*)</sup></label>
+							<input type="number" id="phone" name="phone" readonly value="<!--{if !empty($guarantor->phone)}--><!--{$guarantor->phone}--><!--{/if}-->" class="form-control badge-pill" required/>
+						</div>
+						<div class="form-group">
+							<label for="email">Email Address</label>
+							<input type="email" id="email" readonly value="<!--{if !empty($guarantor->email)}--><!--{$guarantor->email}--><!--{/if}-->" name="email" class="form-control badge-pill" required/>
+						</div>
+						<div class="form-group">
+							<label for="relationship">Relationship</label>
+							<input type="text" id="relationship" readonly name="relationship" value="<!--{if !empty($guarantor->relationship)}--><!--{$guarantor->relationship|ucfirst}--><!--{/if}-->" class="form-control badge-pill"/>
+						</div>
+						<div class="form-group">
+							<label for="nationality">Nationality</label>
+							<input type="text" id="nationality" readonly value="<!--{if !empty($guarantor->country)}--><!--{$guarantor->country}--><!--{/if}-->" name="nationality" class="form-control badge-pill" required/>
+						</div>
+						<div class="form-group">
+							<label for="state">State</label>
+							<input type="text" id="state" readonly value="<!--{if !empty($guarantor->state)}--><!--{$guarantor->state}--><!--{/if}-->" name="state" class="form-control badge-pill" required/>
+						</div>
+						<div class="form-group">
+							<label for="city">City</label>
+							<input type="text" id="city" readonly value="<!--{if !empty($guarantor->city)}--><!--{$guarantor->city}--><!--{/if}-->" name="city" class="form-control badge-pill" required/>
+						</div>
+					</fieldset>
+				</form>
+				<!--{if !empty($fail)}-->
+				<div class="col">
+				  <div class="form-group">
+					<!--{$fail}-->
+				  </div>
+				</div>
+				<!--{/if}-->
+			</div>
+			<!--{/foreach}-->
+			<!--{else}-->
+				<div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+			<!--{/if}-->
+		</div>
+		<div class="row card-body justify-content-center m-4">
+				  <div class="form-group  mb-2">
+					<a class="btn px-4 btn-warning mr-5" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/guarantors">Back</a>
+				  </div>
+		</div>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

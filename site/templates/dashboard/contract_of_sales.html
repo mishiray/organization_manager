@@ -1,0 +1,304 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h1 class="h3 mb-2 text-gray-800">Contact Of Sales Document</h1>
+<div class="row" style="margin-top: 5rem;" id="contract">
+	<div class="card-body">
+		<!--{if !empty($client)}-->
+		<div id="printable" >
+			<div class="invoice-box" style="
+			/* Used to position the watermark */
+			position: relative;
+			">
+			<!--{if !$client->saved}--> 
+			<!-- Watermark container -->
+			<div style="
+				/* Center the content */
+				align-items: center;
+				display: flex;
+				justify-content: center;
+		
+				/* Absolute position */
+				left: 0px;
+				position: absolute;
+				top: 0px;
+		
+				/* Take full size */
+				height: 100%;
+				width: 100%;
+			">
+				<!-- The watermark -->
+				<div id="removewatermark1" style="
+					/* Text color */
+					color: rgba(0, 0, 0, 0.2);
+		
+					/* Text styles */
+					font-size: 3rem;
+					font-weight: bold;
+					text-transform: uppercase;
+		
+					/* Rotate the text */
+					transform: rotate(-45deg);
+		
+					/* Disable the selection */
+					user-select: none;
+					z-index: 1;
+				">
+					Acknowledge Before Use
+				</div>
+		
+			<!-- Other content -->
+			</div>
+			<!--{/if}-->
+			<div class="bg-white w-100">
+				<div class="col-4 p-3">
+					<img class="w-75 img-responsive" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/logo.jpeg">
+				</div>
+				<div class="text-center p-3">
+					<div class="m-4 space mb-4">
+						<h2 class="">CONTRACT OF SALE</h2>
+					</div>
+					<div class="m-4 space mb-4">
+						<h3>BETWEEN</h3>
+					</div>
+					<div class="m-4 space mb-4">
+						<h3> <!--{$Site.companyName}-->  <br>
+							(Hereinafter referred to as “The VENDOR”)
+						</h3>
+					</div>
+					<div class="m-4 space mb-2">
+						<h3>
+							AND
+						</h3>
+					</div>
+					<div class="m-4 mb-2">
+						<h3 class="text-decoration-underline"> <u> <!--{$client->names}--> <br>
+							</u>(Hereinafter referred to as “The PURCHASERS)
+						</h3>
+					</div>
+					<div class="m-4 p-4 border border-dark rounded-pill">
+						<h3 class="">IN RESPECT OF THAT <!--{$client->plot_words}--> (<!--{$client->plot_number}-->) PLOT OR PARCEL OF LAND, SITUATE AND BEING AT <!--{$client->product|ucwords}-->, <!--{$client->property->location|ucwords}-->
+						</h3>
+					</div>
+
+					<div class="m-4 mb-4 text-left">
+						<p>
+							<small>
+								Prepared by: <br>
+								<!--{$Site.companyAddress}-->
+							</small>	
+						</p>
+					</div>
+					<hr>
+				</div>
+				<div class="p-3">
+					<div class="m-4 mb-4 ">
+						<p>
+							BETWEEN <br>
+							<strong><!--{$Site.companyName}--> </strong>
+							of <!--{$Site.companyAddress}-->
+							 Nigeria herein after referred to as the <strong>“VENDOR”</strong> 
+							  which expression shall where the context so admits 
+							  include his Heirs, Assigns, Agents, Legal/Personal 
+							  Representative and Executors/Administrators of the
+							  <strong>ONE PART</strong>. 	
+						</p>
+						<p>
+							<strong>AND</strong>
+						</p>
+						<P>
+							<u> <!--{$client->names}--> </u> both of 
+							<!--{$client->address}-->
+							hereinafter referred to as the <strong>“PURCHASERS”</strong> 
+							which expression shall where the context so admits
+							 include his Agents, Assigns, Legal/Personal 
+							 Representatives and Executors /Administrators 
+							 of the <strong>ONE PART</strong>. 
+						</P>
+						<p>
+							In respect of all that <!--{$client->plot_words}--> (<!--{$client->plot_number}-->) Plot of land, situate and being at  <!--{$client->product|ucwords}--> which Property is in the name of the Vendor.
+						</p>
+						<p>
+							<strong>WHEREAS:</strong>
+						</p>
+						<p>
+							<ol>
+								<li>
+									The property herein described and intended to be hereby sold, assigned, transferred and conveyed situate and being at  <!--{$client->property->location}--> is free from any encumbrance and forms a portion of the large area of land owned by and belonging to land owning family. 
+								</li>
+								<li>
+									The <strong>VENDOR</strong> herein is the beneficial owner of all that property situate, lying and being at  <!--{$client->property->location}-->  measuring approximately 184.152 ACRES (74.525 HECTARES), particularly verged red on  Plan NO. LAL/2793 A&B/2001 drawn by H.T Adekunle (Registered Surveyor) of Watfield & Associates, of No. 9 Adeyemi Street, off Ogba Road, Agege Lagos State and dated 24th September, 2010 with Coordinate Nos: 725103.439mN, 590134.752 mE. 
+								</li>
+								<li>
+									The <strong>VENDOR</strong> has exercised right of ownership over the said property deriving from the family <strong>Deed of Assignment</strong> at the Land Registry Office, Ikeja, Lagos State	
+								</li>
+								<li>
+									The <strong>VENDOR</strong> herein has agreed and accepted to transfer, assign and demise her interest and benefits in <!--{$client->plot_words}--> (<!--{$client->plot_number}-->) plot of land, situate and being at <!--{$client->property->location}-->, covering an area measuring about <!--{$client->plot_sqm}--> Square Meters per plot of land already surveyed in the name of the Vendor and being at Ibeju Local Government Area of Lagos State to the <strong>PURCHASER</strong> under the following terms and conditions.
+								</li>
+							</ol>
+						</p>
+						<p>
+							In pursuance of the agreement between the 
+							<strong>VENDOR</strong> and the <strong>PURCHASER</strong> and in consideration of 
+							the sum of <!--{$client->amount_words}--> Naira only 
+							(N <!--{$client->total_amount|number_format:2}--> )  being the full amount paid by the 
+							<strong>PURCHASER</strong> to the <strong>VENDOR</strong> (the receipt whereof the 
+							VENDOR hereby acknowledge), the <strong>VENDOR</strong> as beneficial 
+							owner and with the consent of the Governor of 
+							Lagos State of Nigeria, hereby assign, sell, grant, 
+							convey and transfer absolutely to the <strong>PURCHASER</strong> her 
+							interest in all that property being <!--{$client->plot_words}--> (<!--{$client->plot_number}-->) plot of 
+							land lying, situate and being at <!--{$client->property->location}-->,
+							Nigeria measuring approximately <!--{$client->plot_sqm}--> square meters per plot 
+							known and described unto the <strong>PURCHASER</strong> to hold and use for 
+							the benefit of the <strong>PURCHASER</strong> subject to the Land Use Act. 
+						</p>
+						<h4><strong>VENDOR’S COVENANTS</strong></h4>
+						<p>
+							<ol>
+								<li>
+									The <strong> VENDOR </strong> shall indemnify the <strong> PURCHASER</strong> 
+									in the event of a claimant with a better title 
+									successfully acquiring the property. 
+								</li>
+								<li>
+									That the <strong> VENDOR </strong> has full power and right to sell and assign the said property to the <strong> PURCHASER</strong>.
+								</li>
+								<li>
+									The <strong> VENDOR </strong> covenants with the <strong> PURCHASER</strong> that the <strong> VENDOR </strong> shall at all times keep the <strong> PURCHASER</strong> indemnified against all contrary actions, proceedings, claims, demands, cost, and damage which may be brought against the <strong> PURCHASER</strong> as a result of the transaction herein or in consequence of any adverse claims, interest or title by any third party or persons on the property herein purchased by the <strong> PURCHASER</strong>. 
+								</li>
+								<li>
+									The <strong> VENDOR </strong> covenants to put the <strong> PURCHASER</strong> in immediate quiet possession of the property purchased herein and that the property being sold, assigned, transferred to the <strong> PURCHASER</strong> is not in any way encumbered.
+								</li>
+								<li>
+									The <strong> VENDOR </strong> further covenants that the <strong> PURCHASER</strong> shall enjoy quiet possession of the property and is entitled to necessary government approvals, consent, or Certificate of Occupancy of the property purchased herein. It is agreed that the <strong> PURCHASER</strong> shall carry out the survey of the property assigned, sold and transferred herein in their name. 
+								</li>
+								<li>
+									The <strong> VENDOR </strong> Covenants with the <strong> PURCHASER</strong> and undertakes that they will execute all necessary documents, and provide or make available to the <strong> PURCHASER</strong> every document necessary to enable the <strong> PURCHASER</strong> perfect title.
+								</li>
+								<li>
+									The <strong> VENDOR </strong> covenants that they are the beneficial owners of the property herein sold to the <strong> PURCHASER</strong> and that the <strong>(VENDOR)</strong> has never sold the property purchased herein to any other person before this agreement and the <strong>(VENDOR) </strong> will not sell or transfer its interest to any third party apart from the <strong> PURCHASER</strong>
+								</li>
+							</ol>
+						</p>
+						<h4><strong>PURCHASER'S COVENANTS</strong></h4>
+						<p>
+							<ol>
+								<li>
+									That upon allocation he/she will make a reasonable mark on the land to demarcate same from other properties within a period of one year.
+								</li>
+								<li>
+									That he/she will endeavor to develop the property within a period of two (2) years from date of allocation.
+								</li>
+								<li>
+									Should the purchaser fail to make a possessory mark on the property, and any loss arises thereafter, the seller shall not be held liable
+								</li>
+								<li>
+									After allocation, no refunds shall be made where the purchaser fails to take physical possession of the property six months after full and complete payment is made.
+								</li>
+								<li>
+								    The Development Levy and estate charges shall be paid.
+								</li>
+							</ol>
+						</p>
+						<h4><strong>SCHEDULE</strong></h4>
+						<p>
+							ALL THAT <!--{$client->plot_words}--> (<!--{$client->plot_number}-->) Plot of Land, situate and being at <!--{$client->property->location}-->					</p>
+						<p>
+						 <strong></strong>IN WITNESS WHEREOF </strong>the Vendor and Purchaser hereto have hereunder set their hands and seal the day and year first above written.
+
+						</p>
+						<p>
+							<strong>
+								THE COMMON SEAL OF THE WITHIN-NAMED “VENDOR” BRIT PROPERTY NIGERIA LTD WAS HEREUNTO AFFIXED,
+							</strong>	
+						</p>
+						<div class="row justify-content-end text-center">
+							<div class="col-4 p-4">
+								<p> 
+									<img id="sig-image" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$client->signature}-->" alt="Your signature will go here!" style="
+									border-bottom: 2px solid; width: 100%; height: 80px;"/>
+								</p>
+								<strong>
+									<!--{$client->names}-->
+								</strong>
+							</div>
+						</div>
+						<p>
+							Date: <!--{$client->reg_date|date_format}-->
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<!-- Signature Modal-->
+		<div class="modal fade" id="signModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Sign in the canvas below and save your signature as an image! <br> <small>You can only do so once</small> </h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+				</div>
+				<div class="modal-body">
+					
+					<div class="row">
+						<div class="col-md-12">
+							<canvas id="sig-canvas" class="360" height="160">
+								Get a better browser, bro.
+							</canvas>
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+				<button class="btn btn-primary" id="sig-submitBtn">Submit Signature</button>
+				<button class="btn btn-default" id="sig-clearBtn">Clear Signature</button>
+				</div>
+			</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 d-none">
+						<textarea id="sig-dataUrl" class="form-control" rows="5">Data URL for your signature will go here!</textarea>
+					</div>
+				</div>
+				<br/>
+				<div class="row">
+					<div class="col-md-12">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row text-center justify-content-center m-2">
+		<!--{if $userinfo->email == $client->email}-->
+			<!--{if !$client->saved}-->
+			<button class="btn btn-info m-4" id="acknowledge">Acknowledge & Save to My Documents</button>
+			<!--{/if}-->
+		<!--{/if}-->
+			<!--{if empty($client->signature)}-->
+            <a id="signButton" class="btn btn-warning m-4" href="#" data-toggle="modal" data-target="#signModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Add Signature
+            </a>
+            <!--{/if}-->
+			<button class="btn btn-success m-4" id="printNow">Print Now</button>
+		</div>
+		<!--{else}-->
+			<h3>No contract available</h3>
+		<!--{/if}-->
+		<div class="form-group">
+		<!--{if !empty($fail)}-->
+			<!--{$fail}-->
+		<!--{/if}-->
+		</div>
+	</div>
+</div>
+<!--{/block}-->

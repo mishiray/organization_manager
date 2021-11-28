@@ -1,0 +1,72 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Apply For Leave</h1>
+    
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Apply Leave</h6>
+      </div>
+      <div class="card-body">
+      <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/leave_application" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6">
+              <h3>Employee Information</h3>
+                <div class="form-group">
+                    <label for="name" class="form-control-label">Name</label>
+                    <input readonly type="text" class="form-control form-control-user" id="name" value="<!--{$userinfo->lastname}--> <!--{$userinfo->firstname}-->" name="name" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label for="department" class="form-control-label">Department</label>
+                    <input readonly type="text" class="form-control form-control-user" id="department" value="<!--{$userinfo->department}-->" name="department" placeholder="Department">
+                </div>
+                  <div class="form-group row">
+                    <div class="col-6"> 
+                      <label for="days_no" class="form-control-label">I wish to apply for </label>
+                      <input type="number" class="form-control form-control-user" name="days_no" id="" placeholder="no of days"/> 
+                    </div>
+                    <div class="col-4">  
+                      <label for="start_date" class="form-control-label">From</label>
+                      <input type="date" class="form-control form-control-user" name="start_date" id="start_date" placeholder="start date">
+                     </div>
+                    <div class="col-4">
+                      <label for="end_date" class="form-control-label">To</label>
+                      <input class="form-control form-control-user" type="date" name="end_date" id="end_date" placeholder="end date">
+                    </div>
+                  </div>
+                   <div class="form-group">
+                    <label for="reasons" class="form-control-label">For the following reasons</label>
+                    <textarea type="text" class="form-control"  id="reasons" name="reasons" rows="3" placeholder="Reasons"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="type" class="form-control-label">Type of Leave</label>
+                    <select name="type"  class="form-control" id="type">
+                      <option disabled selected value="">Choose</option>
+                      <option value="annual">Annual</option>
+                      <option value="examination">Examination</option>
+                      <option value="maternity">Maternity/Paternity</option>
+                      <option value="sick">Sick/Medical</option>
+                      <option value="casual">Casual</option>
+                      <option value="compassionate">Compassionate</option>
+                    </select>
+                  </div>
+                  <div class="form-group text-center">
+                    <button class="btn btn-primary btn-sm rounded-0" type="submit" name="apply_leave">Apply</button>
+                </div>
+            </div>
+            <!--{if !empty($fail)}-->
+            <div class="col">
+              <div class="form-group">
+                <!--{$fail}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <br>
+        </div>
+      </form>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

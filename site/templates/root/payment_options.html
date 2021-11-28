@@ -1,0 +1,115 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<div class="container content-area">
+    <div class="middle-align">
+        <!--{if !empty($subscription)}-->
+        <div class="site-main sitefull">
+			<article id="post-593" class="post-593 page type-page status-publish hentry">
+                <header class="entry-header">
+                    <h1 class="entry-title">Choose Preferred Payment</h1>
+                </header><!-- .entry-header -->
+            <div class="entry-content">
+		        <h3 class="mkd-portfolio-item-title"><strong><!--{$subscription->product}--></strong></h3>
+                <div class="mkd-portfolio-item-content">
+                    <div class="vc_row wpb_row vc_row-fluid mkd-section mkd-content-aligment-left">
+                        <div class="clearfix mkd-full-section-inner">
+                            <div class="wpb_column vc_column_container vc_col-sm-12">
+                            <div class="vc_column-inner">
+                            <div class="wpb_wrapper">
+                            <div class="wpb_text_column wpb_content_element">
+                                <div class="wpb_wrapper">
+                                   <!--{if !empty($fail)}-->
+                                    <div class="col">
+                                        <div class="form-group">
+                                        <!--{$fail}-->
+                                        </div>
+                                    </div>
+                                    <!--{/if}-->
+                                    <form action="" method="post">
+                                        <div class="form-group">
+                                            <label for="payment_type">Payment Plans</label>
+                                            <select class="form-control" onchange="getAmt();" name="payment_option" required id="payment_type">
+                                                <option disabled selected class="form-control" value="none">
+                                                    Choose Payment Type
+                                                </option>
+                                                <!--{for $foo=20 to 70 step 10}-->
+                                                    <option value="<!--{$foo}-->" class="form-control"><!--{$foo}-->% Payment</option>
+                                                <!--{/for}-->
+                                                <option class="form-control" value="100">
+                                                    Full Payment
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div id="pay_duration" class="form-group">
+                                            <label for="payment_type">Payment Plans</label>
+                                            <select class="form-control" onchange="getAmt();" name="payment_duration" required id="payment_duration">
+                                                <option disabled selected class="form-control" value="none">
+                                                    Choose Payment Duration
+                                                </option>
+                                                <option value="3" class="form-control">3 months</option>
+                                                <option value="6" class="form-control">6 months</option>
+                                                <option value="9" class="form-control">9 months</option>
+                                                <option value="11" class="form-control">11 months</option>
+                                            </select>
+                                        </div>
+                                        <script>
+                                            function getAmt(){
+                                                var fullamount = <!--{$subscription->total_amount}-->;
+                                                var type = $('#payment_type').val();
+                                                var duration = 1;
+                                                if(type=='100'){
+                                                    $('#pay_duration').addClass('d-none');
+                                                    $('#pay_duration').val(1);
+                                                    document.getElementById('amount').value = fullamount;
+                                                    document.getElementById('explanation').innerHTML ='You will pay the amount below once!';
+                                                }else{
+                                                    $('#pay_duration').removeClass('d-none');
+                                                    duration = $('#payment_duration').val();
+                                                    var installment = type;
+                                                    var duration = duration;
+                                                    installment = installment/100;
+                                                    var first_pay = installment * fullamount;
+                                                    var rem_amount = fullamount - first_pay;
+                                                    var stretch_pay = (Math.round(rem_amount / duration)).toFixed(2);
+                                                    var rem = 0;
+                                                    var exp = '';
+                                                    var period = '';
+                                                    rem = rem_amount - (stretch_pay*duration);
+
+                                                    document.getElementById('amount').value = first_pay;
+                                                    period = 'Payment Period: '+ duration +' months <br>';
+                                                    exp = period+'You will pay the sum of &#x20A6;'+ stretch_pay + ', for '+duration+' month(s) ';
+                                                     
+                                                    document.getElementById('explanation').innerHTML = exp;
+                                                }
+                                            }
+                                        </script>
+                                        <div class="form-group">
+                                            <h3 id="explanation" class="mt-2 p-2 text-bold text-danger"></h3>
+                                            <label for="amount">Amount to Pay Now</label>
+                                            <input type="text" name="amount" readonly class="form-control" id="amount">
+                                        </div>
+                                        <div class="form-group text-center m-2">
+                                           <button class="btn btn-md btn-success " type="submit" name="triggers" value="payment_option">Proceed</button>
+                                         </div>
+                                    </form>
+                                </div>                                          
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div><!-- .entry-content -->
+            </article><!-- #post-## -->							        
+        </div>
+        <!--{else}-->
+        <div class="alert bg-white text-dark"><strong>No record found</strong></div>
+        <!--{/if}-->
+        <div class="clear"></div>
+    </div>
+</div>
+<!--{/block}-->
+<!--{block name="modal-file"}-->
+<!--{/block}-->

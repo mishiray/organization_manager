@@ -1,0 +1,36 @@
+<!--{extends file="dashboard.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong>
+	&nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/profile">My Profile&nbsp;<i class="fa fa-vcard"></i></a>&nbsp;| Membership Subscription Renewal&nbsp;<i class="fa fa-registered"></i>
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row justify-content-center">
+	<!--{if $lastreg->isExpired==true}-->
+		<div class="col-sm-12">
+			<h6 class="btn-danger text-center py-4"><blink>!!! <!--{if !empty($lastreg->expired)}-->Kindly Renew Your Membership Subscription Now<!--{else}-->Subscribe Now<!--{/if}--> !!!</blink></h6>
+		    <small>Your subscription payment must be made before you can proceed with other activities</small>
+		</div>
+  		<div class="col-sm-7 alert alert-success border border-success rounded-top text-center mt-3" role="alert">
+			<h6 class="font-weight-bold mb-3">Click the button below to re-subscribe to your membership plan</h6>
+		    <h5 class="mb-3"><span class="font-weight-bold">Membership Subscription Fee: </span> <span class="spanCurrency"><!--{$Site.membershipSub[$userinfo->membership].amount}--></span></h5>
+		    <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/register" method="post" accept-charset="utf-8">
+	          <!--{if in_array($sitePage, array('register'))}-->
+	              <!--{include file='paypaljs.html'}-->
+	          <!--{/if}-->
+
+              <div class="w-100 h-50px" id="paypal-member-signup"></div>
+		      <button class="btn btn-sm d-none btn-success" id="pay" type="submit" name="pay" value="paypal"><i class="fa fa-credit-card"></i> Make Payment Now</button> 
+              <div class="form-group failMessage"></div>
+		    </form>
+		</div>
+		<!--{if !empty($fail)}--><div class="col-sm-7 form-group"><!--{$fail}--></div><!--{/if}-->
+	<!--{else}-->
+		<div class="col-sm-5 alert badge-pill badge-success text-white text-center py-2 my-2">
+		 	<h6 class="d-none">Your membership plan is currently <span class="font-weight-bold">active</span> </h6>
+		 	<h6>Membership Subscription is <span class="font-weight-bold">confirmed</span> </h6>
+		</div>
+	<!--{/if}--> 
+
+</section>
+<!--{/block}-->

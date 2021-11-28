@@ -1,0 +1,109 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard | Memo </strong>&nbsp;<i class="fa fa-envelope"></i> &nbsp;| Inbox&nbsp;<i class="fa fa-inbox"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row justify-content-center">
+	<div class="card w-100 shadow m-4">
+		<div class="card-header py-3">
+			<h6 class="m-0 font-weight-bold text-primary">Announcements</h6>
+		</div>
+			<!--{if !empty($message)}-->
+				<div class="col-md-7 p-4">
+					<div class="card text-justify p-4">
+						<div class="card-header sit-bg-1 text-center">
+							<h5 class="font-weight-bold">Announcement Detail</h5>
+						</div>
+						<div class="card-body">
+							<div class="card-text">
+								<h4><!--{$message->content}--></h4>
+							</div>
+						</div>
+						<div class="card-footer text-muted">
+							Date Sent: <!--{$message->dateadded|date_format}-->
+						</div>
+						<div class="form-group m-2">
+							<a class="btn btn-warning btn-sm rounded-0 mr-3" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/memos_crm"><i class="fa fa-undo"></i> Back</a>
+						</div>
+					</div>
+					<div class="table-responsive <!--{if $userinfo->email != $message->sender}--> d-none <!--{/if}--> mt-4">
+						<h5 class="col-sm-12 font-weight-bold my-3">Receivers</h5>
+						<!--{if !empty($message->receivers)}-->
+						<table class="table table-bordered" id="dataTable" width="100%"  cellspacing="0">
+							<thead class="">
+								<tr>
+								<th scope="col">#</th>
+								<th scope="col">Name </th>
+								<th scope="col">Email</th>
+								<th scope="col">Read Status</th>
+								</tr>
+							</thead>
+							<tbody><!--{$numCount=1}-->
+								<!--{foreach $message->receivers as $key=> $receiver}-->
+								<tr>
+								<td><!--{$numCount}--></td>
+								<td><!--{$message->receivernames[$key]}--></td>
+								<td><!--{$receiver}--></td>
+								<td><!--{if in_array($receiver, $message->readers)}--><span class="badge badge-success">read</span><!--{else}--><span class="badge badge-warning">un read</span><!--{/if}--></td>
+								</tr>
+								<!--{$numCount=$numCount+1}-->
+								<!--{/foreach}-->
+							</tbody>
+							</table>
+						<!--{else}-->
+							<div class="alert alert-info rounded-0 "><h5 class="alert-heading my-2 mx-2 py-2 px-2 text-center border border-success">You currently have no recepients</h5></div>
+						<!--{/if}-->
+					</div>
+				</div>
+			<!--{else}-->
+					<!--{if !empty($memos)}-->
+					<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered" id="dataTable" width="100%"  cellspacing="0">
+								<thead class="">
+									<tr>
+									<th scope="col">#</th>
+									<th scope="col">Sender</th>
+									<th scope="col">Content</th>
+									<th scope="col">Number of Receivers</th>
+									<th scope="col">Number of Readers</th>
+									<th scope="col">Date Received</th>
+									<th scope="col">Status</th>
+									</tr>
+								</thead>
+								<tbody><!--{$numCount=1}-->
+									<!--{foreach $memos as $memo}-->
+									<tr>
+									<td><!--{$numCount}--></td>
+									<td><!--{$memo->sendername}--><br/> (<!--{$memo->sender}-->)</td>
+									<td class="memo">
+											<!--{$memo->content}-->
+									</td>
+									<td><!--{count($memo->receivers)}--></td>
+									<td><!--{count($memo->readers)}--></td>
+									<td><!--{$memo->dateadded}--></td>
+									<td>
+									<!--{if $userinfo->email == $memo->sender}-->
+										<a class="btn btn-sm btn-success rounded-0" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/memos_crm?id=<!--{$memo->token}-->">Open</a>
+									<!--{else}-->
+										<!--{if count($memo->readers) > 0 and in_array($userinfo->email, $memo->readers)}-->
+											<a class="btn btn-sm btn-success rounded-0" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/memos_crm?id=<!--{$memo->token}-->">Open</a>
+										<!--{else}-->
+											<a class="btn btn-sm btn-info rounded-0" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/memos_crm?id=<!--{$memo->token}-->">Acknowledge Now</a>
+										<!--{/if}-->
+									<!--{/if}-->
+									</td>
+									</tr>
+									<!--{$numCount=$numCount+1}-->
+									<!--{/foreach}-->
+								</tbody>
+								</table>
+							</div>
+					</div>
+					<!--{else}-->
+					<div class="alert alert-success rounded-0 "><h5 class="alert-heading my-2 mx-2 py-2 px-2 text-center border border-success">You currently have no Announcement</h5></div>
+					<!--{/if}-->
+			<!--{/if}-->
+	</div>
+</section>
+<!--{/block}-->

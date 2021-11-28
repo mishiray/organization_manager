@@ -1,0 +1,115 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Lease Table</h1>
+<p class="mb-4">The table contains lease forms filled by clients</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Leases</h6>
+  </div>
+  <div class="form-group">
+    <!--{if !empty($fail)}-->
+      <!--{$fail}-->
+    <!--{/if}-->
+  </div>
+  <div class="card-body bg-primary justify-content-center">
+    <div class="col-lg-6 bg-primary rounded pt-2">
+      <form action="" class="d-flex" method="post">
+      <div class="form-group">
+        <label class="text-light" for="Year">Enter Year</label>
+            <select class="form-control" id="Year"  name="year">
+              <!--{for $foo=2010 to 3000}-->
+                <option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+                  <!--{$foo}-->
+                </option>
+              <!--{/for}-->
+            </select>
+      </div>
+      <div class="form-group">
+        <label for="month"class="text-light">Select Month</label>
+            <select class="form-control" id="month"  name="month">
+              <option value="">All</option>
+              <!--{foreach $months as $month}-->
+                <option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+                  <!--{$month}-->
+                </option>
+              <!--{/foreach}-->
+            </select>
+      </div>
+        <div class="form-group d-flex"> 
+          <button type="submit" class="mt-2 btn btn-success" name="triggers" id="reports" value="sub_filter">OK</button>
+       </div>      
+     </form>
+    </div>
+  </div>
+  <!--{if !empty($subscriptions)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th class="">Reference</th>
+            <th>Client Details</th>
+            <th>Registration Date</th>
+            <th>Detail</th>
+            <th class="showOne">Action</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <th class="">Reference</th>
+            <th>Client Details</th>
+            <th>Registration Date</th>
+            <th>Detail</th>   
+            <th class="showOne">Action</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+			  	<!--{foreach $subscriptions as $subs}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <td class="">
+              <strong><!--{$subs->token}--></strong>
+            </td>
+            <td>
+              <strong>Title: </strong><!--{$subs->title|ucfirst}--> <br>
+              <strong>First Name: </strong><!--{$subs->firstname|ucfirst}--> <br>
+              <strong>Last Name: </strong><!--{$subs->surname|ucfirst}--> <br>
+              <strong>Middle Name: </strong><!--{$subs->middlename|ucfirst}--> <br>
+              <!--{if $subs->marital_status=='married'}-->
+              <strong>Spouse First Name: </strong><!--{$subs->spouse_firstname|ucfirst}--> <br>
+              <strong>Spouse Last Name: </strong><!--{$subs->spouse_surname|ucfirst}--> <br>
+              <!--{/if}-->
+              <strong>Mobile: </strong><!--{$subs->mobile}--> <br>
+              <strong>Phone: </strong><!--{$subs->phone}--> <br>
+              <strong>Email: </strong><!--{$subs->email}--> <br>
+            </td>
+            <td>
+              <!--{$subs->dateadded}--></td>
+              <td>
+                <a class="btn btn-sm my-1 btn-primary"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_lease?id=<!--{$subs->token}-->"><i class="fa fa-ellipsis-v"></i> View Lease</a>
+              </td>
+              <td class="showOne">
+                <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/leases" method="post">
+                  <input type="hidden" name="token" value="<!--{$subs->token}-->">
+                  <button type="submit" name="triggers" value="delete_sub" onclick="return deleteItem();" class="btn btn-danger btn-sm"><i class="fa fa-trash p-2"></i>Delete</button>
+                </form>
+              </td>
+			    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

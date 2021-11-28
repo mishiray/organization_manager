@@ -1,0 +1,77 @@
+<!--{extends 'default.html'}-->
+<!--{block name="main-slider"}-->
+        <section class="hero-wrap hero-wrap-2" style="background-image: url('<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($blog->image)}--><!--{$blog->image}--><!--{else}-->/site/media/i/bg_1.jpg<!--{/if}-->');" data-stellar-background-ratio="0.5">
+          <div class="overlay"></div>
+          <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+              <div class="col-md-9 ftco-animate pb-0 text-center">
+                  <p class="breadcrumbs"><span class="mr-2"><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/default">Home <i class="fa fa-chevron-right"></i></a></span> <span>Contact <i class="fa fa-chevron-right"></i></span></p>
+                <h1 class="mb-3 bread">Contact</h1>
+              </div>
+            </div>
+          </div>
+        </section>
+<!--{/block}-->
+<!--{block name="main_content"}-->
+
+    <section class="ftco-section contact-section">
+      <div class="container">
+        <div class="row block-9 justify-content-center mb-5">
+          <div class="col-md-8 mb-md-5">
+          	<h2 class="text-center">If you got any questions <br>please do not hesitate to send us a message</h2>
+            <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/contact" method="POST" class="bg-light p-5 contact-form">
+              <div class="form-group">
+                <input type="text" class="form-control" name="names" placeholder="Your Name">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="email" placeholder="Your Email">
+              </div>
+              <div class="form-group">
+                <input type="tel" class="form-control" name="phone"  placeholder="Phone">
+              </div>
+              <div class="form-group">
+                <textarea id="" cols="30" rows="7" name="message" class="form-control" placeholder="Message"></textarea>
+              </div>
+              <!--{if !empty($msg)}--><div class="form-group"><!--{$msg}--></div><!--{/if}-->
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary py-3 px-5 rounded-0" name="trigger" value="contact">Send Message</button>
+              </div>
+            </form>
+          
+          </div>
+        </div>
+        <div class="row d-flex mb-5 contact-info justify-content-center">
+        	<div class="col-md-8">
+        		<div class="row mb-5">
+		          <div class="col-md-4 text-center py-4">
+		          	<div class="icon">
+		          		<span class="fa fa-map"></span>
+		          	</div>
+		            <p><span>Address:</span>
+                  <!--{$Site.companyAddress}-->
+                </p>
+		            <p><span>Inspection Office:</span>
+                  KM 28, Bodytop Plaza, Opposite Eko Akete, Lekki – Epe Expressway, Ibeju Lekki, Lagos
+                </p>
+		          </div>
+		          <div class="col-md-4 text-center border-height py-4">
+		          	<div class="icon">
+		          		<span class="fa fa-phone"></span>
+		          	</div>
+		            <p><span>Phone:</span> 
+                  <a href="tel://+2347030561428"> 07030561428 </a>
+                  <a href="tel://+2349091496533"> 09091496533
+                  </a></p>
+		          </div>
+		          <div class="col-md-4 text-center py-4">
+		          	<div class="icon">
+		          		<span class="fa fa-paper-plane"></span>
+		          	</div>
+		            <p><span>Email:</span> <a href="mailto:info@atobe.ng">info@atobe.ng</a></p>
+		          </div>
+		        </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<!--{/block}-->

@@ -1,0 +1,94 @@
+<!--{extends 'default.html'}-->
+<!--{block name="main-slider"}-->
+<section class="hero-wrap hero-wrap-2" style="background-image: url('<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate pb-0 text-center">
+        <p class="breadcrumbs"><span class="mr-2"><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/default">Home <i class="fa fa-chevron-right"></i></a></span> <span>Login<i class="fa fa-chevron-right"></i></span></p>
+        <h1 class="mb-3 bread">Login</h1>
+      </div>
+      </div>
+    </div>
+    </section>
+<!--{/block}-->
+<!--{block name="main_content"}-->
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100">
+                    <form method="post" class="login100-form validate-form">
+                        <span class="login100-form-title p-b-43">
+                            Login to continue
+                        </span>
+                        <legend class="text-center mb-4"><h3 class="font-weight-bold"><!--{if $sitePage=='admin'}-->Admin <!--{else}--><!--{if $c == 'true'}-->Consultant<!--{else}-->Client<!--{/if}--> <!--{/if}-->Portal Login</h3></legend>
+                            
+                        
+                        <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                            <input class="input100" id="dataUsername" type="text" name="dataUsername">
+                            <span class="focus-input100"></span>
+                            <span class="label-input100">Email/Username</span>
+                        </div>
+                        
+                        
+                        <div class="wrap-input100 validate-input" data-validate="Password is required">
+                            <input class="input100" type="password" autocomplete="current-password" required="" id="dataPass" name="dataPass">
+                            <span class="focus-input100"></span>
+                            <span class="label-input100">Password</span>
+                            <i class="fa fa-eye pb-2" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
+                        </div>
+
+                        <div class="flex-sb-m w-full p-t-3 p-b-32">
+                            <div class="contact100-form-checkbox d-none">
+                                <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                                <label class="label-checkbox100" for="ckb1">
+                                    Remember me
+                                </label>
+                            </div>
+
+                            <div class="">
+                                <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/forgot-password" class="txt1">
+                                    Forgot Password?
+                                </a>
+                            </div>
+                        </div>
+                
+
+                        <div class="container-login100-form-btn">
+                            <button class="login100-form-btn">
+                                Login
+                            </button>
+                        </div>
+                        
+                        <!--{if $c == 'true'}-->
+                        <div class="text-center p-t-46 p-b-20">
+                            <span class="txt2">
+                                or 
+                            </span>
+                        </div>
+                        <div class="login100-form-social flex-c-m">
+                            <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/signup">
+                                <span class="txt2 login100-form-btn bg-primary">
+                                    <i class="fa fa-user-circle-o mr-2" aria-hidden="true"></i>
+                                    Sign Up as a consultant
+                                </span>
+                            </a>
+                        </div>
+                        <!--{/if}-->
+                        <!--{if !empty($fail)}-->
+                        <div class="row justify-content-center absolute-alert m-4">
+                            <div class="col-md-6 alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><h3>Error:</h3> 
+                                <!--{$fail}-->
+                            </div>
+                        </div>
+                        <!--{/if}-->
+                    </form>
+                    
+                    <div class="login100-more" style="background-image: url('<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/property-banner7-1024x497.jpg');">
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--{/block}-->
+<!--{block name="chat_box"}-->
+<!--{/block}-->
+  

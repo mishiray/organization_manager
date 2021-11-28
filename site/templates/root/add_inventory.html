@@ -1,0 +1,101 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Inventory</h1>
+    <p class="mb-4">Add a new inventory to the records</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add Inventory</h6>
+      </div>
+      <div class="card-body">
+      <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_inventory" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="file_upload" class="form-control-label">Upload an Image</label>
+                  <input type="file" accept="image/*, application/*, video/*" id="file_upload" class="input-rounded w-100" name="file_upload"/>
+                </div>
+                <div class="form-group">
+                  <label for="format" class="form-control-label">Serial_format</label>
+                  <select name="format" class="form-control" id="format">
+                    <option selected disabled value="">Select Format</option>
+                    <option value="CH">CH</option>
+                    <option value="ME">ME</option>
+                    <option value="AS">AS</option>
+                  </select>   
+                </div>
+                <div class="form-group">
+                  <label for="location" class="form-control-label">Item Location</label>
+                  <select name="location" class="form-control" id="location">
+                  <!--{if !empty($zones)}-->
+                    <option disabled selected>Select Location</option>
+                    <!--{foreach $zones as $zone}-->
+                    <option value="<!--{$zone->zone}-->" i="<!--{$zone->prefix}-->"><!--{$zone->zone|ucfirst}--></option>
+                    <!--{/foreach}-->
+                  <!--{else}-->
+                    <option value="null">none</option>
+                  <!--{/if}-->
+                  </select>   
+                </div>
+                  <div class="form-group">
+                    <label for="serial" class="form-control-label">Serial Number</label>
+                    <input type="text" class="form-control form-control-user" id="serialId" name="serial" placeholder="Serial Number">
+                  </div>
+                  <div class="form-group">
+                    <label for="name" class="form-control-label">Item Name</label>
+                        <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Item Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="price" class="form-control-label">Item Price</label>
+                        <input type="number" class="form-control form-control-user" id="price" name="price" placeholder="Item Price">
+                  </div>
+                  <div class="form-group">
+                    <label for="quantity" class="form-control-label">Item Quantity</label>
+                        <input type="number" class="form-control form-control-user" id="quantity" name="quantity" placeholder="Item Quantity">
+                  </div>
+                  <div class="form-group">
+                    <label for="manufacturer" class="form-control-label">Manufacturer</label>
+                    <input type="text" class="form-control form-control-user" id="manufacturer" name="manufacturer" placeholder="Manufacturer">
+                  </div>
+                  <div class="form-group">
+                    <label for="department" class="form-control-label">Department</label>
+                    <select name="department" class="form-control" id="department">
+                    <!--{if !empty($departments)}-->
+                      <!--{foreach $departments as $department}-->
+                      <option value="<!--{$department->id}-->"><!--{$department->name}--></option>
+                      <!--{/foreach}-->
+                    <!--{else}-->
+                      <option value="null">none</option>
+                    <!--{/if}-->
+                    </select>   
+                  </div>
+                  <div class="form-group">
+                        <label for="description" class="form-control-label">Description</label>
+                        <textarea id="description" name="description" class="form-control form-control-sm input-block" rows="3" placeholder="Description" required></textarea>
+                  </div>
+                  <div class="form-group">
+                      <label for="condition" class="form-control-label">Condition Asset</label>
+                      <textarea class="form-control" name="condition" id="condition" rows="3" placeholder="Condition Asset"></textarea>
+                  </div>
+                  <div class="form-group text-center">
+                    <button class="btn btn-success btn-sm rounded-0" type="submit" name="inventory">Add Item</button>
+                </div>
+            </div>
+            <!--{if !empty($fail)}-->
+            <div class="col">
+              <div class="form-group">
+                <!--{$fail}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <br>
+        </div>
+        
+      </form>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

@@ -1,0 +1,101 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Guarantors Table</h1>
+<p class="mb-4">The table contains guarantors records</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Guarantors</h6>
+  </div>
+  <!--{if !empty($fail)}-->
+  <div class="col">
+    <div class="form-group">
+      <!--{$fail}-->
+    </div>
+  </div>
+  <!--{/if}-->
+  <!--{if !empty($guarantors)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <!--{if $isadmin=='yes'}-->
+            <th>Employee Name</th>
+            <!--{/if}-->
+            <th>Guarantors Name</th>
+            <th>Details</th>
+            <th>Address</th>
+            <th>Notes</th>
+            <th>Date Added</th>
+            <th>View</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <!--{if $isadmin=='yes'}-->
+            <th>Employee Name</th>
+            <!--{/if}-->
+            <th>Guarantors Name</th>
+            <th>Details</th>
+            <th>Address</th>
+            <th>Notes</th>
+            <th>Date Added</th>
+            <th>View</th>
+            <th scope="col">Action</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+          <!--{foreach $guarantors as $guarantor}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <!--{if $isadmin=='yes'}-->
+              <td><!--{$guarantor->employee->surname|ucfirst}--> <!--{$guarantor->employee->first_name|ucfirst}--></td>
+            <!--{/if}-->
+            <td><!--{$guarantor->name}--></td>
+			      <td>
+              <strong>Phone:</strong>  <!--{$guarantor->phone}--> <br>
+              <strong>Email:</strong>  <!--{$guarantor->email}-->
+            </td>
+            <td>
+              <strong>Country:</strong>  <!--{$guarantor->country}--> <br>
+              <strong>State:</strong>  <!--{$guarantor->state}--> <br>
+              <strong>City:</strong>  <!--{$guarantor->city}--> <br>
+              <strong>Address:</strong>  <!--{$guarantor->address}--> <br>
+              <strong>Office Address:</strong>  <!--{$guarantor->work_address}-->
+            </td>
+            <td>
+              <!--{$guarantor->notes}-->
+            </td>
+            <td>
+			        <!--{$guarantor->dateadded}-->
+            </td>
+            <td>
+              
+			      	<a class="btn btn-sm my-1 btn-primary" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_guarantors_contact?id=<!--{$guarantor->employeeid}-->">View </a>
+            </td>
+			      <td>
+              <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/guarantors?id=<!--{$guarantor->id}-->" method="post">
+                <button type="submit" name="triggers" value="delete_guarantor" class="btn btn-danger btn-sm">Delete</button>
+              </form>
+            </td>
+
+		    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <h2 class="m-4">Guarantor Empty</h2>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

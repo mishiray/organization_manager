@@ -1,0 +1,42 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard |</strong>
+	<a href="">Invest Webpage</a>
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<!--{$content_stripe=$investment->content_stripe}-->
+<section class="row justify-content-center">
+		<div class="col-md-12 card">
+			<div class="card-body mt-3 mb-3">
+				<!--{if !empty($fail)}-->
+				<div class="col-md-12"><!--{$fail}--></div>
+				<!--{/if}-->
+				<form class="form w-100" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/investment_webpage" enctype="multipart/form-data">
+					<div class="row justify-content-center">  
+							  <fieldset>
+									<legend>Edit investment Page</legend>
+									<div class="form-group">
+										<label for="status" class="form-control-label">Webpage Status:</label> <br>
+										<b>If Inactive, the webpage will revert to previously hardcoded</b>
+										<select name="status" id="status" class="form-control">
+											<option <!--{if $investment->status == 1}--> selected <!--{/if}--> value="1">Active</option>
+											<option <!--{if $investment->status == 0}--> selected <!--{/if}--> value="0">InActive</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<!--  <textarea id="content" name="content" class="form-control form-control-sm input-block"   rows="10" required></textarea> -->
+										  <div id="editcontent"></div>
+										  <input type="hidden" name="content" id="content" class="addContent" value="<!--{$investment->content}-->" required />
+									 </div>
+									<div class="form-group">
+										  <button class="btn btn-success rounded-0" type="submit" name="update_page">Update Investment</button>
+									</div>
+							  </fieldset>
+				  </div>
+
+				</form>
+			</div>
+		</div>
+	</section>
+<!--{/block}-->

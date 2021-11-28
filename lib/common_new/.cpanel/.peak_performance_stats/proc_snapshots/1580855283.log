@@ -1,0 +1,71 @@
+Tue Feb  4 22:28:03 GMT 2020
+Running Processes:
+schooztc   609951  0.1  0.0  62588  9188 ?        S    22:26   0:00 dovecot/lmtp [local READY]
+schooztc   612747 28.5  0.7 639400 241224 ?       R    22:27   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc   613027 36.6  0.7 564216 241808 ?       R    22:27   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc   613323 37.0  0.6 521104 200660 ?       R    22:27   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc   613336 36.2  0.6 531696 210432 ?       R    22:27   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 140.3% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc  612747 28.0  0.7 639400 241224 ?       S    22:27   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  613027 37.6  0.0      0     0 ?        R    22:27   0:06 [php-cgi]
+schooztc  613323 38.2  0.7 564232 241932 ?       R    22:27   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  613336 37.6  0.7 561908 239208 ?       S    22:27   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc  612747 28.0  0.7 639400 241224 ?       S    22:27   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  613323 38.5  0.7 564216 242048 ?       R    22:27   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  613336 38.0  0.7 561908 239224 ?       R    22:27   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc  612747 28.0  0.7 639400 241224 ?       R    22:27   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  613323 38.6  0.7 564216 242048 ?       R    22:27   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  613336 38.1  0.7 561908 239236 ?       R    22:27   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc  612747 28.0  0.7 639400 241224 ?       R    22:27   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  613323 38.6  0.7 564216 242048 ?       R    22:27   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  613336 38.1  0.7 561908 239236 ?       R    22:27   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc  612747 28.0  0.7 639400 241224 ?       R    22:27   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  613323 38.6  0.7 564216 242048 ?       R    22:27   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  613336 38.1  0.7 561908 239236 ?       R    22:27   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  22:28:04 up 179 days,  6:59,  0 users,  load average: 0.14, 0.03, 0.01
+
+
+MySQL User Processes:
+ID = 67563568	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67563566	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67563525	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  22:28:04 up 179 days,  6:59,  0 users,  load average: 0.14, 0.03, 0.01
+
+

@@ -1,0 +1,62 @@
+Thu Feb  6 03:55:47 GMT 2020
+Running Processes:
+schooztc  3390118  4.3  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc  3397815 64.5  0.7 564012 239784 ?       S    03:55   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+COMMAND     PID     USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+php-cgi 3397815 schooztc   14u  IPv4 1836703384      0t0  UDP 199.79.63.83:48580->1.1.1.1:53 
+php-cgi 3397815 schooztc   15u  IPv4 1836710608      0t0  UDP 199.79.63.83:37598->8.8.4.4:53 
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3390118  4.2  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc 3398206 28.0  0.1 425388 49056 ?        R    03:55   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3390118  4.2  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc 3398206 36.0  0.1 425672 51692 ?        R    03:55   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3390118  4.2  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc 3398206 43.0  0.1 427076 54516 ?        R    03:55   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3390118  4.2  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc 3398206 24.0  0.1 426984 56204 ?        R    03:55   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3390118  4.2  0.0      0     0 ?        Z    03:52   0:07 [php-cgi] <defunct>
+schooztc 3398206 27.0  0.1 426964 57580 ?        R    03:55   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  03:55:50 up 180 days, 12:27,  0 users,  load average: 0.01, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 68021911	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  03:55:50 up 180 days, 12:27,  0 users,  load average: 0.01, 0.00, 0.00
+
+

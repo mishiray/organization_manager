@@ -1,0 +1,443 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<!-- Page Heading -->
+<h1 class="mb-2 text-gray-800"> Balance Sheet </h1>
+
+<!-- DataTales Example -->
+<section class="row">
+  <div class="card w-100 shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Report</h6>
+    </div>  
+    <div class="card-body justify-content-center">
+      <div class="col-12 bg-dark rounded pt-2">
+        <form action="" class="d-flex p-4" method="post">
+          <div class="form-group">
+            <label class="text-light" for="Year">Enter Year</label>
+                <select class="form-control" id="Year"  name="year">
+                  <!--{for $foo=2010 to 3000}-->
+                    <option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+                      <!--{$foo}-->
+                    </option>
+                  <!--{/for}-->
+                </select>
+          </div>
+          <div class="form-group">
+            <label for="month"class="text-light">Select Month</label>
+                <select class="form-control" id="month"  name="month">
+                  <option value="">All</option>
+                  <!--{foreach $months as $month}-->
+                    <option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+                      <!--{$month}-->
+                    </option>
+                  <!--{/foreach}-->
+                </select>
+          </div>
+          <div class="form-group">
+            <label for="week"class="text-light">Select Week</label>
+                <select class="form-control" id="week"  name="week">
+                  <option value="">All</option>
+                  <option <!--{if !empty($filter->week) && $filter->week == 1 }--> selected <!--{/if}-->  value="1">
+                    Week 1
+                  </option>
+                  <option <!--{if !empty($filter->week) && $filter->week == 2 }--> selected <!--{/if}-->  value="2">
+                    Week 2
+                  </option>
+                  <option <!--{if !empty($filter->week) && $filter->week == 3 }--> selected <!--{/if}-->  value="3">
+                    Week 3
+                  </option>
+                  <option <!--{if !empty($filter->week) && $filter->week == 4}--> selected <!--{/if}-->  value="4">
+                    Week 4
+                  </option>
+                  <option <!--{if !empty($filter->week) && $filter->week == 5}--> selected <!--{/if}-->  value="5">
+                    Week 5
+                  </option>
+                </select>
+          </div>
+          <div class="form-group">
+            <label class="text-light" for="date">As of: Date</label>
+            <input type="date" name="datesearch" class="form-control" value="<!--{if !empty($filter->datesearch)}--><!--{$filter->datesearch}--><!--{/if}-->" id="">
+          </div>
+            <div class="form-group d-flex"> 
+              <button type="submit" class="mt-2 btn btn-success" name="triggers" id="reports" value="cash_flow_report">OK</button>
+            </div>      
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div id="printable" class="col-md-9 ">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12"> 
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>
+                      Cash and Bank
+                    </th>
+                    <th>
+                      To be Received
+                    </th>
+                    <th>
+                      To be Paid out
+                    </th>
+                    <th>
+                    
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <h4> <strong> &#8358;<!--{if !empty($total_data)}--> <!--{$total_data->cashnb|number_format:2}--> <!--{else}--> 0.00 <!--{/if}--></strong></h4>
+                    </td>
+                    <td>
+                    <h4> <strong>+ &#8358;<!--{if !empty($total_data)}--> <!--{$total_data->to_be_received|number_format:2}--> <!--{else}--> 0.00 <!--{/if}--></strong></h4>
+                    </td>
+                    <td>
+                    <h4> <strong>- &#8358;<!--{if !empty($total_data)}-->  <!--{$total_data->to_be_paid_out|number_format:2}-->  <!--{else}--> 0.00 <!--{/if}--></strong></h4>
+                    </td>
+                    <td>
+                    <h4> <strong> = &#8358;<!--{if !empty($total_data)}--> <span class="<!--{if $total_data->balance_sheet_balance > 0}--> text-success <!--{else}--> text-danger <!--{/if}-->"> <!--{$total_data->balance_sheet_balance|number_format:2}--> </span> <!--{else}--> 0.00 <!--{/if}--></strong></h4>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <h3>Accounts</h3>
+            </div>
+              <div class="col-12">
+                <h4 class="text-center">Assets</h4>
+                <div class="accordion m-4" id="accordionExample">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <h4 class="text-dark"><span class="float-left">Cash and Bank</span><span class="float-right"><!--{if !empty($total_data->cashnb)}-->NGN <!--{$total_data->cashnb|number_format:2}--><!--{else}--> 0.00 </span><!--{/if}--></h4>
+                      </button>
+                    </div>
+                    <!--{if !empty($cashnb_data)}-->
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <!--{foreach $cashnb_data as $cashnb}-->
+                          <div class="row border-bottom m-3">
+                            <div class="col-12">
+                              <div class="float-left">
+                                <h4> <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance_detail?account=<!--{$cashnb->details}-->"><!--{$cashnb->details|ucwords}--></a>  </h4>
+                              </div>
+                              <div class="float-right">
+                                <h4>NGN <!--{$cashnb->tamounts|number_format:2}--></h4>
+                              </div>
+                            </div>
+                          </div>
+                        <!--{/foreach}-->
+                        <div class="row border-bottom m-3">
+                          <div class="col-12">
+                            <div class="float-left">
+                              <h4> <strong> Total Cash and Bank </strong> </h4>
+                            </div>
+                            <div class="float-right">
+                              <h4> <strong>NGN <!--{$total_data->cashnb|number_format:2}--></strong> </h4>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                    <!--{/if}-->
+                  </div>
+                  <!-- property  plant -->
+                  <div class="card">
+                    <div class="card-header" id="headingSeven">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapsePropertyPlant" aria-expanded="true" aria-controls="collapsePropertyPlant">
+                        <h4 class="text-dark"><span class="float-left">Other Current Assets</span><span class="float-right"><!--{if !empty($total_data->curassets)}-->NGN <!--{$total_data->curassets|number_format:2}--><!--{else}--> 0.00 </span><!--{/if}--></h4>
+                        </button>
+                    </div>
+            
+                    <!--{if !empty($curassets_data)}-->
+                      <div id="collapsePropertyPlant" class="collapse show" aria-labelledby="headingSeven" data-parent="#accordionExample">
+                        <div class="card-body">
+                          <!--{foreach $curassets_data as $property}-->
+                            <div class="row border-bottom m-3">
+                              <div class="col-12">
+                                <div class="float-left">
+                                  <h4> <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance_detail?account=<!--{$property->details}-->"><!--{$property->details|ucwords}--></a>  </h4>
+                                </div>
+                                <div class="float-right">
+                                  <h4>NGN <!--{$property->tamounts|number_format:2}--></h4>
+                                </div>
+                              </div>
+                            </div>
+                          <!--{/foreach}-->
+                          <div class="row border-bottom m-3">
+                            <div class="col-12">
+                              <div class="float-left">
+                                <h4> <strong> Total Other Current Assets </strong> </h4>
+                              </div>
+                              <div class="float-right">
+                                <h4> <strong>NGN <!--{$total_data->curassets|number_format:2}--></strong> </h4>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                    <!--{/if}-->
+                  </div>
+            
+                  <!-- other_investment -->
+                  <div class="card">
+                    <div class="card-header" id="headingEight">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOtherInv" aria-expanded="false" aria-controls="collapseOtherInv">
+                          <h4 class="text-dark"><span class="float-left">Long-term Assets</span><span class="float-right"><!--{if !empty($total_data->long_asset)}-->NGN <!--{$total_data->long_asset|number_format:2}--><!--{else}--> 0.00 </span><!--{/if}--></h4>
+                        </button>
+                    </div>
+                    
+                    <!--{if !empty($long_asset_data)}-->
+                    <div id="collapseOtherInv" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <!--{foreach $long_asset_data as $long_asset}-->
+                        <div class="row border-bottom m-3">
+                          <div class="col-12">
+                            <div class="float-left">
+                              <h4><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance_detail?id=<!--{$long_asset->details}-->"><!--{$long_asset->details|ucwords}--></a> </h4>
+                            </div>
+                            <div class="float-right">
+                              <h4>NGN <!--{$long_asset->tamounts|number_format:2}--></h4>
+                            </div>
+                          </div>
+                        </div>
+                        <!--{/foreach}-->
+                          <div class="row border-bottom m-3">
+                            <div class="col-12">
+                              <div class="float-left">
+                                <h4> <strong> Total Long-term Assets </strong> </h4>
+                              </div>
+                              <div class="float-right">
+                                <h4> <strong>NGN <!--{$total_data->long_asset|number_format:2}--></strong> </h4>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  <!--{/if}-->
+                  </div>
+                  
+                  <div class="row w-100">
+                    <div class="col-12 p-4">
+                      <h3 class="float-left">
+                          Total Assets
+                      </h3>
+                      <h3 class="float-right">
+                          NGN <!--{$total_data->assets|number_format:2}-->
+                      </h3>
+                    </div>
+                  </div>
+    
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="accordion m-4" id="accordionExample">
+                
+                </div> 
+              </div>
+              <!-- Liabilities -->
+              <div class="col-12">
+                <h4 class="text-center">Liabilities</h4>
+                <div class="accordion m-4" id="accordionExample">
+                
+                  <!-- current_liability credit -->
+                  <div class="card">
+                    <div class="card-header" id="headingNine">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapsecurrent_liability" aria-expanded="true" aria-controls="collapsecurrent_liability">
+                        <h4 class="text-dark"><span class="float-left">Current Liabilities</span><span class="float-right"><!--{if !empty($total_data->current_liability)}-->NGN <!--{$total_data->current_liability|number_format:2}--><!--{else}--> 0.00 </span><!--{/if}--></h4>
+                        </button>
+                    </div>
+            
+                    <!--{if !empty($current_liability_data)}-->
+                      <div id="collapsecurrent_liability" class="collapse show" aria-labelledby="headingNine" data-parent="#accordionExample">
+                        <div class="card-body">
+                          <!--{foreach $current_liability_data as $current_liability}-->
+                            <div class="row border-bottom m-3">
+                              <div class="col-12">
+                                <div class="float-left">
+                                  <h4> <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance_detail?account=<!--{$current_liability->details}-->"><!--{$current_liability->details|ucwords}--></a>  </h4>
+                                </div>
+                                <div class="float-right">
+                                  <h4>NGN <!--{$current_liability->tamounts|number_format:2}--></h4>
+                                </div>
+                              </div>
+                            </div>
+                          <!--{/foreach}-->
+                          <div class="row border-bottom m-3">
+                            <div class="col-12">
+                              <div class="float-left">
+                                <h4> <strong> Total Current Liabilities </strong> </h4>
+                              </div>
+                              <div class="float-right">
+                                <h4> <strong>NGN <!--{$total_data->current_liability|number_format:2}--></strong> </h4>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                    <!--{/if}-->
+                  </div>
+            
+                  <!-- owners_shareholders -->
+                  <div class="card">
+                    <div class="card-header" id="headingTen">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseShares" aria-expanded="false" aria-controls="collapseShares">
+                          <h4 class="text-dark"><span class="float-left">Long-term Liabilities</span><span class="float-right"><!--{if !empty($total_data->long_liability)}-->NGN <!--{$total_data->long_liability|number_format:2}--><!--{else}--> 0.00 </span><!--{/if}--></h4>
+                        </button>
+                    </div>
+                    
+                    <!--{if !empty($long_liability_data)}-->
+                    <div id="collapseShares" class="collapse" aria-labelledby="headingTen" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <!--{foreach $long_liability_data as $long_liability}-->
+                        <div class="row border-bottom m-3">
+                          <div class="col-12">
+                            <div class="float-left">
+                              <h4><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance_detail?id=<!--{$long_liability->details}-->"><!--{$long_liability->details|ucwords}--></a> </h4>
+                            </div>
+                            <div class="float-right">
+                              <h4>NGN <!--{$long_liability->tamounts|number_format:2}--></h4>
+                            </div>
+                          </div>
+                        </div>
+                        <!--{/foreach}-->
+                          <div class="row border-bottom m-3">
+                            <div class="col-12">
+                              <div class="float-left">
+                                <h4> <strong> Total Long-term Liabilities </strong> </h4>
+                              </div>
+                              <div class="float-right">
+                                <h4> <strong>NGN <!--{$total_data->long_liability|number_format:2}--></strong> </h4>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  <!--{/if}-->
+                  </div>
+                  
+      
+                  <div class="row w-100">
+                    <div class="col-12 p-4">
+                      <h3 class="float-left">
+                          Total Liabilities
+                      </h3>
+                      <h3 class="float-right">
+                          NGN <!--{$total_data->liabilities|number_format:2}-->
+                      </h3>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+              <!-- Equity -->
+              <div class="col-12">
+                <h4 class="text-center">Other Equity Earnings</h4>
+                <div class="accordion m-4" id="accordionExample">
+                
+                  <!-- other equity -->
+                  <div class="card">
+                    <div class="card-header" id="headingEquity">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseother_equity" aria-expanded="true" aria-controls="collapseother_equity">
+                        <h4 class="text-dark"><span class="float-left">Other Equity</span><span class="float-right"><!--{if !empty($total_data->other_equity)}-->NGN <!--{$total_data->other_equity|number_format:2}--><!--{else}--> 0.00 </span><!--{/if}--></h4>
+                        </button>
+                    </div>
+            
+                    <!--{if !empty($other_equity_data)}-->
+                      <div id="collapseother_equity" class="collapse show" aria-labelledby="headingEquity" data-parent="#accordionExample">
+                        <div class="card-body">
+                          <!--{foreach $other_equity_data as $other_equity}-->
+                            <div class="row border-bottom m-3">
+                              <div class="col-12">
+                                <div class="float-left">
+                                  <h4> <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance_detail?account=<!--{$other_equity->details}-->"><!--{$other_equity->details|ucwords}--></a>  </h4>
+                                </div>
+                                <div class="float-right">
+                                  <h4>NGN <!--{$other_equity->tamounts|number_format:2}--></h4>
+                                </div>
+                              </div>
+                            </div>
+                          <!--{/foreach}-->
+                          <div class="row border-bottom m-3">
+                            <div class="col-12">
+                              <div class="float-left">
+                                <h4> <strong> Total Other Equity </strong> </h4>
+                              </div>
+                              <div class="float-right">
+                                <h4> <strong>NGN <!--{$total_data->other_equity|number_format:2}--></strong> </h4>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                    <!--{/if}-->
+                  </div>
+            
+                  <!-- retained earnings -->
+                  <div class="card">
+                    <div class="card-header" id="headingTen">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseShares" aria-expanded="false" aria-controls="collapseShares">
+                          <h4 class="text-dark"><span class="float-left">Retained Earnings</span><span class="float-right"><!--{if !empty($total_data->retained_earnings)}-->NGN <!--{$total_data->retained_earnings|number_format:2}--><!--{else}--> 0.00 </span><!--{/if}--></h4>
+                        </button>
+                    </div>
+                    
+                    <!--{if !empty($retained_earnings_data)}-->
+                    <div id="collapseShares" class="collapse" aria-labelledby="headingTen" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <!--{foreach $retained_earnings_data as $retained_earnings}-->
+                        <div class="row border-bottom m-3">
+                          <div class="col-12">
+                            <div class="float-left">
+                              <h4><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance_detail?id=<!--{$retained_earnings->details}-->"><!--{$retained_earnings->details|ucwords}--></a> </h4>
+                            </div>
+                            <div class="float-right">
+                              <h4>NGN <!--{$retained_earnings->tamounts|number_format:2}--></h4>
+                            </div>
+                          </div>
+                        </div>
+                        <!--{/foreach}-->
+                          <div class="row border-bottom m-3">
+                            <div class="col-12">
+                              <div class="float-left">
+                                <h4> <strong> Total Other </strong> </h4>
+                              </div>
+                              <div class="float-right">
+                                <h4> <strong>NGN <!--{$total_data->retained_earnings|number_format:2}--></strong> </h4>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  <!--{/if}-->
+                  </div>
+                  
+      
+                  <div class="row w-100">
+                    <div class="col-12 p-4">
+                      <h3 class="float-left">
+                          Total Equity 
+                      </h3>
+                      <h3 class="float-right">
+                          NGN <!--{$total_data->equity|number_format:2}-->
+                      </h3>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row text-centerm-2">
+        <button class="btn btn-success m-4" id="printNow">Print Now</button>
+    </div>
+  </div>
+</section>
+<!--{/block}-->

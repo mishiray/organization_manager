@@ -1,0 +1,60 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Ticket</h1>
+    <p class="mb-4">Create New Variance Ticket</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Create New Ticket</h6>
+      </div>
+      <div class="card-body">
+		<div class="row justify-content-center">
+			<div class="col-6">
+				<form class="form" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_ticket">
+					<fieldset class="card p-2 mt-2">
+						<legend class="text-center">Ticket Details</legend>
+						<div class="form-group">
+							<label for="Errorcode">Error Code <sup class="text-danger">(*)</sup></label>
+							<input type="text" id="Errorcode" name="Errorcode" value="<!--{if !empty($ticket->Errorcode)}--><!--{$ticket->Errorcode|ucfirst}--><!--{/if}-->" class="form-control badge-pill" required/>
+						</div>
+						<div class="form-group">
+							<label for="surname">Surname <sup class="text-danger">(*)</sup></label>
+							<input type="text" id="surname" name="surname" value="<!--{if !empty($emergency->surname)}--><!--{$emergency->surname|ucfirst}--><!--{/if}-->" class="form-control badge-pill" required/>
+						</div>
+						<div class="form-group">
+							<label for="address">Full Address</label>
+							<textarea id="address" name="address" rows="3" class="form-control" required><!--{if !empty($emergency->address)}--><!--{$emergency->address}--><!--{/if}--></textarea>
+						</div>
+						<div class="form-group">
+							<label for="phone">Telephone Number <sup class="text-danger">(*)</sup></label>
+							<input type="number" id="phone" name="phone" value="<!--{if !empty($emergency->phone)}--><!--{$emergency->phone}--><!--{/if}-->" class="form-control badge-pill" required/>
+						</div>
+						<div class="form-group">
+							<label for="email">Email Address</label>
+							<input type="email" id="email" value="<!--{if !empty($emergency->email)}--><!--{$emergency->email}--><!--{/if}-->" name="email" class="form-control badge-pill" required/>
+						</div>
+						<div class="form-group">
+							<label for="relationship">Relationship</label>
+							<input type="text" id="relationship" name="relationship" value="<!--{if !empty($emergency->relationship)}--><!--{$emergency->relationship|ucfirst}--><!--{/if}-->" class="form-control badge-pill"/>
+						</div>
+						<div class="form-group">
+							<button class="btn btn-primary btn-block" type="submit" name="emergency_update">Update Emergency Contact</button>
+						</div>
+					</fieldset>
+				</form>
+				<!--{if !empty($fail)}-->
+				<div class="col">
+				  <div class="form-group">
+					<!--{$fail}-->
+				  </div>
+				</div>
+				<!--{/if}-->
+			</div>
+		</div>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

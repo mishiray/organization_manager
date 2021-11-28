@@ -1,0 +1,25 @@
+<form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/enroll?type=<!--{$etype}-->&id=<!--{$enrollid}-->" method="POST">
+	<div class="card-body">
+        <div class="form-group">
+           <h5 class="text-primary py-2 font-weight-bold">Name: <!--{$programDetail->programid}--></h5>
+           <h5 class="text-primary py-2 font-weight-bold">Property Name: <!--{$programDetail->itemName}--></h5>
+           <h5 class="text-primary py-2 font-weight-bold">Number of Plots: <!--{$programDetail->itemName}--></h5>
+           <h5 class="text-primary py-2 font-weight-bold">Plot size: <!--{$programDetail->itemName}--></h5>
+        </div>
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" name="email" id="email" placeholder="Enter email" value="<!--{$userinfo->email}-->" class="form-control form-control-sm" disabled>
+        </div>
+         <div class="form-group">
+         	<h4 class="text-success font-weight-bold">Amount: <span class="spanCurrency"><!--{$programDetail->amount}--></span></h4>
+         </div>
+		<div class="form-group payment-status">
+			<!--{if !empty($fail)}-->
+				<!--{$fail}-->
+			<!--{/if}-->
+		</div>
+	</div>
+	<div class="card-footer">
+		<button type="submit" name="payBtn" class="btn btn-sm btn-success" value="paystack" id="payBtn"><i class="fa fa-credit-card"></i> Connect to Payment Gateway</button>
+	</div>
+</form>

@@ -1,0 +1,74 @@
+Tue Mar 10 09:07:56 GMT 2020
+Running Processes:
+schooztc  1241885  0.0  0.0 139272  2492 ?        S    07:56   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc  1394933  0.0  0.0 138720  2496 ?        S    08:58   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc  1438088  0.0  0.0  32548  4820 ?        S    09:05   0:00 dovecot/quota-status -p postfix
+
+Running Queries:
+
+Open connections
+COMMAND       PID     USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+pure-ftpd 1241885 schooztc    4u  IPv4 2762116389      0t0  TCP *:21 (LISTEN)
+pure-ftpd 1241885 schooztc    5u  IPv6 2762116390      0t0  TCP *:21 (LISTEN)
+pure-ftpd 1241885 schooztc    6u  IPv4 2768006972      0t0  TCP 199.79.63.83:21->197.211.61.146:35993 (ESTABLISHED)
+pure-ftpd 1241885 schooztc   10u  IPv4 2770988883      0t0  TCP 199.79.63.83:39489 (LISTEN)
+pure-ftpd 1394933 schooztc    4u  IPv4 2762116389      0t0  TCP *:21 (LISTEN)
+pure-ftpd 1394933 schooztc    5u  IPv6 2762116390      0t0  TCP *:21 (LISTEN)
+pure-ftpd 1394933 schooztc    6u  IPv4 2768953037      0t0  TCP 199.79.63.83:21->197.211.61.146:36000 (ESTABLISHED)
+pure-ftpd 1394933 schooztc   10u  IPv4 2768950996      0t0  TCP 199.79.63.83:45985 (LISTEN)
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 1241885  0.0  0.0 139272  2492 ?        S    07:56   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1394933  0.0  0.0 138720  2496 ?        S    08:58   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1444592 59.0  0.1 426972 57484 ?        R    09:07   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 1241885  0.0  0.0 139272  2492 ?        S    07:56   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1394933  0.0  0.0 138720  2496 ?        S    08:58   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1444592 66.0  0.1 426948 59576 ?        R    09:07   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 1241885  0.0  0.0 139272  2492 ?        S    07:56   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1394933  0.0  0.0 138720  2496 ?        S    08:58   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1444592 73.0  0.1 426944 60840 ?        R    09:07   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 1241885  0.0  0.0 139272  2492 ?        S    07:56   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1394933  0.0  0.0 138720  2496 ?        S    08:58   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1444592 39.0  0.1 427056 62104 ?        R    09:07   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 1241885  0.0  0.0 139272  2492 ?        S    07:56   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1394933  0.0  0.0 138720  2496 ?        S    08:58   0:00 pure-ftpd (IDLE)                                                                                                                                                                                                                               
+schooztc 1444592 41.5  0.1 426948 63888 ?        R    09:07   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  09:07:58 up 213 days, 17:39,  0 users,  load average: 0.03, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 78894863	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  09:07:58 up 213 days, 17:39,  0 users,  load average: 0.03, 0.01, 0.00
+
+

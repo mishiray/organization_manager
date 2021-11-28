@@ -1,0 +1,54 @@
+Thu Feb  6 20:07:32 GMT 2020
+Running Processes:
+schooztc  3407162  2.1  0.2 222584 82184 ?        S    19:45   0:28 spamd child
+schooztc  3489959  0.0  0.0  32548  4848 ?        S    20:01   0:00 dovecot/quota-status -p postfix
+
+Running Queries:
+
+Open connections
+COMMAND     PID     USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+spamd   3407162 schooztc    5u  IPv6 1832803066      0t0  TCP [::1]:783 (LISTEN)
+spamd   3407162 schooztc    6u  IPv4 1832803068      0t0  TCP 127.0.0.1:783 (LISTEN)
+spamd   3407162 schooztc    7u  IPv4 1832799730      0t0  UDP 199.79.63.83:53804->5.9.124.53:24441 
+spamd   3407162 schooztc    8u  IPv4 1860644964      0t0  TCP 127.0.0.1:783->127.0.0.1:57012 (CLOSE_WAIT)
+spamd   3407162 schooztc   11u  IPv4 1860644967      0t0  UDP 199.79.63.83:26543->8.8.8.8:53 
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+
+Snapshot 2
+
+Snapshot 3
+
+Snapshot 4
+
+Snapshot 5
+
+Current load:  20:07:34 up 181 days,  4:38,  0 users,  load average: 0.01, 0.00, 0.00
+
+
+MySQL User Processes:
+
+Current load:  20:07:34 up 181 days,  4:38,  0 users,  load average: 0.01, 0.00, 0.00
+
+

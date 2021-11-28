@@ -1,0 +1,59 @@
+Thu Feb  6 03:14:42 GMT 2020
+Running Processes:
+schooztc  3205594  0.0  0.0  63640  9440 ?        S    03:11   0:00 dovecot/lmtp [local READY]
+schooztc  3270604  0.0  0.0  32548  4964 ?        S    03:13   0:00 dovecot/quota-status -p postfix
+schooztc  3272957 76.5  0.7 561928 239236 ?       R    03:14   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 106% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3272957 78.7  0.7 564000 240708 ?       R    03:14   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3273284 78.0  0.2 428792 71240 ?        R    03:14   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3272957 79.5  0.0      0     0 ?        R    03:14   0:05 [php-cgi]
+schooztc 3273284 83.0  0.2 428900 73220 ?        R    03:14   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3272957 69.6  0.0      0     0 ?        Z    03:14   0:05 [php-cgi] <defunct>
+schooztc 3273284 44.0  0.2 428908 74552 ?        R    03:14   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3273284 47.0  0.2 430080 77716 ?        R    03:14   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3273284 50.5  0.2 430468 80896 ?        R    03:14   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  03:14:44 up 180 days, 11:46,  0 users,  load average: 0.03, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 68013149	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  03:14:44 up 180 days, 11:46,  0 users,  load average: 0.03, 0.01, 0.00
+
+

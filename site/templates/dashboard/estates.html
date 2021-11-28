@@ -1,0 +1,48 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">View estates</h1>
+    <!-- DataTales Example -->
+          <div class="row">
+              <!--{if !empty($fail)}-->
+                <!--{$fail}-->
+              <!--{/if}-->
+              <!--{if !empty($property)}-->
+            <div class="col-sm-12"><!--{include file="paging-top.html"}--></div>
+              <!--{foreach $property as $prop}-->
+              <div class="col-lg-4">
+                <div class="card overflow-hidden shadow mb-4">
+                  <!--{if $prop->active == 0}-->
+                    <p class="sold_out" href="#">Sold out</p>
+                  <!--{/if}-->
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-dark"><!--{$prop->name}--></h6>
+                    <div class="dropdown no-arrow">
+                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header"><!--{$prop->name}-->:</div>
+                        <a class="dropdown-item" data-toggle="collapse" href="#prop<!--{$prop->id}-->">Show/Hide</a>
+                        <a class="dropdown-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/estate?item=<!--{$prop->token}-->">More Info</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                  <img src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$prop->images}-->" alt="Images" class="w-100">
+                  </div>
+                  <div class="card-body collapse" id="prop<!--{$prop->id}-->">
+                    <!--{$prop->content}-->
+                  </div>
+                </div>
+              </div>
+            <!--{/foreach}-->
+            <div class="col-sm-12"><!--{include file="paging-bottom.html"}--></div>
+          <!--{else}-->
+                <h2>No property Added</h2>
+          <!--{/if}-->
+          </div>
+          
+<!--{/block}-->

@@ -1,0 +1,85 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+  <div class="card-header py-3">
+    <h3 class="m-0 font-weight-bold text-dark text-center"> <i class="text-primary fa fa-comments"></i> <!--{$Site.companyName}--> Chat</h3>
+  </div>
+  <div class="row" justify-content-center">
+    <div class="col-lg-3">
+        <div class="msger_people">
+            <header class="msger-header bg-danger text-light">
+              <div class="msger-header-title"   data-toggle="collapse" data-target="#peopleslist" aria-expanded="true" aria-controls="peopleslist" id="peoplist">
+                <i class="fas fa-user"></i> Chats <i class="fa fa-arrow-down">
+              </i>
+              </div>
+              <div class="msger-header-options">
+                <span data-toggle="modal" data-target="#new_chatModal"><i class="fas fa-plus"></i></span>
+              </div>
+            </header>
+            
+            <div id="peopleslist" class="mt-2 collapse row justify-content-center" aria-labelledby="peopleslist">
+              <main class="msger-people-list">
+                  <table class="table table-bordered peoples" id="people" width="100%" style="border-collapse:separate; ">
+                      <tbody id="recent_people">
+                        <!-- Script Ways -->
+                      </tbody>
+                  </table>
+              </main>
+            </div>
+            <input type="hidden" name="" id="setUser" value="null">
+        </div>
+    </div>
+    <div class="col-md-8 col-lg-9" >
+    <section class="msger">
+        <header class="msger-header bg-success text-light">
+          <div class="msger-header-title">
+            <i class="fas fa-comment-alt"></i> <span id="msg_title">Messages</span>
+          </div>
+        </header>
+      
+        <main class="msger-chat">
+          <!-- Script Ways -->
+        </main>
+      
+        <form  id="send-area" class="msger-inputarea">
+            <input type="text" class="msger-input" placeholder="Enter your message...">
+            <button type="submit" class="msger-send-btn">Send</button>
+        </form>
+      </section>
+      </div>
+  </div>
+</div>
+<!-- add person Modal-->
+<div class="modal fade" id="new_chatModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Text Person</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <!--{if !empty($peoples)}-->
+            <table class="table peoples" id="dataTable" width="100%">
+                <thead>
+                  <th>Names</th>
+                </thead>
+                <tbody class="new_chat">
+                    <!--{$numCount=1}-->
+                    <!--{foreach $peoples as $per}-->
+                        <!--{if $per->email != $userinfo->email}-->
+                        <tr class="" i = "<!--{$numCount}-->" id="<!--{$per->email}-->" fullname="<!--{$per->lastname|ucfirst}--> <!--{$per->firstname|ucfirst}-->">
+                            <td>
+                                <a class="text-decoration-none btn" data-dismiss="modal" rel="noopener noreferrer"> <!--{$per->lastname|ucfirst}--> <!--{$per->firstname|ucfirst}--> </a>
+                            </td>
+                        </tr>
+                        <!--{/if}-->
+                        <!--{$numCount=$numCount+1}-->
+                    <!--{/foreach}-->
+                </tbody>
+            </table>
+             <!--{/if}-->
+        </div>
+      </div>
+    </div>
+<!--{/block}-->

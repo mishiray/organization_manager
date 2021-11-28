@@ -1,0 +1,56 @@
+Thu Feb  6 20:05:47 GMT 2020
+Running Processes:
+schooztc  3515125 55.7  0.7 638708 242480 ?       Sl   20:05   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+COMMAND     PID     USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+php-cgi 3515125 schooztc   14u  IPv4 1860588023      0t0  UDP 199.79.63.83:36728->1.1.1.1:53 
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 51% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3515125 51.4  0.7 638708 242480 ?       R    20:05   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3515125 51.5  0.7 638708 242480 ?       R    20:05   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3515125 51.6  0.7 638708 242480 ?       R    20:05   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3515125 51.9  0.7 638708 242480 ?       S    20:05   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3515125 47.9  0.7 638708 242480 ?       S    20:05   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  20:05:49 up 181 days,  4:37,  0 users,  load average: 0.02, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 68251000	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT COUNT( DISTINCT post_author ) FROM wp_posts WHERE ( post_parent = 40975 AND post_status = 'publish' AND post_type = 'reply' ) OR ( ID = 40975 AND post_type = 'topic' )
+
+Current load:  20:05:49 up 181 days,  4:37,  0 users,  load average: 0.02, 0.00, 0.00
+
+

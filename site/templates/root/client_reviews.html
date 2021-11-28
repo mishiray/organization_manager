@@ -1,0 +1,157 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+
+<h1 class="h3 mb-2 text-gray-800">Client Reviews
+</h1>
+
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+	  <h6 class="m-0 font-weight-bold text-primary">Reviews</h6>
+	</div>
+	<div class="card-body">
+		
+		<!--{if !empty($fail)}-->
+			<div class="form-group">
+				<!--{$fail}-->
+			</div>
+		<!--{/if}-->
+		<div class="row text-right d-flex justify-content-end m-4">
+			<div class="col-md-2 m-1 justify-content-end ">
+				<div class="well clearfix">
+					<a class="btn btn-success rounded-pill p-2 pull-right add-record" data-added="0" data-toggle="modal" data-target="#addreviewModal"><i class="fa fa-plus"></i> Add Review</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-12">
+			<div class="table-responsive">
+					<table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
+					  <thead class="site-bg-1 text-dark">
+					    <th>
+						  S/N
+					    </th>
+						<th>
+							Image
+						</th>
+						<th>
+							Client Name
+						</th>
+					    <th>
+						  	Rating
+					    </th>
+						<th>
+						  	Comment
+						</th>
+						<th>
+							Date Added
+						</th>
+						<th>
+							Action
+						</th>
+					  </thead>
+					  <tbody>
+						  
+						<!--{if !empty($client_reviews)}-->
+						<!--{$numcount = 1}-->
+					  	<!--{foreach $client_reviews as $review}-->
+							<tr>
+								<td>
+									<!--{$numcount}-->
+								</td>
+								<td>
+									<img class="rounded-circle" style="width: 35px;max-height: 35px;" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$review->image}-->" alt="photo" srcset="">
+            
+								</td>
+								<td>
+									<!--{$review->client_name|ucwords}-->
+								</td>
+								<td>
+									<!--{for $var=0 to $review->rating - 1}-->
+										<i class="fa fa-star text-warning"></i>
+									<!--{/for}-->
+									<!--{for $var=0 to 4-$review->rating }-->
+										<i class="fa fa-star text-dark"></i>
+									<!--{/for}-->
+								</td>
+								<td>
+									<!--{$review->comment}-->
+								</td>
+								<td>
+									<!--{$review->dateadded|date_format}-->
+								</td>
+								<td class="d-flex">
+									<form action="" class="d-flex" method="post">
+									  <input type="hidden" name="token" value="<!--{$review->token}-->">
+									  <button type="submit" name="triggers" value="delete_review" onclick="return deleteItem();" class="btn btn-danger btn-sm"><i class="fa fa-trash p-2"></i>Delete</button>
+									</form>
+								</td>
+							</tr>
+							<!--{$numcount = $numcount + 1}-->
+						<!--{/foreach}-->
+						<!--{/if}-->
+					  </tbody>
+					</table>
+			</div>
+		</div>
+	</div>
+	
+	<!-- expense account modal-->
+	<div class="modal fade" id="addreviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleexpenseLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h3 class="modal-title" id="exampleexpenseLabel">Add a vendor</h3>
+			<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			</div>
+			<form action="" method="post" enctype="multipart/form-data">
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-6">
+							<div class="form-group">
+								<label for="file_upload" class="form-control-label">Upload an Image</label>
+								<input type="file" accept="image/*, application/*, video/*" id="file_upload" class="input-rounded w-100" name="file_upload"/>
+							  </div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6">
+							<div class="form-group">
+								<label for="client_name" class="form-control-label">Client Name</label>
+								<input type="text" placeholder="Enter Client Name" class="form-control" name="client_name"/>
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="form-group">
+								<label for="phone" class="form-control-label">Rating</label>
+								<select class="form-control" name="rating">
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<div class="form-group">
+								<label for="comment">Comment</label>
+								<textarea id="comment" name="comment" value="" rows="3" class="form-control"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn rounded-pill border-secondary btn-lg" style="min-width: 100px;" type="button" data-dismiss="modal">Cancel</button>
+					<button class="btn p-2 rounded-pill btn-primary btn-lg" style="min-width: 100px;" name="triggers" value="add_review" >Add</button>
+				</div>
+			</form>
+		</div>
+		</div>
+	</div>
+
+</div>
+<!--{/block}-->

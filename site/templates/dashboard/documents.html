@@ -1,0 +1,94 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong>
+	&nbsp;Document Request&nbsp;<i class="fa fa-certificate"></i>
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<h3>MY DOCUMENTS</h3>
+<section class="row justify-content-center">
+	
+	<!--{if !empty($fail)}-->
+	<div class="col-sm-8">
+		<!--{$fail}-->
+	</div>
+	<!--{/if}-->
+	<div class="card w-100">
+		<div class="card-body">
+			<div class="col-sm-11">
+				<div class="row">
+					<div class="col-lg-6 m-4 pt-2 bg-primary">
+					  <form id="mainForm" method="POST" class="d-flex" enctype="multipart/form-data" name="reportsform">
+						<div class="form-group mr-2">
+						  <label class="text-light" for="Year">Enter Year</label>
+							  <select class="form-control" id="Year"  name="year">
+								<!--{for $foo=2010 to 3000}-->
+								  <option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+									<!--{$foo}-->
+								  </option>
+								<!--{/for}-->
+							  </select>
+						</div>
+						<div class="form-group mr-2">
+						  <label  class="text-light" for="month">Select Month</label>
+							  <select class="form-control" id="month"  name="month">
+									<option value="">All</option>
+									<!--{foreach $months as $month}-->
+										  <option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+											<!--{$month}-->
+										</option>
+									<!--{/foreach}-->
+							  </select>
+						</div>
+						<div class="form-group d-flex"> 
+						  <button type="submit" class="mt-2 btn btn-danger" name="triggers" id="cert_search" value="cert_search">OK</button>
+					   </div>      
+					 </form>
+					</div>
+				</div>
+		
+				<!--{if !empty($certificates)}-->
+				<div class="table-responsive">
+					<table id="dataTable" class="table table-bordered no-footer">
+						 <thead class="thead-light">
+							<tr>
+							  <th scope="col">#</th>
+							  <th>Reference</th>
+							  <th scope="col">DOCUMENT DETAIL</th>
+							  <th scope="col">UPLOADED DOCUMENT</th>
+							  <th scope="col">DATE UPDATED</th>
+							</tr>
+						  </thead>
+						  <tbody>
+							  <!--{$numCount=1}-->
+							  <!--{foreach $certificates as $key=> $certificate}-->
+							<tr>
+							  <td><!--{$numCount}--></td>
+							  <td>
+								<!--{$certificate->token}-->
+							  </td>
+							  <td>
+								  <h6 class="font-weight-bold"><!--{$certificate->title}--></h6>
+								  <div class="border border-success py-1 px-1" style="max-height: 150px; max-width: 250px; overflow-y: auto;"><strong>Description: </strong><!--{$certificate->description}--></div>
+								  <span class="text-muted">Date Uploaded: <!--{$certificate->datesent}--></span>
+							  </td>
+							  <td>
+								  <!--{foreach $certificate->images as $image}-->
+								  <a class="btn btn-outline-success mt-1 btn-sm btn-light" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$image}-->" target="__blank"><small><!--{$certificate->title}--></small></a>
+								  <!--{/foreach}-->
+							</td>
+							  <td><!--{$certificate->dateupdated}--></td>
+							</tr>
+							  <!--{$numCount=$numCount+1}-->
+							<!--{/foreach}-->
+						  </tbody>
+					</table>
+				</div>	
+				<!--{else}-->
+					<div class="alert alert-warning"><h3 class="alert-heading">No Document Uploaded found</h3></div>
+				<!--{/if}-->
+			</div>
+		</div>
+	</div>
+</section>
+<!--{/block}-->

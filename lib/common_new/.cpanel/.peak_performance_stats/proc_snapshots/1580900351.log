@@ -1,0 +1,110 @@
+Wed Feb  5 10:59:11 GMT 2020
+Running Processes:
+schooztc  3414967  0.0  0.0 130280 21344 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc  3420325  0.0  0.0 129984 21044 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc  3420667  0.0  0.0 116828 20496 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc  3425634  0.0  0.0 113436 20684 ?        S    10:58   0:00 cpaneld - serving 217.138.198.10
+schooztc  3426108  0.0  0.0 117536 20544 ?        S    10:58   0:00 cpaneld - serving 217.138.198.10
+schooztc  3430371 82.0  0.4 462888 140992 ?       R    10:59   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+COMMAND     PID     USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+cpaneld 3414967 schooztc   23u  IPv4 1816395499      0t0  TCP 199.79.63.83:2082->217.138.198.10:57022 (ESTABLISHED)
+cpaneld 3420325 schooztc   23u  IPv4 1816430186      0t0  TCP 199.79.63.83:2082->217.138.198.10:63396 (ESTABLISHED)
+cpaneld 3420667 schooztc   23u  IPv4 1816427113      0t0  TCP 199.79.63.83:2082->217.138.198.10:21496 (ESTABLISHED)
+cpaneld 3425634 schooztc   23u  IPv4 1816464009      0t0  TCP 199.79.63.83:2082->217.138.198.10:21196 (ESTABLISHED)
+cpaneld 3426108 schooztc   23u  IPv4 1816464168      0t0  TCP 199.79.63.83:2082->217.138.198.10:23810 (ESTABLISHED)
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 73.5% (warning)
+      SSL: SSL error: missing certificate (warning)
+  Varnish: schoolofgreatness.africa is cached. (warning)
+  Varnish: ajahcity.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: courses.schoolofgreatness.africa is cached. (warning)
+  Varnish: uaac.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: alexihama.ajahcity.com.ng is cached. (warning)
+  Varnish: adeniyichristopher.ajahcity.com.ng is cached. (warning)
+  Varnish: spp.ajahcity.com.ng is cached. (warning)
+  Varnish: scog.ajahcity.com.ng is cached. (warning)
+  Varnish: metromedia.ajahcity.com.ng is cached. (warning)
+  Varnish: frankieslist.ajahcity.com.ng is cached. (warning)
+  Varnish: alethiaenterprise.schoolofgreatness.africa is cached. (warning)
+  Varnish: maccherithresources.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: lekkipeninsulapolice.org.schoolofgreatness.africa is cached. (warning)
+  Varnish: pecuniahouse.ajahcity.com.ng is cached. (warning)
+  Varnish: ajahcity.com.ng is cached. (warning)
+  Varnish: uaac.com.ng is cached. (warning)
+  Varnish: lekkipeninsulapolice.org is cached. (warning)
+  Varnish: maccherithresources.com.ng is cached. (warning)
+  Varnish: alethiaenterprise.com is cached. (warning)
+  Varnish: schoolofgreatness.africa.md-47.webhostbox.net is cached. (warning)
+
+
+Snapshot 1
+schooztc 3414967  0.0  0.0 130280 21344 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420325  0.0  0.0 129984 21044 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420667  0.0  0.0 116828 20496 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3425634  0.0  0.0 113436 20684 ?        S    10:58   0:00 cpaneld - serving 217.138.198.10
+schooztc 3426108  0.0  0.0 117536 20544 ?        S    10:58   0:00 cpaneld - serving 217.138.198.10
+schooztc 3430371 81.0  0.5 517604 195384 ?       R    10:59   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3414967  0.0  0.0 130280 21344 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420325  0.0  0.0 129984 21044 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420667  0.0  0.0 116828 20496 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3425634  0.0  0.0 113436 20684 ?        S    10:58   0:00 cpaneld - serving 217.138.198.10
+schooztc 3426108  0.0  0.0 117536 20544 ?        S    10:58   0:00 cpaneld - serving 217.138.198.10
+schooztc 3430371 82.5  0.5 517860 195600 ?       R    10:59   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3414967  0.0  0.0 130280 21344 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420325  0.0  0.0 129984 21044 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420667  0.0  0.0 116828 20496 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3425634  0.0  0.0 113436 20684 ?        S    10:58   0:00 cpaneld - serving 217.138.198.10
+schooztc 3426108  0.0  0.0 117536 20544 ?        S    10:58   0:00 cpaneld - serving 217.138.198.10
+schooztc 3430371 84.2  0.5 518884 196776 ?       R    10:59   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3414967  0.0  0.0 130280 21344 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420325  0.0  0.0 129984 21044 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420667  0.0  0.0 116828 20496 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3425634  0.0  0.0 113436 20684 ?        S    10:58   0:00 cpaneld - serving 217.138.198.10
+schooztc 3426108  0.0  0.0 117536 20544 ?        S    10:58   0:00 cpaneld - serving 217.138.198.10
+schooztc 3430371 86.2  0.6 519908 197652 ?       R    10:59   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3414967  0.0  0.0 130280 21344 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420325  0.0  0.0 129984 21044 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3420667  0.0  0.0 116828 20496 ?        S    10:56   0:00 cpaneld - serving 217.138.198.10
+schooztc 3425634  0.0  0.0 113436 20684 ?        S    10:58   0:00 cpaneld - serving 217.138.198.10
+schooztc 3426108  0.0  0.0 117536 20544 ?        S    10:58   0:00 cpaneld - serving 217.138.198.10
+schooztc 3430371 87.2  0.6 520956 199168 ?       S    10:59   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  10:59:13 up 179 days, 19:30,  1 user,  load average: 0.02, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 67761227	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT post_id, meta_key, meta_value FROM wp_postmeta WHERE post_id IN (7490) ORDER BY meta_id ASC
+
+Current load:  10:59:13 up 179 days, 19:30,  1 user,  load average: 0.02, 0.00, 0.00
+
+

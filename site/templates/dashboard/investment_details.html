@@ -1,0 +1,217 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Investments Table</h1>
+<p class="mb-4">The table contains investments made by clients</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Investments</h6>
+  </div>
+  <!--{if !empty($fail)}-->
+  <div class="col">
+    <div class="form-group">
+      <!--{$fail}-->
+    </div>
+  </div>
+<!--{/if}-->
+  <!--{if !empty($investment_details)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th class="">Reference</th>
+            <th>Product Details</th>
+            <th class="d-none">Client Details</th>
+            <th class="d-none">Address</th>
+            <th class="d-none">Next Of Kin Details</th>
+            <th>Payment Details</th>
+            <th class="d-none">Refree Details</th>
+            <th>Payment Status</th>
+            <th>Investment Period</th>
+            <th>Investment Status</th>
+            <th class="d-none" scope="col"></th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <th class="">Reference</th>
+            <th>Product Details</th>
+            <th class="d-none">Client Details</th>
+            <th class="d-none">Address</th>
+            <th class="d-none">Next Of Kin Details</th>
+            <th>Payment Details</th>
+            <th class="d-none">Refree Details</th>
+            <th>Payment Status</th>
+            <th>Investment Period</th>
+            <th>Investment Status</th>
+            <th class="d-none" scope="col"></th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+			  	<!--{foreach $investment_details as $subs}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <td class="">
+              <strong><!--{$subs->token}--> </strong>
+            </td>
+            <td>
+              <strong>Name: </strong><!--{$subs->product}--> <br>
+              <strong>Plan Percentage: </strong><!--{$subs->percentage}--> <br>
+              <strong>Plot Square Meter: </strong><!--{$subs->category}--> <br>
+              <strong>Principal: </strong>&#8358;<!--{$subs->principal|number_format:2}--> <br>
+              <strong>Rate Of Interest(ROI): </strong>&#8358;<!--{$subs->roi|number_format:2}--> <br>
+              <strong>Maturity: </strong>&#8358;<!--{$subs->maturity|number_format:2}--> <br>
+            </td>
+            <td class="d-none">
+              <strong>Title: </strong><!--{$subs->title}--> <br>
+              <strong>First Name: </strong><!--{$subs->firstname}--> <br>
+              <strong>Last Name: </strong><!--{$subs->surname}--> <br>
+              <strong>Middle Name: </strong><!--{$subs->middlename}--> <br>
+              <strong>Gender: </strong><!--{$subs->sex}--> <br>
+              <!--{if $subs->marital_status=='married'}-->
+              <strong>Spouse First Name: </strong><!--{$subs->spouse_firstname}--> <br>
+              <strong>Spouse Last Name: </strong><!--{$subs->spouse_surname}--> <br>
+              <!--{/if}-->
+              <strong>Mobile: </strong><!--{$subs->mobile}--> <br>
+              <strong>Phone: </strong><!--{$subs->phone}--> <br>
+              <strong>Email: </strong><!--{$subs->email}--> <br>
+            </td>
+            <td class="d-none">
+              <!--{$subs->address}--> <br>
+              <strong>City: </strong><!--{$subs->city}--> <br>
+              <strong>LGA: </strong><!--{$subs->lga}--> <br>
+              <strong>State: </strong><!--{$subs->state}--> <br>
+              <strong>Country: </strong><!--{$subs->country}--> <br>
+            </td>
+            <td class="d-none">
+              <strong>First Name: </strong><!--{$subs->nok_firstname}--> <br>
+              <strong>Last Name: </strong><!--{$subs->nok_surname}--> <br>
+              <strong>Middle Name: </strong><!--{$subs->nok_middlename}--> <br>
+              <strong>Phone: </strong><!--{$subs->nok_phone}--> <br>
+              <strong>Address: </strong><!--{$subs->nok_address}--> <br>
+            </td>
+            <td>
+              <strong>Payment Type: </strong><!--{$subs->payment_type}--> <br>
+              <strong>Total Amount: </strong>&#8358;<!--{$subs->total_amount|number_format:2}--> <br> <br>
+              <strong>Total Paid:</strong>&#8358;<!--{$subs->total_paid|number_format:2}--> 
+            </td>
+            <td class="d-none">
+              <strong>Full Name: </strong><!--{$subs->ref_fullname}--> <br>
+              <strong>Phone: </strong><!--{$subs->ref_phone}--> <br>
+              <strong>Email: </strong><!--{$subs->ref_email}--> <br>
+            </td>
+			      <td>
+			      	<span class="badge badge-<!--{if $subs->paid =='1'}-->success<!--{else}-->warning<!--{/if}-->"><!--{if $subs->paid=='1'}-->PAID<!--{else}-->NOT PAID<!--{/if}--></span>
+			      </td>
+            <td>
+              <strong>Start Date: </strong><!--{$subs->reg_date|date_format}--> <br>
+              <strong>End Date: </strong><!--{$subs->end_date|date_format}--> <br>
+            </td>
+            <td>
+              <!--{if $subs->paid == 0}-->
+                <span class="badge badge-danger">PAYMENT NOT MADE</span>
+              <!--{/if}-->
+              <!--{if $subs->paid==1 && $subs->isDone=='YES' && $subs->status==0}-->
+              <form method="POST" enctype="multipart/form-data">
+                <input type="hidden" value="<!--{$subs->token}-->" name="invest_token">
+                <div class="form-group">
+                  <h4 class="badge badge-success">You have come to the end of your investment</h4> <br>
+                  <label for="investoptions">Choose Options</label> <br>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="cashout"  onclick="crosswalk(this);" name="investoptions" value="cashout" class="custom-control-input">
+                      <label class="custom-control-label" for="cashout">Cash Out</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="reinvest"  onclick="crosswalk(this);" name="investoptions" value="reinvest" class="custom-control-input">
+                      <label class="custom-control-label" for="reinvest">Re-Invest on property</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                      <input type="radio" id="takeland"  onclick="crosswalk(this);" name="investoptions" value="takeland" class="custom-control-input">
+                      <label class="custom-control-label" for="takeland">Take possession of Land</label>
+                    </div>
+                </div>
+                <div id="re-invest" class="d-none">
+                    <div class="form-group">
+                      <label class="form-control-label" for="cashout">Enter Amount to Reinvest</label>
+                      <input type="number" id="new_invest" onkeyup="getInfo(this);" min="<!--{$subs->invest->min_principal}-->" max="<!--{$subs->invest->max_principal}-->" name="new_invest_amount" value="" class="form-control">
+                    </div>
+                    <script>
+                      function getInfo(myRadio) {
+                          currentValue = '<!--{$subs->invest->percentage}-->';
+                          var prin = myRadio.value;
+                          var roi = (currentValue/100) * prin;
+                          var maturity = roi + +prin;
+                          $("#roi").val(roi.toFixed(2));
+                          $("#maturity").val(maturity.toFixed(2));
+                          $("#totalpay").val(prin);
+                      }
+                      function crosswalk(radio){
+                            if($(radio).val() == 'reinvest'){
+                                $('#re-invest').removeClass('d-none');
+                            }else{
+                                $('#re-invest').addClass('d-none');
+                            }
+                      }
+                    </script>
+                      <div class="form-group">
+                        <label for="">R.O.I:</label>
+                        <input readonly name="roi" id="roi" type="number" class="form-control"  />                 
+                      </div>
+                      <div class="form-group">
+                        <label for="">Maturity</label>
+                        <input readonly name="maturity" id="maturity" type="number" class="form-control"  />                 
+                      </div>
+                </div>
+                <div id="mainButton" class="form-group text-center">
+                  <button  type="submit" class="btn btn-md btn-success mainButton" name="triggers" value="invest_end_options">Submit</button>
+                </div>
+              </form>
+              <!--{else}-->
+                <!--{if $subs->paid==1 && $subs->isDone=='YES' && $subs->status!=0}-->
+                <strong>Thank You, You can no longer alter this investment</strong> <br>
+                  <!--{if $subs->status==1}-->
+                  You Cashed Out
+                  <!--{/if}-->
+                  <!--{if $subs->status==2}-->
+                  You Reinvested on Property
+                  <!--{/if}-->
+                  <!--{if $subs->status==3}-->
+                  You Took Possession of land
+                  <!--{/if}-->
+                <!--{/if}-->
+              <!--{/if}-->
+              <!--{if $subs->isDone=='NO'}-->
+                  <strong>Thank You, Your investment period is still on</strong> <br>
+              <!--{/if}-->
+            </td>
+			      <td class="text-center">
+              <!--{if $subs->paid =='0'}-->
+			      	  <a class="btn btn-sm my-1 btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/make_payment?type=investment&id=<!--{$subs->token}-->">Pay Now </a>
+              <!--{else}-->
+                <span class="badge badge-success">PAID</span>
+              <!--{/if}-->
+            </td>
+			      <td class=" text-center">
+			      	<a class="btn btn-sm my-1 btn-primary"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/view_investment?id=<!--{$subs->token}-->">View </a>
+			      </td>
+			    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

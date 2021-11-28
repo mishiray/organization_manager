@@ -1,0 +1,107 @@
+<!--{extends file="dashboard.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Subscriptions Table</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">My Subscriptions</h6>
+  </div>
+  <!--{if !empty($subscriptions)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th class="">Reference</th>
+            <th>Product Details</th>
+            <th class="d-none">Payment Details</th>
+            <th>Subscription Date</th>
+			      <th>Payment Status</th>
+            <th>Action</th>
+            <th>Documents</th>
+            <th>View</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <th class="">Reference</th>
+            <th>Product Details</th>
+            <th class="d-none">Payment Details</th>
+            <th>Subscription Date</th>
+            <th>Payment Status</th>
+            <th>Action</th>
+            <th>Documents</th>
+            <th>View</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+			  	<!--{foreach $subscriptions as $subs}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <td>
+              <!--{$subs->token}-->
+            </td>
+            <td>
+              <strong>Name: </strong><!--{$subs->product}--> <br>
+              <strong>Plot Type: </strong><!--{$subs->plot_type}--> <br>
+              <strong>Plot Number: </strong><!--{$subs->plot_number}--> <br>
+              <strong>Plot Square Meter: </strong><!--{$subs->plot_sqm}--> <br>
+            </td>
+            <td class="d-none">
+              <strong>Payment Type: </strong><!--{$subs->payment_type}--> <hr>
+              <strong>Total Amount: </strong>&#8358;<!--{$subs->total_amount|number_format:2}--> <hr> 
+              <strong>Total Paid: </strong>&#8358;<!--{$subs->total_paid|number_format:2}--> <hr>
+              <strong>Outstanding Balance: </strong>&#8358;<!--{$subs->outstanding|number_format:2}-->
+			</td>
+			<td>
+        <!--{$subs->reg_date|date_format}--> <hr>
+        <strong>Span: </strong><!--{$subs->months}--> month(s)
+      </td>
+			<td>
+          <!--{if $subs->paid =='1'}-->
+            <span class="badge badge-success">PAID</span>
+            <!--{else}-->
+            <!--{if $subs->total_paid>0}-->
+              <span class="badge badge-info">Initiated Payment</span>
+            <!--{else}-->
+              <span class="badge badge-warning">NOT PAID</span>
+            <!--{/if}-->
+			    <!--{/if}-->
+			</td>
+			<td>
+          <!--{if $subs->paid =='0'}-->
+			        <a class="btn btn-sm my-1 btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/make_payment?type=subscription&id=<!--{$subs->token}-->"><i class="fa fa-ellipsis-v"></i> Make Payment </a>
+          <!--{else}-->
+              <a class="btn btn-sm my-1 btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/make_payment?type=subscription&id=<!--{$subs->token}-->"><i class="fa fa-ellipsis-v"></i> Make More Payment </a>
+          <!--{/if}-->
+      </td>
+      <td>
+        <!--{if $subs->paid == 1}-->
+          <a class="btn btn-sm my-1 btn-primary"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/subscription_letter?id=<!--{$subs->token}-->">Subscription Letter</a> <br>
+          <a class="btn btn-sm my-1 btn-primary"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/contract_of_sales?id=<!--{$subs->token}-->">Contract of Sale </a> <br>
+          <a class="btn btn-sm my-1 btn-success"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/completion_letter?id=<!--{$subs->token}-->">Completion Letter</a> 
+        <!--{else}-->
+          <a class="btn btn-sm my-1 btn-primary"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/subscription_letter?id=<!--{$subs->token}-->">Subscription Letter</a>
+        <!--{/if}-->
+      </td>
+			<td>
+        <a class="btn btn-sm my-1 btn-primary"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/view_subscription?id=<!--{$subs->token}-->"><i class="fa fa-ellipsis-v"></i> View Subscription </a>
+       </td>
+			    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

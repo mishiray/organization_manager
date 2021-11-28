@@ -1,0 +1,142 @@
+Mon Aug 26 07:57:39 GMT 2019
+Running Processes:
+schooztc  3849597 16.8  0.7 553204 230984 ?       R    07:56   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3849678 17.6  0.7 553844 231348 ?       R    07:56   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3850163 17.0  0.7 552680 230464 ?       R    07:57   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3850341 17.4  0.5 507236 186044 ?       R    07:57   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3850610 18.4  0.5 500760 179744 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3850622 18.8  0.5 488568 167188 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3850760 18.7  0.4 467592 146640 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3851418 18.7  0.2 433244 91680 ?        R    07:57   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3851549 18.5  0.2 430244 80084 ?        R    07:57   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3851562  0.3  0.0 122252 29072 ?        R    07:57   0:00 cpaneld - serving 41.203.73.135
+schooztc  3851601  0.0  0.0 113468 28488 ?        R    07:57   0:00 cpaneld - serving 41.203.73.135
+schooztc  3851610 18.3  0.2 427112 65896 ?        R    07:57   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3851803 21.0  0.1 423060 44040 ?        R    07:57   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+COMMAND     PID     USER   FD   TYPE    DEVICE SIZE/OFF NODE NAME
+cpaneld 3851562 schooztc   16u  IPv4 719999168      0t0  TCP 199.79.63.83:2083->41.203.73.135:29008 (CLOSE_WAIT)
+cpaneld 3851601 schooztc   16u  IPv4 719999188      0t0  TCP 199.79.63.83:2083->41.203.73.135:29010 (ESTABLISHED)
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 180.8% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3849597 16.7  0.7 555276 231660 ?       R    07:56   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850163 17.0  0.7 552680 230464 ?       R    07:57   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850341 17.1  0.5 507236 186044 ?       R    07:57   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850610 18.3  0.5 506468 185220 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850622 18.6  0.5 495400 174092 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850760 18.6  0.4 474116 152904 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851418 18.8  0.2 433392 95168 ?        R    07:57   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851549 18.3  0.2 432708 85380 ?        R    07:57   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851562  0.4  0.0      0     0 ?        Z    07:57   0:00 [cpaneld - servi] <defunct>
+schooztc 3851601  0.1  0.0 113468 28488 ?        S    07:57   0:00 cpaneld - serving 41.203.73.135
+schooztc 3851610 18.4  0.2 427860 69820 ?        R    07:57   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851803 20.5  0.1 425672 51968 ?        R    07:57   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851842  1.0  0.0 113444 28372 ?        S    07:57   0:00 cpaneld - serving 41.203.73.135
+schooztc 3851872 17.0  0.0  84288 27380 ?        R    07:57   0:00 /usr/local/cpanel/cpanel ./frontend/paper_lantern/filemanager/editit.html.tt
+
+Snapshot 2
+schooztc 3849597 16.7  0.7 555276 231660 ?       R    07:56   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850163 17.0  0.7 552680 230464 ?       R    07:57   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850341 17.1  0.5 507236 186044 ?       R    07:57   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850610 18.3  0.5 506468 185220 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850622 18.6  0.5 495400 174092 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850760 18.6  0.4 474116 152904 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851418 18.8  0.2 433392 95168 ?        R    07:57   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851549 18.3  0.2 432708 85380 ?        R    07:57   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851562  0.4  0.0      0     0 ?        Z    07:57   0:00 [cpaneld - servi] <defunct>
+schooztc 3851601  0.1  0.0 113468 28488 ?        S    07:57   0:00 cpaneld - serving 41.203.73.135
+schooztc 3851610 18.4  0.2 427860 69820 ?        R    07:57   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851803 20.5  0.1 425672 51968 ?        R    07:57   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851842  1.0  0.0 113444 28372 ?        S    07:57   0:00 cpaneld - serving 41.203.73.135
+schooztc 3851872 17.0  0.0  84288 27380 ?        R    07:57   0:00 /usr/local/cpanel/cpanel ./frontend/paper_lantern/filemanager/editit.html.tt
+
+Snapshot 3
+schooztc 3849597 16.4  0.7 555276 231660 ?       R    07:56   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850163 16.5  0.7 552680 230464 ?       R    07:57   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850341 16.6  0.5 507236 186044 ?       R    07:57   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850610 17.6  0.5 506468 185220 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850622 18.0  0.5 495400 174092 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850760 17.8  0.4 474116 152904 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851418 17.5  0.2 433392 95168 ?        R    07:57   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851549 16.5  0.2 432708 85380 ?        R    07:57   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851562  0.4  0.0      0     0 ?        Z    07:57   0:00 [cpaneld - servi] <defunct>
+schooztc 3851601  0.1  0.0 113468 28488 ?        S    07:57   0:00 cpaneld - serving 41.203.73.135
+schooztc 3851610 16.1  0.2 427860 69820 ?        R    07:57   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851803 13.6  0.1 425672 51968 ?        R    07:57   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851842  0.5  0.0 113444 28372 ?        S    07:57   0:00 cpaneld - serving 41.203.73.135
+schooztc 3851872  8.5  0.0  84288 27380 ?        R    07:57   0:00 /usr/local/cpanel/cpanel ./frontend/paper_lantern/filemanager/editit.html.tt
+
+Snapshot 4
+schooztc 3849597 16.4  0.7 555276 231660 ?       R    07:56   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850163 16.5  0.7 552680 230464 ?       R    07:57   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850341 16.6  0.5 507236 186044 ?       R    07:57   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850610 17.6  0.5 506468 185220 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850622 18.0  0.5 495400 174092 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850760 17.8  0.4 474116 152904 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851418 17.5  0.2 433392 95168 ?        R    07:57   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851549 16.5  0.2 432708 85380 ?        R    07:57   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851562  0.4  0.0      0     0 ?        Z    07:57   0:00 [cpaneld - servi] <defunct>
+schooztc 3851601  0.1  0.0 113468 28488 ?        S    07:57   0:00 cpaneld - serving 41.203.73.135
+schooztc 3851610 16.1  0.2 427860 69820 ?        R    07:57   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851803 13.6  0.1 425672 51968 ?        R    07:57   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851842  0.5  0.0 113444 28372 ?        S    07:57   0:00 cpaneld - serving 41.203.73.135
+schooztc 3851872  8.5  0.0  84288 27380 ?        R    07:57   0:00 /usr/local/cpanel/cpanel ./frontend/paper_lantern/filemanager/editit.html.tt
+
+Snapshot 5
+schooztc 3849597 16.4  0.7 555276 231660 ?       R    07:56   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850163 16.5  0.7 552680 230464 ?       R    07:57   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850341 16.6  0.5 507236 186044 ?       R    07:57   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850610 17.6  0.5 506468 185220 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850622 18.0  0.5 495400 174092 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3850760 17.8  0.4 474116 152904 ?       R    07:57   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851418 17.5  0.2 433392 95168 ?        R    07:57   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851549 16.5  0.2 432708 85380 ?        R    07:57   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851562  0.4  0.0      0     0 ?        Z    07:57   0:00 [cpaneld - servi] <defunct>
+schooztc 3851601  0.1  0.0 113468 28488 ?        S    07:57   0:00 cpaneld - serving 41.203.73.135
+schooztc 3851610 16.1  0.2 427860 69820 ?        R    07:57   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851803 13.6  0.1 425672 51968 ?        R    07:57   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3851842  0.5  0.0 113444 28372 ?        S    07:57   0:00 cpaneld - serving 41.203.73.135
+schooztc 3851872  8.5  0.0  84288 27380 ?        R    07:57   0:00 /usr/local/cpanel/cpanel ./frontend/paper_lantern/filemanager/editit.html.tt
+
+Current load:  07:57:41 up 16 days, 16:29,  1 user,  load average: 0.03, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 7976074	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 7976055	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 7976047	TIME = 3	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 7976030	TIME = 3	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 7975958	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 7975944	TIME = 3	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 7975938	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 7975917	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 7975862	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 7975812	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  07:57:41 up 16 days, 16:29,  1 user,  load average: 0.03, 0.01, 0.00
+
+

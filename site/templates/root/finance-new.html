@@ -1,0 +1,61 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard |</strong>&nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finances">FINANCES&nbsp;<i class="fa fa-money"></i></a>&nbsp;| New Finance&nbsp;<i class="fa fa-plus-square"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="jumbotron text-center mt-2">
+	<div class="row justify-content-center">
+		<div class="col-sm-6">
+			<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finance-new" enctype="multipart/form-data">
+				<div class="card card-body">
+					<fieldset class="border rounded border-success px-5 text-justify">
+						<legend class="text-center">Create New Finance</legend>
+						<div class="form-group">
+							<label for="project">Project</label>
+							<select id="project" name="project" required class="form-control signup-input">
+								<!--{if !empty($projects)}-->
+								<!--{foreach $projects as $project}-->
+									<option value="<!--{$project->token}-->"><!--{$project->title|capitalize}--> (<!--{$project->type}-->)</option>
+								<!--{/foreach}-->
+								<!--{/if}-->
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="title" class="form-control-label">Finance Title *</label>
+							<input type="text" id="title" name="title" value="" class="form-control form-control-sm input-rounded" required/>
+						</div>
+						<div class="form-group">
+							<label for="amount" class="form-control-label">Budget *</label>
+							<input type="number" id="amount" name="amount" value="" class="form-control form-control-sm input-rounded" required/>
+						</div>
+						<div class="form-group d-none">
+							<label for="discount" class="form-control-label">Discount (%) *</label>
+							<input type="number" id="discount" name="discount" value="0" class="form-control form-control-sm input-rounded" min="0" max="100" />
+						</div>
+						<div class="form-group">
+							<label for="description" class="form-control-label">Purpose *</label>
+							<textarea id="description" name="description" class="form-control form-control-sm input-block" rows="6" required></textarea>
+						</div>
+						<div class="form-group">
+							<label for="author" class="form-control-label">Creator</label>
+							<input type="text" id="author" name="author" value="<!--{$userinfo->firstname}--> <!--{$userinfo->lastname}-->" class="form-control form-control-sm input-rounded" readonly/>
+						</div>
+						<div class="form-group d-none">
+							<label for="file_upload" class="form-control-label">Upload a File</label>
+							<input type="file" accept="image/*, application/*, video/*" id="file_upload" class="input-rounded w-100" name="file_upload"/>
+						</div>
+						<!--{if !empty($fail)}-->
+							<div class="form-group">
+								<!--{$fail}-->
+							</div>
+						<!--{/if}-->
+						<div class="form-group text-center">
+							<button class="btn btn-success btn-sm rounded-0" type="submit" name="finance"><i class="fa fa-save"></i> Create</button>
+						</div>
+					</fieldset>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+<!--{/block}-->

@@ -1,0 +1,57 @@
+<form class="form w-100" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/development?p=medical">
+	<fieldset class="card p-2 mt-2">
+		<legend class="text-center mb-2">Confidential Medical Details</legend>
+		<div class="form-row mb-2">
+			<div class="form-group col-9">
+				<label for="medical">1. Does your child have any medical condition?</label>
+			</div>
+			<div class="form-group col-2">
+				<select id="medical" name="medical" required class="form-control-sm badge-pill">
+					<option value="no" <!--{if !empty($medical->medical) and 'no'==$medical->medical }-->selected<!--{/if}-->>No</option>
+					<option value="yes" <!--{if !empty($medical->medical) and 'yes'==$medical->medical }-->selected<!--{/if}-->>Yes</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-row mb-2">
+			<div class="form-group col-9">
+				<label for="hospitalized">2. Was your child recently hospitalized?</label>
+			</div>
+			<div class="form-group col-2">
+				<select id="hospitalized" name="hospitalized" required class="form-control-sm badge-pill">
+					<option value="no" <!--{if !empty($medical->hospitalized) and 'no'==$medical->hospitalized }-->selected<!--{/if}-->>No</option>
+					<option value="yes" <!--{if !empty($medical->hospitalized) and 'yes'==$medical->hospitalized }-->selected<!--{/if}-->>Yes</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-row mb-2 text-capitalize">
+			<div class="form-group col-9">
+				<label for="allergies">3. Does your child have any allergies?</label>
+			</div>
+			<div class="form-group col-2">
+				<select id="allergies" name="allergies" required class="form-control-sm badge-pill">
+					<option value="no" <!--{if !empty($medical->allergies) and 'no'==$medical->allergies }-->selected<!--{/if}-->>No</option>
+					<option value="yes" <!--{if !empty($medical->allergies) and 'yes'==$medical->allergies }-->selected<!--{/if}-->>Yes</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-row mb-2">
+			<div class="form-group col-9">
+				<label for="special_need">4. Is your child currently on any medication?</label>
+			</div>
+			<div class="form-group col-2">
+				<select id="special_need" name="special_need" required class="form-control-sm badge-pill">
+					<option value="no" <!--{if !empty($medical->special_need) and 'no'==$medical->special_need }-->selected<!--{/if}-->>No</option>
+					<option value="yes" <!--{if !empty($medical->special_need) and 'yes'==$medical->special_need }-->selected<!--{/if}-->>Yes</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group text-capitalize">
+			<label for="med_detail">If you have answered yes to any of the above questions, please give further details:</label>
+			<textarea class="form-control form-control-sm" rows="4" id="med_detail" name="med_detail"><!--{if !empty($medical->med_detail)}--><!--{$medical->med_detail}--><!--{/if}--></textarea>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-primary btn-block" type="submit" name="medical1">Save Changes</button>
+		</div>
+	</fieldset>
+
+</form>

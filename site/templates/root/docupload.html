@@ -1,0 +1,93 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard | Update Platform </strong>&nbsp;<i class="fa fa-files-o"></i>&nbsp;| Update&nbsp;<i class="fa fa-file"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row no-gutters justify-content-center">
+	<!--{if !empty($docupload)}-->
+		<!--{$content_stripe=$docupload->content_stripe}-->
+		<!--{if !empty($fail)}-->
+			<div class="col-md-12">
+				<!--{$fail}-->
+			</div>
+		<!--{/if}-->
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-body" style="overflow-y: auto; max-height: 300px;">
+					<h4 class="card-title">
+						<!--{$docupload->title}-->
+					</h4>
+					<div class="card-text">
+						<p>
+							<span class="font-weight-bold">Category: </span><!--{$docupload->category|capitalize}-->
+						</p>
+						<!--{if !empty($docupload->file) and file_exists($docupload->file)}--><a class="btn btn-outline-success btn-light" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$docupload->file}-->" target="__blank">Download <!--{$docupload->title}--></a><!--{/if}-->
+					</div>
+					<div class="card-text">
+						<!--{$docupload->content_stripe}-->
+					</div>
+				</div>
+				<span class="card-footer">
+					<!--{$docupload->dateadded|date_format}-->
+					<a class="btn btn-sm btn-success text-white rounded-0" type="button" data-toggle="collapse" data-target="#newBlogInfo" aria-expanded="true" aria-controls="newBlogInfo" id="newBlog"><i class="fa fa-pencil-square"></i>Edit Update</a>
+          			<button class="btn btn-sm btn-danger mb-1" type="button" data-toggle="collapse" data-target="#deleteNewsInfo" aria-expanded="true" aria-controls="deleteNewsInfo" id="deleteNews"><i class="fa fa-trash"></i> Delete Update</button>&nbsp;
+				</span>
+			</div>
+		</div>
+        <div class="col-md-6" id="accordion">
+			<div class="collapse" id="newBlogInfo" aria-labelledby="newBlog" data-parent="#accordion">
+				<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/docupload?id=<!--{$docupload->id}-->" enctype="multipart/form-data">
+					<div class="row justify-content-center">	
+						<div class="col-md-12 card card-body">
+							<fieldset>
+								<legend>Edit Doc Detail</legend>
+								<div class="form-group">
+									<label for="title"><h5>Title <sup class="text-danger">(*)</sup></h5></label>
+									<input type="text" id="title" name="title" value="<!--{$docupload->title}-->" class="form-control input-block lh-3" required/>
+									<hr/>
+								</div>
+								<div class="form-group mt-4">
+									<label for="category"><h5>Category <sup class="text-danger">(*)</sup></h5></label>
+									<select name="category" id="category" class="form-control input-block lh-2" required>>
+										<option value="minute" <!--{if $docupload->category=='minute'}-->selected<!--{/if}-->>Minutes</option>
+										<option value="milestone" <!--{if $docupload->category=='milestone'}-->selected<!--{/if}-->>Milestone</option>
+										<option value="project document" <!--{if $docupload->category=='project document'}-->selected<!--{/if}-->>Project Document</option>
+									</select>
+								</div>
+				                <div class="form-group">
+				                 	<label for="doc_upload">Upload File <i class="fa fa-file-archive"></i>  <i class="fa fa-file-pdf"></i></label>
+				                 	<input type="file" accept="application/*" id="doc_upload" class="form-control input-rounded" name="doc_upload"/>
+				                </div>
+								<div class="form-group">
+									<label for="content" class="form-control-label"><h5>Briefing <sup class="text-danger">(*)</sup></h5></label>
+									<!-- <textarea id="content" name="content" class="form-control form-control-sm input-block" rows="10" required></textarea> -->
+									<div id="editcontent"></div>
+									<input type="hidden" name="content" id="content" class="addContent" value="<!--{$docupload->content}-->" required/>
+								</div>
+								<div class="form-group text-center">
+									<button class="btn btn-success btn-lg rounded-0" type="submit" name="edit_update"><i class="fa fa-save"></i> Save Changes</button>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div id="deleteNewsInfo" class="collapse" aria-labelledby="deleteNews" data-parent="#accordion">
+				<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/docupload?id=<!--{$docupload->id}-->" class="w-100">
+						<div class="alert alert-danger alert-dismissible border border-success px-3 rounded" role="alert">
+							<p>Are you sure to delete this document?</p>
+							<p>Note that every stored details relating to the document will be lost and unrecoverable afther this event is triggered</p>
+							<p class="text-center">
+								<input type="hidden" name="delete" value="true">
+								<button class="btn btn-danger" type="submit" name="delete_upload">Proceed</button>&nbsp;
+								<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#deleteNewsInfo" aria-expanded="true" aria-controls="deleteNewsInfo" id="deleteNews">Cancel</button>
+							</p>
+						</div>
+				</form>
+			</div>
+		</div>
+	<!--{else}-->
+		<h4 class="col-9">Cannot find this update.</h4>
+	<!--{/if}-->
+</section>
+<!--{/block}-->

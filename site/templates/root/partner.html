@@ -1,0 +1,92 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<!-- Page Heading -->
+<div class="card">
+    <div class="card-body text-center pt-4">
+        <h1 class="h3 mb-2 text-gray-800">Consultant</h1>
+        <section class="row justify-content-center">
+            <div class="col-md-10">
+                <section class="row justify-content-center">
+                    <div class="col my-3">
+                        <img class="img img-thumbnail team-p-img" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($partner->userimg)}--><!--{$partner->userimg}--><!--{else}-->site/media/i/icons/user-icon.png<!--{/if}-->">
+                    </div>
+                </section>
+                <section class="row justify-content-center">
+                        <div class="col-md-6 text-left">
+                            <h5><span class="font-weight-bold">Names:</span> <!--{$partner->firstname}--> <!--{$partner->lastname}--></h5>
+                            <h5><span class="font-weight-bold">Phone Number:</span> <!--{$partner->phone}--></h5>
+                            <h5><span class="font-weight-bold">Gender:</span> <!--{$partner->gender|capitalize}--></h5>
+                            <h5><span class="font-weight-bold">State:</span> <!--{$partner->state|capitalize}--></h5>
+                            <h5><span class="font-weight-bold">City:</span> <!--{$partner->city|capitalize}--></h5>
+                            <h5><span class="font-weight-bold">Bank Name:</span> <!--{$partner->bank_name|capitalize}--></h5>
+                            <h5><span class="font-weight-bold">Account Name:</span> <!--{$partner->account_name|capitalize}--></h5>
+                            <h5><span class="font-weight-bold">Account Number:</span> <!--{$partner->account_number|capitalize}--></h5>
+                        </div>
+                        <div class="col-md-6 text-left">
+                            <h5><span class="font-weight-bold">Username:</span> <!--{$partner->username}--> </h5>
+                            <h5><span class="font-weight-bold">Email:</span> <!--{$partner->email}--></h5>
+                            <!--{if !empty($referee)}-->
+                                <h5><span class="font-weight-bold">Referred By:</span> <!--{$referee->firstname}--> <!--{$referee->lastname}--> (<!--{$referee->email}-->)</h5>
+                            <!--{/if}-->
+                            <h5><span class="font-weight-bold">Your Referral Code:</span> <!--{$partner->userid|capitalize}--></h5>
+                            <h5><span class="font-weight-bold">Your Referral Link:</span> <!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/signup?id=<!--{$partner->userid}--></h5>
+                        </div>
+                        <div class="col-xs-12 col-sm-11 col-md-11 col-lg-10">
+                            <h3>REFERRED CONSULTANTS</h3>
+                            <div class="table-responsive">
+                                <!--{if !empty($referred)}-->
+                                <div id="dataTableId_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                    <table class="table table-striped table-hover table-bordered">
+                                    <thead class="thead-light">
+                                        <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Consultant Detail</th>
+                                        <th scope="col">Referral Detail</th>
+                                        <th scope="col">Status</th>
+                                        <th class="" scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!--{$numCount=1}-->
+                                        <!--{foreach $referred as $referral}-->
+                                        <tr>
+                                        <td><!--{$numCount}--></td>
+                                        <td>
+                                            <!--{$referral->firstname|capitalize}--> <!--{$referral->middlename|capitalize}--> <!--{$referral->lastname|capitalize}--><br/>
+                                            <!--{$referral->phone}--><br/>
+                                            <!--{$referral->email}--><br/>
+                                            <span class="font-weight-bold">Date Registered: </span><!--{$referral->dateadded}-->
+                                        </td>
+                                        <td>
+                                            Referral Code:<!--{$referral->userid}--><br/>
+                                            <pre><b>Referral Link:</b> <!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/signup?id=<!--{$referral->userid}--></pre>
+                                        </td>
+                                        <td>
+                                            <!--{if $referral->active==true}--><i class="badge badge-pill badge-success">active</i><!--{else}--><i class="badge badge-pill badge-success">active</i><!--{/if}-->	
+                                            </td>
+                                        <td class="">
+                                            <a class="btn btn-sm btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/partner?id=<!--{$referral->email}-->"><i class="fa fa-ellipsis-v"></i> Detail</a>
+                                        </td>
+                                        </tr>
+                                        <!--{$numCount=$numCount+1}-->
+                                        <!--{/foreach}-->
+                                    </tbody>
+                                    </table>
+                                </div>
+                                <!--{else}-->
+                                <div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+                                <!--{/if}-->
+                            </div>
+                        </div>
+                        <div class="col-md-12 d-none">
+                            <h6>Debugging</h6>
+                            <pre>
+                                <!--{print_r($referred)}-->
+                            </pre>
+                        </div>
+                    </section>
+            </div>
+        </section>
+    </div>
+</div>
+<!--{/block}-->

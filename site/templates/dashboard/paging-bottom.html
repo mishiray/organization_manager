@@ -1,0 +1,39 @@
+<!--{if $Pager->entry < $Pager->totalRecs }-->
+<div class="row">
+	<div class="col-sm-12 col-md-5">
+		<div class="dataTables_info" id="dataTableId_info" role="status" aria-live="polite">Showing <!--{$Pager->from+1}--> to <!--{$Pager->to}--> of <!--{$Pager->totalRecs}--> entries</div>
+	</div>
+	<div class="col-sm-12 col-md-6">
+		<div class="dataTables_paginate paging_simple_numbers" id="dataTableId_paginate">
+			<ul class="pagination">
+				<li class="paginate_button page-item previous <!--{if $Pager->page == '1' }-->disabled<!--{/if}-->" id="dataTableId_previous">
+					<a href="?page=<!--{($Pager->page-1)}--><!--{if !empty($Pager->entry)}-->&entry=<!--{$Pager->entry}--><!--{/if}--><!--{if !empty($Pager->search)}-->&search=<!--{$Pager->search}--><!--{/if}--><!--{if !empty($Site.get.id)}-->&id=<!--{$Site.get.id}--><!--{/if}-->" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+				</li><!--{$xCT=0}-->
+				<!--{for $xY = 1; $xY <= $Pager->totalPages; $xY++}-->
+				<!--{if $xY>5 and $xY<($Pager->totalPages-5)}-->
+					<!--{if $Pager->page==$xY or $Pager->page==($xY-1) or $Pager->page==($xY+1)}-->
+						<li class="paginate_button page-item <!--{if $xY == $Pager->page }-->active<!--{/if}-->">
+							<a href="?page=<!--{$xY}--><!--{if !empty($Pager->entry)}-->&entry=<!--{$Pager->entry}--><!--{/if}--><!--{if !empty($Pager->search)}-->&search=<!--{$Pager->search}--><!--{/if}--><!--{if !empty($package->packageid)}-->&id=<!--{$package->packageid}--><!--{/if}-->" data-dt-idx="<!--{$xY}-->" tabindex="0" class="page-link"><!--{$xY}--></a>
+						</li>
+						<!--{if $Pager->page==($xY+1)}-->
+							<!--{$xCT=0}-->
+						<!--{/if}-->
+					<!--{/if}-->
+					<!--{if $xCT<1}--><li class="paginate_button page-item previous disabled"><a href="#" data-dt-idx="99" tabindex="0" class="page-link">...</a></li><!--{/if}-->
+					<!--{$xCT=$xCT+1}--> 
+					<!--{continue}-->
+				<!--{/if}-->
+				<li class="paginate_button page-item <!--{if $xY == $Pager->page }-->active<!--{/if}-->">
+					<a href="?page=<!--{$xY}--><!--{if !empty($Pager->entry)}-->&entry=<!--{$Pager->entry}--><!--{/if}--><!--{if !empty($Pager->search)}-->&search=<!--{$Pager->search}--><!--{/if}--><!--{if !empty($Site.get.id)}-->&id=<!--{$Site.get.id}--><!--{/if}-->" data-dt-idx="<!--{$xY}-->" tabindex="0" class="page-link"><!--{$xY}--></a>
+				</li>
+				<!--{/for}-->
+				<!--<li class="paginate_button page-item "><a href="#" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+				<li class="paginate_button page-item active"><a href="#" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>-->
+				<li class="paginate_button page-item next <!--{if $Pager->page == $Pager->totalPages }-->disabled<!--{/if}-->" id="dataTableId_next">
+					<a href="?page=<!--{($Pager->page+1)}--><!--{if !empty($Pager->entry)}-->&entry=<!--{$Pager->entry}--><!--{/if}--><!--{if !empty($Pager->search)}-->&search=<!--{$Pager->search}--><!--{/if}--><!--{if !empty($Site.get.id)}-->&id=<!--{$Site.get.id}--><!--{/if}-->" data-dt-idx="3" tabindex="0" class="page-link">Next</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--{/if}-->

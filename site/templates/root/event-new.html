@@ -1,0 +1,54 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |&nbsp;Events&nbsp;<i class="fa fa-calendar"></i>&nbsp;|&nbsp;New Events&nbsp;<i class="fa fa-calendar-plus-o"></i></strong></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="container-fluid">
+	<div class="row justify-content-center">
+		<!--{if in_array( $Site.session.User.userinfo->userrole, array('level0','level1')) and  $Site.session.User.userinfo->active==true}-->
+			<!--{if !empty($fail)}-->
+				<div class="col-md-12">
+					<!--{$fail}-->
+				</div>
+			<!--{/if}-->
+			<div class="col-md-9">
+				<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/event-new" enctype="multipart/form-data">
+					<div class="row justify-content-center">	
+						<div class="col-md-8 card card-body">
+							<fieldset>
+								<legend>New Event Post</legend>
+								<div class="form-group">
+									<div class="img-scope card-heading pt-3 pb-3">
+										<label for="img-upload">
+											<img class="img img-thumbnail w-100" id="dataImg" src="">
+											<data class="text-center jsonly">Upload Photo</data>
+										</label>
+										<input type="file" accept="image/*" id="img-upload" class="input-rounded w-100" name="img_upload"/>
+										<noscript><button class="text-center" id="ppUpload" name="ppUpload" type="button">Upload Photo</button></noscript>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="title" class="form-control-label">Event Title</label>
+									<input type="text" id="title" name="title" class="form-control form-control-sm input-rounded" required/>
+								</div>
+								<div class="form-group">
+									<label for="eventdate" class="form-control-label">Event Date</label>
+									<input type="datetime-local" id="eventdate" name="eventdate" class="form-control form-control-sm input-rounded" required/>
+								</div>
+								<div class="form-group">
+									<label for="content" class="form-control-label">Event Detail</label>
+									<div id="editcontent"></div>
+									<input type="hidden" name="content" class="addContent" id="content" value="" required />
+								</div>
+								<div class="form-group">
+									<button class="btn btn-primary btn-sm btn-block" type="submit" name="add_event">Add Event</button>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+				</form>
+			</div>
+		<!--{/if}-->
+	</div>
+</section>
+<!--{/block}-->

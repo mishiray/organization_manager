@@ -1,0 +1,59 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">View Videos</h1>
+    <!-- DataTales Example -->
+          <div class="row">
+              <!--{if !empty($fail)}-->
+                <!--{$fail}-->
+              <!--{/if}-->
+              <!--{if !empty($videos)}-->
+            <div class="col-sm-12"><!--{include file="paging-top.html"}--></div>
+              <!--{foreach $videos as $prop}-->
+              <div class="col-md-6">
+                <div class="card overflow-hidden shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <!-- Card Body -->
+                  <div class="card-header">
+                    <!--{$prop->title|ucwords}-->
+                  </div>
+                    <div class="card-body">
+
+                    <!--{if !empty($prop->video)}-->
+                      <video width="520" height="240" controls>
+                        <source src="<!--{$prop->video}-->" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                    <!--{else}-->
+                    <iframe width="520" height="315"
+                      src="https://www.youtube.com/embed/<!--{$prop->url}-->">
+                    </iframe>
+                    <!--{/if}-->
+                </div>
+                <div class="card-body">
+
+                  <!--{$prop->description}-->
+                </div>
+                  <div class="card-footer" id="prop<!--{$prop->id}-->">
+                      <div class="form-group">
+                        <form action="" method="POST">
+                          <input type="hidden" name="vidid" value="<!--{$prop->id}-->">
+                          <button name="evt" value="delete"class="btn btn-danger">Delete</button>
+                          <!--{if $prop->status == 0}-->
+                          <button name="evt" value="activate" class="btn btn-success">Activate</button>
+                          <!--{else}-->
+                          <button name="evt" value="deactivate" class="btn btn-warning">Deactivate</button>
+                          <!--{/if}-->
+                        </form>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <!--{/foreach}-->
+            <div class="col-sm-12"><!--{include file="paging-bottom.html"}--></div>
+          <!--{else}-->
+                <h2>No Videos Added</h2>
+          <!--{/if}-->
+          </div>
+          
+<!--{/block}-->

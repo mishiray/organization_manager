@@ -1,0 +1,96 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |&nbsp;Events&nbsp;<i class="fa fa-calendar"></i>&nbsp;|&nbsp;Event Detail&nbsp;<i class="fa fa-info"></i></strong></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row justify-content-center">
+		<!--{if !empty($event)}-->
+		<!--{$content_stripe=$event->content_stripe}-->
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-header site-bg-1">
+					<img class="imge card-img-top" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($event->image)}--><!--{$event->image}--><!--{else}-->site/media/i/default-icon/event-icon.png<!--{/if}-->" style="height: 300px;" >
+				</div>
+				<span class="card-footer">
+					<!--{$event->eventdate|date_format}-->
+					<a class="btn btn-sm btn-success float-right text-white rounded-0 mx-1" type="button" data-toggle="collapse" data-target="#newBlogInfo" aria-expanded="true" aria-controls="newBlogInfo" id="newBlog"><i class="fa fa-pencil-square"></i>Edit Event</a>
+          			<button class="btn btn-sm float-right btn-danger mx-1" type="button" data-toggle="collapse" data-target="#deleteNewsInfo" aria-expanded="true" aria-controls="deleteNewsInfo" id="deleteNews"><i class="fa fa-trash"></i> Delete Event</button>&nbsp;
+				</span>
+				<div class="card-body" style="overflow-y: auto; max-height: 300px;">
+					<h4 class="card-title">
+						<!--{$event->title}-->
+					</h4>
+					<div class="card-text">
+						<!--{$event->content_stripe}-->
+					</div>
+				</div>
+			</div>
+		</div>
+
+        <div class="col-md-5" id="accordion">
+			<div class="collapse" id="newBlogInfo" aria-labelledby="newBlog" data-parent="#accordion">
+				<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/event?id=<!--{$event->token}-->&event=edit" enctype="multipart/form-data">
+					<div class="row justify-content-center">	
+						<div class="col-md-12 card card-body">
+							<fieldset>
+								<legend>Edit Event Detail</legend>
+								<div class="form-group">
+									<div class="img-scope card-heading pt-3 pb-3">
+										<label for="img-upload">
+											<img class="img img-thumbnail w-100" id="dataImg" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($event->image)}--><!--{$event->image}--><!--{else}-->site/media/i/default-icon/event-icon.png<!--{/if}-->">
+											<data class="text-center jsonly">Photo</data>
+										</label>
+										<input type="file" accept="image/*" id="img-upload" class="input-rounded w-100" name="img_upload"/>
+										<noscript><button class="text-center" id="ppUpload" name="ppUpload" type="button">Upload Photo</button></noscript>
+									</div>
+								</div>
+							<div class="form-group d-none">
+								<label for="author" class="form-control-label">Author</label>
+								<input type="text" id="author" name="author" value="<!--{$event->author}-->" class="form-control form-control-sm input-rounded"/>
+							</div>
+								<div class="form-group">
+									<label for="title" class="form-control-label">Event Title</label>
+									<input type="text" id="title" name="title" value="<!--{$event->title}-->" class="form-control form-control-sm input-rounded" required/>
+								</div>
+								<div class="form-group">
+									<label for="eventdate" class="form-control-label">Event Date</label>
+									<input type="datetime-local" id="eventdate" value="<!--{$event->eventdate|date_format:'%Y-%m-%dT%H:%M'}-->" name="eventdate" class="form-control form-control-sm input-rounded" required/>
+								</div>
+								<div class="form-group">
+									<label for="content" class="form-control-label">Content</label>
+									<!-- <textarea id="content" name="content" class="form-control form-control-sm input-block" rows="10" required></textarea> -->
+									<div id="editcontent"></div>
+									<input type="hidden" name="content"  id="content" value="<!--{$event->content}-->" required />
+								</div>
+								<div class="form-group">
+									<button class="btn btn-success btn-sm rounded-0" type="submit" name="edit_event">Save Changes</button>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div id="deleteNewsInfo" class="collapse" aria-labelledby="deleteNews" data-parent="#accordion">
+				<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/event?id=<!--{$event->token}-->" class="w-100">
+						<div class="alert alert-danger alert-dismissible border border-success px-3 rounded" role="alert">
+							<p>Are you sure to delete this news?</p>
+							<p>Note that every stored details relating to the news will be lost and unrecoverable afther this event is triggered</p>
+							<p class="text-center">
+								<button class="btn btn-danger" type="submit" name="delete_event">Proceed</button>&nbsp;
+								<button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#deleteNewsInfo" aria-expanded="true" aria-controls="deleteNewsInfo" id="deleteNews">Cancel</button>
+							</p>
+						</div>
+				</form>
+			</div>
+		</div>
+		<!--{if !empty($fail)}-->
+			<div class="col-md-12">
+				<!--{$fail}-->
+			</div>
+		<!--{/if}-->
+		<!--{else}-->
+		<h4 class="col-9">Cannot find this news.</h4>
+		<!--{/if}-->
+
+</section>
+<!--{/block}-->

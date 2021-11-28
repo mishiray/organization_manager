@@ -1,0 +1,35 @@
+<!--{extends file="default.html"}-->
+<!--{block name="content"}-->
+<div class="row" style="margin-top: 5rem;" id="invoice">
+	<div class="panel panel-success col-md-8 col-md-offset-2">
+		<div class="panel-heading bg-pink text-pink text-center" style="padding-top: 2rem; padding-bottom: 4rem;">
+			<span class="pull-left">
+				<img class="invoice-logo" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/logo.jpg"><br/>
+			</span>
+		</div>
+		<div class="container">
+			<!--{if !empty($subDetail)}-->
+			<div class="panel-body">
+				<div class="col-sm-6">
+					<h4>Billing Info:</h4>
+					<strong>Date: </strong><!--{$Site.dateNow}--><br/>
+					<strong>Invoice ID: </strong><!--{$subDetail->token}-->
+					<h5><strong>First Name: </strong><!--{$subDetail->firstname}-->  <!--{$subDetail->othername}--></h5>
+					<h5><strong>Email: </strong><!--{$subDetail->email}--></h5>
+					<h5><strong>Product:  </strong><!--{$subDetail->product}--></h5>
+					<h5><strong>Acount Paid: </strong><!--{$subDetail->amount}--></h5>
+				</div>
+			</div>
+			<!--{else}-->
+			<div class="col-md-12">
+				<div class="alert bg-white text-dark col-md-8 col-md-offset-2 text-center" role="alert">
+					<strong>
+						No Payment is currently made
+					</strong>
+				</div>
+			</div>
+			<!--{/if}-->
+		</div>
+	</div>
+</div>
+<!--{/block}-->

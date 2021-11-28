@@ -1,0 +1,120 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h1 class="h3 mb-2 text-gray-800">Add Job</h1>
+   
+<section class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+
+      <div class="row justify-content-center">
+        <!--{if in_array( $Site.session.User.userinfo->userrole, array('level0','level1')) and  $Site.session.User.userinfo->active==true}-->
+          <!--{if !empty($fail)}-->
+            <div class="col-md-12">
+              <!--{$fail}-->
+            </div>
+          <!--{/if}-->
+          <div class="col-md-9">
+            <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/job-new" posts="post" enctype="multipart/form-data" method="post">
+              <div class="form-group row">
+                <div class="col-md-6">
+                    <label for="category" class="control-label">Job Category:</label>
+                    <select id="category" name="category" class="form-control" required>
+                      <option value="">Choose Category</option>
+                      <option class="select-option" value="information technology">Information Technology</option>
+                      <option class="select-option" value="media">Media</option>
+                      <option class="select-option" value="business development">Business Development</option>
+                      <option class="select-option" value="logistics and deliveries">Logistics and Deliveries</option>
+                      <option class="select-option" value="Executive Marketer">Executive Marketer</option>
+                      <option class="select-option" value="marketing manager">Marketing Manager</option>
+                      <option class="select-option" value="comporate manager/content developer">Comporate Manager/Content Developer</option>
+                      <option class="select-option" value="accounting">Accounting</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="fullname" class="control-label">Representative's Full Name:</label>
+                    <input type="text" class="form-control form-control-sm" id="fullname" name="fullname" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-6">
+                    <label for="compname" class="control-label">Company's Name:</label>
+                    <input type="text" class="form-control form-control-sm" id="compname" name="compname" placeholder="Compamy's Name" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="complogo" class="control-label">Company's Logo:</label>
+                    <input type="file" class="form-control form-control-sm upload-img" id="complogo" name="complogo" placeholder="Company's Logo">
+                    <img src="" class="img text-center img-thumbnail" id="img-upload" style="max-height: 300px; max-height: 300px;">
+                </div>
+              </div>
+              <div class="form-group row">
+                  <div class="form-group col-md-6">
+                    <label for="jobtitle" class="col-form-label">Job Title:</label>
+                    <input type="text" class="form-control form-control-sm" id="jobtitle" name="jobtitle" placeholder="Job Title" required>
+                  </div>
+                <div class="form-group col-md-6">
+                    <label for="expirydate" class="col-form-label">Expiration Date:</label>
+                    <input type="date" class="form-control form-control-sm" id="expirydate" name="expirydate" placeholder="Expiry Date" required>
+                  </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="email" class="col-form-label">Email:</label>
+                    <input type="email" class="form-control form-control-sm" id="email" name="email" placeholder="Email" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="phone" class="col-form-label">Phone:</label>
+                    <input type="tel" class="form-control form-control-sm" id="phone" name="phone" placeholder="Phone No">
+                  </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="location" class="col-form-label">Location:</label>
+                    <input type="text" class="form-control form-control-sm" id="location" name="location" placeholder="Location Address" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="city" class="col-form-label">City:</label>
+                    <input type="text" class="form-control form-control-sm" id="city" name="city" placeholder="City" required>
+                  </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="description" class="col-form-label">Job Description:</label>
+                    <textarea class="form-control form-control-sm" id="description" rows="4" name="description" placeholder="Enter Job Description Here..." required></textarea>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="role" class="col-form-label">Roles & Responslibilties:</label>
+                    <textarea class="form-control form-control-sm" id="role" rows="4" name="role" placeholder="Enter Job Roles Here..." required></textarea>
+                  </div>
+              </div>
+              <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="description" class="col-form-label">Salary Expectation:</label>
+                    <div class="input-group">
+                      <input type="number" name="salary" class="form-control form-control-sm" placeholder="Salary Expectation">
+                      <select class="form-control form-control-sm" name="paymentMode" required>
+                        <option value="h">Hourly</option>
+                        <option value="d">Daily</option>
+                        <option value="w">Weekly</option>
+                        <option value="m" selected>Monthly</option>
+                        <option value="q">Quarterly</option>
+                        <option value="a">Annually</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="joburl" class="col-form-label"> Website URL (if any):</label>
+                    <input type="url" class="form-control form-control-sm" id="joburl" name="joburl" placeholder="Website URL...">
+                    <small>Format: https://your_website.com</small>
+                  </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" name="triggers" value="saveJob" class="btn btn-block btn-info">Add Job</button>&nbsp;
+              </div>
+            </form>
+          </div>
+        <!--{/if}-->
+      </div>
+    </div>
+  </div>
+</section>
+<!--{/block}-->

@@ -1,0 +1,83 @@
+Wed Feb  5 10:40:59 GMT 2020
+Running Processes:
+schooztc  3329814  0.0  0.0  32548  4972 ?        S    10:34   0:00 dovecot/quota-status -p postfix
+schooztc  3358204  6.1  0.2 233052 83692 ?        S    10:40   0:00 spamd child
+schooztc  3358629 76.0  0.1 427032 63904 ?        R    10:40   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+COMMAND     PID     USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+spamd   3358204 schooztc    5u  IPv6 1768410054      0t0  TCP [::1]:783 (LISTEN)
+spamd   3358204 schooztc    6u  IPv4 1768410056      0t0  TCP 127.0.0.1:783 (LISTEN)
+spamd   3358204 schooztc    7u  IPv4 1768416453      0t0  UDP 199.79.63.83:52330->5.9.124.53:24441 
+spamd   3358204 schooztc   10u  IPv4 1816031706      0t0  TCP 127.0.0.1:783->127.0.0.1:55770 (CLOSE_WAIT)
+spamd   3358204 schooztc   13u  IPv4 1816045728      0t0  UDP 127.0.0.1:61056->127.0.0.1:53 
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 63.2% (warning)
+      SSL: SSL error: missing certificate (warning)
+  Varnish: schoolofgreatness.africa is cached. (warning)
+  Varnish: ajahcity.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: courses.schoolofgreatness.africa is cached. (warning)
+  Varnish: uaac.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: alexihama.ajahcity.com.ng is cached. (warning)
+  Varnish: adeniyichristopher.ajahcity.com.ng is cached. (warning)
+  Varnish: spp.ajahcity.com.ng is cached. (warning)
+  Varnish: scog.ajahcity.com.ng is cached. (warning)
+  Varnish: metromedia.ajahcity.com.ng is cached. (warning)
+  Varnish: frankieslist.ajahcity.com.ng is cached. (warning)
+  Varnish: alethiaenterprise.schoolofgreatness.africa is cached. (warning)
+  Varnish: maccherithresources.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: lekkipeninsulapolice.org.schoolofgreatness.africa is cached. (warning)
+  Varnish: pecuniahouse.ajahcity.com.ng is cached. (warning)
+  Varnish: ajahcity.com.ng is cached. (warning)
+  Varnish: uaac.com.ng is cached. (warning)
+  Varnish: lekkipeninsulapolice.org is cached. (warning)
+  Varnish: maccherithresources.com.ng is cached. (warning)
+  Varnish: alethiaenterprise.com is cached. (warning)
+  Varnish: schoolofgreatness.africa.md-47.webhostbox.net is cached. (warning)
+
+
+Snapshot 1
+schooztc 3358629 82.5  0.3 434144 100964 ?       R    10:40   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3358629 85.5  0.3 434880 104004 ?       R    10:40   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3358629 88.5  0.3 435392 106892 ?       R    10:40   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3358629 92.0  0.3 436336 109836 ?       R    10:40   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3358629 63.6  0.3 437180 113144 ?       R    10:40   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3358744  7.0  0.1 420792 38180 ?        R    10:41   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-admin/admin-ajax.php
+
+Current load:  10:41:01 up 179 days, 19:12,  1 user,  load average: 0.02, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 67757409	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  10:41:01 up 179 days, 19:12,  1 user,  load average: 0.02, 0.00, 0.00
+
+

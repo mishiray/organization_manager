@@ -1,0 +1,95 @@
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<!--<script src="https://www.paypal.com/sdk/js?client-id={$Site.paymentConfig->paypal.live_pk}"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+</script>-->
+<script>
+  const paypalKey={
+    sandBoxClientID: '<!--{$Site.paymentConfig->paypal.live_pk}-->',
+    prodClientID: '<!--{$Site.paymentConfig->paypal.live_pk}-->'
+  }
+  <!--{if in_array($sitePage, array('register'))}-->
+    let isMailValid = false;
+    paypal.Button.render({
+      locale: 'en_US',
+      style: {
+        size: 'responsive',
+        color: 'gold',
+        shape: 'rect',
+        label: 'paypal',
+        tagline: 'true'
+      },
+      env: 'production', // Optional: specify 'sandbox' environment
+      client: {
+        live:    `${paypalKey.sandBoxClientID}`,
+        production: `${paypalKey.prodClientID}`
+      },
+      commit: true, // Optional: show a 'Pay Now' button in the checkout flow
+      payment: function (data, actions) {
+        let err = 0;
+        let failMsg = '';
+        let membershipAmount = `<!--{$Site.membershipSub[$userinfo->membership].amount}-->`;
+        
+        if (!membershipAmount) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Invalic membership contact admin!</p>`;
+          err++;
+        }
+
+        if(err <= 0 /*&& retEmail === false*/){
+          return actions.payment.create({
+            payment: {
+              transactions: [
+                {
+                  amount: {
+                    total: `${membershipAmount}`,
+                    currency: 'CAD'
+                  }
+                }
+              ]
+            },
+            experience: {
+              input_fields: {
+                no_shipping: 1
+              }
+            }
+          });
+        }else{
+          failMsg = `<div class="alert alert-danger text-justify">
+            <i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">${failMsg}</div>
+          </div>`;
+          $(".failMessage").html(`${failMsg}`);
+          return false;
+        }
+      },
+      onAuthorize: function (data, actions) {
+        // Optional: display a confirmation page here
+       /* console.log(data);
+        console.log(actions);*/
+        return actions.payment.execute().then(function () {
+            $("#pay").prepend(`<input type="hidden" name="paid" value="true"/>`);
+            $("#pay").submit();
+        });
+      },
+      onCancel: function (data, actions) {
+       /* console.log(data);
+        console.log(actions);*/
+        failMsg = `<div class="alert alert-danger text-justify">
+          <i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">Membership registration attempt was cancelled</div>
+        </div>`;
+        $(".failMessage").html(`${failMsg}`);
+        return false;
+        // Show a cancel page or return to cart
+      },
+      onError: function (err) {
+        // console.log(err);
+        failMsg = `<div class="alert alert-danger text-justify">
+          <i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">Error encountered during payment. Unable to complete payment</div>
+        </div>`;
+        $(".failMessage").html(`${failMsg}`);
+        return false;
+        // Show an error page here, when an error occurs
+      }
+    }, '#paypal-member-signup');
+  <!--{/if}-->
+</script>

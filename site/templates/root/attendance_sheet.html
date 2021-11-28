@@ -1,0 +1,136 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800"><!--{$Site.companyName}--> Planner for the year</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"><!--{$Site.companyName}--> Planner</h6>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <form id="target"  method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/attendance_sheet" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="form-control-label" for="year">Year: </label>
+              <input type="text" class=" form-control" id="year" name="year" value="<!--{'Y'|date}-->" placeholder="Enter Year">  
+              <span id="response" class="text-success"></span> <br>
+              <input type="submit" id="submitBtn" class="btn btn-success m-2" style="display: none;" name="attendance_sheet" value="Submit">
+            </div>
+            <div class="form-group ">
+              <textarea class="d-none"  name="allData" id="allData"></textarea>
+            </div>
+        </form>
+        <button class="btn btn-info" id="save">Save</button>
+      </div>  
+      <!--{if !empty($fail)}-->
+        <div class="col">
+          <div class="form-group">
+            <!--{$fail}-->
+          </div>
+        </div>
+      <!--{/if}-->
+        
+      <div id="linkcontent" class="col-sm-6 ">
+            
+      </div>
+    </div>
+    <div class="table-responsive">
+      <button disabled class="btn weekend border m-2">Weekends</button>
+      <button id="workHoursBtn" class="btn btn-primary m-2">Work Days</button>
+      <button id="vactionBtn" class="btn btn-warning m-2">Vacations</button>
+      <button id="breakHoursBtn" class="btn btn-success border m-2">BreakDays</button>
+      <button id="sickBtn" class="btn btn-danger m-2">Sick Leave</button>
+      <button id="maternityBtn" class="btn maternity text-white border m-2">Maternity Leave</button>
+      <button id="otherBtn" class="btn btn-dark m-2">Other</button>
+      <div class="col-5 form-group form-check form-check-inline">
+        <label for="putDate" class="form-control-label">Date:</label>
+        <input id="putDate" readonly type="text" class="form-control border m-2">
+      </div>
+        
+      <div class="page-TimeShifts page-BgGray js-TimeShifts">
+         <div class="TShifts">
+            <table class="TShifts__table" id="attendance_sheet">
+              <thead>
+                <th class="Month">Month Name</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
+                <th>12</th>
+                <th>13</th>
+                <th>14</th>
+                <th>15</th>
+                <th>16</th>
+                <th>17</th>
+                <th>18</th>
+                <th>19</th>
+                <th>20</th>
+                <th>21</th>
+                <th>22</th>
+                <th>23</th>
+                <th>24</th>
+                <th>25</th>
+                <th>26</th>
+                <th>27</th>
+                <th>28</th>
+                <th>29</th>
+                <th>30</th>
+                <th>31</th>
+              </thead>
+              <tbody id="drawWorkTimeTableBody">
+                <tr class="row0">
+                  <td>January</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr class="row1">
+                  <td>February</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr class="row2">
+                  <td>March</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr class="row3">
+                  <td>April</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr class="row4">
+                  <td>May</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr class="row5">
+                  <td>June</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr class="row6">
+                  <td>July</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr class="row7">
+                  <td>August</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr class="row8">
+                  <td>September</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr class="row9">
+                  <td>October</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr class="row10">
+                  <td>November</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+                <tr class="row11">
+                  <td>December</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<!--{/block}-->

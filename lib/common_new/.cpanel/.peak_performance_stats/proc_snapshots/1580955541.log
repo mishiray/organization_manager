@@ -1,0 +1,60 @@
+Thu Feb  6 02:19:01 GMT 2020
+Running Processes:
+schooztc  2989123 65.7  0.7 640768 242964 ?       R    02:18   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  2989612 74.0  0.4 471836 150896 ?       R    02:18   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 163.1% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 2989123 69.6  0.7 640768 243620 ?       R    02:18   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2989612 75.7  0.5 509168 187084 ?       R    02:18   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+
+Snapshot 2
+schooztc 2989123 70.6  0.4 551416 155888 ?       R    02:18   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2989612 77.5  0.5 514800 192632 ?       R    02:18   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+
+Snapshot 3
+schooztc 2989123 71.0  0.0      0     0 ?        Z    02:18   0:05 [php-cgi] <defunct>
+schooztc 2989612 79.0  0.5 514800 192844 ?       R    02:18   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+
+Snapshot 4
+schooztc 2989123 71.0  0.0      0     0 ?        Z    02:18   0:05 [php-cgi] <defunct>
+schooztc 2989612 81.0  0.5 515824 193656 ?       R    02:18   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+
+Snapshot 5
+schooztc 2989123 71.0  0.0      0     0 ?        Z    02:18   0:05 [php-cgi] <defunct>
+schooztc 2989612 82.0  0.5 516848 194744 ?       S    02:18   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+
+Current load:  02:19:02 up 180 days, 10:50,  0 users,  load average: 0.03, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 67998290	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = DELETE FROM `wp_options` WHERE `option_name` = '_transient_doing_cron'
+
+Current load:  02:19:02 up 180 days, 10:50,  0 users,  load average: 0.03, 0.01, 0.00
+
+

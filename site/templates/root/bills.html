@@ -1,0 +1,154 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+
+<h1 class="h3 mb-2 text-gray-800">Bills
+</h1>
+
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+	  <h6 class="m-0 font-weight-bold text-primary">Bills</h6>
+	</div>
+	<div class="card-body">
+		<!--{if !empty($fail)}-->
+			<div class="form-group">
+				<!--{$fail}-->
+			</div>
+		<!--{/if}-->
+		<div class="row text-right d-flex justify-content-end m-4">
+			<div class="col-md-2 m-1 justify-content-end ">
+				<div class="well clearfix">
+					<a class="btn btn-success rounded-pill p-2 pull-right" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_bill"><i class="fa fa-plus"></i> Add bill</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-12">
+			<div class="table-responsive">
+					<table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
+					  <thead class="site-bg-1 text-dark">
+					    <th>
+						  S/N
+					    </th>
+					    <th>
+						    Vendor
+					    </th>
+						<th>
+							Amount Due
+						</th>
+					    <th>
+						    Payment Status
+					    </th>
+						<th>
+							Action
+						</th>
+					  </thead>
+					  <tbody>
+						  
+						<!--{if !empty($bills)}-->
+							<!--{$numcount = 1}-->
+							<!--{foreach $bills as $bill}-->
+								<tr>
+									<td>
+										<!--{$numcount}-->
+									</td>
+									<td>
+										<!--{$bill->vendor_name|ucwords}-->
+									</td>
+									<td>
+										<!--{$bill->total_amount|number_format:2}-->
+									</td>
+									<td>
+										<!--{if $bill->status == 0}-->
+										 <h5><span class="badge badge-danger">Not Paid</span></h5>	
+										<!--{/if}-->
+										<!--{if $bill->status == 1}-->
+										 <h5><span class="badge badge-info">Initiated Payment</span></h5>	
+										 <!--{/if}-->
+										<!--{if $bill->status == 2}-->
+										 <h5><span class="badge badge-success">Paid</span></h5>	
+										 <!--{/if}-->
+									</td>
+									<td class="d-flex">
+										<div class="btn-group m-2" role="group">
+											<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											Action
+											</button>
+											<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+											<a class="dropdown-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/bill?id=<!--{$bill->token}-->"> View Bill</a>
+											<a class="dropdown-item recordPayment" data-toggle="modal" i='<!--{json_encode($bill)}-->' data-target="#recordPayment"> Add Payment </a>
+											</div>
+										</div>
+										<form action="" class="d-flex m-2" method="post">
+										<input type="hidden" name="token" value="<!--{$bill->token}-->">
+										<button type="submit" name="triggers" value="delete_bill" onclick="return deleteItem();" class="btn btn-danger btn-sm"><i class="fa fa-trash p-2"></i>Delete</button>
+										</form>
+									</td>
+								</tr>
+							<!--{$numcount = $numcount + 1}-->
+							<!--{/foreach}-->
+						<!--{/if}-->
+					  </tbody>
+					</table>
+			</div>
+		</div>
+	</div>
+	
+	<!-- expense account modal-->
+	<div class="modal fade" id="recordPayment" tabindex="-1" role="dialog" aria-labelledby="exampleexpenseLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h3 class="modal-title" id="exampleexpenseLabel">Record a manual Payment</h3>
+			<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			</div>
+			<form action="" method="post">
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="amount" class="form-control-label">Amount Paid</label>
+						<input type="hidden" name="token" id="token">
+							<input type="number" min="1" class="form-control form-control-user" id="amount" name="amount" placeholder="Amount Paid">
+					  </div>
+					  <div class="form-group">
+						<label for="gateway" class="form-control-label">Payment Method</label>
+						<select name="gateway" class="form-control" id="gateway">
+						  <option selected disabled value="">Choose</option>
+						  <option value="paystack">Paystack</option>
+						  <option value="paypal">PayPal</option>
+						  <option value="bank_transfer">Transfer</option>
+						  <option value="cash">Cash</option>
+						  <option value="cheque">Cheque</option>
+						  <option value="other">Other</option>
+						</select>   
+					  </div>
+					  <div class="form-group">
+						<label for="payment_account" class="form-control-label">Payment Account</label>
+						<select name="payment_account" class="form-control" id="payment_account">
+						  <!--{if !empty($asset_accounts)}-->
+								<!--{foreach $asset_accounts as $account}-->
+								<option i="" value="<!--{$account->account}-->"><!--{$account->account|ucwords}--></option>
+								<!--{/foreach}-->
+							<!--{else}-->
+								<option value=""> <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/accounting_charts"></a> Add asset accounts</option>
+							<!--{/if}-->
+						</select>
+					  </div>
+					  <div class="form-group">
+						<label class="form-label" for="transdate">Transaction Date</label>
+						<input type="date" id="transdate" name="transdate" class="form-control" required />
+					  </div>
+					  <div class="form-group">
+						<label class="form-label" for="memo">Memo</label>
+						<textarea id="memo" name="memo" class="form-control"  ></textarea>
+					  </div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn rounded-pill border-secondary btn-lg" style="min-width: 100px;" type="button" data-dismiss="modal">Cancel</button>
+					<button class="btn p-2 rounded-pill btn-primary btn-lg" style="min-width: 100px;" name="triggers" value="add_payment" >Save</button>
+				</div>
+			</form>
+		</div>
+		</div>
+	</div>
+</div>
+<!--{/block}-->

@@ -1,0 +1,58 @@
+Thu Feb  6 03:43:27 GMT 2020
+Running Processes:
+schooztc  3342388  0.0  0.0  64896 11652 ?        S    03:36   0:00 dovecot/lmtp [local READY]
+schooztc  3362996 75.5  0.2 433632 95088 ?        R    03:43   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 68.3% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3362996 83.0  0.4 483540 162576 ?       R    03:43   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3362996 85.0  0.5 491212 170368 ?       R    03:43   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3362996 87.6  0.5 497964 177100 ?       R    03:43   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3362996 67.2  0.5 499824 179316 ?       R    03:43   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3362996 68.0  0.5 502128 181612 ?       R    03:43   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  03:43:29 up 180 days, 12:14,  0 users,  load average: 0.02, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 68019670	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT      t1.term_id, t2.name
+				  FROM        wp_term_taxonomy AS t1
+				  INNER JOIN wp_terms AS t2 ON t1.term_id = t2.term_id
+				  WHERE t1.taxonomy = 'tp_event_category'
+
+Current load:  03:43:29 up 180 days, 12:14,  0 users,  load average: 0.02, 0.00, 0.00
+
+

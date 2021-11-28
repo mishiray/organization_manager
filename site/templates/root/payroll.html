@@ -1,0 +1,221 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Payroll</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Payroll <!--{if !empty($report)}--> for <!--{$report->month}-->  <!--{$report->year}--> <!--{/if}--></h6>
+      </div>
+      <div class="card-body">
+      
+      <!--{if !empty($fail)}-->
+        <div class="col">
+          <div class="form-group">
+            <!--{$fail}-->
+          </div>
+        </div>
+      <!--{/if}-->   
+      
+    <!--{if !empty($report)}-->
+      <form id="mypayform" class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/payroll?id=<!--{$report->payrollid}-->" enctype="multipart/form-data">
+        <div class="row d-none">
+          <div class="col-4">
+            <div class="form-group">
+              <label for="month" class="form-control-label">Month</label>
+              <input type="text" class="form-control form-control-user" value="<!--{$dateNow|date_format:'%B'}-->" id="month" name="month"  placeholder="Month">
+            </div>
+            <div class="form-group">
+              <label for="year" class="form-control-label">Year</label>
+              <input type="text" class="form-control form-control-user" value="<!--{$dateNow|date_format:'%Y'}-->" id="year" name="year" placeholder="Year">
+            </div>
+            <input type="text" class="form-control form-control-user d-none" value="" id="total_salary" name="total_salary" >
+            <input type="text" class="form-control form-control-user d-none" value="" id="total_gross" name="total_gross" >
+            <input type="text" class="form-control form-control-user d-none" value="" id="total_loan" name="total_loan" >
+            <input type="text" class="form-control form-control-user d-none" value="" id="total_tax" name="total_tax" >
+            <input type="text" class="form-control form-control-user d-none" value="" id="total_deb" name="total_deb" >
+            <input type="text" class="form-control form-control-user d-none" value="" id="total_pay" name="total_pay" >
+            
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th  class="bg-primary text-light" colspan="6">
+                  INFO
+                </th>
+                <th  class="bg-success text-light" colspan="9">
+                  Earnings
+                </th>
+                <th  class="bg-danger text-light" colspan="9">
+                  Deductions
+                </th>
+              </tr>
+              <tr class="bg-dark text-light">
+                <th>SN</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Bank Name</th>
+                <th>Account Num</th>
+                <th>Position</th>
+                <th>Basic Salary</th>
+                <th>(%) Increase</th>
+                <th>Naira Increase</th>
+                <th>Transport</th>
+                <th>Housing</th>
+                <th>Lunch</th>
+                <th>Reason</th>
+                <th>Commission</th>
+                <th>Gross Total</th>
+                <th>Loan</th>
+                <th>PAYEE</th>
+                <th>Pension</th>
+                <th>HMO</th>
+                <th>Fines</th>
+                <th>Welfare</th>
+                <th>Others</th>
+                <th>Tax</th>
+                <th>Total</th>
+                <th>Net Total</th>
+                <th class="d-none" scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!--{$numCount=1}-->
+              <!--{if !empty($val)}-->
+              <!--{foreach $val as $record}-->
+              <tr>
+                <td><!--{$numCount}--></td>
+                <td id="<!--{$record->empId}-->"><!--{$record->empId}--></td>
+                <td><!--{$record->name}--></td>
+                <td contenteditable="">
+                  <!--{$record->bankname}-->
+                </td>
+                <td contenteditable="">
+                  <!--{$record->accnum}-->
+                </td>
+                <td><!--{$record->position}--></td>
+                <td class="bg-success text-light" contenteditable=""><!--{$record->salary}--></td>
+                <td class="bg-success text-light" contenteditable="">
+                  <!--{$record->per_inc}-->
+                </td>
+                <td class="bg-success text-light" contenteditable="">
+                  <!--{$record->naira_inc}-->
+                </td>
+                <td class="bg-success text-light" contenteditable="">
+                  <!--{$record->transport}-->
+                </td>
+                <td class="bg-success text-light" contenteditable="">
+                  <!--{$record->housing}-->
+                </td>
+                <td class="bg-success text-light" contenteditable="">
+                  <!--{$record->lunch}-->
+                </td>
+                <td contenteditable="">
+                  <!--{$record->reason}-->
+                </td>
+                <td class="bg-success text-light" contenteditable=""><!--{$record->commission}--></td>
+                <td class="bg-gradient-success text-light"><!--{$record->gross_total}--></td>
+                <td class="bg-danger text-white" contenteditable=""><!--{$record->loan}--></td>
+                <td class="bg-danger text-white" contenteditable=""><!--{$record->payee}--></td>
+                <td class="bg-danger text-white" contenteditable=""><!--{$record->pension}--></td>
+                <td class="bg-danger text-white" contenteditable=""><!--{$record->hmo}--></td>
+                <td class="bg-danger text-white" contenteditable=""><!--{$record->fines}--></td>
+                <td class="bg-danger text-white" contenteditable=""><!--{$record->welfare}--></td>
+                <td class="bg-danger text-white" contenteditable=""><!--{$record->others}--></td>
+                <td class="bg-danger text-white" contenteditable=""><!--{$record->tax}--></td>
+                <td class="subDrTotal bg-gradient-danger text-light"><!--{$record->drtotal}--></td>
+                <td class="NetTotal bg-gradient-primary text-light"><!--{$record->net_total}--></td>
+                <td></td>
+              </tr>
+              <!--{$numCount=$numCount+1}-->
+            <!--{/foreach}-->
+            <!--{else}-->
+              <div class="alert alert-warning"><h3 class="alert-heading">No Payroll found</h3></div>
+            <!--{/if}-->
+            </tbody>
+          </table>
+          <div class="d-none">
+            <textarea name="allData" id="allData"></textarea>
+          </div>
+          <div class="row justify-content-center">
+              <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/payrolls" class="btn btn-sm btn-warning  btn-success-hover m-2"><i class="fa fa-undo"></i> BACK</a>
+             <!--{if (in_array($report->status, array('0','3', '4')) and $userinfo->employeeid==$report->employeeid) or $userinfo->userrole=='level0'}-->
+                <a class="btn btn-sm btn-danger m-2 confirmTrig" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/payroll?id=<!--{$report->payrollid}-->&evt=delete" what='delete this report'><i class="fa fa-trash"></i> Delete</a>
+              <!--{/if}-->
+              <!--{if (in_array($report->status, array('0','3','1','4')) and $userinfo->userrole=='level2') or $userinfo->userrole=='level0'}-->
+                <button class="btn btn-sm btn-success m-2" type="button" data-toggle="collapse" data-target="#lawApprove" aria-expanded="true" aria-controls="lawApprove" id="lawApp"><i class="fa fa-check-square"></i> Review Report</button>
+              <!--{/if}-->
+              <!--{if (in_array($report->status, array('2','1','4')) and $userinfo->userrole=='level1') or $userinfo->userrole=='level0'}-->
+                <button class="btn btn-sm btn-primary m-2" type="button" data-toggle="collapse" data-target="#mdApprove" aria-expanded="true" aria-controls="mdApprove" id="mdApp"><i class="fa fa-check-circle"></i> Review Report</button>
+                <a class="btn btn-sm btn-danger m-2 confirmTrig" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/payroll?id=<!--{$report->payrollid}-->&evt=delete" what='delete this record from the system'><i class="fa fa-trash"></i> Delete</a>
+              <!--{/if}-->
+            <button id="exportbtn" class="p-2 btn btn-sm btn-success text-light m-2" type="button">EXPORT PAYROLL</button>
+            <button class="btn btn-primary btn-sm m-2" type="submit" id="savebtn" name="update_payroll">UPDATE PAYROLL</button>
+          </div>
+        </div>
+      </form>
+        
+      <div class="col-md-11 card-body text-justify" id="accordion">
+      <!--{if (in_array($report->status, array('0','3','1','4')) and $userinfo->userrole=='level2') or $userinfo->userrole=='level0'}-->
+        <div id="lawApprove" class="collapse mt-2 row justify-content-center" aria-labelledby="lawApp" data-parent="#accordion">
+          <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/payroll?id=<!--{$report->payrollid}-->" enctype="multipart/form-data" class="w-100">
+            <div class="card card-body">
+              <fieldset class="border rounded border-success px-5 text-justify">
+                <legend class="text-center">Review Report</legend>
+                <div class="form-group">
+                  <label for="comment" class="form-control-label">Comment</label>
+                  <textarea id="comment" name="comment" rows="5" class="form-control form-control-sm input-rounded" required><!--{if !empty($report->manager_review->comment)}--><!--{$report->manager_review->comment}--><!--{/if}--></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="status" class="form-control-label">Review Status</label>
+                  <select id="status" name="status" class="form-control form-control-sm input-rounded" required>
+                    <option value="1" <!--{if $report->status=='1'}-->selected<!--{/if}-->>Approve & Send to MD</option>
+                    <option value="3" <!--{if $report->status=='3'}-->selected<!--{/if}-->>Decline</option>
+                  </select>
+                </div>
+                <div class="form-group text-center">
+                  <button class="btn btn-success btn-sm rounded-0" type="submit" name="lreview">Save Changes</button>
+                </div>
+              </fieldset>
+            </div>
+          </form>
+        </div>
+        <!--{/if}-->
+        <!--{if (in_array($report->status, array('2','1','4')) and $userinfo->userrole=='level1') or $userinfo->userrole=='level0'}-->
+          <div id="mdApprove" class="collapse mt-2 row justify-content-center" aria-labelledby="mdApp" data-parent="#accordion">
+            <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/payroll?id=<!--{$report->payrollid}-->" enctype="multipart/form-data" class="w-100">
+              <div class="card card-body">
+                <fieldset class="border rounded  px-5 text-justify">
+                  <legend class="text-center">Review Report</legend>
+                  <div class="form-group">
+                    <label for="comment" class="form-control-label">Comment</label>
+                    <textarea id="comment" name="comment" rows="5" class="form-control form-control-sm input-rounded" required><!--{if !empty($report->md_review->comment)}--><!--{$report->md_review->comment}--><!--{/if}--></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="status" class="form-control-label">Review Status</label>
+                    <select id="status" name="status" class="form-control form-control-sm input-rounded" required>
+                      <option value="2" <!--{if $report->status=='2'}-->selected<!--{/if}-->>Approve</option>
+                      <option value="4" <!--{if $report->status=='4'}-->selected<!--{/if}-->>Decline</option>
+                    </select>
+                  </div>
+                  <div class="form-group text-center">
+                    <button class="btn btn-success btn-sm rounded-0" type="submit" name="mreview">Save Changes</button>
+                  </div>
+                </fieldset>
+              </div>
+            </form>
+          </div>
+        <!--{/if}-->
+      </div>
+      
+      <!--{else}-->
+        <div class="alert alert-warning"><h3 class="alert-heading">No Payroll found</h3></div>
+      <!--{/if}-->   
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

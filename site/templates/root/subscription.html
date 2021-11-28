@@ -1,0 +1,197 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Subscription</h1>
+   
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Edit Subscription</h6>
+      </div>
+      <div class="card-body">
+      <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/subscription?token=<!--{$subdata->token}-->" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="file_upload" class="form-control-label">Upload Payment Proof</label>
+                  <input type="file" accept="image/*, application/*, video/*" id="file_upload" class="input-rounded w-100" name="file_upload"/>
+                </div>
+                  <div class="form-group">
+                    <label for="paid_by" class="form-control-label">Paid By (Email)</label>
+                    <input type="email" class="form-control form-control-user" id="serial" name="paid_by" placeholder="Email here..">
+                  </div>
+                  <div class="form-group">
+                    <label for="amount" class="form-control-label">Amount Paid</label>
+                        <input type="number" class="form-control form-control-user" id="amount" name="amount" placeholder="Amount Paid">
+                  </div>
+                  <div class="form-group">
+                    <label for="gateway" class="form-control-label">Payment Gateway</label>
+                    <select name="gateway" class="form-control" id="gateway" onchange="handleChange(this);">
+                      <option value="paystack">Paystack</option>
+                      <option value="paypal">PayPal</option>
+                      <option value="bank_transfer">Transfer</option>
+                      <option value="cash">Cash</option>
+                      <option value="cheque">Cheque</option>
+                      <option value="other">Other</option>
+                    </select>   
+                  </div>
+                  <div id="other_gateway" class="form-group d-none">
+                    <label for="othergateway" class="form-control-label">Other Payment Gateway</label>
+                        <input type="text" class="form-control form-control-user" id="othergateway" name="gateway" placeholder="Other Payment Gateway">
+                  </div>
+                  <script>
+                    function handleChange(myselect){
+                      if(myselect.value=='other'){
+                        document.getElementById('other_gateway').classList.remove("d-none");
+                      }else{
+                        //document.getElementById('other_gateway').classList.add("d-none");
+                        document.getElementById('othergateway').value = myselect.value;
+                      }
+                    }
+                  </script>
+                  <div class="form-group">
+                    <label for="purpose" class="form-control-label">Select Purpose</label>
+                    <select name="purpose[]" class="form-control" id="purpose" multiple onchange="handleChange2(this);">
+                      <option value="subscription">Full Subscription</option>
+                      <option value="survey_fee">Survey</option>
+                      <option value="legal_fee">Legal Fee</option>
+                      <option value="other">Others</option>
+                    </select>
+                  </div>
+                  <div id="other_purpose" class="form-group d-none">
+                    <label for="otherpurpose" class="form-control-label">Other Purpose</label>
+                        <input type="text" class="form-control form-control-user" id="otherpurpose" name="purpose[]
+                        " placeholder="Other Purpose">
+                  </div>
+                  <script>
+                    function handleChange2(myselect){
+                      if(myselect.value.includes('other')){
+                        document.getElementById('other_purpose').classList.remove("d-none");
+                      }else{
+                        //document.getElementById('otherpurpose').value = myselect.value;
+                        document.getElementById('other_purpose').classList.add("d-none");
+                      }
+                    }
+                  </script>
+                  <div class="form-group">
+                    <label class="form-label" for="transdate">Transaction Date</label>
+                    <input type="date" id="transdate" name="transdate" class="form-control" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="status" class="form-control-label">Status</label>
+                    <select name="status" class="form-control" id="status">
+                      <option value="1">Success</option>
+                      <option value="0">Fail</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="discount" class="form-control-label">Discount</label>
+                        <input type="text" class="form-control form-control-user" id="discount" name="discount" placeholder="Discount">
+                  </div>
+                  <div class="form-group text-center">
+                    <button class="btn btn-success btn-sm rounded-0" type="submit" name="payment">Add Payment</button>
+                </div>
+            </div>
+            <!--{if !empty($fail)}-->
+            <div class="col">
+              <div class="form-group">
+                <!--{$fail}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <br>
+        </div>
+        
+      </form>
+      </div>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Payments</h6>
+    </div>
+    <!--{if !empty($payment)}-->
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>SN</th>
+              <th>Id</th>
+              <th>Paid By</th>
+              <th>Amount</th>
+              <th>Purpose</th>
+              <th>Transaction Date</th>
+              <th>Gate Way</th>
+              <th>Status</th>
+              <th>Proof</th>
+              <th class="d-none" scope="col"></th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>SN</th>
+              <th>Id</th>
+              <th>Paid By</th>
+              <th>Amount</th>
+              <th>Purpose</th>
+              <th>Transaction Date</th>
+              <th>Gate Way</th>
+              <th>Status</th>
+              <th>Proof</th>
+              <th class="d-none" scope="col"></th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <!--{$numCount=1}-->
+            <!--{foreach $payment as $pay}-->
+            <tr>
+              <!--`id`, `transid1`, `transid`, `token`, 
+                `paidby`, `amount`, `purpose`, `transdate`, 
+                `gateway`, `status`, `proof`, `discount`, `status1`-->
+              <td><!--{$numCount}--></td>
+              <td>
+                <strong>ID: </strong><!--{$pay->id}--> <br>
+                <strong>Transaction ID: </strong><!--{$pay->transid}--> <br>
+                <strong>Transaction ID 2: </strong><!--{$pay->transid1}--> <br>
+                <strong>Token: </strong><!--{$pay->token}-->
+              </td>
+              <td>
+                <!--{$pay->paidby}-->
+              </td>
+              <td>
+                <strong>Amount: </strong><!--{$pay->amount}--> <br>
+                <strong>Discount: </strong><!--{$pay->discount}--> <br>
+              </td>
+              <td>
+                <!--{$pay->purpose}-->
+              </td>
+              <td>
+                <!--{$pay->transdate}-->
+              </td>
+              <td>
+                <!--{$pay->gateway}-->
+              </td>
+              <td>
+                  <span class="badge badge-<!--{if $pay->status =='1'}-->success<!--{else}-->warning<!--{/if}-->"><!--{if $pay->status=='1'}-->Success<!--{else}-->Failed<!--{/if}--></span></td>
+              </td>
+              <td>
+                <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$pay->proof}-->"><!--{$pay->proof}--></a>
+              </td>
+              <td>
+                <a class="btn btn-sm my-1 btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/update_payment?id=<!--{$pay->id}-->"><i class="fa fa-ellipsis-v"></i> Detail</a>
+              </td>
+            </tr>
+            <!--{$numCount=$numCount+1}-->
+          <!--{/foreach}-->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!--{else}-->
+    <div class="alert alert-warning"><h3 class="alert-heading">No Payments Made</h3></div>
+    <!--{/if}-->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

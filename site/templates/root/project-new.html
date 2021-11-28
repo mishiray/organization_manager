@@ -1,0 +1,108 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong> &nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/projects">CONSTRUCTION PROJECTS&nbsp;<i class="fa fa-list"></i></a>&nbsp; New Project&nbsp;<i class="fa fa-plus-square"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+	<section class="row justify-content-center">
+		<div class="card">
+			<div class="card-body">
+				<div class="col-sm-8">
+					<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/project-new" class="w-100" enctype="multipart/form-data">
+						
+							<legend class="font-weight-bold text-center">Add A New Project</legend>
+							<div class="row">
+								<div class="form-group col-sm-6">
+									<label for="title" class="form-control-label">Project Name / Title</label>
+									<input type="text" id="title" name="title" class="form-control " required/>
+								</div>
+								<div class="form-group col-sm-6">
+									<label for="category" class="form-control-label">Category / Type</label>
+									<input type="text" id="category" name="category" class="form-control " list="categ" required/>
+									<datalist id="categ">
+										<!--{if !empty($categories)}-->
+											<!--{foreach $categories as $cat}-->
+												<option value="<!--{$cat}-->"><!--{$cat}--></option>
+											<!--{/foreach}-->
+										<!--{/if}-->
+									</datalist>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group d-none col-sm-6">
+									<label for="amount" class="form-control-label">Amount / Price (₦)</label>
+									<input type="number" id="amount" name="amount" value="" class="form-control " />
+								</div>
+								<div class="form-group col-sm-6">
+									<label for="email" class="form-control-label">Contact Email</label>
+									<input type="email" id="email" name="email" value="" class="form-control " />
+								</div>
+								<div class="form-group col-sm-6">
+									<label for="phone" class="form-control-label">Contact Number</label>
+									<input type="text" id="phone" name="phone" value="" class="form-control " />
+								</div>
+							</div>
+							<div class="row">
+							</div>
+							<div class="form-group">
+								<label for="description" class="form-control-label">Project Details or Description</label>
+								<textarea id="description" name="description" class="form-control  input-block" rows="6" required></textarea>
+							</div>
+							<div class="row m-4 justify-content-center">
+								<div class="form-group col-sm-3 text-center">
+									<div class="img-scope card-heading pt-3 pb-3">
+										<label for="img-upload">
+											<img class="" id="dataImg" src="">
+											<data class="text-center jsonly">Upload Photo</data>
+										</label>
+										<input type="file" accept="image/*, video/*" id="img-upload" class="badge-pill w-100" name="img_upload" required/>
+										<noscript><button class="text-center" id="ppUpload" name="ppUpload" type="button">Upload Photo</button></noscript>
+										<span class="small">Default Image</span>
+									</div>
+								</div>
+								<div class="form-group col-sm-3">
+									<div class="img-scope card-heading pt-3 pb-3">
+										<label for="img-upload1">
+											<img class="" id="dataImg1" src="">
+											<data class="text-center jsonly">Upload Photo</data>
+										</label>
+										<input type="file" accept="image/*, video/*" id="img-upload1" class="badge-pill w-100" name="img_upload1"/>
+										<noscript><button class="text-center" id="ppUpload" name="ppUpload" type="button">Upload Photo</button></noscript>
+									</div>
+								</div>
+								<div class="form-group col-sm-3">
+									<div class="img-scope card-heading pt-3 pb-3">
+										<label for="img-upload2">
+											<img class="" id="dataImg2" src="">
+											<data class="text-center jsonly">Upload Photo</data>
+										</label>
+										<input type="file" accept="image/*, video/*" id="img-upload2" class="badge-pill w-100" name="img_upload2"/>
+										<noscript><button class="text-center" id="ppUpload" name="ppUpload" type="button">Upload Photo</button></noscript>
+									</div>
+								</div>
+								<div class="form-group col-sm-3">
+									<div class="img-scope card-heading pt-3 pb-3">
+										<label for="img-upload3">
+											<img class="" id="dataImg3" src="">
+											<data class="text-center jsonly">Upload Photo</data>
+										</label>
+										<input type="file" accept="image/*, video/*" id="img-upload3" class="badge-pill w-100" name="img_upload3"/>
+										<noscript><button class="text-center" id="ppUpload" name="ppUpload" type="button">Upload Photo</button></noscript>
+									</div>
+								</div>
+							</div>
+							<!--{if !empty($fail)}-->
+								<div class="form-group">
+									<!--{$fail}-->
+								</div>
+							<!--{/if}-->
+						<div class="row m-4 text-center">
+							<div class="col-12">
+								<button class="btn btn-primary" type="submit" name="addproject"><i class="fa fa-save"></i> Add Project</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+<!--{/block}-->

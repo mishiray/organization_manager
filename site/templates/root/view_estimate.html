@@ -1,0 +1,150 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h1 class="h3 mb-2 text-gray-800">View Estimate</h1>
+		<!--{if !empty($estimate)}-->
+        <div class="row" style="margin-top: 5rem;" id="contract">
+            <div class="card-body">
+                <div id="printable" >
+                            <!-- invoice start -->
+                    <div id="" class="col-md-12 card-body p-4 bg-white">
+                              <section class="row justify-content-between m-4">
+                                    <div class="logo col-3 float-left">
+                                        <div class="">
+                                            <img class="w-50" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/cropped-logo.png" alt="" srcset="">
+                                        </div>
+                                    </div>
+                                    <div class="float-right col-4 text-right">
+                                        <div class="">
+                                            <h3>
+                                                ESTIMATE
+                                            </h3>
+                                            <small>
+                                                <p class="p-0 m-0"><!--{$Site.companyName}--></p>
+                                                <p class="p-0 m-0">Nigeria</p> 
+                                            </small>
+                                        </div>
+                              </section>
+                              <section class="m-4">
+                                <div class="row justify-content-between">
+                                  <div class="float-left col-3">
+                                    <div class="">BILL TO</div>
+                                    <span class=""><!--{$estimate->customer|ucwords}--></span>
+                                  </div>
+                                  <div class="float-right col-5"> 
+                                    <div class="row">
+                                        <div class="col text-right">
+                                            <p class="m-0 p-0">
+                                                <strong class="">Estimate Number: </strong>
+                                            </p>
+                                            <p class="m-0 p-0">
+                                                <strong class="">Estimate Date: </strong>
+                                            </p>
+                                            <p class="m-0 p-0">
+                                                <strong class="">Expires On: </strong>
+                                            </p>
+                                            <p class="bg-gray m-0 p-0">
+                                                <strong class=""> Grand Total:</strong>
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                            <p class="m-0 p-0">
+                                                <span><!--{$estimate->id}--></span>
+                                            </p>
+                                            <p class="m-0 p-0">
+                                                <span><!--{$estimate->date|date_format}--></span>
+                                            </p>
+                                            <p class="m-0 p-0">
+                                               <span><!--{$estimate->expiry|date_format}--></span>
+                                            </p>
+                                            <p class="bg-gray m-0 p-0">
+                                                <strong class="">₦<!--{$estimate->amount|number_format}--></strong>
+                                            </p>
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                              </section>
+                              <div class="row">
+                                <table class="table">
+                                  <thead class="" style="background-color: #b75e4f;">
+                                    <tr class=" text-light">
+                                      <th class="" colspan="4" >Items</th>
+                                      <th class="" colspan="1" >Quantity</th>
+                                      <th class="" colspan="1" >Price</th>
+                                      <th class="" colspan="1" >Amount</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody class="">
+                                      <tr class="">
+                                        <td class=" invoice-product-name" colspan="4">
+                                          <span class="">
+                                              <!--{$estimate->product|ucwords}-->
+                                          </span>
+                                        </td>
+                                        <td class=" c__column--center" colspan="1">
+                                            <span>1</span>
+                                        </td>
+                                        <td class="" colspan="1">
+                                            <span>₦<!--{$estimate->price|number_format}--></span>
+                                        </td>
+                                        <td class="" colspan="1">
+                                            <span>₦<!--{$estimate->amount|number_format}--></span>
+                                        </td>
+                                      </tr>
+                                      <tr class="">
+                                        <td>    </td>
+                                        <td>    </td>
+                                        <td>    </td>
+                                        <td class="text-right" colspan="3">
+                                            <strong>Total: </strong>
+                                        </td>
+                                        <td class="" colspan="1">
+                                            <span>₦<!--{$estimate->amount|number_format}--></span>
+                                        </td>
+                                        </tr>
+                                        <tr class="">
+                                            <td colspan="3">
+                                            <!--{$estimate->description}-->    
+                                            </td>
+                                            
+                                        <td class="text-right" colspan="3">
+                                            <strong>Grand Total (NGN)</strong>
+                                        </td>
+                                        <td class="" colspan="1">
+                                            <span>₦<!--{$estimate->amount|number_format}--></span>
+                                        </td>
+                                        </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                              <div>
+                                <section class="">
+                                    <div class="">
+                                        <table class="table">
+                                            <tbody class="">
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </section>
+                              </div>
+                    </div>
+                </div>
+                <!-- invoice end -->
+                <div class="row text-centerm-2">
+                    <button class="btn btn-success m-4" id="printNow">Print Now</button>
+                </div>
+            </div>
+        </div>
+        <!--{else}-->
+			<h3>No estimate available</h3>
+		<!--{/if}-->
+		<div class="form-group">
+		<!--{if !empty($fail)}-->
+			<!--{$fail}-->
+		<!--{/if}-->
+		</div>
+<!--{/block}-->

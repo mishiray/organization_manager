@@ -1,0 +1,27 @@
+<!--{extends 'default.html'}-->
+<!--{block name="login-link"}--> 
+  <li><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/login" id="toplog">Login</a></li>
+<!--{/block}-->
+<!--{block name="main-slider"}-->
+<!--{/block}-->
+<!--{block name="main_content"}-->
+    <div class="container top-margined p-5">
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center">
+                <div class="h4"><span>Signup Verification link Resend</span></div>
+            </div>
+            <div class="col-md-8 mt-3">
+                <!--{if !empty($fail)}-->
+                        <!--{$fail}-->
+                <!--{/if}-->
+                <!--{block name="forgot-link"}-->
+                <div class="col-md-12 text-center text-dark">
+                    Already Registered? <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/login" class="btn btn-link">login here...</a>
+                </div>
+                <!--{/block}-->
+            </div>
+        </div>
+    </div>
+<!--{/block}-->
+<!--{block name="general-message"}-->
+<!--{/block}-->

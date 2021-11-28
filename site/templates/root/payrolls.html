@@ -1,0 +1,108 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Payrolls</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Payrolls Data </h6>
+      </div>
+      
+  <!--{if !empty($payrolls)}-->
+      <div class="card-body">
+      
+      <!--{if !empty($fail)}-->
+        <div class="col">
+          <div class="form-group">
+            <!--{$fail}-->
+          </div>
+        </div>
+      <!--{/if}-->    
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr class="bg-dark text-light">
+                <th>SN</th>
+                <th>Added By</th>
+                <th>Month</th>
+                <th>Year</th>
+                <th>Total Basic Salary</th>
+                <th>Total Gross</th>
+                <th>Total Loans</th>
+                <th>Total Tax</th>
+                <th>Total Deductions</th>
+                <th>Total Net</th>
+                <th>Status</th>
+                <th>Date Added</th>
+                <th class="d-none" scope="col"></th>
+                <th class="d-none" scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!--{$numCount=1}-->
+              <!--{foreach $payrolls as $payroll}-->
+              <tr>
+                <td><!--{$numCount}--></td>
+                <td><!--{$payroll->name->surname|ucfirst}--> <!--{$payroll->name->first_name|ucfirst}--></td>
+                <td><!--{$payroll->month}--></td>
+                <td><!--{$payroll->year}--></td>
+                <td>&#8358;<!--{$payroll->total_salary|number_format:2}--></td>
+                <td>&#8358;<!--{$payroll->total_gross|number_format:2}--></td>
+                <td>&#8358;<!--{$payroll->total_loan|number_format:2}--></td>
+                <td>&#8358;<!--{$payroll->total_tax|number_format:2}--></td>
+                <td>&#8358;<!--{$payroll->total_deb|number_format:2}--></td>
+                <td>&#8358;<!--{$payroll->total_pay|number_format:2}--></td>
+                <td>
+                  <!--{if in_array($userinfo->userrole, array('level3','level2')) }-->
+                      <!--{if $payroll->status==0}--><span class="badge badge-pill badge-warning">submited to accounting manager</span>
+                      <!--{elseif $payroll->status==1}--><span class="badge badge-pill badge-info">approved by accounting manager</span>
+                      <!--{elseif $payroll->status==2}--><span class="badge badge-pill badge-success">fully approved</span>
+                      <!--{elseif $payroll->status==3}--><span class="badge badge-pill badge-danger">declined by accounting manager</span>
+                      <!--{elseif $payroll->status==4}--><span class="badge badge-pill badge-danger">fully declined</span>
+                      <!--{/if}-->
+                  <!--{elseif in_array($userinfo->userrole, array('level5'))}-->
+                      <!--{if $payroll->status==0}--><span class="badge badge-pill badge-warning">pending report</span>
+                      <!--{elseif $payroll->status==1}--><span class="badge badge-pill badge-info">submitted to MD</span>
+                      <!--{elseif $payroll->status==2}--><span class="badge badge-pill badge-success">approved by MD</span>
+                      <!--{elseif $payroll->status==3}--><span class="badge badge-pill badge-danger">declined</span>
+                      <!--{elseif $payroll->status==4}--><span class="badge badge-pill badge-danger">declined by MD</span>
+                      <!--{/if}-->
+                  <!--{elseif in_array($userinfo->userrole, array('level1'))}-->
+                      <!--{if $payroll->status==1}--><span class="badge badge-pill badge-info">pending report</span>
+                      <!--{elseif $payroll->status==2}--><span class="badge badge-pill badge-success">approved</span>
+                      <!--{elseif $payroll->status==3}--><span class="badge badge-pill badge-danger">declined by accounting manager</span>
+                      <!--{elseif $payroll->status==4}--><span class="badge badge-pill badge-danger">declined</span>
+                      <!--{/if}-->
+                  <!--{else}-->
+                      <!--{if $payroll->status==0}--><span class="badge badge-pill badge-warning">pending (HR)</span>
+                      <!--{elseif $payroll->status==1}--><span class="badge badge-pill badge-success">approved (by accounting manager)</span>
+                      <!--{elseif $payroll->status==2}--><span class="badge badge-pill badge-success">approved (by MD)</span>
+                      <!--{elseif $payroll->status==3}--><span class="badge badge-pill badge-danger">declined (by accounting manager)</span>
+                      <!--{elseif $report->status==4}--><span class="badge badge-pill badge-danger">declined (by MD)</span>
+                      <!--{/if}-->
+                  <!--{/if}-->
+                </td>
+                <td><!--{$payroll->dateadded}--></td>
+                <td>
+                  <a class="btn btn-sm btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/payroll?id=<!--{$payroll->payrollid}-->"> Detail</a>
+                </td>
+                <td>
+                  <!--{if $payroll->status==2}-->
+                   <a class="btn btn-sm btn-success confirmTrig" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/payrolls?id=<!--{$payroll->payrollid}-->&evt=generate" what='Generate payslips'>Generate Payslips</a>
+                  <!--{/if}-->
+                </td>
+              </tr>
+              <!--{$numCount=$numCount+1}-->
+            <!--{/foreach}-->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!--{else}-->
+      <div class="alert alert-warning"><h3 class="alert-heading">No Payroll found</h3></div>
+      <!--{/if}-->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

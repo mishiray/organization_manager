@@ -1,0 +1,202 @@
+<!--Paystak cdn-->
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/jquery-3.3.1.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/popper.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/bootstrap.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/owl.carousel.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/jquery.sticky.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/jquery.waypoints.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/jquery.animateNumber.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/jquery.fancybox.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/jquery.easing.1.3.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/aos.js"></script>
+
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/main.js"></script>
+
+
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/script.js"></script>
+<script>
+	/*Old Important JS*/
+	$("body").addClass("js");
+	let indexer=0;
+	window.addEventListener('scroll', function() {
+		// windowScroll();
+	});
+	/*Event Executor*/
+	window.addEventListener('load', () => {
+
+		<!--{if !empty($msg_crime)}-->
+			$('#myModalReport').modal('show');
+		<!--{/if}-->
+		// windowScroll();
+		let globalParam={}, obj={};
+	    $(document).ready(function() {
+	    	/*Handle currency*/
+				let format={lang: 'en-US', code:'NGN'};
+				// console.log(formatCurrency(Number($(".spanCurrency").text()),format));
+	    		$(".spanCurrency").text(formatCurrency(Number($(".spanCurrency").text().trim()),format));
+			/*End handle currency*/
+	    	$(document).on('click', "#dropdownFacility", function() {
+		    	$('.dropdownFacility').toggleClass('d-none');
+		    });
+			$(document).on('click', '.imgPreview', function() {
+			    $("#imgPreviewShow").attr('src', `${$(this).attr('src')}`);
+			    $("#gallImgName").text(`${$(this).attr('title')}`);
+			});
+
+	    	/*Image Uploader Script*/
+		    $(document).on('change', "#uploadImage", function() {
+		    	readURL(this, '#imgUploadFrame');
+		    	$('#imgUploadFrame').css('width', 'inherit');
+		    	$('#imgUploadFrame').css('display', 'block');
+		    });
+			/*Print Page Section*/
+			$(document).on('click',"#printNow", function() {
+				$(this).hide();
+				printData('printMe', '<!--{$Site.companyName}-->: Printing');
+				$("#printNow").show();
+			});
+
+      $(document).on('click', '#donateNow', function(event) {
+				event.preventDefault();
+				let err = 0;
+				let failMsg = '';
+
+				if (!$("#first-name")?.val()) {
+					failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Input your First Name please!</p>`;
+					err++;
+				}
+
+				if (!$("#last-name")?.val()) {
+					failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Input your Last Name please!</p>`;
+					err++;
+				}
+				
+				if (!$("#email-address")?.val()) {
+					failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Input an email!</p>`;
+					err++;
+				}
+				
+				if (!$("#inputAddress")?.val()) {
+					failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Please input your mobile number!</p>`;
+					err++;
+				}
+				
+				if (!$("#inputAddress2")?.val()) {
+					failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Input an address!</p>`;
+					err++;
+				}
+				
+				if (!$("#inputCity")?.val()) {
+					failMsg = `${failMsg}<p class="border border-danger p-1 rounded">A city is required!</p>`;
+					err++;
+				}
+				
+				if (!$("#inputState")?.val()) {
+					failMsg = `${failMsg}<p class="border border-danger p-1 rounded">A state is required!</p>`;
+					err++;
+				}
+				
+				if (!$("#inputZip")?.val()) {
+					failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Your postal code is required!</p>`;
+					err++;
+				}
+				
+				if (!$("#amount")?.val()) {
+					failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Additional contact is required!</p>`;
+					err++;
+				}
+
+				if (err > 0) {
+					failMsg = `<div class="alert alert-danger text-justify">
+						<i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">${failMsg}</div>
+					</div>`;
+					$(".failMessage").html(`${failMsg}`);
+					return false;
+				}
+				/* Act on the event */
+				PaystackPop.setup({
+				    key: 'pk_test_0b45ef7c842021250468cd5e3e2d4e076cad5ee1', // Replace with your public key
+				    email: $("#email-address").val(),
+				    amount: Number($("#amount").val()) * 100,
+				    firstname: $("#first-name").val(),
+				    lastname: $("last-name").val(),
+				    currency: 'USD',
+				    //ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+				    // label: "Optional string that replaces customer email"
+				    onClose: function(){
+				      alert('Window closed.');
+				      $(".failMessage").html(`<div class="alert alert-danger text-justify">
+					<i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert"><p>Window closed</p></div>
+				</div>`);
+				    },
+				    callback: function(res){
+				      //console.log(res);
+				      let message = 'Payment complete! Reference: ' + res.reference;
+				      alert(message);
+				      let postValues = {
+				      	firstname: $("#first-name").val(),
+				      	lastname: $("#last-name").val(),
+				      	email: $("#email-address").val(),
+				      	amount: $("#amount").val(),
+				      	zipcode: $("#inputZip").val(),
+				      	state: $("#inputState").val(),
+				      	city: $("#inputCity").val(),
+				      	address: $("#inputAddress2").val(),
+				      	mobile: $("#inputAddress").val(),
+				      	donate: 'donate',
+				      }
+				      $.post('<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/donation', postValues, function(res) {
+				      	
+				      	$(".failMessage").html(`${res}`);
+				      });
+					  return false;
+				      // console.log(message);
+				    }
+				}).openIframe();
+			});
+  
+
+	  });
+	});
+	/*aDDED BY sOME*/
+	function myFunction() {
+	    var dots = document.getElementById("dots");
+	    var moreText = document.getElementById("more");
+	    var btnText = document.getElementById("myBtn");
+
+	    if (dots.style.display === "none") {
+	      dots.style.display = "inline";
+	      btnText.innerHTML = "Read more";
+	      moreText.style.display = "none";
+	    } else {
+	      dots.style.display = "none";
+	      btnText.innerHTML = "Read less";
+	      moreText.style.display = "inline";
+	    }
+	}
+
+  // Nav collapse
+  jQuery('.dropdown-nav-link').click( function(e) {
+    jQuery('.collapse').collapse('hide');
+  });
+
+  //Nav javascript
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+  
+	/* //Table Navigator
+	$('#dataTableId').DataTable({
+		// paging: false,
+		// scrollY: 400,
+		// scrollX: auto,
+		ordering: false
+	});*/
+</script>

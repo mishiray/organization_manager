@@ -1,0 +1,73 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong>
+	&nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/clients">Students&nbsp;<i class="fa fa-users"></i></a>&nbsp;| Study Final Exam Results&nbsp;<i class="fa fa-list"></i>&nbsp;
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row justify-content-center">
+	<div class="col-sm-10">
+		<div class="form-group">
+			<!--{if !empty($fail)}-->
+				<!--{$fail}-->
+			<!--{/if}-->
+		</div>
+	</div>
+	<div class="col-sm-11">
+      <h4>Study Final Exam Results</h4>
+      <div class="table-responsive">
+		<!--{if !empty($results)}-->
+		<div id="dataTableId_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+			<!--{include file="paging-top.html"}-->
+	        <table class="table table-striped table-hover table-bordered">
+	          <thead class="site-bg-1 text-white">
+	            <tr>
+	              <th scope="col">#</th>
+			      <th scope="col">Student Details</th>
+	              <th scope="col">Course Detail</th>
+	              <th scope="col">Final Exam Detail</th>
+	              <th scope=""></th>
+	            </tr>
+	          </thead>
+	          <tbody>
+              <!--{$numCount=1}-->
+              <!--{foreach $results as $vKey=> $result}-->
+                  <tr>
+	                  <td><!--{$numCount}--></td>
+				      <td>
+				      	<!--{if !empty($result->client->firstname)}--><strong>Names: </strong><!--{$result->client->firstname}--> <!--{$result->client->middlename}--> <!--{$result->client->lastname}--><br/><!--{/if}-->
+				      	<strong>Email: </strong><!--{$result->client->email}--><br/>
+				      	<!--{if !empty($result->client->username)}--><strong>Username: </strong><!--{$result->client->username}--><!--{/if}-->
+				      	<!--{if !empty($result->client->phone)}--><strong>Phone Number: </strong><!--{$result->client->phone}--><!--{/if}-->
+				      </td>
+	                  <td>
+	                  	<h6>Course ID: <!--{$result->course->courseid}--></h6>
+				      	Title: <!--{$result->course->title}--><br/>
+				      	Category: <!--{$result->course->category}--><br/>
+				      	<div class="border border-success py-1 px-1" style="max-height: 100px; width: 200px; overflow-y: auto;"><!--{$result->course->description}--></div>
+	                  </td>
+				      <td>
+				      	<span class="font-weight-bold">Duration: </span> <!--{$result->settimestr.hh}--> hr : <!--{$result->settimestr.mm}--> min : <!--{$result->settimestr.ss}--> sec<br/>
+				      	<span class="font-weight-bold">Used Duration: </span> <!--{$result->usedtimestr.hh}--> hr : <!--{$result->usedtimestr.mm}--> min : <!--{$result->usedtimestr.ss}--> sec<br/>
+				      	<span class="font-weight-bold">Total Questions: </span> <!--{$result->totalquestions}--><br/>
+				      	<span class="font-weight-bold">Attempted Questions: </span> <!--{$result->attempted}--><br/>
+				      	<span class="font-weight-bold">Score (%): </span> <!--{round(($result->score/$result->totalquestions)*100, 2)}-->%<br/>
+	                  </td>
+	                  <td>
+	                  	<a class="btn btn-sm btn-info" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$result->user}-->&result=<!--{$result->id}-->"><i class="fa fa-ellipsis-v"></i> Result Info</a>
+	                  	<a class="btn btn-sm btn-warning my-2 confirmTrig" what="Reset student's final exam  (<!--{$numCount}-->)" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/results?id=<!--{$result->user}-->&result=<!--{$result->id}-->&reset=true"><i class="fa fa-refresh"></i> Reset Student's Final Exam</a>
+	                  </td>
+                  </tr>
+              <!--{$numCount=$numCount+1}-->
+              <!--{/foreach}-->
+	          </tbody>
+	        </table>
+			<!--{include file="paging-bottom.html"}-->
+		</div>
+		<!--{else}-->
+		<div class="alert alert-warning"><h3 class="alert-heading">No record on assessment</h3></div>
+		<!--{/if}-->
+      </div>
+    </div>
+</section>
+<!--{/block}-->

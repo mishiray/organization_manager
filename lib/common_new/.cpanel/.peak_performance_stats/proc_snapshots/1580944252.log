@@ -1,0 +1,73 @@
+Wed Feb  5 23:10:52 GMT 2020
+Running Processes:
+schooztc  2266549  0.0  0.0  63868 10544 ?        S    23:03   0:00 dovecot/lmtp [local READY]
+schooztc  2288029 89.0  0.4 454372 133272 ?       R    23:10   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  2288060 80.0  0.2 433548 94968 ?        R    23:10   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  2288073 69.0  0.1 427160 62140 ?        R    23:10   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 186.8% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 2288029 80.7  0.5 494560 173612 ?       R    23:10   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2288060 74.0  0.3 438436 117464 ?       R    23:10   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2288073 64.0  0.2 430788 81660 ?        R    23:10   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 2288029 82.5  0.5 498928 178000 ?       R    23:10   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2288060 76.3  0.3 448656 127056 ?       R    23:10   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2288073 68.0  0.2 431940 84760 ?        R    23:10   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 2288029 83.7  0.5 501488 180344 ?       R    23:10   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2288060 79.0  0.4 453152 131468 ?       R    23:10   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2288073 71.5  0.2 433120 87632 ?        S    23:10   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 2288029 68.6  0.5 503280 182292 ?       R    23:10   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2288060 61.0  0.4 462260 141000 ?       S    23:10   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2288073 50.0  0.2 433136 88732 ?        R    23:10   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 2288029 69.8  0.5 506352 185280 ?       R    23:10   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2288060 62.5  0.4 466616 145452 ?       R    23:10   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 2288073 52.0  0.2 435664 92884 ?        R    23:10   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  23:10:54 up 180 days,  7:42,  0 users,  load average: 0.04, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 67950305	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67950301	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT COLUMN_NAME 
+                                    FROM information_schema.COLUMNS 
+                                    WHERE
+                                     TABLE_SCHEMA='schooztc_scog'
+                                     AND COLUMN_NAME = 'tim
+ID = 67950295	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT option_value FROM wp_options WHERE option_name = 'bp-disable-cover-image-uploads' LIMIT 1
+
+Current load:  23:10:54 up 180 days,  7:42,  0 users,  load average: 0.04, 0.01, 0.00
+
+

@@ -1,0 +1,116 @@
+Wed Feb  5 10:55:53 GMT 2020
+Running Processes:
+schooztc  3414945  0.1  0.0 113424 20596 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc  3414967  0.1  0.0 113732 20796 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc  3416777 52.0  0.7 563756 240984 ?       R    10:55   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3416873 53.3  0.5 507488 186360 ?       R    10:55   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3417353 46.6  0.2 430076 78480 ?        R    10:55   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3417427 45.0  0.2 429984 69724 ?        R    10:55   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3417458 40.0  0.1 427004 55200 ?        R    10:55   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+COMMAND     PID     USER   FD   TYPE     DEVICE SIZE/OFF NODE NAME
+cpaneld 3414945 schooztc   23u  IPv4 1816401927      0t0  TCP 199.79.63.83:2082->217.138.198.10:56526 (ESTABLISHED)
+cpaneld 3414967 schooztc   23u  IPv4 1816395499      0t0  TCP 199.79.63.83:2082->217.138.198.10:57022 (ESTABLISHED)
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 180.8% (warning)
+      SSL: SSL error: missing certificate (warning)
+  Varnish: schoolofgreatness.africa is cached. (warning)
+  Varnish: ajahcity.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: courses.schoolofgreatness.africa is cached. (warning)
+  Varnish: uaac.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: alexihama.ajahcity.com.ng is cached. (warning)
+  Varnish: adeniyichristopher.ajahcity.com.ng is cached. (warning)
+  Varnish: spp.ajahcity.com.ng is cached. (warning)
+  Varnish: scog.ajahcity.com.ng is cached. (warning)
+  Varnish: metromedia.ajahcity.com.ng is cached. (warning)
+  Varnish: frankieslist.ajahcity.com.ng is cached. (warning)
+  Varnish: alethiaenterprise.schoolofgreatness.africa is cached. (warning)
+  Varnish: maccherithresources.com.ng.schoolofgreatness.africa is cached. (warning)
+  Varnish: lekkipeninsulapolice.org.schoolofgreatness.africa is cached. (warning)
+  Varnish: pecuniahouse.ajahcity.com.ng is cached. (warning)
+  Varnish: ajahcity.com.ng is cached. (warning)
+  Varnish: uaac.com.ng is cached. (warning)
+  Varnish: lekkipeninsulapolice.org is cached. (warning)
+  Varnish: maccherithresources.com.ng is cached. (warning)
+  Varnish: alethiaenterprise.com is cached. (warning)
+  Varnish: schoolofgreatness.africa.md-47.webhostbox.net is cached. (warning)
+
+
+Snapshot 1
+schooztc 3414945  0.0  0.0 113424 20596 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3414967  0.1  0.0 113732 21032 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3416777 51.2  0.0      0     0 ?        R    10:55   0:06 [php-cgi]
+schooztc 3416873 50.7  0.5 512912 192228 ?       R    10:55   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3417353 44.5  0.2 433676 89564 ?        R    10:55   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3417427 43.3  0.2 432820 86264 ?        R    10:55   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3417458 40.0  0.2 427884 69932 ?        R    10:55   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3414945  0.0  0.0 113424 20596 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3414967  0.0  0.0 113732 21032 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3416777 47.3  0.0      0     0 ?        Z    10:55   0:06 [php-cgi] <defunct>
+schooztc 3416873 46.4  0.5 517008 196192 ?       R    10:55   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3417353 36.0  0.2 434444 91416 ?        R    10:55   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3417427 33.0  0.2 433124 87532 ?        R    10:55   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3417458 27.3  0.2 428804 70876 ?        R    10:55   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3414945  0.0  0.0 113424 20596 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3414967  0.0  0.0 113732 21032 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3416777 47.3  0.0      0     0 ?        Z    10:55   0:06 [php-cgi] <defunct>
+schooztc 3416873 46.4  0.5 517008 196192 ?       R    10:55   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3417353 36.0  0.2 434444 91416 ?        R    10:55   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3417427 33.0  0.2 433124 87532 ?        R    10:55   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3417458 27.3  0.2 428804 70876 ?        R    10:55   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3414945  0.0  0.0 113424 20596 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3414967  0.0  0.0 113732 21032 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3416777 47.3  0.0      0     0 ?        Z    10:55   0:06 [php-cgi] <defunct>
+schooztc 3416873 46.4  0.5 517008 196192 ?       R    10:55   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3417353 36.0  0.2 434444 91416 ?        R    10:55   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3417427 33.0  0.2 433124 87532 ?        R    10:55   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3417458 27.3  0.2 428804 70876 ?        R    10:55   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3414945  0.0  0.0 113424 20596 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3414967  0.0  0.0 113732 21032 ?        S    10:55   0:00 cpaneld - serving 217.138.198.10
+schooztc 3416777 47.3  0.0      0     0 ?        Z    10:55   0:06 [php-cgi] <defunct>
+schooztc 3416873 46.4  0.5 517008 196192 ?       R    10:55   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3417353 36.0  0.2 434444 91416 ?        R    10:55   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3417427 33.0  0.2 433124 87532 ?        R    10:55   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3417458 27.3  0.2 428804 70876 ?        R    10:55   0:00 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  10:55:55 up 179 days, 19:27,  1 user,  load average: 0.02, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 67760498	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67760496	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67760493	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 67760474	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  10:55:55 up 179 days, 19:27,  1 user,  load average: 0.02, 0.00, 0.00
+
+

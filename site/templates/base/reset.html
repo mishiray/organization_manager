@@ -1,0 +1,49 @@
+<!--{extends 'default.html'}-->
+<!--{block name="main-slider"}-->
+<!--{/block}-->
+<!--{block name="main_content"}-->
+    <div class="container top-margined p-5">
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center">
+                <div class="h4"><span>Password Reset</span></div>
+        </div>
+            <div class="col-8 mt-3">
+                <div class="cta_content ">
+                    <form method="post">
+                        <!--{if !empty($key)}-->
+                        <div class="form-group">
+                            <label for="dataNewPass" class="sr-only">New Password *</label>
+                            <input type="password" class="form-control form-control-lg h-100" id="dataNewPass" placeholder="Enter a new password here" value="<!--{$newPass}-->" name="dataNewPass" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dataConfPass" class="sr-only">Confirm Password *</label>
+                            <input type="password" class="form-control form-control-lg h-100" id="dataConfPass" placeholder="Re-enter the new password here" value="<!--{$confPass}-->" name="dataConfPass" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="matches"></div>
+                        </div>
+                        <!--{/if}-->
+                        <div class="form-row">
+                            <!--{if !empty($fail)}-->
+                                <!--{$fail}-->
+                            <!--{/if}-->
+                        </div>
+                        <!--{if !empty($key)}-->
+                        <div class="form-group">
+                            <button class="btn btn-lg btn-primary btn-block" type="submit" name="dataConfirm">Update Changes</button>
+                        </div>
+                        <div class="form-group">
+                            <span class="col-sm-2">OR</span>
+                        </div>
+                        <div class="form-group">
+                            <a class="btn btn-link" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($userIn->usertype) and $userIn->usertype=='admin'}-->admin<!--{else}-->login<!--{/if}-->" >Login</a>
+                        </div>
+                        <!--{/if}-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--{/block}-->
+<!--{block name="general-message"}-->
+<!--{/block}-->

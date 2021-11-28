@@ -1,0 +1,53 @@
+<!--{extends file="dashbard.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard | All Updates </strong>&nbsp;<i class="fa fa-files-o"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row no-gutters justify-content-center">
+	<div class="col-sm-12">
+		<div class="form-group">
+			<!--{if !empty($fail)}-->
+				<!--{$fail}-->
+			<!--{/if}-->
+		</div>
+	</div>
+	<div class="col-md-11">
+		<div class="table-responsive">
+			<!--{if !empty($docuploads)}-->
+			<div id="dataTableId_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+				<!--{include file="paging-top.html"}-->
+				<table class="table table-striped table-hover table-bordered">
+				  <thead class="site-bg-1 text-dark">
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Title</th>
+				      <th scope="col">Category</th>
+				      <th scope="col">Briefing</th>
+				      <th scope="col">Event Control</th>
+				    </tr>
+				  </thead>
+				  <tbody><!--{$numCount=1}-->
+				  	<!--{foreach $docuploads as $docID=> $docupload}-->
+				    <tr>
+				      <td><!--{$numCount}--></td>
+				      <td><!--{$docupload->title}--></td>
+				      <td><!--{$docupload->category|capitalize}--></td>
+				      <td><!--{if !empty($docupload->content_stripe)}--><!--{$docupload->content_stripe}--><!--{else}-->No briefing<!--{/if}--></td>
+				      <td>
+				      	<!--{if !empty($docupload->file) and file_exists($docupload->file)}--><a class="btn btn-outline-success btn-light" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$docupload->file}-->" target="__blank">Download <!--{$docupload->title}--></a><!--{/if}--><br/>
+						<a class="btn btn-sm my-1 d-none btn-info" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/docupload?id=<!--{$docupload->id}-->"><i class="fa fa-ellipsis-v"></i> Detail</a>
+				      </td>
+				    </tr>
+				  	<!--{$numCount=$numCount+1}-->
+					<!--{/foreach}-->
+				  </tbody>
+				</table>
+				<!--{include file="paging-bottom.html"}-->
+			</div>
+			<!--{else}-->
+			<div class="alert alert-primary rounded-0 "><h5 class="alert-heading my-2 mx-2 py-2 px-2 text-center border border-success">You currently have an empty Uploads</h5></div>
+			<!--{/if}-->
+		</div>
+	</div>
+</section>
+<!--{/block}-->

@@ -1,0 +1,184 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Employees Database</h1>
+    <p class="mb-4">Add a new Employee To the Employee Database</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add New Employee</h6>
+      </div>
+      <div class="card-body">
+        <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_employee" enctype="multipart/form-data">
+          <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <div class="row m-4 w-25">
+                    <div class="col">
+                        <p><img style="width: 120px; height: 120px; border-color: #e0e0e0;" id="img_div"/></p>
+                        <p><input type="file" name="file_upload" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+                        <p><label for="file" style="background-color: #007bff!important; cursor: pointer" class="btn btn-primary mt-1">Upload Image (2mb max)</label></p>
+                    </div>
+                        <script>
+                        var loadFile = function(event) {
+                            var image = document.getElementById('img_div');
+                            image.src = URL.createObjectURL(event.target.files[0]);
+                        };
+                        </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="location" class="form-control-label"><!--{$Site.companyName}--> Location</label>
+                      <select name="location" class="form-control" id="location">
+                      <!--{if !empty($zones)}-->
+                        <option disabled selected>Select Location</option>
+                        <!--{foreach $zones as $zone}-->
+                        <option value="<!--{$zone->zone}-->" i="<!--{$zone->prefix}-->"><!--{$zone->zone|ucfirst}--></option>
+                        <!--{/foreach}-->
+                      <!--{else}-->
+                        <option value="null">none</option>
+                      <!--{/if}-->
+                      </select>   
+                    </div> 
+                    <div class="form-group">
+                      <label for="description" class="form-control-label">EmployeeID</label>
+                      <input type="text" class="form-control form-control-user" id="employeeId" value="" readonly required name="id" placeholder="EmployeeID">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="department" class="form-control-label">Department</label>
+                      <select name="department" class="form-control" id="department">
+                      <!--{if !empty($departments)}-->
+                        <!--{foreach $departments as $department}-->
+                        <option value="<!--{$department->id}-->"><!--{$department->name}--></option>
+                        <!--{/foreach}-->
+                      <!--{else}-->
+                        <option value="null">none</option>
+                      <!--{/if}-->
+                      </select>   
+                    </div> 
+                    <div class="form-group">
+                      <label for="manager" class="form-control-label">Select Manager/Supervisor</label>
+                      <select name="manager" class="form-control" id="manager">
+                      <!--{if !empty($managers)}-->
+                        <option selected disabled value="">Choose</option>
+                        <!--{foreach $managers as $manager}-->
+                        <option value="<!--{$manager->employeeid}-->"><!--{$manager->department}--> : <!--{$manager->firstname|ucfirst}--> <!--{$manager->lastname|ucfirst}--></option>
+                        <!--{/foreach}-->
+                      <!--{else}-->
+                        <option value="null">none</option>
+                      <!--{/if}-->
+                      </select>   
+                    </div> 
+                    <div class="form-group">
+                      <label for="description" class="form-control-label">Title</label>
+                          <input type="text" class="form-control form-control-user" id="Title" name="title" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                      <label for="First_Name" class="form-control-label">First Name</label>
+                          <input type="text" class="form-control form-control-user" id="First_Name" name="firstname" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="Middle_Name" class="form-control-label">Middle Name</label>
+                          <input type="text" class="form-control form-control-user" id="Middle_Name" name="middlename" placeholder="Middle Name">
+                    </div>
+                    <div class="form-group">
+                      <label for="SurName" class="form-control-label">Surname</label>
+                          <input type="text" class="form-control form-control-user" id="SurName" name="surname" placeholder="SurName">
+                    </div>
+                    <div class="form-group">
+                      <label for="sex" class="form-control-label">Sex</label>
+                      <select name="sex" id="sex" class="form-control">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="Email" class="form-control-label">Email</label>
+                    <input type="email" class="form-control form-control-user" id="Email" name="email" placeholder="Email">
+                  </div> 
+                  <div class="form-group">
+                    <label for="marital">Marital Status</label> <br>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="single" name="marital" value="single" class="custom-control-input">
+                      <label class="custom-control-label" for="single">Single</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="married" name="marital" value="married" class="custom-control-input">
+                      <label class="custom-control-label" for="married">Married</label>
+                    </div>
+                  </div>
+                    <div class="form-group">
+                      <label class="form-control-label" for="dob">Date of Birth</label>
+                      <input type="date" id="dob" name="dob" class="form-control"  />
+                    </div>
+                    <div class="form-group">
+                      <label for="NIMN" class="form-control-label">NIN</label>
+                          <input type="text" class="form-control form-control-user" id="NIMN" name="nimn" placeholder="NIN">
+                    </div>
+              </div>
+              <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="Address" class="form-control-label">Address</label>
+                          <textarea class="form-control" id="Address" name="address" placeholder="Address"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="country">Nationality</label>
+                      <select id="country" name="country" required class="form-control signup-input">
+                        <!--{if !empty($countries)}-->
+                        <!--{foreach $countries as $country}-->
+                          <option value="<!--{$country->name}-->" <!--{if $userinfo->country==$country->name}-->selected<!--{/if}-->><!--{$country->name|capitalize}--></option>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="state">State</label>
+                      <select id="state" name="state" required class="form-control signup-input">
+                        <!--{if !empty($states)}-->
+                        <!--{foreach $states as $state}-->
+                          <option value="<!--{$state->name}-->" <!--{if $userinfo->state==$state->name}-->selected<!--{/if}-->><!--{$state->name|capitalize}--></option>
+                        <!--{/foreach}-->
+                        <!--{/if}-->
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="citi">City | Local Govt Area</label>
+                      <input type="text" name="city" id="citi" class="form-control signup-input" list="city">
+                    </div>
+                    <div class="form-group">
+                      <label for="Phone" class="form-control-label">Phone</label>
+                          <input type="tel" class="form-control form-control-user" id="Phone" name="phone" placeholder="Phone">
+                    </div>
+                    <div class="form-group">
+                      <label for="Other_Phone" class="form-control-label">Other Phone</label>
+                          <input type="tel" class="form-control form-control-user" id="Other_Phone" name="other_phone" placeholder="Other Phone">
+                    </div>
+              </div>
+            
+            <div class="col">
+              <div class="form-group text-center">
+                <button class="btn btn-success btn-sm rounded-0" type="submit" name="employee">Add Employee</button>
+              </div>
+            </div>
+              <!--{if !empty($fail)}-->
+              <div class="col">
+                <div class="form-group">
+                  <!--{$fail}-->
+                </div>
+              </div>
+              <!--{/if}-->
+              <br>
+              
+            </div>
+        </form>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

@@ -1,0 +1,61 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Employee Disciplinary Form</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow col-6 mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Employee Information</h6>
+  </div>
+  <!--{if !empty($record)}-->
+  <div class="card-body ">
+      <strong>Employee Name: </strong><!--{$record->name}--><br/>
+      <strong>Department: </strong><!--{$record->department}--><br/>
+      <hr>
+      <strong>Manager: </strong><!--{$record->manager}--> <br> 
+      <strong>HR Head: </strong><!--{$record->hr_head}--><br/>
+      <hr>
+      <strong>Warning Date:</strong><!--{$record->warning_date|date_format}--> <br> 
+      <strong>Misconduct Date: </strong><!--{$record->misconduct_date|date_format}--><br/>
+      <hr>
+      <strong>Type of Warning: </strong><!--{$record->warning_type|ucfirst}--><br/>
+      <strong>Reason for Warning:</strong><!--{$record->warning_description|ucfirst}--><br>
+      <strong>Employee Conscent:</strong><!--{$record->employee_concent|ucfirst}--><br> 
+      <hr>
+      <strong>Action Plan: </strong><!--{$record->action_plan}-->
+  </div>
+  
+  <div class="row justify-content-center">
+    <div class="form-group mb-2">
+     <!--{if $userinfo->employeeid == $record->employeeid}-->
+        <button class="btn btn-dark mr-5" type="button" data-toggle="collapse" data-target="#editempDetail" aria-expanded="true" aria-controls="editempDetail" id="editemp"><i class="fa fa-pencil"></i> Add Concent</button>
+      <!--{/if}-->
+    </div>
+  </div>
+
+  <div id="editempDetail" class="mt-2 collapse p-4 row justify-content-center" aria-labelledby="editemp">
+    <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/disciplinary?id=<!--{$record->token}-->" posts="post" enctype="multipart/form-data" method="post" class="w-100">
+      <div class="form-group">
+        <label for="concent" class="form-control-label">Concent/Remark</label>
+        <textarea type="text" class="form-control" rows="4" id="concent" name="concent" placeholder="Concent/Remark"><!--{$record->employee_concent}--></textarea>
+      </div>
+      
+      <div class="form-group">
+        <button class="btn btn-primary rounded-0" type="submit" name="triggers" value="update_concent">Add Concent</button>
+    </div>
+    </form>
+  </div>
+  <!--{else}-->
+  <h2 class="m-4">No Disciplinary Found</h2>
+  <!--{/if}-->
+  <!--{if !empty($fail)}-->
+  <div class="col">
+    <div class="form-group">
+      <!--{$fail}-->
+    </div>
+  </div>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

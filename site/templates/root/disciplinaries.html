@@ -1,0 +1,89 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Disciplinary Records</h1>
+<p class="mb-4">The table contains Disciplinary Records</p>
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Records</h6>
+  </div>
+  <!--{if !empty($disciplinary)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <!--{if $isadmin=='yes'}-->
+            <th>EmployeeId</th>
+            <th>Name</th>
+            <!--{/if}-->
+            <th>Manager</th>
+            <th>HR_Head</th>
+            <th>Date of Warning</th>
+            <th>Reason for Warning</th>
+            <th>Description of Warning</th>
+            <th>Date of Misconduct</th>
+            <th>Employee Conscent</th>
+            <th>Disciplinary Action</th>
+            <th>Date Added</th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <!--{if $isadmin=='yes'}-->
+            <th>EmployeeId</th>
+            <th>Name</th>
+            <!--{/if}-->
+            <th>Manager</th>
+            <th>HR_Head</th>
+            <th>Date of Warning</th>
+            <th>Reason for Warning</th>
+            <th>Description of Warning</th>
+            <th>Date of Misconduct</th>
+            <th>Employee Conscent</th>
+            <th>Disciplinary Action</th>
+            <th>Date Added</th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+          <!--{foreach $disciplinary as $record}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <!--{if $isadmin=='yes'}-->
+            <td><!--{$record->employeeid}--></td>
+            <td><!--{$record->name}--></td>
+            <!--{/if}-->
+            <td><!--{$record->manager}--></td>
+            <td><!--{$record->hr_head}--></td>
+            <td><!--{$record->warning_date|date_format}--></td>
+            <td><!--{$record->warning_type}--></td>
+            <td><!--{$record->warning_description}--></td>
+            <td><!--{$record->misconduct_date|date_format}--></td>
+            <td><!--{$record->employee_concent}--></td>
+            <td> <span class="badge badge-pill <!--{if $record->action_plan=='Discharge'}-->badge-danger<!--{else}--><!--{if $record->action_plan=='Suspension'}-->badge-warning<!--{else}-->badge-info<!--{/if}--><!--{/if}-->"><!--{$record->action_plan}--></span></td>
+            <td><!--{$record->dateadded}--></td>
+            <td> 
+              <a class="btn btn-sm my-1 btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/disciplinary?id=<!--{$record->token}-->">View</a>
+              
+            </td>
+		    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <h2 class="m-4">Disciplinary Records Empty</h2>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

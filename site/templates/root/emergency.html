@@ -1,0 +1,40 @@
+<form class="form w-100" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/emergency?id=<!--{$client->email}-->&p=emergency">
+	<fieldset class="card p-2 mt-2">
+		<legend class="text-center">Emergency Contact Details</legend>
+		<div class="form-group">
+			<label for="title">Title <sup class="text-danger">(*)</sup></label><br/>
+			<label for="mr"><input type="radio" id="mr" name="title" value="mr" <!--{if $emergency->title=='mr'}-->checked<!--{/if}--> required/> Mr</label>
+			<label for="mrs"><input type="radio" id="mrs" name="title" value="mrs" <!--{if $emergency->title=='mrs'}-->checked<!--{/if}--> required/> Mrs</label>
+			<label for="miss"><input type="radio" id="miss" name="title" value="miss" <!--{if $emergency->title=='miss'}-->checked<!--{/if}--> required/> Miss</label>
+			<label for="dr"><input type="radio" id="dr" name="title" value="dr" <!--{if $emergency->title=='dr'}-->checked<!--{/if}--> required/> Dr</label>
+			<label for="other"><input type="radio" id="other" name="title" value="other" <!--{if $emergency->title=='other'}-->checked<!--{/if}--> required/> Other</label>
+		</div>
+		<div class="form-group">
+			<label for="emfname">First Name <sup class="text-danger">(*)</sup></label>
+			<input type="text" id="emfname" name="emfname" value="<!--{if !empty($emergency->firstname)}--><!--{$emergency->firstname}--><!--{/if}-->" class="form-control badge-pill" required/>
+		</div>
+		<div class="form-group">
+			<label for="emsname">Surname <sup class="text-danger">(*)</sup></label>
+			<input type="text" id="emsname" name="emsname" value="<!--{if !empty($emergency->surname)}--><!--{$emergency->surname}--><!--{/if}-->" class="form-control badge-pill" required/>
+		</div>
+		<div class="form-group">
+			<label for="emaddress">Full Address <sub>(including country)</sub></label>
+			<textarea id="emaddress" name="emaddress" rows="3" class="form-control" required><!--{if !empty($emergency->address)}--><!--{$emergency->address}--><!--{/if}--></textarea>
+		</div>
+		<div class="form-group">
+			<label for="emphone">Telephone Number <sub>(including country code)</sub> <sup class="text-danger">(*)</sup></label>
+			<input type="tel" id="emphone" name="emphone" value="<!--{if !empty($emergency->phone)}--><!--{$emergency->phone}--><!--{/if}-->" class="form-control badge-pill" required/>
+		</div>
+		<div class="form-group">
+			<label for="ememail">Email Address</label>
+			<input type="email" id="ememail" value="<!--{$emergency->email}-->" name="ememail" class="form-control badge-pill" required/>
+		</div>
+		<div class="form-group d-none">
+			<label for="emrelation">Relationship To The Player(s)</label>
+			<input type="text" id="emrelation" name="emrelation" value="<!--{if !empty($emergency->relation)}--><!--{$emergency->relation}--><!--{/if}-->" class="form-control badge-pill"/>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-primary btn-block" type="submit" name="emergency">Update Changes</button>
+		</div>
+	</fieldset>
+</form>

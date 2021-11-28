@@ -1,0 +1,335 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<div class="row" style="margin-top: 5rem;" id="payslip">
+	<div class="col">
+		<div id="printable" >
+			<div class="invoice-box" style="
+			/* Used to position the watermark */
+			position: relative;
+			">
+			    <!--{if !$payslip->saved}--> 
+				<!-- Watermark container -->
+				<div style="
+					/* Center the content */
+					align-items: center;
+					display: flex;
+					justify-content: center;
+			
+					/* Absolute position */
+					left: 0px;
+					position: absolute;
+					top: 0px;
+			
+					/* Take full size */
+					height: 100%;
+					width: 100%;
+				">
+					<!-- The watermark -->
+					<div id="removewatermark1" style="
+						/* Text color */
+						color: rgba(0, 0, 0, 0.2);
+			
+						/* Text styles */
+						font-size: 3rem;
+						font-weight: bold;
+						text-transform: uppercase;
+			
+						/* Rotate the text */
+						transform: rotate(-45deg);
+			
+						/* Disable the selection */
+						user-select: none;
+						z-index: 1;
+					">
+						Acknowledge Before Use
+					</div>
+			
+				<!-- Other content -->
+				</div>
+				<!--{/if}-->
+				<div class="table-responsive">
+					<table class="table" cellpadding="0" cellspacing="0">
+						<tr class="heading text-center">
+							<td>PAYSLIP FOR <!--{$payslip->month|ucfirst}--> <!--{$payslip->year}--></td> 
+						</tr>
+						<tr class="top">
+							<td colspan="2">
+								<table>
+									<tr>
+										<td class="title">
+											<img class="w-50 img-responsive" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/logo.png">
+										</td>
+										
+										<td>
+											Payslip ID: <!--{$payslip->token}--><br>
+										
+											Created: <!--{if !empty($payslip->date_added)}--><!--{$payslip->date_added|date_format}--><!--{else}-->February 1, 2015<!--{/if}-->
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						
+						<tr class="information">
+							<td colspan="2">
+								<table width="100%" cellspacing="0">
+									<tr>
+										<td>
+											<a href="mailto:info@<!--{$domainName}-->"><i class="fa fa-envelope"></i> info@<!--{$domainName}--></a><br>
+											<a href="http://<!--{$domainName}-->"><i class="fa fa-globe"></i> <!--{$domainName}--></a>
+										</td>
+										
+										<td>
+											KM 30 Opposite Royal Park Hotel, Ogunfayo, 
+											<br> Eputu Bus Stop, Lagos State
+											 <br>
+											+2349091496533,
++2347030561428
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="card mb-4">
+					<div class="card-body justify-content-center">
+						<table class="table table-responsive" cellpadding="0" width="100%" cellspacing="0">
+							<tr>
+								<td>
+									Name of Employee:
+								</td>
+								<td></td>
+								<td>
+									<!--{$payslip->employee->surname|ucfirst}--> <!--{$payslip->employee->first_name|ucfirst}-->
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Position:
+								</td>
+								<td></td>
+								<td>
+									<!--{$payslip->position|ucfirst}--> 
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Department:
+								</td>
+								<td></td>
+								<td>
+									<!--{$payslip->employee->department|ucfirst}--> 
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Date:
+								</td>
+								<td></td>
+								<td>
+									<!--{$dateNow|date_format}--> 
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<!--{if !$payslip->saved}-->
+					<div id="removewatermark" class="form-group ">
+						<h3 class="bg-danger text-light m-2">
+							Acknowledge before use !!
+						</h4>
+					</div>
+				<!--{/if}-->
+				<table>   
+					<tr class="heading">
+						<td>
+							Earnings 
+						</td>
+						
+						<td>
+							(&#8358;)
+						</td>
+						<td>
+							Deductions 
+						</td>
+						
+						<td>
+							(&#8358;)
+						</td>
+					</tr>
+					
+					<tr class="item">
+						<td>
+							Basic
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->salary)}--><!--{$payslip->salary|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+						<td>
+							PAYEE
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->payee)}--><!--{$payslip->payee|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+					</tr>
+					<tr class="item">
+						<td>
+							Transport
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->transport)}--><!--{$payslip->transport|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+						<td>
+							Pension
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->pension)}--><!--{$payslip->pension|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+					</tr>
+					<tr class="item">
+						<td>
+							Housing
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->housing)}--><!--{$payslip->housing|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+						<td>
+							HMO
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->hmo)}--><!--{$payslip->hmo|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+					</tr>
+					<tr class="item">
+						<td>
+							Lunch
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->lunch)}--><!--{$payslip->lunch|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+						<td>
+							IOU
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->loan)}--><!--{$payslip->loan|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+					</tr>
+					<tr class="item">
+						<td>
+							Commission
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->commission)}--><!--{$payslip->commission|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+						<td>
+							Fines
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->fine)}--><!--{$payslip->fine|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+					</tr>
+					<tr class="item">
+						<td>
+						</td>
+						<td>
+		
+						</td>
+						<td>
+							Welfare
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->welfare)}--><!--{$payslip->welfare|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+					</tr>
+					<tr class="item">
+						<td>
+						</td>
+						<td>
+		
+						</td>
+						<td>
+							Tax
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->tax)}--><!--{$payslip->tax|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+					</tr>
+					<tr class="item">
+						<td>
+						</td>
+						<td>
+		
+						</td>
+						<td>
+							Others
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->others)}--><!--{$payslip->others|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+					</tr>
+					<tr class="total">
+						<td>
+							TOTAL
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->gross_total)}--><!--{$payslip->gross_total|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+						<td>
+							
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->drtotal)}--><!--{$payslip->drtotal|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+					</tr>
+					<tr class="total">
+						<td>
+							NET SALARY
+						</td>
+						<td>
+							&#8358;<!--{if !empty($payslip->net_total)}--><!--{$payslip->net_total|number_format:2}--><!--{else}--> - <!--{/if}-->
+						</td>
+					</tr>
+				</table>
+				<div class="card mb-4">
+					<div class="card-body">
+						<table class="table table-responsive" cellpadding="0" width="100%" cellspacing="0">
+							<tr>
+								<td colspan="2">
+									Name of Bank:
+								</td>
+								<td></td>
+								<td>
+									<!--{$payslip->bankname|ucfirst}-->
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									Account Name:
+								</td>
+								<td></td>
+								<td>
+									<!--{$payslip->accname|ucfirst}--> 
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row text-center justify-content-center m-2">
+		<!--{if $userinfo->employeeid == $payslip->employeeid}-->
+			<!--{if !$payslip->saved}-->
+				<button class="btn btn-info m-4" id="acknowledge">Acknowledge & Save to My Documents</button>
+			<!--{/if}-->
+		<!--{/if}-->
+			<button class="btn btn-success m-4" id="printNow">Print Now</button>
+		</div>
+		<div class="form-group">
+		<!--{if !empty($fail)}-->
+			<!--{$fail}-->
+		<!--{/if}-->
+		</div>
+		</div>
+</div>
+<!--{/block}-->

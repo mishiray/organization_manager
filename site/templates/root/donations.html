@@ -1,0 +1,30 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard |&nbsp;Donations&nbsp;<i class="fa fa-money"></i></strong></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row justify-content-center">
+	<!--{if !empty($donations)}-->
+    <!--{foreach $donations as $donation}-->
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header">
+              <span class="font-weight-bold">Name: </span> <!--{$donation->firstname}--> <!--{$donation->lastname}--> 
+          </div>
+          <div class="card-body">
+            <h6 class="card-title"><span class="font-weight-bold">Amount: </span> $<!--{$donation->amount}--></h6>
+            <h6 class="card-title"><span class="font-weight-bold">Email: </span> <!--{$donation->email}--></h6>
+            <h6 class="card-title"><span class="font-weight-bold">Mobile: </span> <!--{$donation->mobile}--></h6>
+            <h6 class="card-title"><span class="font-weight-bold">City: </span><!--{$donation->city}--></h6>
+            <h6 class="card-title"><span class="font-weight-bold">State: </span> <!--{$donation->state}--></h6>
+            <h6 class="card-title"><span class="font-weight-bold">Date: </span><!--{$donation->datedonated|date_format}--></h6>
+          </div>
+        </div>
+      </div>
+    <!--{/foreach}-->
+    <div class="col-sm-12"><!--{include file="paging-bottom.html"}--></div>
+  <!--{else}-->
+  <div class="col-sm-12 alert alert-info">No record found.</div>
+  <!--{/if}-->
+</section>
+<!--{/block}-->

@@ -1,0 +1,63 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard | Admin </strong>&nbsp;<i class="fa fa-users"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<h2>ADMINS</h2>
+<section class="row">
+	<div class="col-sm-12"><a class="btn btn-success btn-sm" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_official"><i class="fa fa-plus"></i> New Admin</a></div>
+</section>
+	<!--{if !empty($err)}-->
+	<!--{$err}-->
+	<!--{/if}-->
+<section class="jumbotron text-center mt-2">
+	<div class="table-responsive">
+		<!--{if !empty($officials)}-->
+		<div id="dataTableId_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+			<!--{include file="paging-top.html"}-->
+			<table class="table table-striped table-hover table-bordered">
+			  <thead class="thead-light">
+			    <tr>
+			      <th scope="col">#</th>
+				  <th scope="col">Admin Id</th>
+			      <th scope="col">Staff Id</th>
+			      <th scope="col">Names</th>
+			      <th scope="col">Email</th>
+			      <th scope="col">Phone Number</th>
+			      <th scope="col">Staff Type</th>
+			      <th scope="col">Dashboard Role</th>
+			      <th scope="col">Date Added</th>
+			      <th scope="col" class="d-none">Status</th>
+			      <th scope="col"></th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	<!--{$numCount=1}-->
+			  	<!--{foreach $officials as $official}-->
+			    <tr>
+			      <td><!--{$numCount}--></td>
+				  <td><!--{$official->username}--></td>
+			      <td><!--{$official->username}--></td>
+			      <td><!--{$official->firstname}--> <!--{$official->middlename}--> <!--{$official->lastname}--></td>
+			      <td><!--{$official->email}--></td>
+			      <td><!--{$official->phone}--></td>
+			      <td><!--{$official->usercat|capitalize}--></td>
+			      <td><!--{$urole[$official->userrole]}--></td>
+			      <td><!--{$official->dateadded}--></td>
+			      <td class="d-none"><!--{if $official->active==true}--><span class="badge badge-success">Active</span><!--{else}--><span class="badge badge-danger">Blocked</span><!--{/if}--></td>
+			      <td>
+			      	<a class="btn btn-sm btn-success"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/edit_admins?id=<!--{$official->email}-->"><i class="fa fa-ellipsis-v"></i> More</a>
+			      </td>
+			    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+				<!--{/foreach}-->
+			  </tbody>
+			</table>
+			<!--{include file="paging-bottom.html"}-->
+		</div>
+		<!--{else}-->
+		<div class="alert alert-warning"><h3 class="alert-heading">No registered Admin yet</h3></div>
+		<!--{/if}-->
+	</div>
+</section>
+<!--{/block}-->

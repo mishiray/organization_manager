@@ -1,0 +1,99 @@
+<!--{extends 'root.html'}-->
+<!--{block name="content"}-->
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Payment Portal</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Confirm Details</h6>
+    </div>
+    <div class="card-body">
+        <section>
+            <form action="" method="POST">
+            <div class="row justify-content-center">
+                
+            <!--{if !empty($subscription)}-->
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+
+                        <div class="form-group">
+                        <h5 class="text-primary py-2 ">Name: <!--{$subscription->surname|ucfirst}--> <!--{$subscription->firstname|ucfirst}--></h5>
+                        <h5 class="text-primary py-2 ">Property Name: <!--{$subscription->product}--></h5>
+                        <h5 class="text-primary py-2 ">Number of Plots: <!--{$subscription->plot_number}--></h5>
+                        <h5 class="text-primary py-2 ">Plot size: <!--{$subscription->plot_sqm}--></h5>
+                        </div>
+                        <div class="form-group">
+                            <h5 class="text-primary py-2 ">Email: <!--{$subscription->email}--></h5>
+                            <input type="hidden" name="email" id="email" placeholder="Enter email" value="<!--{$subscription->email}-->" class="form-control form-control-sm" disabled>
+                        </div>
+                        <div class="form-group">
+                            <h4 class="text-success font-weight-bold">Amount: <span class="spanCurrency"><!--{$sessions->amount}--></span></h4>
+                        </div>
+                        <div class="form-group payment-status">
+                            <!--{if !empty($fail)}-->
+                                <!--{$fail}-->
+                            <!--{/if}-->
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/subscriptions" class="btn btn-sm btn-danger float-left" >Cancel</a>
+                        <button type="submit" name="payBtn" class="btn btn-sm btn-success float-right" value="paystack" id="payBtn"><i class="fa fa-credit-card"></i>Proceed</button>
+                    </div>
+                </div>
+            </div>
+            <!--{else}-->
+            <!--{if !empty($investment)}-->
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h3>Investment Payment Gateway</h3>
+                        <small>Please confirm your payment</small>
+                        <div class="form-group">
+                        <h5 class="text-primary py-2 ">Name: <!--{$investment->surname}--> <!--{$investment->firstname}--></h5>
+                        <h5 class="text-primary py-2 ">Property Name: <!--{$investment->product}--></h5>
+                        <h5 class="text-primary py-2 ">ROI: <!--{$investment->detail->roi}--></h5>
+                        </div>
+                        <div class="form-group">
+                            <h5 class="text-primary py-2 ">Email: <!--{$investment->email}--></h5>
+                            <input type="hidden" name="email" id="email" placeholder="Enter email" value="<!--{$investment->email}-->" class="form-control form-control-sm" disabled>
+                        </div>
+                        <div class="form-group">
+                            <h4 class="text-success font-weight-bold">Amount: <span class="spanCurrency"><!--{$sessions->amount}--></span></h4>
+                        </div>
+                        <div class="form-group payment-status">
+                            <!--{if !empty($fail)}-->
+                                <!--{$fail}-->
+                            <!--{/if}-->
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/investment_details" class="btn btn-sm btn-danger float-left" >Cancel</a>
+                        <button type="submit" name="payBtn" class="btn btn-sm btn-success float-right" value="paystack" id="payBtn"><i class="fa fa-credit-card"></i>Proceed</button>
+                    </div>
+                    <div class="card-footer">
+                        
+                    </div>
+                </div>
+            </div>
+            <!--{else}-->
+                <div class="row justify-content-center absolute-alert">
+                <div class="col-md mt-4 alert alert-danger " role="alert"><h3>Error: Token not found, please contact the administrator</h3>                         
+            <!--{/if}-->
+            <!--{/if}-->
+            </div>
+            </form>
+        </section>
+    </div>
+</div>
+<!--{/block}--> 
+<!--{block name="general-message"}-->
+    <!--{if !empty($fail)}-->
+    <div class="row justify-content-center absolute-alert">
+        <div class="col-md-6 alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><h3>Error:</h3> 
+            <!--{$fail}-->
+        </div>
+    </div>
+    <!--{/if}-->
+<!--{/block}-->

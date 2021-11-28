@@ -1,0 +1,150 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Weekly/Monthly Summary Report Records</h1>
+<p class="mb-4">The table contains Weekly/Monthly Summary Report Records</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Records</h6>
+  </div>
+  <div class="card-body">
+    <div class="col-lg-6 bg-primary pt-2 m-4">
+      <form id="mainForm" class="d-flex" method="POST" enctype="multipart/form-data" name="reportsform">
+        <div class="form-group">
+          <label class="text-light" for="Year">Enter Year</label>
+              <select class="form-control" id="Year"  name="year">
+                <!--{for $foo=2010 to 3000}-->
+                  <option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+                    <!--{$foo}-->
+                  </option>
+                <!--{/for}-->
+              </select>
+        </div>
+        <div class="form-group">
+          <label class="text-light" for="month">Select Month</label>
+              <select class="form-control" id="month"  name="month">
+                <option value="">All</option>
+                <!--{foreach $months as $month}-->
+                  <option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+                    <!--{$month}-->
+                  </option>
+                <!--{/foreach}-->
+              </select>
+        </div>
+        <div class="form-group">
+          <label class="text-light" for="week">Select Week</label>
+              <select class="form-control" id="week"  name="week">
+                <option value="">All</option>
+                <option <!--{if !empty($filter->week) && $filter->week == 1 }--> selected <!--{/if}-->  value="1">
+                  Week 1
+                </option>
+                <option <!--{if !empty($filter->week) && $filter->week == 2 }--> selected <!--{/if}-->  value="2">
+                  Week 2
+                </option>
+                <option <!--{if !empty($filter->week) && $filter->week == 3 }--> selected <!--{/if}-->  value="3">
+                  Week 3
+                </option>
+                <option <!--{if !empty($filter->week) && $filter->week == 4}--> selected <!--{/if}-->  value="4">
+                  Week 4
+                </option>
+                <option <!--{if !empty($filter->week) && $filter->week == 5}--> selected <!--{/if}-->  value="5">
+                  Week 5
+                </option>
+              </select>
+        </div>
+        <div class="form-group d-flex"> 
+          <button type="submit" class="mt-2 btn btn-success" name="triggers" id="reports" value="reports">OK</button>
+       </div>      
+     </form>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <!--{if !empty($summary_reports)}-->
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Branch</th>
+            <th>Name</th>
+            <th>Team</th>
+            <th>Date</th>
+            <th>Period</th>
+            <th>Status <!approved by lawyer, confirmed by md, declined by lawyer, rejected by md, deleted by both on priority bases, pending></th>
+				    <th>Date Added</th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <th>Branch</th>
+            <th>Name</th>
+            <th>Team</th>
+            <th>Date</th>
+            <th>Period</th>
+            <th>Status <!approved by lawyer, confirmed by md, declined by lawyer, rejected by md, deleted by both on priority bases, pending></th>
+				    <th>Date Added</th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+          <!--{foreach $summary_reports as $record}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <td><!--{$record->branchid}--></td>
+            <td><!--{$record->name->surname|ucfirst}--> &nbsp; <!--{$record->name->first_name|ucfirst}--></td>
+            <td><!--{$record->team}--></td>
+            <td><!--{$record->date|date_format}--></td>
+            <td><!--{$record->period}--></td>
+            <td>
+              <!--{if in_array($userinfo->userrole, array('level3','level2')) }-->
+                  <!--{if $record->status==0}--><span class="badge badge-pill badge-warning">submited to manager</span>
+                  <!--{elseif $record->status==1}--><span class="badge badge-pill badge-info">approved by manager</span>
+                  <!--{elseif $record->status==2}--><span class="badge badge-pill badge-success">fully manager</span>
+                  <!--{elseif $record->status==3}--><span class="badge badge-pill badge-danger">declined by manager</span>
+                  <!--{elseif $record->status==4}--><span class="badge badge-pill badge-danger">fully declined</span>
+                  <!--{/if}-->
+              <!--{elseif in_array($userinfo->userrole, array('level5'))}-->
+                  <!--{if $record->status==0}--><span class="badge badge-pill badge-warning">pending report</span>
+                  <!--{elseif $record->status==1}--><span class="badge badge-pill badge-info">submitted to MD</span>
+                  <!--{elseif $record->status==2}--><span class="badge badge-pill badge-success">approved by MD</span>
+                  <!--{elseif $record->status==3}--><span class="badge badge-pill badge-danger">declined</span>
+                  <!--{elseif $record->status==4}--><span class="badge badge-pill badge-danger">declined by MD</span>
+                  <!--{/if}-->
+              <!--{elseif in_array($userinfo->userrole, array('level1'))}-->
+                  <!--{if $record->status==0}--><span class="badge badge-pill badge-info">pending report</span>
+                  <!--{elseif $record->status==1}--><span class="badge badge-pill badge-info">pending report</span>
+                  <!--{elseif $record->status==2}--><span class="badge badge-pill badge-success">approved</span>
+                  <!--{elseif $record->status==3}--><span class="badge badge-pill badge-danger">declined by manager</span>
+                  <!--{elseif $record->status==4}--><span class="badge badge-pill badge-danger">declined</span>
+                  <!--{/if}-->
+              <!--{else}-->
+                  <!--{if $record->status==0}--><span class="badge badge-pill badge-warning">pending (supervisor)</span>
+                  <!--{elseif $record->status==1}--><span class="badge badge-pill badge-success">approved (by manager)</span>
+                  <!--{elseif $record->status==2}--><span class="badge badge-pill badge-success">approved (by MD)</span>
+                  <!--{elseif $record->status==3}--><span class="badge badge-pill badge-danger">declined (by manager)</span>
+                  <!--{elseif $record->status==4}--><span class="badge badge-pill badge-danger">declined (by MD)</span>
+                  <!--{/if}-->
+              <!--{/if}-->
+          </td>
+            <td><!--{$record->dateadded|date_format}--></td>
+            <td>
+              <a class="btn btn-sm btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/summary_report?id=<!--{$record->reportid}-->"> Detail</a>
+          </td>
+		    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+      <!--{else}-->
+      <h2 class="m-4">Summary Reports Records Empty</h2>
+      <!--{/if}-->
+    </div>
+  </div>
+</div>
+<!--{/block}-->

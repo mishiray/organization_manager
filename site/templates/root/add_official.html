@@ -1,0 +1,131 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong> Staffs&nbsp;<i class="fa fa-users"></i>&nbsp;| New Staff&nbsp;<i class="fa fa-user"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<form class="form" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_official" enctype="multipart/form-data" style="width: 100%;">
+	<section class="row justify-content-center">
+		<div class="col-md-10 border border-success rounded pt-2">
+			<div class="card card-heading pt-3 pb-3">
+				<div class="text-center">
+					<div class="img-scope">
+						<label for="img-upload">
+							<img class="img img-thumbnail" id="dataImg" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/user-icon.png">
+							<data class="text-center jsonly">Update Photo</data>
+						</label>
+						<input type="file" accept="image/*" id="img-upload" name="img_upload"/>
+						<noscript><button class="text-center" id="ppUpload" name="ppUpload" type="button">Upload Photo</button></noscript>
+					</div>
+				</div>
+			</div>
+			<div class="card card-body mt-3 mb-3">
+				<div class="col-md-12">
+					<!--{if !empty($fail)}-->
+						<!--{$fail}-->
+					<!--{/if}-->
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-md-6">
+						<fieldset>
+							<legend>Personal Information</legend>
+							<div class="form-group">
+								<label for="username">Username</label>
+								<input type="text" id="username" name="username" class="form-control input-block" required/>
+							</div>
+							<div class="form-group">
+								<label for="firstName" class="label">First Name</label>
+								<input type="text" id="firstName" name="firstname" class="form-control input-block" required />
+							</div>
+							<div class="form-group">
+								<label for="lastName">Last Name</label>
+								<input type="text" id="lastName" name="lastname" class="form-control input-block" required/>
+							</div>
+							<div class="form-group">
+								<label for="lastName">Other Names</label>
+								<input type="text" id="otherName" name="othername" class="form-control input-block"/>
+							</div>
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input type="email" id="email" name="email" class="form-control text-secondary input-block" required/>
+							</div>
+							<div class="form-group">
+								<label for="password">Staff's Login Password</label>
+								<input type="password" id="password" name="password" class="form-control text-secondary input-block" required/>
+								<span class="small cpassword"></span>
+							</div>
+							<div class="form-group">
+								<label for="phone">Phone Number</label>
+								<input type="tel" id="phone" name="phone" class="form-control input-block" required/>
+							</div>
+							<div class="form-group">
+								<label for="gender">Gender</label>
+								<select name="gender" class="form-control" id="gender" required>
+									<option value="female">Female</option>
+									<option value="male">Male</option>
+								</select>
+							</div>
+						</fieldset>
+					</div>
+					<div class="col-md-6">
+						<fieldset>
+							<legend>Address Information</legend>
+							<div class="form-group">
+								<label for="address1">Address</label>
+								<textarea id="address1" name="address1" rows="3" class="form-control" required></textarea>
+							</div>
+							<div class="form-group">
+								<label for="address2">Address</label>
+								<textarea id="address2" name="address2" rows="3" class="form-control"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="country">Nationality</label>
+								<select id="country" name="country" required class="form-control signup-input">
+									<!--{if !empty($countries)}-->
+									<!--{foreach $countries as $country}-->
+										<option value="<!--{$country->name}-->"><!--{$country->name|capitalize}--></option>
+									<!--{/foreach}-->
+									<!--{/if}-->
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="state">State of Origin</label>
+								<select id="state" name="state" required class="form-control signup-input">
+									<!--{if !empty($states)}-->
+									<!--{foreach $states as $state}-->
+										<option value="<!--{$state->name}-->"><!--{$state->name|capitalize}--></option>
+									<!--{/foreach}-->
+									<!--{/if}-->
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="citi">City | Local Govt Area</label>
+								<input type="text" name="city" id="citi" class="form-control signup-input" list="city">
+								<datalist id="city">
+									<!--{if !empty($cities)}-->
+									<!--{foreach $cities as $city}-->
+										<option value="<!--{$city->name}-->"><!--{$city->name|capitalize}--></option>
+									<!--{/foreach}-->
+									<!--{/if}-->
+								</datalist>
+							</div>
+							<div class="form-group"><hr/></div>
+							<div class="form-group">
+								<label for="userrole">Dashboard Role</label>
+								<select id="userrole" name="userrole" required class="form-control signup-input">
+									<option value="level1">BDM</option>
+									<option value="level2">Manager</option>
+									<option value="level3">Supervisor</option>
+									<option value="level4">Employee</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<button class="btn btn-success btn-block" type="submit" name="add_official">Add Staff</button>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</form>
+<!--{/block}-->

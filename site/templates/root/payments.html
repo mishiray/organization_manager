@@ -1,0 +1,91 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Payments Table</h1>
+<p class="mb-4">The table contains payments made</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Payments</h6>
+  </div>
+  <!--{if !empty($payments)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Transaction Id</th>
+            <th>Paid By</th>
+            <th>Amount</th>
+            <th>Purpose</th>
+            <th>Transaction Date</th>
+            <th>Gate Way</th>
+            <th>Status</th>
+            <th>Proof</th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <th>Transaction Id</th>
+            <th>Paid By</th>
+            <th>Amount</th>
+            <th>Purpose</th>
+            <th>Transaction Date</th>
+            <th>Gate Way</th>
+            <th>Status</th>
+            <th>Proof</th>
+            <th class="d-none" scope="col"></th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+			  	<!--{foreach $payments as $payment}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <td>
+              <strong><!--{$payment->transid1}--></strong>
+            </td>
+            <td>
+              <!--{$payment->paidby}-->
+            </td>
+            <td>
+              &#8358;<!--{$payment->amount|number_format:2}-->
+            <td>
+              <!--{$payment->purpose}-->
+            </td>
+            <td>
+              <!--{$payment->transdate}-->
+            </td>
+            <td>
+              <!--{$payment->gateway}-->
+            </td>
+            <td>
+                <span class="badge badge-<!--{if $payment->status =='1'}-->success<!--{else}-->warning<!--{/if}-->"><!--{if $payment->status=='1'}-->Success<!--{else}-->Failed<!--{/if}--></span></td>
+            </td>
+            <td>
+              <!--{if !empty($payment->proof)}-->
+              <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$payment->proof}-->" target="_blank" >Click to view</a>
+              <!--{else}-->
+              <a>No Proof</a>
+              <!--{/if}-->
+            </td>
+			      <td>
+			      	<a class="btn btn-sm my-1 btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/update_payment?id=<!--{$payment->id}-->"><i class="fa fa-ellipsis-v"></i> Detail</a>
+			      </td>
+			    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

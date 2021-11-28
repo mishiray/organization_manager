@@ -1,0 +1,785 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Agric Subscription</h1>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header bg-gradient-success text-light py-3">
+  <h6 class="m-0 font-weight-bold float-left text-light">Subscription Details For</h6><span class="text-center"> <h1><!--{$subs->surname|ucfirst}--> <!--{$subs->firstname|ucfirst}--> <!--{$subs->middlename|ucfirst}--></h1> </span>  
+  </div>
+  <!--{if !empty($subs)}-->
+  <div class="card-body">
+    <h2 class="bg-dark text-light">
+      Reference : <!--{$subs->token}--> 
+    </h2>
+    <h4>
+      <!--{if $subs->paid =='1'}-->
+      <span class="badge badge-success">PAID</span>
+      <!--{else}-->
+      <!--{if $subs->total_paid>0}-->
+        <span class="badge badge-info">Initiated Payment</span>
+      <!--{else}-->
+        <span class="badge badge-warning">NOT PAID</span>
+      <!--{/if}-->
+    <!--{/if}-->
+  </h4>   
+  </div> 
+  
+  <div class="row card-body">  
+     
+    <div class="col-lg-12">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex bg-danger flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-light">Client Information</h6>
+        </div>
+        </div>
+    </div>
+    
+    <!--{if !empty($subs->img_filename)}-->
+    <div class="col-lg-6 ">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex bg-primary flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-light">Profile Photo</h6>
+        </div>
+        <div class="card-body text-center">
+          <img class="w-50" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$subs->img_filename}-->" alt="" srcset="">
+        </div>
+      </div>
+    </div> 
+    <!--{/if}-->
+    <div class="col-lg-6 ">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex bg-warning flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-light">Personal Details</h6>
+        </div>
+        <div class="card-body">
+            <p> <strong>Title: </strong><!--{$subs->title}--> </p>
+            <p> <strong>First Name: </strong><!--{$subs->firstname}--> </p>
+            <p> <strong>Last Name: </strong><!--{$subs->surname}--> </p>
+            <p> <strong>Middle Name: </strong><!--{$subs->middlename}--> </p>
+            <p> <strong>Gender: </strong><!--{$subs->sex}--> </p>
+            <p> <strong>Date of Birth: </strong><!--{$subs->dob}--> </p>
+            <!--{if $subs->marital_status=='married'}-->
+            <hr>
+            <h4 class="bg-primary p-1 text-light">Spouse Info</h4>
+            <p> <strong>Spouse First Name: </strong><!--{$subs->spouse_firstname}--> </p>
+            <p> <strong>Spouse Last Name: </strong><!--{$subs->spouse_surname}--> </p>
+            <!--{/if}-->
+          </div>
+        </div>
+  </div>
+  <div class="col-lg-6 ">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex bg-warning flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-light">Contact Details</h6>
+      </div>
+      <div class="card-body">
+          <p> <strong>Mobile: </strong><!--{$subs->mobile}--> </p>
+          <p> <strong>Phone: </strong><!--{$subs->phone}--> </p>
+          <p> <strong>Email: </strong><!--{$subs->email}--> </p>
+        </div>
+      </div>
+</div>
+  <div class="col-lg-6 ">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex bg-danger flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-light">Address Details</h6>
+      </div>
+      <div class="card-body">
+              <p> <strong>Address: </strong><!--{$subs->address}--> </p>
+              <p> <strong>City: </strong><!--{$subs->city}--> </p>
+              <p> <strong>LGA: </strong><!--{$subs->lga}--> </p>
+              <p> <strong>State: </strong><!--{$subs->state}--> </p>
+              <p> <strong>Country: </strong><!--{$subs->country}--> </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 ">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3 d-flex bg-success flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-light">Next Of Kin Details</h6>
+      </div>
+      <div class="card-body">
+              <p> <strong>First Name: </strong><!--{$subs->nok_firstname}--> </p>
+              <p> <strong>Last Name: </strong><!--{$subs->nok_surname}--> </p>
+              <p> <strong>Middle Name: </strong><!--{$subs->nok_middlename}--> </p>
+              <p> <strong>Phone: </strong><!--{$subs->nok_phone}--> </p>
+              <p> <strong>Address: </strong><!--{$subs->nok_address}--> </p>
+      </div>
+    </div>
+  </div>        
+  </div>
+  
+  <div class="row justify-content-center card-body">  
+    <div class="col-lg-12">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex bg-danger flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-light">Property Information</h6>
+        </div>
+        </div>
+    </div>
+    <div class="col-lg-6 ">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex bg-primary flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-light">Property Details</h6>
+        </div>
+      <div class="card-body">
+        <!--{if $subs->status ==1}-->
+          <!--{if $subs->paid == 0}-->
+          <p> <strong>Date Span: </strong><!--{$subs->datediff}--> day(s) </p><br/>
+          <p> <strong>Months: </strong><!--{$subs->months}--> month(s) </p>
+            <!--{if $subs->months <= 11 && $subs->total_paid < $subs->to_have_paid}-->
+            <h5><span class="badge badge-warning">Payment Due For This Month</span></h5>
+            <!--{/if}-->
+            <!--{if $subs->months >= 11 && $subs->total_paid < $subs->to_have_paid && $subs->paid !='1'}-->
+            <h5><span class="badge badge-danger">Payment Over Due</span></h5>
+            <!--{/if}-->
+          <!--{/if}-->
+          <!--{/if}-->
+              <p> <strong>Reference: </strong><!--{$subs->token}--> </p>
+              <hr>
+              <p> <strong>Name: </strong><!--{$subs->product}--> </p>
+              <p> <strong>Plot Type: </strong><!--{$subs->plot_type}--> </p>
+              <p> <strong>Plot Number: </strong><!--{$subs->plot_number}--> </p>
+              <p> <strong>Plot Square Meter: </strong><!--{$subs->plot_sqm}--> </p>
+        </div>
+      </div>
+    </div>  
+    <div class="col-lg-6 ">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3 d-flex bg-info flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-light">Payment Details</h6>
+          </div>
+          <div class="card-body">
+            <p> <strong>Payment Type: </strong><!--{$subs->payment_type}--> </p>
+            <p> <strong>Initial Percentage: </strong><!--{$subs->initial_percent}-->%</p>
+            <p> <strong>Payment Duration: </strong><!--{$subs->duration}--> month(s)</p>
+								<div class="table-responsive">
+									<table class="table table-bordered" id="" width="100%" cellspacing="0">
+										<thead>
+											<tr>
+												<th>SN</th>
+												<th>Item & Description</th>
+												<th>Price</th>
+												<th>Qty</th>
+												<th>Item Discount</th>
+												<th>Total</th>
+											</tr>
+										</thead>
+										<tbody>
+											<!--{$numCount=1}-->
+                      <!--{if !empty($invoices)}-->
+                        <!--{foreach $invoices as $invoice}-->
+                        <tr>
+                        <td><!--{$numCount}--></td>
+                        <td><!--{$invoice->item}--></td>
+                        <td>&#8358;<!--{$invoice->price|number_format:2}--></td>
+                        <td><!--{$invoice->quantity}--></td>
+                        <td>&#8358;<!--{$invoice->discount|number_format:2}--></td>
+                        <td>&#8358;<!--{$invoice->total|number_format:2}--></td>
+                        </tr>
+                        <!--{$numCount=$numCount+1}-->
+                        <!--{/foreach}-->
+                      <!--{/if}-->
+										</tbody>
+									</table>
+								</div>
+          </div>
+          <div class="card-body d-none">
+            
+            <p> <strong>Payment Type: </strong><!--{$subs->payment_type}--> </p>
+            <p> <strong>Initial Percentage: </strong><!--{$subs->initial_percent}-->%</p>
+            <p> <strong>Payment Duration: </strong><!--{$subs->duration}--> month(s)</p>
+            <p> <strong>Total Amount: </strong>&#8358;<!--{$subs->total_amount|number_format:2}--> </p> </p>
+            <p> <strong>Total Paid:</strong>&#8358;<!--{$subs->total_paid|number_format:2}--> </p>
+            <p> <strong>Outstanding Balance: </strong>&#8358;<!--{$subs->outstanding|number_format:2}--> </p>
+            
+            <hr>
+          </div>
+        </div>
+    </div>  
+
+    <div class="col-lg-6 ">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex bg-success flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-light">Refree Details</h6>
+        </div>
+        <div class="card-body">
+                <p> <strong>Full Name: </strong><!--{$subs->ref_fullname}--> </p>
+                <p> <strong>Phone: </strong><!--{$subs->ref_phone}--> </p>
+                <p> <strong>Email: </strong><!--{$subs->ref_email}--> </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 ">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3 d-flex bg-info flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-light">Client Memo</h6>
+          </div>
+          <div class="card-body memo_client">
+            <div class="">
+              <ul id="List">
+                <!--{if !empty($memo_log)}-->
+                  <!--{foreach $memo_log as $memo}-->
+                   <li class="p-2"><!--{$memo->content}--> <span class="float-right p-2">Added By:<!--{$memo->addedbyName}--> <!--{$memo->dateadded|date_format:"%d/%m/%y %I:%M %p"}--></span> </li>
+                  <!--{/foreach}-->
+                <!--{/if}-->  
+              </ul>
+            </div>
+            <form action="" method="post">
+              <div class="form-group p-2">
+                <textarea type="text" id="content" name="content" class="form-control" rows="2" placeholder="Update Log" required></textarea>                
+              </div>
+              <div class="form-group p-2">
+                <button class="btn btn-info" type="submit" name="triggers" value="update_log">Update</button>
+              </div>
+            </form>
+          </div>
+        </div>
+    </div>            
+    
+        <div class="col-lg-12"> 
+    <!--{if !empty($payment)}-->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3 d-flex bg-info flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-light">Client Payments</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>SN</th>
+                    <th>Transaction Id</th>
+                    <th>Paid By</th>
+                    <th>Amount</th>
+                    <th>Purpose</th>
+                    <th>Transaction Date</th>
+                    <th>Gate Way</th>
+                    <th>Status</th>
+                    <th>Proof</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>SN</th>
+                    <th>Transaction Id</th>
+                    <th>Paid By</th>
+                    <th>Amount</th>
+                    <th>Purpose</th>
+                    <th>Transaction Date</th>
+                    <th>Gate Way</th>
+                    <th>Status</th>
+                    <th>Proof</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  <!--{$numCount=1}-->
+                  <!--{foreach $payment as $pay}-->
+                  <tr>
+                    <td><!--{$numCount}--></td>
+                    <td>
+                      <strong><!--{$pay->transid1}--></strong>
+                    </td>
+                    <td>
+                      <!--{$pay->paidby}-->
+                    </td>
+                    <td>
+                      <strong>Amount: </strong><!--{$pay->amount}--> <br>
+                    </td>
+                    <td>
+                      <!--{$pay->purpose}-->
+                    </td>
+                    <td>
+                      <!--{$pay->transdate}-->
+                    </td>
+                    <td>
+                      <!--{$pay->gateway}-->
+                    </td>
+                    <td>
+                        <span class="badge badge-<!--{if $pay->status =='1'}-->success<!--{else}-->warning<!--{/if}-->"><!--{if $pay->status=='1'}-->Success<!--{else}-->Failed<!--{/if}--></span></td>
+                    </td>
+                    <td>
+                      <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$pay->proof}-->"><!--{$pay->proof}--></a>
+                    </td>
+                  </tr>
+                  <!--{$numCount=$numCount+1}-->
+                <!--{/foreach}-->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    <!--{else}-->
+    <div class="alert alert-warning"><h3 class="alert-heading">No Payments Made</h3></div>
+    <!--{/if}-->
+
+    </div>
+    
+    <!--{if $subs->status >= 0}-->
+    <div class="col-12 m-4">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th colspan="4">PAYMENT SCHEDULE</th>
+            </tr>
+            <tr>
+              <th>SN</th>
+              <th>Installment Months</th>
+              <th>Amount to Pay</th>
+              <th class="d-none">Total Amount Expected Paid</th>
+              <th>Payment Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--{$numCount=1}-->
+            <!--{if !empty($payment_plan)}-->
+            <!--{foreach $payment_plan as $plan}-->
+            <tr>
+              <td><!--{$numCount}--></td>
+              
+              <td>
+                <!--{$plan->month|ucfirst}-->
+              </td>
+              <td>
+                &#8358;<!--{$plan->expected|number_format:2}-->
+              </td>
+              <td class="d-none">
+                &#8358;<!--{$plan->total_expected|number_format:2}-->
+              </td>
+              <td>
+                <!--{if $plan->total_paid >= $plan->total_expected}--> PAID <!--{else}--> NOT PAID <!--{/if}-->
+              </td>
+            </tr>
+            <!--{$numCount=$numCount+1}-->
+          <!--{/foreach}-->
+          <!--{/if}-->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!--{/if}-->
+    <div class="form-row">
+      <!--{if !empty($fail)}-->
+          <!--{$fail}-->
+      <!--{/if}-->
+    </div>
+    
+    <div class="row card-body justify-content-center m-4">
+              <div class="form-group  mb-2">
+                <a class="btn px-4 btn-info mr-3" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/agric_subscriptions">Back</a>
+                <a class="btn px-4 btn-success mr-3" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/invoice?id=<!--{$subs->token}-->">Invoice</a>
+                <button class="btn btn-warning d-none mr-3" type="button" data-toggle="collapse" data-target="#editsubscDetail" aria-expanded="true" aria-controls="editsubscDetail" id="editSubsc"><i class="fa fa-pencil"></i> Edit Subscription</button>
+                <!--{if $subs->datediff < $limit && $subs->status != 6}-->
+                <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#editsubDetail" aria-expanded="true" aria-controls="editsubDetail" id="editSub"><i class="fa fa-pencil"></i> Change Subscription</button>
+                <!--{/if}-->
+              </div>
+    </div>
+    <div id="editsubscDetail" class="mt-2 collapse row justify-content-center" aria-labelledby="editsubscDetail">
+      <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_agric_subscription?id=<!--{$subs->reg_id}-->" enctype="multipart/form-data" class="w-100">
+        <div class="form-group d-none m-4">
+            <p>Are you sure you want to edit this subscription?</p>
+              <div class="row">
+                  <div class="col-3">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <select name="title" id="title" class="form-control">
+                            <option value="mr">MR</option>
+                            <option value="mrs">MRS</option>
+                            <option value="miss">MISS</option>
+                        </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="surname">Surname</label>
+                      <input type="text" id="surname" name="surname" class="form-control" required />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="middlename">Middle Name</label>
+                      <input type="text" id="middlename" name="middlename" class="form-control"  />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="firstname">First Name</label>
+                      <input type="text" id="firstname" name="firstname" class="form-control" required />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="gender">Sex</label>
+                      <select name="gender" id="gender" class="form-control">
+                          <option value="male">Male</option>
+                          <option value="female">Female</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group">
+                        <label for="marital">Marital Status</label> <br>
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" id="single" name="marital" value="single" class="custom-control-input">
+                          <label class="custom-control-label" for="single">Single</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input type="radio" id="married" name="marital" value="married" class="custom-control-input">
+                          <label class="custom-control-label" for="married">Married</label>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-2">
+                    <h5>Name of Spouse</h5>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="spousesurname">Surname</label>
+                      <input type="text" id="spousesurname" name="spousesurname" class="form-control"  />                 
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="spousefirstname">First Name</label>
+                      <input type="text" id="spousefirstname" name="spousefirstname" class="form-control"  />
+                    </div>
+                  </div>
+                </div>
+    
+                <h5 style="background-color: #007bff!important;" class="bg-info text-light p-2">CONTACT INFORMATION</h5>
+                <div class="row">
+                  <div class="col-2">
+                    <h5>Mobile Number</h5>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="number">Mobile</label>
+                      <input type="text" id="number" name="number" class="form-control" required />                 
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="number1">Phone</label>
+                      <input type="text" id="number1" name="number1" class="form-control"  />                 
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="email">Email Address</label>
+                      <input type="text" id="email" name="email" class="form-control" required />                 
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="address">Residential Address</label>
+                      <textarea type="text" id="address" name="address" class="form-control" rows="4" required></textarea>                
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="city">City/Town</label>
+                      <input type="text" id="city" name="city" class="form-control" required />                 
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="lga">Local Govt</label>
+                      <input type="text" id="lga" name="lga" class="form-control" required />                 
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="state">State</label>
+                      <input type="text" id="state" name="state" class="form-control" required />                 
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="country">Country of Residence</label>
+                      <input type="text" id="country" name="country" class="form-control" required />                 
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="form-label" for="dob">Date of Birth</label>
+                      <input type="date" id="dob" name="dob" class="form-control" required />
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="idmode">Mode of Identification</label> <br>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="natid" name="idmode" value="natid" class="custom-control-input">
+                        <label class="custom-control-label" for="natid">Nat Id</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="drivno" name="idmode" value="driverlicense" class="custom-control-input">
+                        <label class="custom-control-label" for="drivno">Drivers LNo</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="passport" name="idmode" value="intpassport" class="custom-control-input">
+                        <label class="custom-control-label" for="passport">Int'l Passport</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="votecard" name="idmode" value="votercard" class="custom-control-input">
+                        <label class="custom-control-label" for="votecard">Voters Card</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="text" class="form-control col" name="otheridmode" id="othersmode" placeholder="others">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="idno">ID Number</label> 
+                      <input type="text" id="idno" name="idno" class="form-control" required />     
+                                
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <p class="mt-4">RC NO <small>(For Comany ID only)</small></p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="nationality">Nationality</label>
+                      <input type="text" id="nationality" name="nationality" class="form-control" required />                 
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="stateofrigin">State Of Origin</label>
+                      <input type="text" id="stateofrigin" name="stateoforigin" class="form-control" required />                 
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="occupation">Occupation</label>
+                      <input type="text" id="occupation" name="occupation" class="form-control" required />                 
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="empname">Employers Name</label>
+                      <input type="text" id="empname" name="empname" class="form-control"  />                 
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="empaddress">Employers Address</label>
+                      <textarea type="text" id="address" name="empaddress" class="form-control" rows="4"></textarea>                
+                    </div>
+                  </div>
+                </div>
+                <h5 style="background-color: #007bff!important;" class="bg-info text-light p-2">NEXT OF KIN INFORMATION</h5>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="noksurname">Surname</label>
+                      <input type="text" id="noksurname" name="noksurname" class="form-control" required />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="nokmiddlename">Middle Name</label>
+                      <input type="text" id="nokmiddlename" name="nokmiddlename" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="nokfirstname">First Name</label>
+                      <input type="text" id="nokfirstname" name="nokfirstname" class="form-control" required />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="noknumber">Mobile Number</label>
+                      <input type="text" id="noknumber" name="noknumber" class="form-control" required />                 
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="nokaddress">Residential Address</label>
+                      <textarea type="text" id="nokaddress" name="nokaddress" class="form-control" rows="4" required></textarea>                
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="marital">Plot of Land Options</label> <br>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="residential" name="landuse" value="residential" class="custom-control-input">
+                        <label class="custom-control-label" for="residential">Residential</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="commercial" name="landuse" value="commercial" class="custom-control-input">
+                        <label class="custom-control-label" for="commercial">Commercial</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="number" class="form-control col" name="numplots" id="numplots" onchange="getNumPlots();" placeholder="Number of Plots">
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="550" name="plotsqm" value="550" onclick="getAmt(this);" class="custom-control-input">
+                        <label class="custom-control-label" for="550">550SQM</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="400" name="plotsqm" value="400" onclick="getAmt(this);" class="custom-control-input">
+                        <label class="custom-control-label" for="400">400SQM</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-2">
+                    <h5>Referred By</h5>
+                    <small>Please select a refree if you were referred</small>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="marketer" class="form-control-label">Input 4 digit refree code</label>
+                      <input type="text" maxlength="4"  class="form-control"  id="refCode"/>
+                      <input type="hidden"  name="employeeid"  id="employeeid"/>
+                      <select name="employeeid" class="form-control d-none"  id="marketer">
+                      <option selected disabled value="null">Select Refree</option>
+                      <!--{if !empty($employees)}-->
+                          <!--{foreach $employees as $employee}-->
+                        <option value="<!--{$employee->refid}-->"><!--{$employee->surname|ucfirst}--> <!--{$employee->firstname|ucfirst}--> - <!--{$employee->email}--></option>
+                        <!--{/foreach}-->
+                      <!--{else}-->
+                        <option value="null">none</option>
+                      <!--{/if}-->
+                      </select>   
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="refname">Full name</label>
+                      <input type="text"  id="refname" name="refname" readonly class="form-control"  />                 
+                    </div>
+                  </div>
+                  <div class="col d-none">
+                    <div class="form-group">
+                      <label for="refnumber">Phone Number</label>
+                      <input type="text" id="refnumber" name="refnumber" class="form-control"  />
+                    </div>
+                  </div>
+                  <div class="col d-none">
+                    <div class="form-group">
+                      <label for="refemail">Email</label>
+                      <input type="text" id="refemail" name="refemail" class="form-control"  />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-2">
+                    <h5>Payment Details</h5>
+                  </div>
+                  <div class="col-3">
+                    <div class="form-group">
+                      <label for="">Amount:</label>
+                      <input readonly  id="sqmeter" type="number" name="tamount" value="<!--{$subs->total_mount}-->" class="form-control"  />                 
+                      <input   id="amount" type="hidden" name="amount" value="" class="form-control"  />                 
+                
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="">Total Payable</label> <br>
+                  <input readonly  id="totalpay" type="number" name="totalpay" value="" class="form-control"  />                 
+                </div>
+                <div class="form-group">
+                  <label for="marital">Payment Options</label> <br>
+    
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="paystackpay" name="paymenttype" value="paystack" onclick="handleClick(this);" class="custom-control-input">
+                    <label class="custom-control-label" for="paystackpay">Paystack now</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="laterpay" name="paymenttype" value="laterpay" onclick="handleClick(this);" class="custom-control-input">
+                    <label class="custom-control-label" for="laterpay">Later</label>
+                  </div>
+                </div>
+              <div class="form-check mb-4">
+                <input type="checkbox" class="form-check-input" id="formcheck" required>
+                <label class="form-check-label" for="formcheck">I hereby affirm that all information filled in as requirement for land purchase in <!--{$project_item->name}--> at <!--{$project_item->location}--> is true and any false information provided by me may result in termination of my application.</label>
+              </div>
+              <div class="form-check mb-4">
+                <input type="checkbox" class="form-check-input" id="formcheck2" required>
+                <label class="form-check-label" for="formcheck2">I hereby affirm that i have read the <a target="_Blank" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/property-faq?id=<!--{$project_item->token}-->">FAQ</a> for <!--{$project_item->name}--> </label>
+              </div>
+            <div id="mainButton" class="form-group text-center d-none">
+            <button  type="submit" class="btn btn-md btn-warning mainButton" name="triggers" value="subscribeProduct">Submit</button>
+            </div>
+      
+              <div id="secButton" class="form-group text-center d-none">
+                <div  id="paypal-member-signup"></div>
+                <button class="btn btn-md btn-success " type="submit" name="triggers" value="signup">Pay and Submit</button>
+              </div>
+              <button class="btn btn-danger" type="submit" name="triggers" value="edit_plan">Proceed</button>&nbsp;
+              <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#editsubscDetail" aria-expanded="true" aria-controls="editsubscDetail" id="editSubsc">Cancel</button>
+            </p>
+        </div>
+      </form>
+    </div>
+    <div id="editsubDetail" class="mt-2 collapse row justify-content-center" aria-labelledby="editsubDetail">
+      <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_agric_subscription?id=<!--{$subs->reg_id}-->" enctype="multipart/form-data" class="w-100">
+        <div class="form-group m-4">
+            <p>Are you sure you want to edit this subscription?</p>
+            <p>Note that every stored details relating to this project will be transferred to the new project unrecoverably.</p>
+            <p class="text-center">
+                  <div class="form-group">
+                    <label for="project">Select Property to change to</label>
+                    <select class="form-control" id="project1" name="project">
+                      <!--{if !empty($properties)}-->
+                        <!--{foreach $properties as $property}-->
+                          <option <!--{if $property->name == $subs->product}--> disabled <!--{/if}-->  value="<!--{$property->token}-->">
+                            <!--{$property->name}-->
+                          </option>
+                        <!--{/foreach}-->
+                      <!--{else}-->
+                        <option value="none">Not Found</option>
+                      <!--{/if}-->
+                    </select>
+                  </div>
+              <button class="btn btn-danger" type="submit" name="triggers" value="change_plan">Proceed</button>&nbsp;
+              <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#editsubDetail" aria-expanded="true" aria-controls="editsubDetail" id="editSub">Cancel</button>
+            </p>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--{else}-->
+  <div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

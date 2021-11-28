@@ -1,0 +1,181 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+
+<h1 class="h3 mb-2 text-gray-800">Chart of Accounts
+</h1>
+
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+	  <h6 class="m-0 font-weight-bold text-primary">Accounts</h6>
+	</div>
+	<!--{if !empty($fail)}-->
+	<div class="form-group">
+		<!--{$fail}-->
+	</div>
+	<!--{/if}-->
+	<div class="card-body justify-content-center">
+		<div class="col-lg-6 bg-dark rounded pt-2">
+		  <form action="" class="d-flex" method="post">
+		  <div class="form-group mr-2">
+					<label for="acc_type" class="text-light form-control-label">Account Type</label>
+						<select name="type" class="form-control" id="acc_type">
+							<option value="">All</option>
+							<!--{foreach $charts as $type}-->
+							<option <!--{if !empty($filter->type) && $filter->type == $type }--> selected <!--{/if}--> value="<!--{$type}-->">
+								<!--{$type|ucwords}-->
+							</option>
+							<!--{/foreach}-->
+						</select>
+		  </div>
+		  <div class="form-group mr-2">
+			<label for="acc_cat" class="text-light form-control-label">Account Category</label>
+			<select name="cat" class="form-control" id="acc_cat">
+				<option value="">All</option>
+				<!--{foreach $categories as $type}-->
+				<option <!--{if !empty($filter->cat) && $filter->cat == $type->id }--> selected <!--{/if}--> value="<!--{$type->id}-->">
+					<!--{$type->type|ucwords}--> - <!--{$type->category|ucwords}-->
+				</option>
+				<!--{/foreach}-->
+			</select>
+		  </div>
+			<div class="form-group d-flex"> 
+			  <button type="submit" class="mt-2 btn btn-success" name="triggers" id="reports" value="filter_accounts">OK</button>
+		   </div>      
+		 </form>
+		</div>
+		
+		<div class="row text-right d-flex justify-content-end ">
+			<div class="col-md-2 m-1 justify-content-end ">
+				<div class="well clearfix">
+					<a class="btn btn-success rounded-pill p-2 pull-right add-record" data-added="0" data-toggle="modal" data-target="#expenseModal"><i class="fa fa-plus"></i> Add Account Group</a>
+				</div>
+			</div>
+			<div class="col-md-2 m-1 justify-content-end ">
+				<div class="well clearfix">
+					<a class="btn btn-primary rounded-pill p-2 pull-right add-record" data-added="0" data-toggle="modal" data-target="#accountModal"><i class="fa fa-plus"></i> Add a new account</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="card-body">
+		<!--{if !empty($charts)}-->
+		<div class="col-sm-12">
+			<div class="table-responsive">
+					<table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
+					  <thead class="site-bg-1 text-dark">
+					    <th>
+						  Type
+					    </th>
+					    <th>
+						  Category
+					    </th>
+					    <th>
+						  Account
+					    </th>
+						<th>
+							Date Added
+						</th>
+					  </thead>
+					  <tbody>
+					  	<!--{foreach $accounts as $account}-->
+							<tr>
+								<td>
+									<!--{$account->type|ucwords}-->
+								</td>
+								<td>
+									<!--{$account->category|ucwords}-->
+								</td>
+								<td>
+									<!--{$account->account|ucwords}-->
+								</td>
+								<td>
+									<!--{$account->dateadded|date_format}-->
+								</td>
+							</tr>
+						<!--{/foreach}-->
+					  </tbody>
+					</table>
+			</div>
+		</div>
+		<div class="col-sm-12 d-none text-center">
+			<button type="button" class="btn btn-success btn-sm" id="printSect"><i class="fa fa-print"></i> Print Now</button>
+		</div>
+		<!--{else}-->
+		<div class="col-sm-12 alert alert-warning"><h3 class="alert-heading">No charts found</h3></div>
+		<!--{/if}-->
+	</div>
+	
+	<!-- expense account modal-->
+	<div class="modal fade" id="expenseModal" tabindex="-1" role="dialog" aria-labelledby="exampleexpenseLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h3 class="modal-title" id="exampleexpenseLabel">Add an Account Group</h3>
+			<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			</div>
+			<form action="" method="post">
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="acc_type" class="form-control-label">Account Type</label>
+						<select name="acc_type" class="form-control" required id="acc_type">
+							<!--{foreach $charts as $type}-->
+							<option value="<!--{$type}-->">
+								<!--{$type|ucwords}-->
+							</option>
+							<!--{/foreach}-->
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="acc_name" class="form-control-label">Account Category</label>
+						<input type="text" class="form-control" name="acc_name" required placeholder="Account Category" id="acc_name">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn rounded-pill border-secondary btn-lg" style="min-width: 100px;" type="button" data-dismiss="modal">Cancel</button>
+					<button class="btn p-2 rounded-pill btn-primary btn-lg" style="min-width: 100px;" name="triggers" value="account_group" >Save</button>
+				</div>
+			</form>
+		</div>
+		</div>
+	</div>
+	<!-- expense account modal-->
+	<div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="exampleexpenseLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h3 class="modal-title" id="exampleexpenseLabel">Add an Account</h3>
+			<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			</div>
+			<form action="" method="post">
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="acc_cat" class="form-control-label">Account Category</label>
+						<select name="acc_cat" class="form-control" required id="acc_cat">
+							<!--{foreach $categories as $type}-->
+							<option value="<!--{$type->id}-->">
+								<!--{$type->type|ucwords}--> - <!--{$type->category|ucwords}-->
+							</option>
+							<!--{/foreach}-->
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="acc_name" class="form-control-label">Account Name</label>
+						<input type="text" class="form-control" name="acc_name" required placeholder="Account Name" id="acc_name">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn rounded-pill border-secondary btn-lg" style="min-width: 100px;" type="button" data-dismiss="modal">Cancel</button>
+					<button class="btn p-2 rounded-pill btn-primary btn-lg" style="min-width: 100px;" name="triggers" value="account_names" >Save</button>
+				</div>
+			</form>
+		</div>
+		</div>
+	</div>
+	
+</div>
+<!--{/block}-->

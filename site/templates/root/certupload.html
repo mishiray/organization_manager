@@ -1,0 +1,52 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong>
+	&nbsp;DOCUMENTS&nbsp;<i class="fa fa-file"></i> | Upload a document<i class="fa fa-plus-square"></i>
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row justify-content-center">
+	<div class="col-sm-6">
+		<form class="w-100" class="form" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/certupload" enctype="multipart/form-data" >
+			<fieldset class="border border-success rounded-top px-4">
+			  <legend class="text-center">Document Upload</legend>
+	            <!--{if !empty($fail)}-->
+                <div class="form-group">
+	              <!--{$fail}-->  	
+	            </div>
+	            <!--{/if}-->
+                <div class="form-group">
+                  <label for="student" class="form-control-label">Select Reference</label>
+                  <select id="student" name="student" class="form-control form-control-sm input-block" required>
+                    <option value="">Choose reference</option>
+                    <!--{foreach $students as $vKey=> $student}-->
+                      <option i='<!--{json_encode($student)}-->' value="<!--{$student->email}-->"><!--{$student->email}--> | <!--{$student->token}--></option>
+                    <!--{/foreach}-->
+                  </select>
+                </div>
+                <div class="form-group"><h3 class="font-weight-bold">Detail </h3>
+                  <h5> Reference id: <span class="stdToken" id="reftoken"><!--{$students[0]->token}--></span></h5>
+                  <input type="hidden" name="token" id="token">
+                  <h5 class="stdName">Client Name: <!--{$students[0]->names}--></h5>
+                  <h5 class="stdPhone">Contact number: <!--{$students[0]->phone}--></h5>
+                </div>
+                <div class="form-group">
+                  <label for="title" class="form-control-label">Document Title</label>
+                  <input type="text" id="title" name="title" class="form-control form-control-sm input-block" required/>
+                </div>
+                <div class="form-group">
+                  <label for="description" class="form-control-label">Document Description</label>
+                  <textarea id="description" name="description" class="form-control form-control-lg input-block" rows="6" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="material_upload">Upload Multiple Document Files <i class="fa fa-file"></i>  <i class="fa fa-file-pdf"></i></label>
+                  <input type="file" multiple accept="image/*, application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation" id="material_upload" class="form-control input-rounded" name="material_upload[]" required/>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-success btn-block" type="submit" name="triggers" value="cert_upload"><i class="fa fa-upload"></i> Upload Document</button>
+                </div>
+			</fieldset>
+		</form>
+	</div>
+</section>
+<!--{/block}-->

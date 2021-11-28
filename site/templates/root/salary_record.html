@@ -1,0 +1,168 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Salary Record</h1>
+<p class="mb-4">Salary record details</p>
+<!--{if !empty($record)}-->
+<section class="row justify-content-center">
+	<div class="card">
+		<div class="card-body pt-4">
+			<div class="row">
+				<div class="col-6">
+					<strong>Employee ID: </strong><!--{$record->employeeid}--><br/>
+					<strong>Employee Name: </strong><!--{$record->name|ucfirst}--><br/>
+					<hr>
+					<strong>Bank Name: </strong><!--{$record->bankname}--><br/>
+					<strong>Account Number: </strong><!--{$record->accnum}--><br/>
+					<hr>
+					<strong>Position: </strong><!--{$record->position}--><br/>
+					<hr>
+					<strong>Salary: </strong><!--{$record->salary}--><br/>
+					<hr>
+					<strong>Percentage Increase: </strong><!--{$record->percent_increase}--><br/>
+					<strong>Naira Increase: </strong><!--{$record->naira_increase}--><br/>
+					<strong>Reason: </strong><!--{$record->reason}--><br/>
+					<strong>Personal Objective: </strong><!--{$record->personal_objectives}--><br/>
+					<hr>
+					<Strong>Other Earnings</Strong>
+					<strong>Transport: </strong><!--{$record->transport}--><br/>
+					<strong>Lunch: </strong><!--{$record->lunch}--><br/>
+					<hr>
+					<strong>Pension: </strong><!--{$record->pension}--><br/>
+					<strong>Welfare: </strong><!--{$record->welfare}--><br/>
+					<strong>Tax: </strong><!--{$record->tax}--><br/>
+					<strong>Late Fee: <!--{$record->late_fee}--></strong>
+					<hr>
+					<strong>Commission: </strong><!--{$record->pension}--><br/>
+					<strong>Welfare: </strong><!--{$record->welfare}--><br/>
+					<hr>
+					<strong>Updated Date: </strong><!--{$record->dateupdated|date_format}--><br/>
+					<strong>Added Date: </strong><!--{$record->date_added|date_format}--><br/>
+		  		</div>
+				<div class="col-sm-12 card-body px-4">
+					<p class="text-center">
+						<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/salary_records" class="btn  btn-warning  btn-success-hover"><i class="fa fa-undo"></i> BACK</a>
+						<button class="btn btn-primary " type="button" data-toggle="collapse" data-target="#editRecordInfo" aria-expanded="true" aria-controls="editRecordInfo" id="editRecord"><i class="fa fa-pencil-square"></i> Edit Record</button>
+						<a class="btn btn-danger confirmTrig" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/salary_record?id=<!--{$record->employeeid}-->&evt=delete" what='delete this record'><i class="fa fa-trash"></i> Delete Record</a>
+					</p>
+					<!--{if !empty($fail)}-->
+						<!--{$fail}-->
+					<!--{/if}-->
+				</div>
+
+	            <div class="col-md-11 card-body text-justify" id="accordion">
+	            	<div id="editRecordInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="editRecord" data-parent="#accordion">
+						<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/salary_record?id=<!--{$record->employeeid}-->" enctype="multipart/form-data" class="w-100">
+							<div class="card card-body">
+								<fieldset class="border rounded border-success px-5 pt-2 text-justify">
+									<div class="form-group">
+									  <label for="employeeid" class="form-control-label">Employee Id</label>
+									  <input type="text" readonly class="form-control form-control-user" id="employeeid" name="employeeid" value="<!--{$record->employeeid}-->" placeholder="Employee Id">
+									</div>
+									<div class="form-group">
+										<label for="name" class="form-control-label">Name</label>
+										<input type="text" readonly class="form-control form-control-user" id="name" name="name" value="<!--{$record->name|ucfirst}-->" placeholder="Employee Name">
+									</div>
+									<div class="form-group">
+										<label for="bankname" class="form-control-label">Bank Name</label>
+										<input type="bankname" class="form-control form-control-user" id="bankname" name="bankname" value="<!--{$record->bankname}-->" placeholder="Bank Name">
+									</div>
+									<div class="form-group">
+										<label for="accnum" class="form-control-label">Account Num</label>
+										<input type="accnum" class="form-control form-control-user" id="accnum" name="accnum" value="<!--{$record->accnum}-->" placeholder="Account Number">
+									</div>
+									<div class="form-group">
+									  <label for="year" class="form-control-label">Year</label>
+									  <input type="number" class="form-control form-control-user" id="year" name="year" value="<!--{$record->year}-->" placeholder="Year">
+									</div>
+									<div class="form-group">
+									  <label for="position" class="form-control-label">Position</label>
+									  <input type="text" class="form-control form-control-user" id="position" name="position" value="<!--{$record->position}-->" placeholder="Position">
+									</div>
+									<div class="form-group">
+									  <label for="salary" class="form-control-label">Basic Salary</label>
+									  <input type="number" class="form-control form-control-user" id="salary" name="salary" value="<!--{$record->salary}-->" placeholder="Basic Salary">
+									</div>
+									<div class="form-group">
+									  <label for="percent_inc" class="form-control-label">Percentage Increase</label>
+									  <input type="number" class="form-control form-control-user" id="percent_inc" name="percent_inc" value="<!--{$record->percent_increase}-->" placeholder="Percentage Increase">
+									</div>
+									<div class="form-group">
+										  <label for="naira_inc" class="form-control-label">Naira Increase</label>
+										  <input type="number" class="form-control form-control-user" id="naira_inc" name="naira_inc" value="<!--{$record->naira_increase}-->" placeholder="Naira Increase">
+									</div>
+									<div class="form-group">
+										  <label for="reason" class="form-control-label">Reason</label>
+										  <input type="text" class="form-control form-control-user" id="reason" name="reason" value="<!--{$record->reason}-->" placeholder="Reason">
+									</div>
+									<div class="form-group">
+										  <label for="personal_objectives" class="form-control-label">Personal Objectives</label>
+										  <input type="text" class="form-control form-control-user" id="personal_objectives" name="personal_obj" value="<!--{$record->personal_objectives}-->" placeholder="Personal Objectives">
+									</div>
+									<div class="form-group">
+										  <label for="transport" class="form-control-label">Transport</label>
+										  <input type="number" class="form-control form-control-user" id="transport" name="transport" value="<!--{$record->transport}-->" placeholder="Transport">
+									</div>
+									<div class="form-group">
+										  <label for="housing" class="form-control-label">Housing</label>
+										  <input type="number" class="form-control form-control-user" id="housing" name="housing" value="<!--{$record->housing}-->" placeholder="Housing">
+									</div>
+									<div class="form-group">
+										  <label for="lunch" class="form-control-label">Lunch</label>
+										  <input type="number" class="form-control form-control-user" id="lunch" name="lunch" value="<!--{$record->lunch}-->" placeholder="Lunch">
+									</div>
+									<div class="form-group">
+										<label for="commission" class="form-control-label">Commission</label>
+										<input type="number" class="form-control form-control-user" id="commission" name="commission" value="<!--{$record->commission}-->" placeholder="Commission">
+									</div>
+									<div class="form-group">
+										  <label for="pension" class="form-control-label">Pension</label>
+										  <input type="number" class="form-control form-control-user" id="pension" name="pension" value="<!--{$record->pension}-->" placeholder="Pension">
+									</div>
+									<div class="form-group">
+										  <label for="welfare" class="form-control-label">Welfare</label>
+										  <input type="number" class="form-control form-control-user" id="welfare" name="welfare" value="<!--{$record->welfare}-->" placeholder="Welfare">
+									</div>
+									<div class="form-group">
+										  <label for="tax" class="form-control-label">Tax</label>
+										  <input type="number" class="form-control form-control-user" id="tax" name="tax" value="<!--{$record->tax}-->" placeholder="Tax">
+									</div>
+									<div class="form-group">
+										  <label for="tax" class="form-control-label">Late Fee</label>
+										  <input type="number" class="form-control form-control-user" id="late_fee" name="late_fee" value="<!--{$record->late_fee}-->" placeholder="Tax">
+									</div>
+									<div class="form-group">
+										<label for="gross_salary" class="form-control-label">Gross Salary</label>
+										<input type="number" class="form-control form-control-user" id="gross_salary" name="annual_salary" value="<!--{$record->annual_salary}-->" placeholder="Gross Salary">
+									</div>
+									<div class="form-group">
+										  <label for="gross_year" class="form-control-label">Gross Year</label>
+										  <input type="number" class="form-control form-control-user" id="gross_year" name="gross_year" value="<!--{$record->gross_year}-->" placeholder="Gross Year">
+									</div>
+									<div class="form-group">
+										  <label for="status" class="form-control-label">Employee Salary Status</label>
+										  <select class="form-control" name="status" id="">
+											<option <!--{if $record->status==1}--> selected <!--{/if}--> value="1">Active</option>
+											<option <!--{if $record->status==0}--> selected <!--{/if}--> value="0">InActive</option>
+										  </select>
+									</div>
+									<!--{if !empty($fail)}-->
+									<div class="form-group">
+											<!--{$fail}-->
+									</div>
+									<!--{/if}-->
+									<div class="form-group text-center">
+										<button class="btn btn-success btn-sm rounded-0" type="submit" name="edit_record">Update record</button>
+									</div>
+								</fieldset>
+							</div>
+						</form>
+	            	</div>
+	            </div>
+		</div>
+	</div>
+</section>
+<!--{else}-->
+<h3>No record Found</h3>
+<!--{/if}-->
+<!--{/block}-->

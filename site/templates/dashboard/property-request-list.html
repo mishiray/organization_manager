@@ -1,0 +1,64 @@
+<!--{extends file="dashboard.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong> &nbsp;Property Request DB&nbsp;<i class="fa fa-list"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row no-gutters justify-content-center">
+	<div class="col-sm-10 form-group mb-3">
+		<!--{if !empty($fail)}-->
+		  <!--{$fail}-->
+		<!--{/if}-->
+	</div>
+	<div class="col-sm-11">
+		<!--{if !empty($requests)}-->
+		<div id="dataTableId_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+			<!--{include file="paging-top.html"}-->
+			<!--{$numCount=($Pager->from+1)}-->
+			<table class="table table-striped table-hover table-bordered">
+			  <thead class="site-bg-2">
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Request Id</th>
+			      <th scope="col">Client Detail</th>
+			      <th scope="col">Client Budget</th>
+			      <th scope="col">Property Detail</th>
+			      <th scope="col">Date Received</th>
+			      <th scope="col" class="d-none"></th>
+			    </tr>
+			  </thead>
+			  <tbody>
+				<!--{foreach $requests as $request}-->
+				    <tr>
+				      <td><!--{$numCount}--></td>
+				      <td><!--{$request->token}--></td>
+				      <td>
+				      	<h4><span class="font-weight-bold">Client Name:</span> <!--{$request->names}--></h4>
+				      	<h4><span class="font-weight-bold">Client Number:</span> <!--{$request->phone}--></h4>
+				      	<h4><span class="font-weight-bold">Request Date:</span> <!--{$request->prop_date}--></h4>
+				      	<p class="overflow-v-auto h-150px"><!--{$request->remarks}--></p>
+				      </td>
+				      <td>₦ <!--{$request->budget}--></td>
+				      <td>
+				      	<h4><span class="font-weight-bold">Client Choice Location:</span> <!--{$request->location}--></h4>
+				      	<h4><span class="font-weight-bold">Time Frame:</span> <!--{$request->timeframe}--></h4>
+				      	<p class="overflow-v-auto h-150px"><!--{$request->description}--></p>
+				      </td>
+				      <td><!--{$request->dateadded}--></td>
+				      <td class="d-none"> 
+				      	<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/property-detail?id=<!--{$request->token}-->" class="btn btn-sm btn-success">
+				      		<i class="fa fa-ellipsis-v"></i> Detail
+				      	</a>
+				      </td>
+				    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+				<!--{/foreach}-->
+			  </tbody>
+			</table>
+			<!--{include file="paging-bottom.html"}-->
+		</div>
+		<!--{else}-->
+		<div class="alert alert-success mt-5"><h4 class="alert-heading font-weight-bold text-center pt-2">No property request yet</h4></div>
+		<!--{/if}-->
+	</div>
+</section>
+<!--{/block}-->

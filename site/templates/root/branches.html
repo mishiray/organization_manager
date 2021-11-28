@@ -1,0 +1,112 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Branches Table</h1>
+<p class="mb-4">The table contains branches info</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Branch</h6>
+  </div>
+  <!--{if !empty($fail)}-->
+  <div class="col">
+    <div class="form-group">
+      <!--{$fail}-->
+    </div>
+  </div>
+  <!--{/if}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Prefix</th>
+            <th>Name</th>
+            <th>Employees Count</th>
+            <th>Address</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <th>Prefix</th>
+            <th>Name</th>
+            <th>Employees Count</th>
+            <th>Address</th>
+            <th>Action</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{if !empty($branches)}-->
+          <!--{$numCount=1}-->
+          <!--{foreach $branches as $department}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+            <td><!--{$department->prefix}--></td>
+			      <td>
+              <!--{$department->zone}-->
+            </td>
+			      <td>
+              <!--{$department->emp}--> employees
+            </td>
+			      <td>
+              <!--{$department->address}-->
+            </td>
+			      <td>
+              <div class="d-flex">
+                <a class="btn btn-primary m-2 editbranch" data-toggle="modal" i='<!--{json_encode($department)}-->' data-target="#editbranchModal"> Edit </a>
+                <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/branches?id=<!--{$department->id}-->" method="post">
+                  <button type="submit" name="triggers" value="delete_branch" onclick="return deleteItem();"  class="btn btn-danger m-2">Delete</button>
+                </form>
+              </div>
+            </td>
+		    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+      <!--{/if}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal fade" id="editbranchModal" tabindex="-1" role="dialog" aria-labelledby="exampleexpenseLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h3 class="modal-title" id="exampleexpenseLabel">Edit Branch</h3>
+			<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			</div>
+			<form action="" method="post">
+				<div class="modal-body">
+					<div class="modal-body">
+              <div class="form-group">
+                <label for="prefix" class="form-control-label">Branch Prefix</label>
+                    <input type="text" id="prefix" class="form-control form-control-user" readonly >
+                    <input type="hidden" value="" name="id" id="id">
+              </div>
+              <div class="form-group">
+                <label for="name" class="form-control-label">Branch Name</label>
+                <small>This won't change already added employees branch</small>
+                    <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Branch Name">
+                </div>
+              <div class="form-group">
+                <label for="address" class="form-control-label">Branch Address</label>
+                    <textarea type="text" class="form-control form-control-user" id="address" row="3" name="address" placeholder="Branch Address"></textarea>
+              </div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn rounded-pill border-secondary btn-lg" style="min-width: 100px;" type="button" data-dismiss="modal">Cancel</button>
+					<button class="btn p-2 rounded-pill btn-primary btn-lg" style="min-width: 100px;" name="triggers" value="update_branch" >Edit</button>
+				</div>
+			</form>
+		</div>
+		</div>
+	</div>
+</div>
+<!--{/block}-->

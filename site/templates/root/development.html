@@ -1,0 +1,96 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong>
+	&nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/clients">Students&nbsp;<i class="fa fa-users"></i></a>&nbsp;
+	|&nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$client->email}-->">Student Detail&nbsp;<i class="fa fa-user"></i></a>&nbsp;| Development Profile&nbsp;<i class="fa fa-vcard-o"></i>
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="container-fluid mb-3">
+    <div class="row justify-content-center">
+		<div class="col-md-4 mb-2">
+		    <img class="img w-100 img-thumbnail border-success package-img" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($client->userimg)}--><!--{$client->userimg}--><!--{else}-->site/media/i/icon-student.png<!--{/if}-->">
+		</div>
+        <div class="col-md-7 mb-2">
+            <div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">Names:</strong> <!--{$client->firstname}--> <!--{$client->middlename}--> <!--{$client->lastname}--></h5></div>
+            <div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">Email:</strong> <!--{$client->email}--></h5></div>
+          	<div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">Gender:</strong> <!--{$client->gender|capitalize}--></h5></div>
+            <div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">Username:</strong> <!--{$client->username}--></h5></div>
+          	<div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">Phone N<sub>o</sub>:</strong> <!--{$client->phone}--></h5></div>
+          	<div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">Address:</strong> <!--{$client->address1}-->, <!--{$client->address2}--></h5></div>
+          	<div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">City:</strong> <!--{$client->city}--></h5></div>
+          	<div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">State:</strong> <!--{$client->state}--></h5></div>
+          	<div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">Nationality:</strong> <!--{$client->country}--></h5></div>
+          	<div class="form-group mb-2 mt-2"><h5><strong class="text-uppercase">Password:</strong> <!--{$client->password}--></h5></div>
+          	<div class="form-group d-none mb-2 mt-2"><h5><strong class="text-uppercase">Interest To Be An Instructor:</strong> <!--{if $client->instructor==false}--><span class="badge badge-warning">No</span><!--{else}--><span class="badge badge-success">Yes</span><!--{/if}--></h5></div>
+      	</div>
+        <div class="col-md-11">
+        	<div class="form-group mb-2 text-center">
+				<a class="btn btn-sm btn-warning" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$client->email}-->"><i class="fa fa-undo"></i> Back</a>&nbsp;
+				<a class="btn btn-sm btn-warning" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/clients"><i class="fa fa-undo"></i> Back to Students</a>&nbsp;
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<nav class="nav nav-tabs nav-fill">
+  <a class="nav-item nav-link <!--{if !empty($menu) and in_array($menu, array('sport'))}-->btn-success active<!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/development?id=<!--{$client->email}-->&p=sport">Sport Selection</a>
+  <a class="nav-item nav-link <!--{if empty($menu) or !in_array($menu, array('parent','emergency','medical','consent','kit','terms','development','sport'))}-->btn-success active<!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/development?id=<!--{$client->email}-->">Student Info</a>
+  <a class="nav-item nav-link <!--{if !empty($menu) and in_array($menu, array('parent'))}-->btn-success active<!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/development?id=<!--{$client->email}-->&p=parent">Parent/Guardian Info</a>
+  <a class="nav-item nav-link <!--{if !empty($menu) and in_array($menu, array('emergency'))}-->btn-success active<!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/development?id=<!--{$client->email}-->&p=emergency">Second Emergency Info<br/><span class="small">(Different from Parent/Guardian Info)</span></a>
+  <a class="nav-item nav-link <!--{if !empty($menu) and in_array($menu, array('medical'))}-->btn-success active<!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/development?id=<!--{$client->email}-->&p=medical">Confidential Medical Info</a>
+  <a class="nav-item nav-link <!--{if !empty($menu) and in_array($menu, array('consent'))}-->btn-success active<!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/development?id=<!--{$client->email}-->&p=consent">Parent/Guardian Consent</a>
+  <a class="nav-item nav-link <!--{if !empty($menu) and in_array($menu, array('kit'))}-->btn-success active<!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/development?id=<!--{$client->email}-->&p=kit">Jersey Selection</a>
+  <a class="nav-item d-none nav-link <!--{if !empty($menu) and in_array($menu, array('declare'))}-->btn-success active<!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/development?id=<!--{$client->email}-->&p=declare">Declaration</a>
+  <a class="nav-item nav-link <!--{if !empty($menu) and in_array($menu, array('terms'))}-->btn-success active<!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/development?id=<!--{$client->email}-->&p=terms">Terms & Condition</a>
+</nav>
+<section class="row justify-content-center">
+	<div class="col-md-11">
+		<div class="row justify-content-center">
+			<div class="col-md-12">
+				<!--{if !empty($fail)}-->
+					<!--{$fail}-->
+				<!--{/if}-->
+			</div>
+			<div class="card card-body col-md-<!--{if !empty($menu) and $menu=='terms'}-->8<!--{else}-->6<!--{/if}--> mt-3 mb-3">
+				<!--{if !empty($menu) and in_array($menu, array('parent','emergency','medical','consent','kit','terms','development','sport'))}-->
+					<!--{if $menu=='parent'}-->
+						<!--{include file="parent.html"}-->
+					<!--{elseif $menu=='emergency'}-->
+						<!--{include file="emergency.html"}-->
+					<!--{elseif $menu=='medical'}-->
+						<!--{include file="medical.html"}-->
+					<!--{elseif $menu=='consent'}-->
+						<!--{include file="consent.html"}-->
+					<!--{elseif $menu=='kit'}-->
+						<!--{include file="kit.html"}-->
+					<!--{elseif $menu=='terms'}-->
+						<!--{include file="terms.html"}-->
+					<!--{elseif $menu=='sport'}-->
+						<!--{include file="sportinfo.html"}-->
+					<!--{else}-->
+					<!--{/if}-->
+				<!--{else}--><!--$myvar|cat:"myval"-->
+					<!--{include file='studinfo.html'}-->
+				<!--{/if}-->
+			</div>
+			<!--{if !empty($menu) and $menu=='kit'}-->
+			<div class="col-md-6">
+				<div class="row no-gutters justify-content-center">
+					<div class="col-md-12 text-center jersey-background" style="background: url(<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/jerseys/jersen2-1.PNG);">
+						<h2 class="mt-5 text-dark" id="kitName"><!--{$kit->kit_name}--></h2>
+						<h1 class="text-dark" id="kitNum"><!--{$kit->kit_number}--></h1>
+					</div>
+					<div class="col-md-12 jersey-background" style="background: url(<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/jerseys/jersen2-1-1.PNG);">&nbsp;</div>
+				</div>
+				
+			</div>
+			<!--{/if}-->
+
+		</div>
+	</div>
+</section>
+
+<!--{/block}-->

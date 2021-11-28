@@ -1,0 +1,214 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Marketers Commissions Records</h1>
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Clients</h6>
+  </div>
+  <div class="card-body bg-primary">
+    <div class="col-lg-6 m-4">
+      <form id="mainForm" method="POST" class="d-flex" enctype="multipart/form-data" name="marketersform">
+        <div class="form-group">
+          <label class="text-light" for="Year">Enter Year</label>
+              <select class="form-control" id="Year"  name="year">
+                <!--{for $foo=2010 to 3000}-->
+                <option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+                  <!--{$foo}-->
+                </option>
+                <!--{/for}-->
+              </select>
+        </div>
+        <div class="form-group">
+          <label class="text-light"  for="month">Select Month</label>
+              <select class="form-control" id="month"  name="month">
+                <option value="">All</option>
+                <!--{foreach $months as $month}-->
+                <option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+                  <!--{$month}-->
+                </option>
+                <!--{/foreach}-->
+              </select>
+        </div>
+        <!--{if $isadmin}-->
+        <div class="form-group">
+          <label class="text-light"  for="marketer" class="form-control-label">Employees</label>
+          <select name="email" class="form-control" onchange="getInfo(this);" id="marketer">
+          <option selected disabled value="null">Select Refree</option>
+          <!--{if !empty($employees)}-->
+            <!--{foreach $employees as $employee}-->
+            <option <!--{if !empty($filter->email)}--> <!--{if $filter->email == $employee->email}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$employee->email}-->"> <!--{$employee->employeeid}--> - <!--{$employee->surname}--> <!--{$employee->first_name}--></option>
+            <!--{/foreach}-->
+          <!--{else}-->
+            <option value="null">none</option>
+          <!--{/if}-->
+          </select>   
+        </div>
+        <!--{/if}-->
+        <div class="form-group d-flex"> 
+          <button type="submit" class="mt-2 btn btn-success" name="triggers" id="clients" value="commission_marketers">OK</button>
+       </div>      
+     </form>
+    </div>
+  </div>
+  <!--{if !empty($clients)}-->
+  <div class="card-body">
+    <h4 class="m-2 font-weight-bold text-primary">Commmissions</h4>
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+          <th>SN</th>
+          <th>Reference Id</th>
+          <th>Referral Details</th>
+          <th>Client Details</th>
+          <th>Product Details</th>
+          <th>Payment Details</th>
+          <th>Date Added</th>
+          <th class="d-none" scope="col"></th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>SN</th>
+          <th>Reference Id</th>
+          <th>Referral Details</th>
+          <th>Client Details</th>
+          <th>Product Details</th>
+          <th>Payment Details</th>
+          <th>Date Added</th>
+          <th class="d-none" scope="col"></th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <!--{$numCount=1}-->
+        <!--{foreach $commissions as $subs}-->
+        <tr>
+          <td><!--{$numCount}--></td>
+          <td>
+                <strong><!--{$subs->token}--></strong>
+          </td>
+          <td>
+            <strong>Full Name: </strong><!--{$subs->ref_fullname|ucfirst}--> <br>
+            <strong>Phone: </strong><!--{$subs->ref_phone}--> <br>
+            <strong>Email: </strong><!--{$subs->ref_email}--> <br>
+          </td>
+          <td>
+            <strong>Title: </strong><!--{$subs->title|ucfirst}--> <br>
+            <strong>First Name: </strong><!--{$subs->firstname|ucfirst}--> <br>
+            <strong>Last Name: </strong><!--{$subs->surname|ucfirst}--> <br>
+            <strong>Mobile: </strong><!--{$subs->mobile}--> <br>
+            <strong>Phone: </strong><!--{$subs->phone}--> <br>
+            <strong>Email: </strong><!--{$subs->email}--> <br>
+          </td>
+          <td>
+            <strong>Name: </strong><!--{$subs->product}--> <br>
+            <strong>Plot Type: </strong><!--{$subs->plot_type}--> <br>
+            <strong>Plot Number: </strong><!--{$subs->plot_number}--> <br>
+            <strong>Plot Square Meter: </strong><!--{$subs->plot_sqm}--> <br>
+          </td>
+          <td>
+            <strong>Payment Type: </strong><!--{$subs->payment_type}--> <hr>
+            <strong>Total Amount: </strong>&#8358;<!--{$subs->total_amount|number_format:2}--> <hr>
+            <strong>Total Paid: </strong>&#8358;<!--{$subs->total_paid|number_format:2}--> <hr>
+            <strong>Outstanding Balance: </strong>&#8358;<!--{$subs->outstanding|number_format:2}-->
+          </td>
+          <td><!--{$subs->reg_date|date_format}--></td>
+          <td>
+           <!--{if $subs->paid =='1'}-->
+             <span class="badge badge-success">PAID</span> <br>
+             <p>Commission to receive: <!--{$subs->commission}--> %</p>
+             <!--{else}-->
+             <!--{if $subs->total_paid>0}-->
+               <span class="badge badge-info">Initiated Payment</span>
+             <!--{else}-->
+               <span class="badge badge-warning">NOT PAID</span>
+             <!--{/if}-->
+           <!--{/if}-->
+          </td>
+        </tr>
+        <!--{$numCount=$numCount+1}-->
+      <!--{/foreach}-->
+      </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <h2 class="m-4">Clients Subscription Records Empty</h2>
+  <!--{/if}-->
+  
+  <!--{if !empty($clients_inv)}-->
+  <div class="card-body">
+    <h4 class="m-2 font-weight-bold text-primary">Property Investments</h4>
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+          <th>SN</th>
+          <th>Referral Details</th>
+          <th>Client Details</th>
+          <th>Product Details</th>
+          <th class="d-none" scope="col"></th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>SN</th>
+          <th>Referral Details</th>
+          <th>Client Details</th>
+          <th>Product Details</th>
+          <th class="d-none" scope="col"></th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <!--{$numCount=1}-->
+        <!--{foreach $clients_inv as $subs}-->
+        <tr>
+          <td><!--{$numCount}--></td>
+          <td>
+            <strong>Full Name: </strong><!--{$subs->ref_fullname|ucfirst}--> <br>
+            <strong>Phone: </strong><!--{$subs->ref_phone}--> <br>
+            <strong>Email: </strong><!--{$subs->ref_email}--> <br>
+          </td>
+          <td>
+            <strong>Title: </strong><!--{$subs->title|ucfirst}--> <br>
+            <strong>First Name: </strong><!--{$subs->firstname|ucfirst}--> <br>
+            <strong>Last Name: </strong><!--{$subs->surname|ucfirst}--> <br>
+            <strong>Mobile: </strong><!--{$subs->mobile}--> <br>
+            <strong>Phone: </strong><!--{$subs->phone}--> <br>
+            <strong>Email: </strong><!--{$subs->email}--> <br>
+          </td>
+          <td>
+            <strong>Name: </strong><!--{$subs->product}--> <br>
+            <strong>Percentage: </strong><!--{$subs->percentage}--><br>
+            <strong>Principal: </strong>&#8358;<!--{$subs->principal|number_format:2}--><br>
+          </td>
+          <td><!--{$subs->reg_date|date_format}--></td>
+          <td>
+           <!--{if $subs->paid =='1'}-->
+             <span class="badge badge-success">PAID</span> <br>
+             <p>Commission to receive: <!--{$subs->commission}--> %</p>
+             <!--{else}-->
+             <!--{if $subs->total_paid>0}-->
+               <span class="badge badge-info">Initiated Payment</span>
+             <!--{else}-->
+               <span class="badge badge-warning">NOT PAID</span>
+             <!--{/if}-->
+           <!--{/if}-->
+          </td>
+        </tr>
+        <!--{$numCount=$numCount+1}-->
+      <!--{/foreach}-->
+      </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <h2 class="m-4">Clients Investments Records Empty</h2>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

@@ -1,0 +1,100 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong> &nbsp;NEWSLETTER&nbsp;<i class="fa fa-envelope-o"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="jumbotron text-center mt-2">
+	<div class="row justify-content-center">
+		<!--{if !empty($newsletters)}-->
+		<div class="col-lg-6">
+			<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/newsletters" enctype="multipart/form-data">
+				<div class="card card-body">
+					<fieldset class="border rounded border-success px-5 text-justify">
+						<legend class="text-center">Newsletter Sending Form</legend>
+						<select name="sendto" id="sendto" class="form-control input-block lh-3" onchange="doSomething(this);" required>
+							<option value="*">To All Members</option>
+							<option value="#">To Selected Members</option>
+						</select>
+						<script>
+							function doSomething(rar){
+								if(rar.selectedIndex==1){
+									$("#receivers").removeClass("d-none");
+									//console.log('yes');
+								}else{
+									$("#receivers").addClass("d-none");
+									//document.getElementsByClassName('lister').classList().add('d-none');
+									//console.log('no');
+								}
+							}
+						</script>
+						<hr/>
+						<select name="receivers[]" id="receivers" class="form-control input-block d-none lh-3 lister" style="min-height: 250px;" multiple>
+							<!--{if !empty($newsletters)}-->
+								<!--{foreach $newsletters as $client}-->
+									<option value="<!--{$client->email}-->" class="text-info"><!--{$client->email}--></option>
+								<!--{/foreach}-->		
+							<!--{/if}-->
+						</select>
+						<div class="form-group">
+							<label for="title" class="form-control-label">Newletter Title *</label>
+							<input type="text" id="title" name="title" value="" class="form-control form-control-sm input-rounded" required/>
+						</div>
+						<div class="form-group">
+							<label for="content" class="form-control-label">Content *</label>
+							<div id="editcontent"></div>
+							<input type="hidden" name="content" class="addContent" id="content" value="" required />
+						</div>
+						<div class="form-group">
+							<label for="author" class="form-control-label">Author</label>
+							<input type="text" id="author" name="author" value="" class="form-control form-control-sm input-rounded"/>
+						</div>
+						<div class="form-group">
+							<label for="file_upload" class="form-control-label">Upload a File</label>
+							<input type="file" accept="image/*, application/*" id="file_upload" class="input-rounded w-100" name="file_upload"/>
+						</div>
+						<!--{if !empty($fail)}-->
+							<div class="form-group">
+								<!--{$fail}-->
+							</div>
+						<!--{/if}-->
+						<div class="form-group text-center">
+							<button class="btn btn-success btn-sm rounded-0" type="submit" name="newsletter">Send Newsletter</button>
+						</div>
+					</fieldset>
+				</div>
+			</form>
+		</div>
+		<div class="col-lg-6">
+			<div class="table-responsive">
+					<table id="dataTable" class="table table-striped table-hover table-bordered">
+					  <thead class="thead-light">
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">Email</th>
+					      <th scope="col">Date Requested</th>
+					      <th scope="col"></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<!--{$numCount=1}-->
+					  	<!--{foreach $newsletters as $newsletter}-->
+					    <tr>
+					      <td><!--{$numCount}--></td>
+					      <td><!--{$newsletter->email}--></td>
+					      <td><!--{$newsletter->dateupdated|date_format}--></td>
+					      <td>
+							<a class="btn btn-sm btn-danger deleteTrig float-right" title="Delete <!--{$newsletter->email}-->" what="email" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/newsletters?id=<!--{$newsletter->email}-->&event=delete"><i class="fa fa-trash"></i></a>
+					      </td>
+					    </tr>
+					  	<!--{$numCount=$numCount+1}-->
+						<!--{/foreach}-->
+					  </tbody>
+					</table>
+			</div>
+		</div>
+		<!--{else}-->
+		<div class="col-sm-7 alert alert-warning"><h3 class="alert-heading">No registered newsletter subscribers</h3></div>
+		<!--{/if}-->
+	</div>
+</section>
+<!--{/block}-->

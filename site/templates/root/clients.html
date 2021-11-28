@@ -1,0 +1,119 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<h2>Dashboard Home</h2>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Client Table</h1>
+<p class="mb-4">The table contains clients records for the business</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Client</h6>
+  </div>
+  <div class="card-body bg-primary justify-content-center">
+    <div class="col-lg-6 bg-primary rounded pt-2">
+      <form action="" class="d-flex" method="post">
+      <div class="form-group">
+        <label class="text-light" for="Year">Enter Year</label>
+            <select class="form-control" id="Year"  name="year">
+              <!--{for $foo=2010 to 3000}-->
+                <option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+                  <!--{$foo}-->
+                </option>
+              <!--{/for}-->
+            </select>
+      </div>
+      <div class="form-group">
+        <label for="month"class="text-light">Select Month</label>
+            <select class="form-control" id="month"  name="month">
+              <option value="">All</option>
+              <!--{foreach $months as $month}-->
+                <option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+                  <!--{$month}-->
+                </option>
+              <!--{/foreach}-->
+            </select>
+      </div>
+        <div class="form-group d-flex"> 
+          <button type="submit" class="mt-2 btn btn-success" name="triggers" id="reports" value="client_filter">OK</button>
+       </div>      
+     </form>
+    </div>
+  </div>
+  <div class="form-row mx-auto">
+    <!--{if !empty($fail)}-->
+        <!--{$fail}-->
+    <!--{/if}-->
+  </div>
+  <!--{if !empty($clients)}-->
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Personal Info</th>
+            <th>Address Info</th>
+            <th>Current Status</th>
+            <th>Date Added</th>
+            <th scope="col">Action</th>
+            <th>View</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th>SN</th>
+            <th>Personal Info</th>
+            <th>Address Info</th>
+            <th>Current Status</th>
+            <th>Date Added</th>
+            <th scope="col">Action</th>
+            <th>View</th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <!--{$numCount=1}-->
+			  	<!--{foreach $clients as $client}-->
+			    <tr>
+            <td><!--{$numCount}--></td>
+			      <td>
+			      	<!--{if !empty($client->firstname)}--><strong>Names: </strong><!--{$client->firstname}--> <!--{$client->middlename}--> <!--{$client->lastname}--><br/><!--{/if}-->
+			      	<strong>Email: </strong><!--{$client->email}--><br/>
+              <!--{if !empty($client->phone)}--><strong>Phone Number: </strong><!--{$client->phone}--><!--{/if}--> <br/>
+              <!--{if !empty($client->username)}--><strong>User Name: </strong><!--{$client->username}--><!--{/if}--> <br/>
+            </td>
+            <td>
+			      	<!--{if !empty($client->address1)}--><strong>Address: </strong><!--{$client->address1}--><br/><!--{/if}-->
+			      	<!--{if !empty($client->address2)}--><strong>Address 2: </strong><!--{$client->address2}--><br/><!--{/if}-->
+            </td>
+			      <td><span class="badge badge-<!--{if $client->verified =='1'}-->success<!--{else}-->danger<!--{/if}-->"><!--{if $client->verified=='1'}-->active<!--{else}-->expired<!--{/if}--></span></td>
+            
+            <td><!--{$client->dateadded|date_format}--></td>
+            <td>
+                <!--{if $client->active == 0}-->
+                  <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$client->email}-->" method="post">
+                    <input type="hidden" name="active" value="1">
+                    <button type="submit" name="triggers" value="activate" class="btn btn-success btn-sm">Activate</button>
+                  </form>
+                <!--{else}-->
+                  <form action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$client->email}-->" method="post">
+                    <input type="hidden" name="active" value="0">
+                    <button type="submit" name="triggers" value="activate" class="btn btn-danger btn-sm">Deactivate</button>
+                  </form>
+                <!--{/if}-->
+            </td>
+            <td>
+			      	<a class="btn btn-sm btn-info"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client?id=<!--{$client->email}-->"><i class="fa fa-ellipsis-v"></i> Detail</a>
+            </td>
+			    </tr>
+			  	<!--{$numCount=$numCount+1}-->
+        <!--{/foreach}-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--{else}-->
+  <div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+  <!--{/if}-->
+</div>
+<!--{/block}-->

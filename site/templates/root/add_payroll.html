@@ -1,0 +1,242 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Payroll</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Payroll for <!--{$smarty.now|date_format}--> </h6>
+      </div>
+      <div class="card-body">
+      
+      <!--{if !empty($fail)}-->
+        <div class="col">
+          <div class="form-group">
+            <!--{$fail}-->
+          </div>
+        </div>
+      <!--{/if}-->    
+      <form id="mypayform" class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_payroll" enctype="multipart/form-data">
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group">
+              <label for="month" class="form-control-label">Month</label>
+              <input type="text" class="form-control form-control-user" value="<!--{$dateNow|date_format:'%B'}-->" id="month" name="month"  placeholder="Month">
+            </div>
+            <div class="form-group">
+              <label for="year" class="form-control-label">Year</label>
+              <input type="text" class="form-control form-control-user" value="<!--{$dateNow|date_format:'%Y'}-->" id="year" name="year" placeholder="Year">
+            </div>
+            <input type="text" class="form-control form-control-user d-none" value="" id="total_salary" name="total_salary" >
+            <input type="text" class="form-control form-control-user d-none" value="" id="total_gross" name="total_gross" >
+            <input type="text" class="form-control form-control-user d-none" value="" id="total_loan" name="total_loan" >
+            <input type="text" class="form-control form-control-user d-none" value="" id="total_tax" name="total_tax" >
+            <input type="text" class="form-control form-control-user d-none" value="" id="total_deb" name="total_deb" >
+            <input type="text" class="form-control form-control-user d-none" value="" id="total_pay" name="total_pay" >
+            
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th  class="bg-primary text-light" colspan="6">
+                  INFO
+                </th>
+                <th  class="bg-success text-light" colspan="9">
+                  Earnings
+                </th>
+                <th  class="bg-danger text-light" colspan="9">
+                  Deductions
+                </th>
+              </tr>
+              <tr class="bg-dark text-light">
+                <th>SN</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Bank Name</th>
+                <th>Account Num</th>
+                <th>Position</th>
+                <th>Basic Salary</th>
+                <th>(%) Increase</th>
+                <th>Naira Increase</th>
+                <th>Transport</th>
+                <th>Housing</th>
+                <th>Lunch</th>
+                <th>Reason</th>
+                <th>Commission</th>
+                <th>Gross Total</th>
+                <th>Loan</th>
+                <th>PAYEE</th>
+                <th>Pension</th>
+                <th>HMO</th>
+                <th>Fines</th>
+                <th>Welfare</th>
+                <th>Others</th>
+                <th>Tax</th>
+                <th>Total</th>
+                <th>Net Total</th>
+                <th class="d-none" scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!--{$numCount=1}-->
+              <!--{foreach $employees as $record}-->
+              <tr>
+                <td><!--{$numCount}--></td>
+                <td id="<!--{$record->employeeid}-->"><!--{$record->employeeid}--></td>
+                <td><!--{$record->name}--></td>
+                <td contenteditable="">
+                  <!--{$record->bankname}-->
+                </td>
+                <td contenteditable="">
+                  <!--{$record->accnum}-->
+                </td>
+                <td><!--{$record->position}--></td>
+                <td class="bg-success text-light" contenteditable=""><!--{$record->salary}--></td>
+                <td class="bg-success text-light" id="perInc<!--{$record->employeeid}-->" contenteditable="">
+                  <!--{$record->percent_increase}-->
+                </td>
+                <td class="bg-success text-light" id="nairaInc<!--{$record->employeeid}-->" contenteditable="">
+                  <!--{$record->naira_increase}-->
+                </td>
+                <td class="bg-success text-light" contenteditable="">
+                  <!--{$record->transport}-->
+                </td>
+                <td class="bg-success text-light" contenteditable="">
+                  <!--{$record->housing}-->
+                </td>
+                <td class="bg-success text-light" contenteditable="">
+                  <!--{$record->lunch}-->
+                </td>
+                <td contenteditable="">
+                  <!--{$record->reason}-->
+                </td>
+                <td class="bg-success text-light" contenteditable=""><!--{$record->commission}--></td>
+                <td class="bg-gradient-success text-light"></td>
+                <td class="bg-danger text-white" contenteditable=""></td>
+                <td class="bg-danger text-white" contenteditable=""></td>
+                <td class="bg-danger text-white" contenteditable=""><!--{$record->pension}--></td>
+                <td class="bg-danger text-white" contenteditable=""></td>
+                <td class="bg-danger text-white" contenteditable=""><!--{$record->late_fee}--></td>
+                <td class="bg-danger text-white" contenteditable=""><!--{$record->welfare}--></td>
+                <td class="bg-danger text-white" contenteditable=""></td>
+                <td class="bg-danger text-white" contenteditable=""><!--{$record->tax}--></td>
+                <td class="subDrTotal bg-gradient-danger text-light"></td>
+                <td class="NetTotal bg-gradient-primary text-light"></td>
+                <td></td>
+              </tr>
+              <!--{$numCount=$numCount+1}-->
+            <!--{/foreach}-->
+            </tbody>
+          </table>
+          <div class="d-none">
+            <textarea name="allData" id="allData"></textarea>
+          </div>
+          <div class="row justify-content-center">
+            <button id="exportbtn" class="p-2 btn btn-success text-light m-2" type="button">EXPORT PAYROLL</button>
+            <button class="btn btn-primary btn-sm m-2" type="submit" id="savebtn" name="add_payroll">SAVE PAYROLL</button>
+          </div>
+        </div>
+      </form>
+      </div>
+      <div class="card-body d-none">
+      <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_payroll" enctype="multipart/form-data">
+        <div class="row">
+          <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="employee" class="form-control-label">Employee</label>
+                  <select name="employeeid" class="form-control" onchange="getInfo(this);" id="employee">
+                  <option selected disabled value="null">Select Employee</option>
+                  <!--{if !empty($employees)}-->
+                    <!--{foreach $employees as $employee}-->
+                    <option value="<!--{$employee->empid}-->"><!--{$employee->empid}--> - <!--{$employee->surname}--> <!--{$employee->first_name}--></option>
+                    <!--{/foreach}-->
+                  <!--{else}-->
+                    <option value="null">none</option>
+                  <!--{/if}-->
+                  </select>   
+                </div>
+                <script>
+                    function getInfo(myRadio) {
+                        currentValue = myRadio.value;
+                        var text=myRadio.options[myRadio.selectedIndex].text;
+                        text = text.split("- ").pop();
+                        document.getElementById('name').value = text;
+                    }
+                </script>
+                <div class="form-group">
+                  <label for="name" class="form-control-label">Name</label>
+                  <input type="name" class="form-control form-control-user" id="name" name="name" value="" placeholder="Employee Name">
+                </div>
+                <div class="form-group">
+                    <label for="salary_date" class="form-control-label">Salary Date</label>
+                    <input type="date" class="form-control form-control-user" id="salary_date" name="salary_date" placeholder="Salary Date">
+                </div>
+                <div class="form-group">
+                    <label for="payroll_date" class="form-control-label">Payroll Date</label>
+                    <input type="date" class="form-control form-control-user" id="payroll_date" name="payroll_date" placeholder="Payroll Date">
+                </div>
+                <div class="form-group">
+                    <label for="bsalary" class="form-control-label">Basic Salary</label>
+                    <input type="number" class="form-control form-control-user" id="bsalary" name="bsalary" placeholder="Basic Salary">
+                </div>
+                <div class="form-group">
+                    <label for="medical" class="form-control-label">Medical</label>
+                    <input type="number" class="form-control form-control-user" id="medical" name="medical" placeholder="Medical">
+                </div>
+                <div class="form-group">
+                  <label for="commission" class="form-control-label">Commission</label>
+                  <input type="number" class="form-control form-control-user" id="commission" name="commission" placeholder="Commission">
+                </div>
+                <div class="form-group">
+                  <label for="bonus" class="form-control-label">Special Bonus</label>
+                  <input type="number" class="form-control form-control-user" id="bonus" name="bonus" placeholder="Special Bonus">
+                </div>
+                <div class="form-group">
+                  <label for="sub_total" class="form-control-label">Sub Total</label>
+                  <input type="number" class="form-control form-control-user" id="sub_total" name="sub_total" placeholder="Sub Total">
+                </div>
+                <div class="form-group">
+                    <label for="contributions" class="form-control-label">Contributions</label>
+                    <input type="number" class="form-control form-control-user" id="contributions" name="contributions" placeholder="Contributions">
+                </div>
+                <div class="form-group">
+                    <label for="hmo" class="form-control-label">HMO</label>
+                    <input type="text" class="form-control form-control-user" id="hmo" name="hmo" placeholder="HMO">
+                </div>
+                <div class="form-group">
+                  <label for="pay_e" class="form-control-label">PAY-E</label>
+                  <input type="number" class="form-control form-control-user" id="pay_e" name="pay_e" placeholder="PAY-E">
+                </div>
+                <div class="form-group">
+                    <label for="pension" class="form-control-label">Pension</label>
+                    <input type="number" class="form-control form-control-user" id="pension" name="pension" placeholder="Pension">
+                </div>
+                <div class="form-group">
+                    <label for="net_pay" class="form-control-label">Net Pay</label>
+                    <input type="number" class="form-control form-control-user" id="net_pay" name="net_pay" placeholder="Net Pay ">
+                </div>
+                  <div class="form-group text-center">
+                    <button class="btn btn-primary btn-sm rounded-0" type="submit" name="add_payroll">Add to Payroll</button>
+                </div>
+            </div>
+
+
+            <!--{if !empty($fail)}-->
+            <div class="col">
+              <div class="form-group">
+                <!--{$fail}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <br>
+        </div>
+        
+      </form>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

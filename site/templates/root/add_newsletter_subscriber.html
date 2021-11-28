@@ -1,0 +1,62 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Subscriber</h1>
+    <p class="mb-4">Add a new Subscriber</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add Subscriber</h6>
+      </div>
+      <div class="card-body">
+      <form class="user" method="POST" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_newsletter_subscriber" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-6">
+              <select name="lists" class="form-control mb-4" onchange="handleChange(this);" id="lists">
+                <option selected disabled>Select format</option>
+                <option value="single">Single</option>
+                <option value="bulk">Bulk</option>
+              </select>  
+              <script>
+                function handleChange(myselect){
+                  if(myselect.value=='single'){
+                    document.getElementById('single_email').classList.remove("d-none");
+                    document.getElementById('bulk_email').classList.add("d-none");
+                  }else if(myselect.value=='bulk'){
+                    document.getElementById('single_email').classList.add("d-none");
+                    document.getElementById('bulk_email').classList.remove("d-none");
+                  }
+                }
+              </script> 
+                <div id="single_email" class="form-group d-none">
+                  <label for="single" class="form-control-label">Email</label>
+                  <input type="text" class="form-control form-control-user" id="single" name="email" placeholder="Email">
+                </div>   
+                <div  id="bulk_email" class="form-group d-none">
+                  <label for="bulk" class="form-control-label">Add Email(bulk)</label>
+                  <small>Separate with (,) comma</small>
+                  <textarea class="form-control" rows="4" name="email2" id="bulk" placeholder="example@email.com, example2@email.com..."></textarea>
+                </div>
+                <div class="form-group text-center">
+                  <button class="btn btn-primary btn-sm rounded-0" type="submit" name="add_mailing_list">Add to Mailing List</button>
+                </div>
+            </div>
+            
+            
+            <!--{if !empty($fail)}-->
+            <div class="col">
+              <div class="form-group">
+                <!--{$fail}-->
+              </div>
+            </div>
+            <!--{/if}-->
+            <br>
+        </div>
+        
+      </form>
+      </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!--{/block}-->

@@ -1,0 +1,70 @@
+<form class="form w-100" method="post">
+	<fieldset class="card p-2 mt-2">
+		<legend class="text-center">Jersey Selection</legend>
+		<div class="form-group">
+			<label for="kit_height">Height (m):</label>
+			<input type="text" id="kit_height" name="kit_height" value="<!--{if !empty($kit->kit_height)}--><!--{$kit->kit_height}--><!--{/if}-->" minlength="0" class="form-control input-rounded" required/>
+		</div>
+		<div class="form-group">
+			<label>T-shirt (please select one)</label>
+			<div class="table-responsive">
+				<table class="table table-sm">
+					<thead>
+						<tr>
+							<th>4XS</th><th>3XS</th><th>2XS</th><th>XS</th><th>S</th><th>M</th><th>L</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="radio" name="topshirt" value="4xs (15.5)" class="form-check" <!--{if !empty($kit->tshirt_measure) and '4xs (15.5)'==$kit->tshirt_measure }-->checked<!--{/if}-->>15.5</td>
+							<td><input type="radio" name="topshirt" value="3xs (15.5)" class="form-check" <!--{if !empty($kit->tshirt_measure) and '3xs (15.5)'==$kit->tshirt_measure }-->checked<!--{/if}-->>15.5</td>
+							<td><input type="radio" name="topshirt" value="2xs (17)" class="form-check" <!--{if !empty($kit->tshirt_measure) and '2xs (17)'==$kit->tshirt_measure }-->checked<!--{/if}-->>17</td>
+							<td><input type="radio" name="topshirt" value="xs (17.5)" class="form-check" <!--{if !empty($kit->tshirt_measure) and 'xs (17.5)'==$kit->tshirt_measure }-->checked<!--{/if}-->>17.5</td>
+							<td><input type="radio" name="topshirt" value="s (19)" class="form-check" <!--{if !empty($kit->tshirt_measure) and 's (19)'==$kit->tshirt_measure }-->checked<!--{/if}-->>19</td>
+							<td><input type="radio" name="topshirt" value="m (20)" class="form-check" <!--{if !empty($kit->tshirt_measure) and 'm (20)'==$kit->tshirt_measure }-->checked<!--{/if}-->>20</td>
+							<td><input type="radio" name="topshirt" value="l (20)" class="form-check" <!--{if !empty($kit->tshirt_measure) and 'l (20)'==$kit->tshirt_measure }-->checked<!--{/if}-->>20</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="form-group mb-2 text-capitalize">
+			<label>Short (please select one)</label>
+			<div class="table-responsive">
+				<table class="table table-sm">
+					<thead>
+						<tr>
+							<th>4XS</th><th>3XS</th><th>2XS</th><th>XS</th><th>M</th><th>L</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="radio" name="short" value="4xs (10.5)" class="form-check" <!--{if !empty($kit->short_measure) and '4xs (10.5)'==$kit->short_measure }-->checked<!--{/if}-->>10.5</td>
+							<td><input type="radio" name="short" value="3xs (11)" class="form-check" <!--{if !empty($kit->short_measure) and '3xs (11)'==$kit->short_measure }-->checked<!--{/if}-->>11</td>
+							<td><input type="radio" name="short" value="2xs (11)" class="form-check" <!--{if !empty($kit->short_measure) and '2xs (11)'==$kit->short_measure }-->checked<!--{/if}-->>11</td>
+							<td><input type="radio" name="short" value="xs (17.5)" class="form-check" <!--{if !empty($kit->short_measure) and 'xs (17.5)'==$kit->short_measure }-->checked<!--{/if}-->>17.5</td>
+							<td><input type="radio" name="short" value="m (13.5)" class="form-check" <!--{if !empty($kit->short_measure) and 'm (13.5)'==$kit->short_measure }-->checked<!--{/if}-->>13.5</td>
+							<td><input type="radio" name="short" value="l (14)" class="form-check" <!--{if !empty($kit->short_measure) and 'l (14)'==$kit->short_measure }-->checked<!--{/if}-->>14</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="kit_number">Preferred Jersey Number:</label>
+			<input type="number" id="kit_number" name="kit_number" value="<!--{if !empty($kit->kit_number)}--><!--{$kit->kit_number}--><!--{/if}-->" class="form-control input-rounded"/>
+		</div>
+		<div class="form-group">
+			<label for="kit_name">Preferred Jersey Name:</label>
+			<input type="text" id="kit_name" name="kit_name" value="<!--{if !empty($kit->kit_name)}--><!--{$kit->kit_name}--><!--{/if}-->" class="form-control input-rounded" required/><br/>
+			(Your are to input either the First name or Last name only)
+		</div>
+		<div class="form-group text-capitalize">
+			<span>Please note exact kit size and kit number is subject to availability; we will do our best to accommodate your child’s size.</span>
+			<span>Compare size chart with your child’s measurements before placing orders.</span>
+		</div>
+		<div class="form-group text-center">
+			<button class="btn btn-primary btn-block input-rounded" type="submit" name="kits">Save Changes</button>
+		</div>
+	</fieldset>
+</form>

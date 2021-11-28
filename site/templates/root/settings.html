@@ -1,0 +1,245 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb">
+	<strong class="uppercase">Dasboard |</strong> &nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/settings">Settings&nbsp;<i class="fa fa-gears"></i></a>
+</section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row justify-content-center">
+	<div class="col-sm-10 php-debugger d-none">
+		<h5 class="cont-weight-bold">Debugger:</h5>
+		<pre><!--{print_r($settings)}--></pre>
+	</div>
+	<div class="col-md-4 d-none">
+		<form class="w-100" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/settings">
+			<fieldset class="border-info border p-4 rounded">
+				<legend class="text-center font-weight-bold">Membership Renewal Settings</legend>
+				<div class="form-group d-none">
+					<label for="amount" class="form-control-label">Renewal Fee (₦) <span class="spanCurrency"><!--{$settings->subscription->amount}--></span></label>
+					<input type="number" id="amount" name="amount" class="form-control form-control-sm input-block" value="<!--{if !empty($settings->subscription)}--><!--{$settings->subscription->amount}--><!--{/if}-->" required/>
+				</div>
+				<div class="form-group">
+					<label for="renewal" class="form-control-label">Renewal Period</label>
+					<select id="renewal" name="renewal" class="form-control form-control-sm input-block">
+						<option value="yearly" <!--{if !empty($settings->subscription) and $settings->subscription->renewal=='yearly'}-->selected<!--{/if}-->>Yearly</option>
+						<option value="monthly" <!--{if !empty($settings->subscription) and $settings->subscription->renewal=='monthly'}-->selected<!--{/if}-->>Monthly</option>
+						<option value="quarterly" <!--{if !empty($settings->subscription) and $settings->subscription->renewal=='quarterly'}-->selected<!--{/if}-->>Quarterly</option>
+						<option value="weekly" <!--{if !empty($settings->subscription) and $settings->subscription->renewal=='weekly'}-->selected<!--{/if}-->>Weekly</option>
+					</select>
+				</div>
+				<div class="form-group d-none">
+					<label for="discount" class="form-control-label">Discount (%)</label>
+					<input type="number" id="discount" name="discount"  min="0" max="100" value="<!--{if !empty($settings->subscription)}--><!--{$settings->subscription->discount}--><!--{/if}-->" class="form-control form-control-sm input-block" required/>
+				</div>
+				<div class="form-group">
+					<!--{if !empty($fail)}-->
+						<!--{$fail}-->
+					<!--{/if}-->
+				</div>
+				<div class="form-group text-center">
+					<button class="btn btn-primary btn-sm btn-rounded" type="submit" name="subsetting" value="subsetting"><i class="fa fa-save"></i> Save Changes</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class="col-md-4 d-none">
+		<form class="w-100" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/settings">
+			<fieldset class="border-info border p-4 rounded">
+				<legend class="text-center font-weight-bold">Jersey Fee Settings</legend>
+				<div class="form-group">
+					<label for="amount" class="form-control-label">Jersey Fee (₦) <span class="spanCurrency"><!--{$settings->jersey->amount}--></span></label>
+					<input type="number" id="amount" name="amount" class="form-control form-control-sm input-block" value="<!--{if !empty($settings->jersey)}--><!--{$settings->jersey->amount}--><!--{/if}-->" required/>
+				</div>
+				<div class="form-group">
+					<label for="renewal" class="form-control-label">Renewal Period</label>
+					<select id="renewal" name="renewal" class="form-control form-control-sm input-block">
+						<option value="once" <!--{if !empty($settings->jersey) and $settings->jersey->renewal=='once'}-->selected<!--{/if}-->>Once</option>
+						<option value="weekly" <!--{if !empty($settings->jersey) and $settings->jersey->renewal=='weekly'}-->selected<!--{/if}-->>Weekly</option>
+						<option value="monthly" <!--{if !empty($settings->jersey) and $settings->jersey->renewal=='monthly'}-->selected<!--{/if}-->>Monthly</option>
+						<option value="quarterly" <!--{if !empty($settings->jersey) and $settings->jersey->renewal=='quarterly'}-->selected<!--{/if}-->>Quarterly</option>
+						<option value="yearly" <!--{if !empty($settings->jersey) and $settings->jersey->renewal=='yearly'}-->selected<!--{/if}-->>Yearly</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="discount" class="form-control-label">Discount (%)</label>
+					<input type="number" id="discount" name="discount"  min="0" max="100" value="<!--{if !empty($settings->jersey)}--><!--{$settings->jersey->discount}--><!--{/if}-->" class="form-control form-control-sm input-block" required/>
+				</div>
+				<div class="form-group">
+					<!--{if !empty($fail1)}-->
+						<!--{$fail1}-->
+					<!--{/if}-->
+				</div>
+				<div class="form-group text-center">
+					<button class="btn site-bg-1 btn-sm btn-rounded" type="submit" name="jersey" value="jersey"><i class="fa fa-save"></i> Save Changes</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class="col-md-4">
+		<form class="w-100" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/settings">
+			<fieldset class="border-success border p-4 rounded">
+				<legend class="text-center font-weight-bold"><!--{$Site.companyName}--> Working Hour Settings</legend>
+				<div class="form-row">
+					<div class="form-group col-sm-6">
+						<label for="open_hour" class="form-control-label">Opening Hour</label>
+						<input type="text" id="open_hour" placeholder="9:00am" name="open_hour" value="<!--{if !empty($settings->working_hours)}--><!--{$settings->working_hours->open_hour_string}--><!--{/if}-->" class="form-control form-control-sm badge-pill" required/>
+					</div>
+					<div class="form-group col-sm-6">
+						<label for="close_hour" class="form-control-label">Closing Hour</label>
+						<input type="text" id="close_hour" placeholder="5:00pm" name="close_hour" value="<!--{if !empty($settings->working_hours)}--><!--{$settings->working_hours->close_hour_string}--><!--{/if}-->" class="form-control form-control-sm badge-pill" required/>
+					</div>
+				</div>
+				<div class="form-group">
+					<!--{if !empty($fail2)}-->
+						<!--{$fail2}-->
+					<!--{/if}-->
+				</div>
+				<div class="form-group text-center">
+					<button class="btn btn-success btn-sm btn-rounded" type="submit" name="working_hour" value="working_hour"><i class="fa fa-save"></i> Save Changes</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class="col-md-4">
+		<form class="w-100" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/settings">
+			<fieldset class="border-success border p-4 rounded">
+				<legend class="text-center font-weight-bold"> <!--{$Site.companyName}--> Subscription Days Limit</legend>
+				<div class="form-row">
+					<div class="form-group col-sm-6">
+						<label for="days" class="form-control-label">Number of Days</label>
+						<input type="number" id="days" name="days" placeholder="20" value="<!--{if !empty($settings->subscription_change)}--><!--{$settings->subscription_change->days}--><!--{/if}-->" class="form-control form-control-sm badge-pill" required/>
+					</div>
+				</div>
+				<div class="form-group">
+					<!--{if !empty($fail3)}-->
+						<!--{$fail3}-->
+					<!--{/if}-->
+				</div>
+				<div class="form-group text-center">
+					<button class="btn btn-success btn-sm btn-rounded" type="submit" name="subscription_change" value="subscription_change"><i class="fa fa-save"></i> Save Changes</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class="col-md-4">
+		<form class="w-100" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/settings">
+			<fieldset class="border-success border p-4 rounded">
+				<legend class="text-center font-weight-bold"><!--{$Site.companyName}--> Commissions Deductions</legend>
+				<div class="form-row">
+					<div class="form-group col-sm-6">
+						<label for="pension" class="form-control-label">Pension(%)</label>
+						<input type="number" id="pension" name="pension" value="<!--{if !empty($settings->inv_commission->pension)}--><!--{$settings->inv_commission->pension}--><!--{/if}-->" class="form-control form-control-sm badge-pill" required/>
+					</div>
+					<div class="form-group col-sm-6">
+						<label for="taxes" class="form-control-label">Taxes(%)</label>
+						<input type="number" id="taxes" name="taxes" value="<!--{if !empty($settings->inv_commission->taxes)}--><!--{$settings->inv_commission->taxes}--><!--{/if}-->" class="form-control form-control-sm badge-pill" required/>
+					</div>
+				</div>
+				<div class="form-group">
+					<!--{if !empty($fail5)}-->
+						<!--{$fail5}-->
+					<!--{/if}-->
+				</div>
+				<div class="form-group text-center">
+					<button class="btn btn-success btn-sm btn-rounded" type="submit" name="inv_commission" value="inv_commission"><i class="fa fa-save"></i> Save Changes</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class="col-md-4 d-none">
+		<form class="w-100 form-inline" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/settings">
+			<fieldset class="border-success border p-4 rounded">
+				<legend class="text-center font-weight-bold"><!--{$Site.companyName}--> Subscription Commissions</legend>
+				<div class="form-row">
+					<div class="input-group">
+						<label for="">0 to </label> <input type="number" id="period" placeholder="6" name="period" value="<!--{if !empty($settings->commission)}--><!--{$settings->commission->employee_period}--><!--{/if}-->" class="mx-2 max-auto form-control form-control-sm badge-pill" required/><label for=""> months after employment will attract </label>
+						<input type="number" id="percent_comm" placeholder="%" name="percent_comm" value="<!--{if !empty($settings->commission)}--><!--{$settings->commission->initial}--><!--{/if}-->" class="mx-2  form-control max-auto form-control-sm badge-pill" required/><label for="">% commission and more than that attracts</label>
+						<input type="number" id="percent_comm_2" placeholder="%" name="percent_comm_2" value="<!--{if !empty($settings->commission)}--><!--{$settings->commission->secondary}--><!--{/if}-->" class="mx-2 form-control max-auto form-control-sm badge-pill" required/><label for="">% commission, if SQM is</label><select name="sqm_comm" class="mx-2  form-control max-auto form-control-sm badge-pill"><option <!--{if !empty($settings->commission)}--> <!--{if $settings->commission->commission_sqm == '550'}--> selected <!--{/if}--> <!--{/if}--> value="550">550</option><option <!--{if !empty($settings->commission)}--> <!--{if $settings->commission->commission_sqm == '400'}--> selected <!--{/if}--> <!--{/if}--> value="400">400</option></select>. <br>
+						<input type="number" id="manager_comm" placeholder="6" name="manager_comm" value="<!--{if !empty($settings->commission)}--><!--{$settings->commission->manager}--><!--{/if}-->" class="mx-2 max-auto form-control form-control-sm badge-pill" required/><label for="">% of marketers total commission goes to manager</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<!--{if !empty($fail4)}-->
+						<!--{$fail4}-->
+					<!--{/if}-->
+				</div>
+				<div class="mt-2 form-group-row text-center">
+					<button class="btn btn-success btn-sm btn-rounded" type="submit" name="commissions" value="commissions"><i class="fa fa-save"></i> Save Changes</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class="col-md-4">
+		<form class="w-100 form-inline" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/settings">
+			<fieldset class="border-success border p-4 rounded">
+				<legend class="text-center font-weight-bold"><!--{$Site.companyName}--> AMG Commissions</legend>
+				<div class="form-row">
+					<div class="form-group col-sm-6">
+						<label for="level0" class="form-control-label">Marketer (%)</label>
+						<input type="number" id="level0" name="level0" value="<!--{if !empty($settings->amg_commission->level0)}--><!--{$settings->amg_commission->level0}--><!--{/if}-->" class="form-control form-control-sm badge-pill" required/>
+					</div>
+					<div class="form-group col-sm-6">
+						<label for="level1" class="form-control-label">Level 1 (%)</label>
+						<input type="level1" id="level1" name="level1" value="<!--{if !empty($settings->amg_commission->level1)}--><!--{$settings->amg_commission->level1}--><!--{/if}-->" class="form-control form-control-sm badge-pill" required/>
+					</div>
+					<div class="form-group col-sm-6">
+						<label for="level2" class="form-control-label">Level 2 (%)</label>
+						<input type="number" id="level2" name="level2" value="<!--{if !empty($settings->amg_commission->level2)}--><!--{$settings->amg_commission->level2}--><!--{/if}-->" class="form-control form-control-sm badge-pill" required/>
+					</div>
+				</div>
+				<div class="form-group">
+					<!--{if !empty($fail6)}-->
+						<!--{$fail6}-->
+					<!--{/if}-->
+				</div>
+				<div class="mt-2 form-group-row text-center">
+					<button class="btn btn-success btn-sm btn-rounded" type="submit" name="amg_commission" value="amg_commission"><i class="fa fa-save"></i> Save Changes</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class="col-md-4 d-none">
+		<form class="w-100" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/settings">
+			<fieldset class="border-success border p-4 rounded">
+				<legend class="text-center font-weight-bold">Parking Space Settings</legend>
+				<div class="form-row">
+					<div class="form-group col-sm-12">
+						<label for="total" class="form-control-label">Total Parking Spaces</label>
+						<input type="number" id="total" name="total" value="<!--{$settings->parkspace->total}-->" class="form-control form-control-sm badge-pill" required/>
+					</div>
+				</div>
+				<div class="form-group">
+					<!--{if !empty($fail3)}-->
+						<!--{$fail3}-->
+					<!--{/if}-->
+				</div>
+				<div class="form-group text-center">
+					<button class="btn btn-success btn-sm btn-rounded" type="submit" name="parkspace" value="parkspace"><i class="fa fa-save"></i> Save Changes</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class="col-md-5 d-none">
+		<form class="w-100" method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/settings">
+			<fieldset class="border-primary border p-4 rounded">
+				<legend class="text-center font-weight-bold">Entry Code Generation Settings</legend>
+				<div class="form-group">
+					<label for="codegenstatus" class="form-control-label">Auto Generation Status</label>
+					<select id="codegenstatus" name="status" class="form-control form-control-sm input-block">
+						<option value="0" <!--{if !empty($settings->codegen) and $settings->codegen->status=='0'}-->selected<!--{/if}-->>Off</option>
+						<option value="1" <!--{if !empty($settings->codegen) and $settings->codegen->status=='1'}-->selected<!--{/if}-->>On</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<!--{if !empty($fail4)}-->
+						<!--{$fail4}-->
+					<!--{/if}-->
+				</div>
+				<div class="form-group text-center">
+					<button class="btn btn-primary btn-sm btn-rounded" type="submit" name="codegen" value="codegen"><i class="fa fa-save"></i> Save Changes</button>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</section>
+<!--{/block}-->

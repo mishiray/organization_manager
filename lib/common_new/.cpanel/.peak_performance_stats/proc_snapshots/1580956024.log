@@ -1,0 +1,69 @@
+Thu Feb  6 02:27:04 GMT 2020
+Running Processes:
+schooztc  3015880 59.8  0.7 642544 244208 ?       R    02:26   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3015918 60.5  0.0      0     0 ?        Z    02:26   0:07 [php-cgi] <defunct>
+schooztc  3015972 52.3  0.7 638428 242280 ?       R    02:26   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3016351 65.0  0.4 469692 148516 ?       R    02:26   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 174.8% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3015880 59.9  0.7 647408 248636 ?       S    02:26   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3015972 52.8  0.7 640476 243160 ?       S    02:26   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3016351 65.8  0.5 504048 182048 ?       S    02:26   0:03 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+
+Snapshot 2
+schooztc 3015880 59.9  0.7 647408 248636 ?       S    02:26   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3015972 52.8  0.7 640476 243160 ?       S    02:26   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3016351 66.6  0.5 505072 183148 ?       S    02:26   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+
+Snapshot 3
+schooztc 3015880 59.9  0.7 647408 248636 ?       S    02:26   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3015972 52.8  0.7 640476 243160 ?       S    02:26   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3016351 67.5  0.5 505328 183396 ?       R    02:26   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+
+Snapshot 4
+schooztc 3015880 59.9  0.7 647408 248636 ?       S    02:26   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3015972 52.8  0.7 640476 243160 ?       S    02:26   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3016351 67.8  0.5 505328 183468 ?       R    02:26   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+
+Snapshot 5
+schooztc 3015880 55.6  0.7 647408 248636 ?       S    02:26   0:07 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3015972 48.4  0.7 640476 243160 ?       S    02:26   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3016351 58.5  0.5 505328 183468 ?       S    02:26   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+
+Current load:  02:27:06 up 180 days, 10:58,  0 users,  load average: 0.02, 0.00, 0.00
+
+
+MySQL User Processes:
+ID = 68000621	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = UPDATE `wp_options` SET `option_value` = 'a:17:{s:13:\"administrator\";a:2:{s:4:\"name\";s:13:\"Administrator\";s:12:\"capabilities\";a:267:{s:13:\"switch_themes\";b:1;s:11:\"edit_themes\";b:1;s:16:\"activate_plugins\";b:1;s:12:\"edit_plugins\";b:1;s:10:\"
+ID = 68000603	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT ID FROM wp_posts WHERE post_parent IN ( 40425,40424,40423,40422,40421,40420,40419,40418,40417,40416,40415,40414,40413,40412,40411,40410,40409,40408,40407,40406,40405,40404,40403,40402,40401,40400,40399,40398,40397,40396,40395,40394,40393,40392,40391
+ID = 68000591	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Query	INFO = SELECT COUNT(ID) FROM wp_posts WHERE post_parent IN ( 40424,40423,40422,40421,40420,40419,40418,40417,40416,40415,40414,40413,40412,40411,40410,40409,40408,40407,40406,40405,40404,40403,40402,40401,40400,40399,40398,40397,40396,40395,40394,40393,40392,4039
+
+Current load:  02:27:06 up 180 days, 10:58,  0 users,  load average: 0.02, 0.00, 0.00
+
+

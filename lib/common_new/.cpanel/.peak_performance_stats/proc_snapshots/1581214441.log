@@ -1,0 +1,76 @@
+Sun Feb  9 02:14:01 GMT 2020
+Running Processes:
+schooztc  3674633  6.7  0.0      0     0 ?        Z    02:12   0:06 [php-cgi] <defunct>
+schooztc  3677204  0.2  0.0  63824  9668 ?        S    02:13   0:00 dovecot/lmtp [local READY]
+schooztc  3677997 53.8  0.7 565680 241896 ?       R    02:13   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3678032 47.0  0.6 597888 201336 ?       R    02:13   0:04 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3678231 58.0  0.2 434216 89884 ?        R    02:13   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc  3678236 54.0  0.2 433148 87936 ?        R    02:13   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 151.6% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3674633  6.6  0.0      0     0 ?        Z    02:12   0:06 [php-cgi] <defunct>
+schooztc 3678032 44.5  0.7 639696 241628 ?       R    02:13   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3678231 50.4  0.3 434488 103204 ?       R    02:13   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc 3678236 47.6  0.3 434172 99600 ?        R    02:13   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3674633  6.6  0.0      0     0 ?        Z    02:12   0:06 [php-cgi] <defunct>
+schooztc 3678032 44.5  0.7 639696 241628 ?       R    02:13   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3678231 50.4  0.3 434488 103204 ?       R    02:13   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc 3678236 47.6  0.3 434172 99600 ?        R    02:13   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3674633  6.6  0.0      0     0 ?        Z    02:12   0:06 [php-cgi] <defunct>
+schooztc 3678032 44.5  0.7 639696 241628 ?       R    02:13   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3678231 50.4  0.3 434488 103204 ?       R    02:13   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc 3678236 47.6  0.3 434172 99600 ?        R    02:13   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3674633  6.6  0.0      0     0 ?        Z    02:12   0:06 [php-cgi] <defunct>
+schooztc 3678032 44.9  0.7 639696 241632 ?       R    02:13   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3678231 51.4  0.3 435308 105748 ?       R    02:13   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc 3678236 48.8  0.3 434160 101076 ?       R    02:13   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3674633  6.6  0.0      0     0 ?        Z    02:12   0:06 [php-cgi] <defunct>
+schooztc 3678032 45.7  0.7 639696 241632 ?       R    02:13   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3678231 53.6  0.3 436328 109784 ?       R    02:13   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-cron.php
+schooztc 3678236 50.8  0.3 434880 104116 ?       R    02:13   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  02:14:03 up 183 days, 10:45,  0 users,  load average: 0.05, 0.01, 0.00
+
+
+MySQL User Processes:
+ID = 69076579	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 69076577	TIME = 2	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 69076559	TIME = 0	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  02:14:03 up 183 days, 10:45,  0 users,  load average: 0.05, 0.01, 0.00
+
+

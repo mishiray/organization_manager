@@ -1,0 +1,137 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong>&nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/courses">Manage Courses&nbsp;<i class="fa fa-graduation-cap"></i></a>&nbsp;| Assignments&nbsp;<i class="fa fa-list"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+
+<!--{if !empty($fail)}-->
+	<!--{$fail}-->
+<!--{/if}-->
+<section class="row no-gutters justify-content-center">
+	<div class="col-sm-12">
+		<div class="table-responsive">
+			<!--{if !empty($assignments)}-->
+			<div id="dataTableId_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+				<!--{include file="paging-top.html"}-->
+				<table class="table table-striped table-hover table-bordered">
+				  <thead class="bg-success">
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Student Detail</th>
+				      <th scope="col">Course Detail</th>
+				      <th scope="col">Lesson Material Detail</th>
+				      <th scope="col">Assignment Detail</th>
+			      	  <th scope="col">Review </th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	<!--{$numCount=1}-->
+				  	<!--{foreach $assignments as $matK=> $assignment}-->
+				    <tr>
+				      <td><!--{$numCount}--></td>
+				      <td>
+				      	<h6>Name: <!--{$assignment->userinfo->firstname}--> <!--{$assignment->userinfo->middlename}--> <!--{$assignment->userinfo->lastname}--></h6>
+				      	Email: <!--{$assignment->userinfo->email}--><br/>
+				      	Username: <!--{$assignment->userinfo->username}--><br/>
+				      	Phone No: <!--{$assignment->userinfo->phone}--><br/>
+				      </td>
+				      <td>
+				      	<h6>Course ID: <!--{$assignment->course->courseid}--></h6>
+				      	Title: <!--{$assignment->course->title}--><br/>
+				      	Category: <!--{$assignment->course->category}--><br/>
+				      	<div class="border border-success py-1 px-1" style="max-height: 100px; max-width: 200px; overflow-y: auto;"><!--{$assignment->course->description}--></div>
+				      </td>
+				      <td>
+				      	<h6> <!--{$assignment->material->study}--></h6>
+				      	Title: <!--{$assignment->material->title}--><br/>
+				      	<div class="border border-success py-1 px-1" style="max-height: 100px; max-width: 200px; overflow-y: auto;"><!--{$assignment->material->description}--></div>
+				      </td>
+				      <td>
+				      	<div class="form-group px-1 border border-primary">
+				      		<h6 class="font-weight-bold text-center">Assignment Detail</h6>
+					      	<!--{if !empty($assignment->assignment)}-->
+						      	<h6> <!--{$assignment->assignment->title}--></h6>
+						      	<!--{if !empty($assignment->assignment->qpic) and file_exists($assignment->assignment->qpic)}-->
+			                        <!--{if !empty($assignment->assignment->filetype) and $assignment->assignment->filetype=='video'}-->
+			                          <div style="max-width: 300px; max-height: 300px;">
+			                            <video autobuffer controls class="w-100">
+			                              <source src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$assignment->assignment->qpic}-->">
+			                              <source src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$assignment->assignment->qpic}-->">
+			                              <object type="video/ogg" data="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$assignment->assignment->qpic}-->" class="w-100">
+			                                <param name="src" value="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$assignment->assignment->qpic}-->">
+			                                <param name="autoplay" value="false">
+			                                <param name="autoStart" value="0">
+			                                <p><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$assignment->assignment->qpic}-->" target="__blank">Download this video file.</a></p>
+			                              </object>
+			                            </video>
+			                          </div>
+			                        <!--{else}-->
+							      		<img class=" img-thumbnail" id="asimg" style="max-height: 250px; max-width: 250px;" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$assignment->assignment->qpic}-->">
+						      		<!--{/if}--><br/>
+						      	<!--{/if}-->
+
+						      	<div class="border border-success my-1 py-1 px-1" style="max-height: 100px; max-width: 200px; overflow-y: auto;"><!--{$assignment->assignment->description}--></div>
+					      	<!--{else}--><div class="alert alert-info">Unable to find assignment detail</div>
+					      	<!--{/if}-->
+				      	</div>
+				      	<div class="form-group px-1 border border-primary">
+				      		<h6 class="font-weight-bold text-center">Submitted Response</h6>
+				      		<h6> <!--{$assignment->title}--></h6>
+					      	<!--{if !empty($assignment->sfile) and is_object($assignment->sfile)}-->
+					      		<!--{if !empty($assignment->sfile->video) and file_exists($assignment->sfile->video)}-->
+					      			<a class="btn btn-outline-success btn-sm my-1 btn-light" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$assignment->sfile->video}-->" target="__blank">Uploaded Video File</a>
+					      			<br/>
+					      		<!--{/if}-->
+					      		<!--{if !empty($assignment->sfile->image) and file_exists($assignment->sfile->image)}-->
+					      			<a class="btn btn-outline-success btn-sm my-1 btn-light" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$assignment->sfile->image}-->" target="__blank">Uploaded Picture File</a>
+					      			<br/>
+					      		<!--{/if}-->
+					      		<!--{if !empty($assignment->sfile->doc) and file_exists($assignment->sfile->doc)}-->
+					      			<a class="btn btn-outline-success btn-sm my-1 btn-light" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$assignment->sfile->doc}-->" target="__blank">Uploaded Document File</a>
+					      			<br/>
+					      		<!--{/if}-->
+					      	<!--{/if}-->
+					      	<div class="border border-success my-1 py-1 px-1" style="max-height: 100px; max-width: 200px; overflow-y: auto;"><!--{$assignment->description}--></div>
+				      	</div>
+				      	
+				      </td>
+				      <td>
+				      	<!--{if !empty($assignment->review) or !empty($assignment->mark)}-->
+				      		<button class="btn btn-sm badge-pill my-1 btn-warning" type="button" data-toggle="collapse" data-target="#collapseAss<!--{$matK}-->" aria-expanded="false" aria-controls="collapseAss<!--{$matK}-->"><i class="fa fa-pencil"></i>Edit Review</button>
+				      	<!--{else}-->
+				      		<button class="btn btn-sm badge-pill my-1 btn-success" type="button" data-toggle="collapse" data-target="#collapseAss<!--{$matK}-->" aria-expanded="false" aria-controls="collapseAss<!--{$matK}-->"><i class="fa fa-pencil"></i>Add Review</button>
+				      	<!--{/if}-->
+				      	<a class="btn btn-sm badge-pill my-1 btn-danger confirmTrig" what="Delete student's assignment (<!--{$assignment->title}-->)" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/assignments?u=<!--{$assignment->user}-->&assid=<!--{$assignment->id}-->&evt=delete"><i class="fa fa-trash"></i> Delete</a>
+				      </td>
+				    </tr>
+					<tr class="collapse" id="collapseAss<!--{$matK}-->">
+					  <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/assignments">
+					  	<td></td>
+					      <td colspan="5">
+					       	<div class="form-group">
+					       		<input type="number" name="score" value="<!--{$assignment->mark}-->" placeholder="Score" class="form-control form-control-sm"/>
+					       	</div>
+					       	<div class="form-group">
+					       		<textarea name="review" class="form-control form-control-lg input-block" rows="4" placeholder="Assignment Comment / Review"><!--{$assignment->review}--></textarea>
+					       	</div>
+					       	<div class="form-group">
+					       		<input type="hidden" name="assid" value="<!--{$assignment->id}-->"/>
+					       		<input type="hidden" name="userid" value="<!--{$assignment->user}-->"/>
+					        	<button class="btn btn-sm btn-success" type="submit" name="review_ass"><i class="fa fa-pencil"></i> Save Changes</button>
+					       	</div>
+					      </td>
+					  </form>
+					</tr>
+				  	<!--{$numCount=$numCount+1}-->
+					<!--{/foreach}-->
+				  </tbody>
+				</table>
+				<!--{include file="paging-bottom.html"}-->
+			</div>
+			<!--{else}-->
+			<div class="alert alert-warning"><h3 class="alert-heading">No record on uploaded assignment yet</h3></div>
+			<!--{/if}-->
+		</div>
+	</div>
+</section>
+<!--{/block}-->

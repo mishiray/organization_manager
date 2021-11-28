@@ -1,0 +1,75 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Consultants Records</h1>
+<p class="mb-4">The table contains consultants for the business</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Records</h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <!--{if !empty($referrals)}-->
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">S/N</th>
+              <th scope="col">Consultant Detail</th>
+              <th scope="col">Referred By</th>
+              <th scope="col">Referral Detail</th>
+              <th scope="col">Status</th>
+              <th class="" scope="col"></th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+            <th scope="col">S/N</th>
+            <th scope="col">Consultant Detail</th>
+            <th scope="col">Referred By</th>
+            <th scope="col">Referral Detail</th>
+            <th scope="col">Status</th>
+            <th class="" scope="col"></th>
+          </tr>
+          </tfoot>
+          <tbody>
+              <!--{$numCount=1}-->
+              <!--{foreach $referrals as $referral}-->
+            <tr>
+              <td><!--{$numCount}--></td>
+              <td><!--{$referral->firstname|capitalize}--> <!--{$referral->middlename|capitalize}--> <!--{$referral->lastname|capitalize}--><br/>
+                <!--{$referral->phone}--><br/>
+                  <!--{$referral->email}--><br/>
+                  <span class="font-weight-bold">Date Registered: </span><!--{$referral->dateadded}-->
+              </td>
+              <td><!--{if !empty($referral->by)}-->
+                    <!--{$referral->by->firstname|capitalize}--> <!--{$referral->by->middlename|capitalize}--> <!--{$referral->by->lastname|capitalize}--><br/>
+                    <!--{$referral->by->phone}--><br/>
+                    <!--{$referral->by->email}-->
+                    <!--{else}-->
+                    None
+                  <!--{/if}-->
+              </td>
+              <td>Referral Code:<!--{$referral->userid}--><br/>
+                  <pre><b>Referral Link:</b> <!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/signup?id=<!--{$referral->userid}--></pre></td>
+              <td>
+                  <!--{if $referral->active==true}--><i class="badge badge-pill badge-success">active</i><!--{else}--><i class="badge badge-pill badge-success">active</i><!--{/if}-->	
+              </td>
+              <td class="">
+                  <a class="btn btn-sm btn-primary"  href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/partner?id=<!--{$referral->email}-->"><i class="fa fa-ellipsis-v"></i> Detail</a>
+              </td>
+            </tr>
+              <!--{$numCount=$numCount+1}-->
+            <!--{/foreach}-->
+          </tbody>
+      </table>
+      <!--{else}-->
+			<div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+	  <!--{/if}-->
+    </div>
+  </div>
+</div>
+
+
+<!--{/block}-->

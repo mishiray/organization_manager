@@ -1,0 +1,61 @@
+<!--{extends 'default.html'}-->
+<!--{block name="main-slider"}-->
+
+  <!--{/block}-->
+  <!--{block name="main_content"}-->
+    <div class="site-section">
+        <section class="locations-1" id="locations">
+            <div class="locations py-5">
+                <div class="container">
+                <!--{if !empty($item)}-->
+                <div class="row">
+                    <div class="col-6">
+                        <img class="img-fluid"  src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$item->images}-->" alt="">
+                    </div>
+                    <div class="col-6">
+                        <div class="row">
+                            <h2 class="text-dark"><!--{$item->name}--></h2>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <p>
+                                <!--{$item->content}-->
+                            </p>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <p>Location: <!--{$item->location}--> </p>
+                            <!--{if $item->landmark}-->
+                                <p>Landmark: <!--{$item->landmark}--> </p>
+                            <!--{/if}-->
+                         </div>
+                         <hr>
+                         <div class="row">
+                            <p class="font-weight-bold">Price per 400sqm: <!--{$item->amt_400sqm}--> </p> 
+                         </div>
+                         <div class="row">
+                            <p class="font-weight-bold">Price per 550sqm: <!--{$item->amt_550sqm}--> </p>
+                         </div>
+                        <div class="row justify-content-center">
+                            <div class="col-4 mx-auto p-2">
+                                <a style="min-width: 145px;" class="btn btn-md btn-danger" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/property-form?project=<!--{$item->name}-->">Subscribe Now</a>
+                            </div>
+                            <div class="col-4 mx-auto p-2">
+                                <a style="min-width: 145px;" class="btn btn-md btn-dark" href="<!--{if !empty($item->documents)}--><!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$item->documents}--><!--{else}-->#<!--{/if}-->">Documents</a>
+                            </div>
+                            <div class="col-4 mx-auto p-2">
+                                <a style="min-width: 145px;" class="btn btn-md btn-warning text-light" target="_blank" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/property-faq?project=<!--{$item->name}-->"> FAQ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--{else}-->
+                <div class="alert bg-white text-dark"><strong>No record found</strong></div>
+                <!--{/if}-->
+                </div>
+            </div>
+        </section>
+    </div>
+  <!--{/block}-->
+  <!--{block name="modal-file"}-->
+  <!--{/block}-->

@@ -1,0 +1,72 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<!-- Page Heading -->
+<h1 style="text-transform: uppercase;" class="h3 mb-2 text-gray-800">Transactions</h1>
+   
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Transaction History</h6>
+      </div>
+    <!--{if !empty($transactions)}-->
+    <div class="card-body">
+		<div class="table-responsive">
+			<!--{if !empty($transactions)}-->
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				  <thead>
+					<tr>
+					  <th>SN</th>
+					  <th>Transaction Id</th>
+					  <th>Amount</th>
+					  <th>Purpose</th>
+					  <th>Transaction Date</th>
+					  <th>Status</th>
+					  <th class="d-none" scope="col"></th>
+					</tr>
+				  </thead>
+				  <tfoot>
+					<tr>
+						<th>SN</th>
+						<th>Transaction Id</th>
+						<th>Amount</th>
+						<th>Purpose</th>
+						<th>Transaction Date</th>
+						<th>Status</th>
+						<th class="d-none" scope="col"></th>
+					</tr>
+				  </tfoot>
+				  <tbody>
+					<!--{$numCount=1}-->
+					<!--{foreach $transactions as $pay}-->
+					<tr>
+					  <td><!--{$numCount}--></td>
+					  <td>
+						<strong><!--{$pay->token}--> </strong>
+					  </td>
+					  <td>
+						&#8358;<!--{$pay->amount|number_format:2}--> 
+					  </td>
+					  <td>
+						<!--{$pay->purpose}-->
+					  </td>
+					  <td>
+						<!--{$pay->transdate|date_format}-->
+					  </td>
+					  <td>
+						  <span class="badge badge-<!--{if $pay->status =='1'}-->success<!--{else}-->warning<!--{/if}-->"><!--{if $pay->status=='1'}-->Success<!--{else}-->Failed<!--{/if}--></span></td>
+					  </td>
+					</tr>
+					<!--{$numCount=$numCount+1}-->
+				  <!--{/foreach}-->
+				  </tbody>
+				</table>
+			<!--{else}-->
+			<div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+			<!--{/if}-->
+		</div>
+    </div>
+    <!--{else}-->
+    <div class="alert alert-warning"><h3 class="alert-heading">No Transactions Made</h3></div>
+    <!--{/if}-->
+  </div>
+<!--{/block}-->

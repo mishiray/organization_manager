@@ -1,0 +1,290 @@
+
+<!--{if in_array($sitePage, array('enroll'))}-->
+  <!-- Stripe JavaScript library -->
+  <script src="https://js.stripe.com/v2/"></script>
+<!--{/if}-->
+<!-- JavaScript Libraries -->
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/jquery/jquery.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/jquery/jquery-migrate.min.js"></script>
+
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/datatables/js/jquery.datatables.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/datatables/js/datatables.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/bootstrap/popper.js"></script>
+
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/easing/easing.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/mobile-nav/mobile-nav.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/wow/wow.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/waypoints/waypoints.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/counterup/counterup.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/owlcarousel/owl.carousel.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/isotope/isotope.pkgd.min.js"></script>
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/lightbox/js/lightbox.min.js"></script>
+<!-- Contact Form JavaScript File -->
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/contactform/contactform.js"></script>
+
+<!-- Template Main Javascript File -->
+<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/main.js"></script>
+
+<!--{if !empty($sitePage) and in_array($sitePage, array('blog-new', 'blog', 'project-new', 'project', 'news-new', 'news-info', 'event-new', 'event'))}-->
+<script type="text/javascript" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/quilljs/quill.min.js"></script>
+<!--{/if}-->
+
+<script type="text/javascript" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/script.js"></script>
+<script type="text/javascript">
+  $("body").addClass("js");
+
+
+<!--{if in_array($sitePage, array('enroll'))}-->
+  // Set your publishable key
+  Stripe.setPublishableKey('pk_test_NK2hWAaFSdcv55WJ9Ih4IMIM00n1lxUv4C');
+
+  // Callback to handle the response from stripe
+  function stripeResponseHandler(status, response) {
+    if (response.error) {
+        // Enable the submit button
+        $('#payBtn').removeAttr("disabled");
+        // Display the errors on the form
+        $(".payment-status").html('<p>'+response.error.message+'</p>');
+    } else {
+        var form$ = $("#paymentFrm");
+        // Get token id
+        var token = response.id;
+
+        // Insert the token into the form
+        form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+        // Submit form to the server
+        form$.get(0).submit();
+    }
+  }
+<!--{/if}-->
+
+  $(document).ready(function(){
+    <!--{if !empty($sitePage) and in_array($sitePage, array('blog-new', 'blog', 'project-new', 'project', 'news-new', 'news-info', 'event-new', 'event'))}-->
+      // Initialize Quill editor
+      let toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        ['blockquote', 'code-block', 'code'],
+
+        //[{ 'header': 1 }, { 'header': 2 }],               // custom button values
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+        [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+        [{ 'direction': 'rtl' }],                         // text direction
+
+         //[{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+        // [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        [{ 'header': [4, 5, 6, false] }],
+
+        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+        ['image', 'formula', 'link', 'video'], 
+        ['clean']                                         // remove formatting button
+      ]
+      let quillOptions = {
+        modules: {
+          toolbar: toolbarOptions
+        },
+        placeholder: 'Type your blog content here...',
+        theme: 'snow'
+      };
+      var quill = new Quill('#editcontent', quillOptions);
+
+      /*Event Triggerers*/
+      quill.on('text-change', function(delta, oldDelta, source) {
+        // if (source == 'api') {
+        //   console.log("An API call triggered this change.");
+        // } else if (source == 'user') {
+        //   console.log("A user action triggered this change.");
+        // }
+        $('#content').attr('value',htmlEntities($('#editcontent .ql-editor').html()));
+        // console.log($('#content').attr('value'));
+      });
+    <!--{/if}-->
+    <!--{if !empty($sitePage) and in_array($sitePage, array( 'blog', 'event', 'project', 'news-info', 'event'))}-->
+      $('#editcontent .ql-editor').html(`<!--{$content_stripe}-->`);
+    <!--{/if}-->
+    /*Handle currency*/
+      let format={lang: 'en-US', code:'USD'};
+        // console.log(formatCurrency(Number($(".spanCurrency").text()),format));
+      if ($(".spanCurrency").length && $(".spanCurrency").length>1) {
+        for (spcon of $(".spanCurrency")) {
+          // console.log($(spcon));console.log(spcon);
+          $(spcon).text(formatCurrency(Number($(spcon).text().trim()),format));
+        }
+      }else{
+        $(".spanCurrency").text(formatCurrency(Number($(".spanCurrency").text().trim()),format));
+      }
+    <!--{if in_array($sitePage, array('course', 'package'))}-->
+      /*$(document).on('click', '.theVideo', function() {
+        $(".watchVideo").attr('src', $(this).attr('video'));
+        $(".watchVideo").attr('href', $(this).attr('video'));
+        $(".watchVideo").attr('value', $(this).attr('video'));
+        console.log($(this).attr('video'));
+        console.log($(".watchVideo").attr('src'));
+      });*/
+      $(document).on('change', '#lesson', function() {
+        let assDetail=JSON.parse($("#lesson option:selected").attr('i').trim());
+        //console.log(assDetail);
+        $('#assId').empty();
+        $('.asDesc').empty();
+        $('#asimg').attr('src','');
+        if (assDetail && assDetail.length>0) {
+          $('.asDesc').text(assDetail['0'].description1);
+          if(assDetail['0'].filetype=='video'){
+            $('.asimg').html(`<div style="max-width: 100%; max-height: 300px;">
+                              <video autobuffer controls class="w-100 h-100">
+                                <source src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${assDetail['0'].qpic}">
+                                <source src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${assDetail['0'].qpic}">
+                                <object type="video/ogg" data="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${assDetail['0'].qpic}" class="w-100">
+                                  <param name="src" value="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${assDetail['0'].qpic}">
+                                  <param name="autoplay" value="false">
+                                  <param name="autoStart" value="0">
+                                  <p><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${assDetail['0'].qpic}" target="__blank">Download this video file.</a></p>
+                                </object>
+                              </video>
+                            </div>`);
+          }else{
+            $('.asimg').html(`<img class=" img-thumbnail" id="asimg" style="max-height: 250px; max-width: 100%;" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${assDetail['0'].qpic}">`);
+            //$('#asimg').attr('src', `<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${assDetail['0'].qpic}`);
+          }
+          for (item of assDetail) {
+            $('#assId').append(`<option value="${item.id}" desc='${item.description1}' qpic='${item.qpic}' filetype='${item.filetype}'>${item.title1}</option>`);
+          }
+        }  
+      });
+      $(document).on('change', '#assId', function() {
+        $('.asDesc').text($("#assId option:selected").attr('desc').trim());
+        let assQpic=$("#assId option:selected").attr('qpic');
+        if($("#assId option:selected").attr('filetype')=='video'){
+          $('.asimg').html(`<div style="max-width: 100%; max-height: 300px;">
+                              <video autobuffer controls class="w-100 h-100">
+                                <source src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${assQpic}">
+                                <source src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${assQpic}">
+                                <object type="video/ogg" data="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${assQpic}" class="w-100">
+                                  <param name="src" value="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${assQpic}">
+                                  <param name="autoplay" value="false">
+                                  <param name="autoStart" value="0">
+                                  <p><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${assQpic}" target="__blank">Download this video file.</a></p>
+                                </object>
+                              </video>
+                            </div>`);
+        }else{
+           $('.asimg').html(`<img class=" img-thumbnail" id="asimg" style="max-height: 250px; max-width: 100%;" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${assQpic}">`);
+        }
+        // $('#asimg').attr('src', `<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${$("#assId option:selected").attr('qpic')}`);
+      });
+    <!--{/if}-->
+    <!--{if in_array($sitePage, array('enroll'))}-->
+      $("#paymentFrm").submit(function() {
+        // Disable the submit button to prevent repeated clicks
+        $('#payBtn').attr("disabled", "disabled");
+    
+        // Create single-use token to charge the user
+        Stripe.createToken({
+            number: $('#card_number').val(),
+            exp_month: $('#card_exp_month').val(),
+            exp_year: $('#card_exp_year').val(),
+            cvc: $('#card_cvc').val()
+        }, stripeResponseHandler);
+    
+        // Submit from callback
+        return false;
+      });
+    <!--{/if}-->
+    /*General Event Shooter*/ 
+     $(document).on('click','#rootEvt', function(){
+
+      /*Security Page Access Control*/
+      <!--{if $sitePage=='security'}-->
+        let secDetail={username: $("#vUsername").val(), password: $("#vPassword").val()};
+        $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/dashboard/general.php", {sp: `<!--{$sitePage}-->`, sd: secDetail}, (res)=> {
+          if (res=='success') {
+            $('.alert1').addClass('alert-success').removeClass('alert-danger').html(`<p><strong>Notice:</strong> ${res}</p>`);
+            $('.login-shield').hide(2000);
+          }else{
+            $('.alert1').addClass('alert-danger').removeClass('alert-success').html(`<p><strong>Notice:</strong> ${res}</p>`);
+            $('.login-shield').show(2000);
+          }
+          // $(this).addClass("hidden");
+          // $(".sec-token-request").html('<a class="btn btn-sm">Security token sent</a>');
+        });
+      <!--{/if}-->
+    });
+    $(document).on('click','.confirmDiag', function(){
+        let confOpt=window.confirm(`${$(this).attr(`what`)}`);
+        if (confOpt==false) {
+          return false;
+        }
+    });
+    /*Smart User Angle Controller*/
+    $(document).on('click', '#smartUser', _=>{
+      $('#smartUser strong i').toggleClass('fa-angle-up').toggleClass('fa-angle-down');
+    });
+    /*Changing of Country State City*/
+    <!--{if in_array($sitePage, array('profile'))}-->
+      $(document).on('change','#country, #state', function(){
+        let csd={ data: $(this).val(), type: $(this).attr('id') };
+        $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/dashboard/general.php", {sp: `<!--{$sitePage}-->`, csd: csd}, (res)=> {
+          let ret=JSON.parse(res);
+          // console.log(ret);
+          let target=( $(this).attr('id')=="country"? "#state": "#city");
+          if(ret.length>0 && ret!=null){
+            $(target).empty();
+            for (let re of ret) {
+              $(target).append(`<option value="${re.name}">${re.name}</option>`);
+            }
+          }else{
+            $(target).html(`<option value="">No Record Found</option>`);
+          }
+        });
+      });
+      $(document).on('change', "#img-upload", function() {
+        readURL(this, '#dataImg');
+        $('#dataImg').css('width', 'inherit');
+        $('#dataImg').css('display', 'block');
+      });
+    <!--{/if}-->
+    /*Chatting Control*/
+    $(document).on('click','.chatAdmin', function(){
+      alert('Currently under development');
+    });
+
+    /*Print Event Handler*/
+    $(document).on('click',"#printSect", function() {
+      $("#printSect").hide();
+      printData('printMe', 'School of Greatness: TRANSACTION DETAIL');
+      $("#printSect").show();
+    });
+
+    /*Side menu name collapse caret toggler*/
+    $(document).on("click", "data a.fullname", ()=>{
+      $('data a.fullname strong').toggleClass('isopened');
+    }).on("click", ".side-menu-link", function(){
+      $(this).toggleClass('isactive');
+    });
+
+    /*Toggling of Menu*/
+    $(document).on("click", "#openMobileMenu", ()=>{
+      $('.dashboard-wrapper').toggleClass('mobile-menu-open');
+      let mmControl=$(".dh-menu-icon .fa");
+      mmControl.toggleClass("fa-ellipsis-v").toggleClass("fa-close");
+      /*if(mmControl.hasClass("fa-ellipsis-v")){
+        mmControl.removeClass("fa-ellipsis-v").addClass("fa-close");
+      }else{
+        mmControl.removeClass("fa-close").addClass("fa-ellipsis-v");
+      }*/
+    });
+    $(document).on("click","#printBtn", ()=>{
+      printData("printPage");
+    });
+  });
+ /* Table Navigator*/
+  $('#dataTableId').DataTable({
+    // paging: false,
+    // scrollY: 400,
+    // scrollX: auto,
+    ordering: false
+  });
+</script>

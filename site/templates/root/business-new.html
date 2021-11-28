@@ -1,0 +1,110 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dashboard |&nbsp;Business&nbsp;<i class="fa fa-calendar"></i>&nbsp;|&nbsp;New Business&nbsp;<i class="fa fa-calendar-plus-o"></i></strong></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="container-fluid">
+	<div class="row justify-content-center">
+		<!--{if in_array( $Site.session.User.userinfo->userrole, array('level0','level1')) and  $Site.session.User.userinfo->active==true}-->
+			<!--{if !empty($fail)}-->
+				<div class="col-md-12">
+					<!--{$fail}-->
+				</div>
+			<!--{/if}-->
+			<div class="col-md-9">
+				<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/business-new" enctype="multipart/form-data">
+					<div class="row justify-content-center">	
+						<div class="col-md-8 card card-body">
+							<fieldset>
+								<legend>Add New Business</legend>
+								<div class="form-group">
+									<div class="img-scope card-heading pt-3 pb-3">
+										<label for="img-upload">
+											<img class="img img-thumbnail w-100" id="dataImg" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/default-icon/event-icon.png">
+											<data class="text-center jsonly">Upload Photo</data>
+										</label>
+										<input type="file" accept="image/*" id="img-upload" class="input-rounded w-100" name="img_upload" required/>
+										<noscript><button class="text-center" id="ppUpload" name="ppUpload" type="button">Upload Photo</button></noscript>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label for="category">Category</label>
+										<select id="category" name="category" class="form-control" required>
+                      <option value="">Choose Category</option>
+                      <option class="select-option" value="automotive and transport service">Automotive and Transport Service</option>
+                      <option class="select-option" value="home, land & real estate">Home, Land & Real Estate</option>
+                      <option class="select-option" value="salons & spas">Salons & SPAs</option>
+                      <option class="select-option" value="sports & fitness centers">Sports & Fitness Centers</option>
+                      <option class="select-option" value="recreations, bars & eatries">Recreations, Bars & Eatries</option>
+                      <option class="select-option" value="hotels & clubs">Hotels & Clubs</option>
+                      <option class="select-option" value="schools">Schools</option>
+                      <option class="select-option" value="religion platforms">Religion Platforms</option>
+                      <option class="select-option" value="fashion boutiques & galleries">Fashion Boutiques & Galleries</option>
+                      <option class="select-option" value="market & shopping mall">Market & Shopping Mall</option>
+                      <option class="select-option" value="health care centers">Health Care Centers</option>
+                      <option class="select-option" value="others">Others</option>
+                    </select>
+									</div>
+									<div class="form-group col-md-6">
+                    <div class="form-group">
+                    <label for="sub-category">Sub-Category</label>
+                    <input type="text" name="subcategory" class="form-control" id="subcategory" placeholder="Input a Sub-Category..." required>
+                    </div>
+                  </div>
+								</div>
+								<div class="form-group">
+									<label for="business-name">Business Name</label>
+									<input type="text" name="businessname" class="form-control" id="business-name" placeholder="Business Name..." required>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+									  <label for="phone-number">Phone Number</label>
+									  <input type="number" name="phonenumber" class="form-control" id="phone-number" placeholder="Phone Number..." required>
+									</div>
+									<div class="form-group col-md-6">
+									  <label for="email">Email</label>
+									  <input type="email" name="email" id="email" class="form-control" placeholder="Email..." required>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="business-desc">Business Descriptioin</label>
+									<textarea class="form-control" name="businessdesc" id="business-desc" rows="3" placeholder="Brief Business Description..." required></textarea>
+								</div>
+								<div class="form-group">
+									<label for="address">Address</label>
+									<input type="text" name="address" id="address" class="form-control" required placeholder="Adress...">
+								</div>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+									  <label for="city">City</label>
+									  <input type="text" name="city" class="form-control" id="city" placeholder="City..." required>
+									</div>
+									<div class="form-group col-md-6">
+									  <label for="state">State/Province</label>
+									  <input type="text" name="state" class="form-control" id="state" placeholder="State/Province..." required>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+									  <label for="postal">Postal Code</label>
+									  <input type="number" name="postal" class="form-control" id="postal" placeholder="postal code..." required>
+									</div>
+									<div class="form-group col-md-6">
+									  <label for="contact-person">Contact Person...</label>
+									  <input type="text" name="contactperson" class="form-control" id="contact-person" placeholder="Contact Person..." required>
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<button class="btn btn-primary btn-sm btn-block" type="submit" name="add_buiness">Add Business</button>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+				</form>
+			</div>
+		<!--{/if}-->
+	</div>
+</section>
+<!--{/block}-->

@@ -1,0 +1,597 @@
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<!--<script src="https://www.paypal.com/sdk/js?client-id={$Site.paymentConfig->paypal.live_pk}"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+</script>-->
+<script>
+  const paypalKey={
+    sandBoxClientID: '<!--{$Site.paymentConfig->paypal.live_pk}-->',
+    prodClientID: '<!--{$Site.paymentConfig->paypal.live_pk}-->'
+  }
+  <!--{if in_array($sitePage, array('donation', '', 'index', 'default', 'home'))}-->
+    $(document).on('change', '#donchoice', function() {
+      if ($(this).val() !== 'other') {
+        $("#amountholder").addClass('invisible');
+        $("#amount").val('1');
+      }else{
+        $("#amountholder").removeClass('invisible');
+        $("#amount").val($(this).val());
+      }
+    });
+  <!--{/if}-->
+  <!--{if in_array($sitePage, array('donation'))}-->
+    paypal.Button.render({
+      locale: 'en_US',
+      style: {
+        size: 'responsive',
+        color: 'gold',
+        shape: 'rect',
+        label: 'paypal',
+        tagline: 'true'
+      },
+      env: 'production', // Optional: specify 'sandbox' environment
+      client: {
+        live:    `${paypalKey.sandBoxClientID}`,
+        production: `${paypalKey.prodClientID}`
+      },
+      commit: true, // Optional: show a 'Pay Now' button in the checkout flow
+      payment: function (data, actions) {
+        let err = 0;
+        let failMsg = '';
+
+        if (!$("#first-name")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Input your First Name please!</p>`;
+          err++;
+        }
+
+        if (!$("#last-name")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Input your Last Name please!</p>`;
+          err++;
+        }
+        
+        if (!$("#email-address")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Input an email!</p>`;
+          err++;
+        }
+        
+        if (!$("#inputAddress")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Please input your mobile number!</p>`;
+          err++;
+        }
+        
+        if (!$("#inputAddress2")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Input an address!</p>`;
+          err++;
+        }
+        
+        if (!$("#inputCity")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">A city is required!</p>`;
+          err++;
+        }
+        
+        if (!$("#inputState")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">A state is required!</p>`;
+          err++;
+        }
+        
+        if (!$("#inputZip")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Your postal code is required!</p>`;
+          err++;
+        }
+        
+        if (!$("#amount")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Donation amount is required!</p>`;
+          err++;
+        }
+
+        if(err <= 0){
+          return actions.payment.create({
+            payment: {
+              transactions: [
+                {
+                  amount: {
+                    total: `${$('#amount').val()}`,
+                    currency: 'CAD'
+                  }
+                }
+              ]
+            },
+            experience: {
+              input_fields: {
+                no_shipping: 1
+              }
+            }
+          });
+        }else{
+          failMsg = `<div class="alert alert-danger text-justify">
+            <i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">${failMsg}</div>
+          </div>`;
+          $(".failMessage").html(`${failMsg}`);
+          return false;
+        }
+      },
+      onAuthorize: function (data, actions) {
+        // Optional: display a confirmation page here
+        console.log(data);
+        console.log(actions);
+        return actions.payment.execute().then(function () {
+          // alert(`success`);
+          // Show a success page to the buyer
+
+          let postValues = {
+            firstname: $("#first-name").val(),
+            lastname: $("#last-name").val(),
+            email: $("#email-address").val(),
+            amount: $("#amount").val(),
+            zipcode: $("#inputZip").val(),
+            state: $("#inputState").val(),
+            city: $("#inputCity").val(),
+            address: $("#inputAddress2").val(),
+            mobile: $("#inputAddress").val(),
+            donate: 'donate',
+          }
+          $.post('<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/donation', postValues, function(res) {
+            $(".failMessage").html(`${res}`);
+          });
+        });
+      },
+      onCancel: function (data, actions) {
+        console.log(data);
+        console.log(actions);
+        failMsg = `<div class="alert alert-danger text-justify">
+          <i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">Donation request was cancelled</div>
+        </div>`;
+        $(".failMessage").html(`${failMsg}`);
+        // Show a cancel page or return to cart
+      },
+      onError: function (err) {
+        console.log(err);
+        failMsg = `<div class="alert alert-danger text-justify">
+          <i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">Error encountered during payment. Unable to complete payment</div>
+        </div>`;
+        $(".failMessage").html(`${failMsg}`);
+        // Show an error page here, when an error occurs
+      }
+    }, '#paypal-btn-container');
+  <!--{/if}-->
+
+  <!--{if in_array($sitePage, array('business'))}-->
+    paypal.Button.render({
+      locale: 'en_US',
+      style: {
+         size: 'large',
+         color: 'gold',
+         shape: 'pill',
+         label: 'paypal',
+         tagline: 'true'
+      },
+      env: 'production', // Optional: specify 'sandbox' environment
+      client: {
+        live:    `${paypalKey.sandBoxclientID}`,
+        production: `${paypalKey.prodClientID}`
+      },
+      commit: true, // Optional: show a 'Pay Now' button in the checkout flow
+        payment: function (data, actions) {
+          let err = 0;
+          let failMsg = '';
+
+          if (!$("#category")?.val()) {
+            failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Choose a valid category!</p>`;
+            err++;
+          }
+
+          if (!$("#subcategory")?.val()) {
+            failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Kindly enter a sub category!</p>`;
+            err++;
+          }
+          
+          if (!$("#business-name")?.val()) {
+            failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Kindly enter a business name!</p>`;
+            err++;
+          }
+
+          if (!$("#email-addr")?.val()) {
+            failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Kindly enter email address!</p>`;
+            err++;
+          }
+          
+          if (!$("#phone-number")?.val()) {
+            failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Kindly enter mobile number!</p>`;
+            err++;
+          }
+          
+          if (!$("#business-desc")?.val()) {
+            failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Kindly enter business description!</p>`;
+            err++;
+          }
+          
+          if (!$("#address")?.val()) {
+            failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Kindly enter address!</p>`;
+            err++;
+          }
+          
+          if (!$("#city")?.val()) {
+            failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Kindly enter city!</p>`;
+            err++;
+          }
+
+          if (!$("#state")?.val()) {
+            failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Kindly enter state!</p>`;
+            err++;
+          }
+          
+          if (!$("#postal")?.val()) {
+            failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Kindly enter postal code!</p>`;
+            err++;
+          }
+          
+          if (!$("#contact-person")?.val()) {
+            failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Kindly enter conter person's name!</p>`;
+            err++;
+          }
+          
+          if (!$("#subscription")?.val()) {
+            failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Kindly choose subscription amount!</p>`;
+            err++;
+          }
+
+
+          if(err <= 0){
+            return actions.payment.create({
+              payment: {
+                transactions: [
+                  {
+                    amount: {
+                      total: `${$('#subscription').val()}`,
+                      currency: 'CAD'
+                    }
+                  }
+                ]
+              },
+              experience: {
+                input_fields: {
+                  no_shipping: 1
+                }
+              }
+            });
+          }else{
+            failMsg = `<div class="alert alert-danger text-justify">
+              <i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">${failMsg}</div>
+            </div>`;
+            $(".failMessage").html(`${failMsg}`);
+            // $("#business-form").submit();
+            return false;
+          }
+        },
+        onAuthorize: function (data, actions) {
+          // Optional: display a confirmation page here
+          console.log(data);
+          console.log(actions);
+          return actions.payment.execute().then(function (response) {
+            // alert(`success`);
+            // Show a success page to the buyer
+            
+            /*let postValues = {
+              firstname: $("#first-name").val(),
+              lastname: $("#last-name").val(),
+              email: $("#email-address").val(),
+              amount: $("#amount").val(),
+              zipcode: $("#inputZip").val(),
+              state: $("#inputState").val(),
+              city: $("#inputCity").val(),
+              address: $("#inputAddress2").val(),
+              mobile: $("#inputAddress").val(),
+              submit: 'donate',
+            }$.post('<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/business', postValues, function(res) {
+              $(".failMessage").html(`${res}`);
+            });*/
+            console.log(response);
+            $("#business-form").append(`<input type="hidden" name="payment_data" value="${response}"></input>`);
+            // return false; //
+            $("#business-form").submit();
+          });
+        },
+        onCancel: function (data, actions) {
+          console.log(data);
+          console.log(actions);
+          failMsg = `<div class="alert alert-danger text-justify">
+            <i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">Payment request was cancelled</div>
+          </div>`;
+          $(".failMessage").html(`${failMsg}`);
+            // $("#business-form").submit();
+          // Show a cancel page or return to cart
+        },
+        onError: function (err) {
+          console.log(err);
+          failMsg = `<div class="alert alert-danger text-justify">
+            <i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">Error encountered during payment. Unable to complete payment</div>
+          </div>`;
+          $(".failMessage").html(`${failMsg}`);
+          // Show an error page here, when an error occurs
+        }
+    }, '#paypal-btn-business-container');
+  <!--{/if}-->
+
+  <!--{if in_array($sitePage, array('', 'default', 'index', 'home'))}-->
+    paypal.Button.render({
+      locale: 'en_US',
+      style: {
+         size: 'large',
+         color: 'gold',
+         shape: 'pill',
+         label: 'paypal',
+         tagline: 'true'
+      },
+      env: 'production', // Optional: specify 'sandbox', 'production' environment
+      client: {
+        live:    `${paypalKey.sandBoxclientID}`, // sandbox, live
+        production: `${paypalKey.prodClientID}`
+      },
+      commit: true, // Optional: show a 'Pay Now' button in the checkout flow
+        payment: function (data, actions) {
+          let err = 0;
+          let failMsg = '';
+          
+          if (!$("#amount")?.val()) {
+            failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Kindly choose donation amount!</p>`;
+            err++;
+          }
+
+          if(err <= 0){
+            return actions.payment.create({
+              payment: {
+                transactions: [
+                  {
+                    amount: {
+                      total: `${$('#amount').val()}`,
+                      currency: 'CAD'
+                    }
+                  }
+                ]
+              },
+              experience: {
+                input_fields: {
+                  no_shipping: 1
+                }
+              }
+            });
+          }else{
+            failMsg = `<div class="alert alert-danger text-justify">
+              <i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">${failMsg}</div>
+            </div>`;
+            $(".failMessage").html(`${failMsg}`);
+            // $("#business-form").submit();
+            return false;
+          }
+        },
+        onAuthorize: function (data, actions) {
+          // Optional: display a confirmation page here
+          console.log(data);
+          console.log(actions);
+          return actions.payment.execute().then(function (response) {
+            console.log(`success`);
+            // Show a success page to the buyer
+
+            
+            /*let postValues = {
+              firstname: $("#first-name").val(),
+              lastname: $("#last-name").val(),
+              email: $("#email-address").val(),
+              amount: $("#amount").val(),
+              zipcode: $("#inputZip").val(),
+              state: $("#inputState").val(),
+              city: $("#inputCity").val(),
+              address: $("#inputAddress2").val(),
+              mobile: $("#inputAddress").val(),
+              submit: 'donate',
+            }$.post('<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/business', postValues, function(res) {
+              $(".failMessage").html(`${res}`);
+            });*/
+            console.log(response);
+          });
+        },
+        onCancel: function (data, actions) {
+          console.log(data);
+          console.log(actions);
+          failMsg = `<div class="alert alert-danger text-justify">
+            <i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">Donation request was cancelled</div>
+          </div>`;
+          $(".failMessage").html(`${failMsg}`);
+            // $("#business-form").submit();
+          // Show a cancel page or return to cart
+        },
+        onError: function (err) {
+          console.log(err);
+          failMsg = `<div class="alert alert-danger text-justify">
+            <i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">Error encountered during payment. Unable to complete payment</div>
+          </div>`;
+          $(".failMessage").html(`${failMsg}`);
+          // Show an error page here, when an error occurs
+        }
+    }, '#paypal-instant-donation');
+  <!--{/if}-->
+  
+  <!--{if in_array($sitePage, array('signup'))}-->
+    let isMailValid = false;
+    $(document).on('keyup change', '#member-email', function() {
+      validateEmail = emailExist ($(this).val());
+      validateEmail.then(
+        res => {
+          // console.log(res);
+          isMailValid = res;
+        }, 
+        err => {
+          // console.log(err);
+          isMailValid = false;
+        }
+      );
+    });
+    paypal.Button.render({
+      locale: 'en_US',
+      style: {
+        size: 'responsive',
+        color: 'gold',
+        shape: 'rect',
+        label: 'paypal',
+        tagline: 'true'
+      },
+      env: 'production', // Optional: specify 'sandbox' environment
+      client: {
+        live:    `${paypalKey.sandBoxClientID}`,
+        production: `${paypalKey.prodClientID}`
+      },
+      commit: true, // Optional: show a 'Pay Now' button in the checkout flow
+      payment: function (data, actions) {
+        let err = 0;
+        let failMsg = '';
+
+        if (!$("#firstname")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Please enter your first Name please!</p>`;
+          err++;
+        }
+
+        if (!$("#lastname")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Please enter your last Name please!</p>`;
+          err++;
+        }
+
+        // let retEmail = emailExist($("#member-email").val());
+        if ( !isMailValid ) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Please enter a valid email, email is not valid or already exists!</p>`;
+          err++;
+        }
+        
+       /* if (!$("#username")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Please enter username!</p>`;
+          err++;
+        }*/
+        
+        if (!$("#address")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Please enter address!</p>`;
+          err++;
+        }
+        
+        if (!$("#phone")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">A Phone number is required!</p>`;
+          err++;
+        }
+        // console.log(/^([a-zA-z0-9]{8,})$/.test($("#password").val()));
+        if ($("#password")?.val() && /^([a-zA-z0-9]{8,})$/.test($("#password").val())) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Invalid Password: password should be at least 8 characters in length and should include at least one upper case letter, one number!</p>`;
+          err++;
+        }
+        
+        if (!$("#password")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">empty password is not allowed!</p>`;
+          err++;
+        }
+        
+        if (!$("#cpassword")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Your postal code is required!</p>`;
+          err++;
+        }
+        // console.log(err);
+
+        if ($("cpassword")?.val() && $("cpassword")?.val()!=$("#cpassword")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Your has to be the same as confirmed password!</p>`;
+          err++;
+        }
+        
+        if (!$("#amount")?.val()) {
+          failMsg = `${failMsg}<p class="border border-danger p-1 rounded">Select a valid membership level!</p>`;
+          err++;
+        }
+
+        if(err <= 0 /*&& retEmail === false*/){
+          return actions.payment.create({
+            payment: {
+              transactions: [
+                {
+                  amount: {
+                    total: `${$('#amount')?.val()}`,
+                    currency: 'CAD'
+                  }
+                }
+              ]
+            },
+            experience: {
+              input_fields: {
+                no_shipping: 1
+              }
+            }
+          });
+        }else{
+          failMsg = `<div class="alert alert-danger text-justify">
+            <i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">${failMsg}</div>
+          </div>`;
+          $(".failMessage").html(`${failMsg}`);
+          return false;
+        }
+      },
+      onAuthorize: function (data, actions) {
+        // Optional: display a confirmation page here
+        console.log(data);
+        console.log(actions);
+        return actions.payment.execute().then(function () {
+          // let postValues = {
+          //   firstname: $("#first-name").val(),
+          //   lastname: $("#last-name").val(),
+          //   email: $("#email-address").val(),
+          //   amount: $("#amount").val(),
+          //   zipcode: $("#inputZip").val(),
+          //   state: $("#inputState").val(),
+          //   city: $("#inputCity").val(),
+          //   address: $("#inputAddress2").val(),
+          //   mobile: $("#inputAddress").val(),
+          //   donate: 'donate',
+          // }
+            $("#signup").prepend(`<input type="hidden" name="paid" value="true"/>`);
+            $("#signup").submit();
+        });
+      },
+      onCancel: function (data, actions) {
+        console.log(data);
+        console.log(actions);
+        failMsg = `<div class="alert alert-danger text-justify">
+          <i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">Membership registration attempt was cancelled</div>
+        </div>`;
+        $(".failMessage").html(`${failMsg}`);
+        return false;
+        // Show a cancel page or return to cart
+      },
+      onError: function (err) {
+        console.log(err);
+        failMsg = `<div class="alert alert-danger text-justify">
+          <i class="fa fa-warning"></i> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3>Error Messages</h3><div class="alert alert-danger alert-dismissible" role="alert">Error encountered during payment. Unable to complete payment</div>
+        </div>`;
+        $(".failMessage").html(`${failMsg}`);
+        return false;
+        // Show an error page here, when an error occurs
+      }
+    }, '#paypal-member-signup');
+  <!--{/if}-->
+
+  async function emailExist (email) {
+    let emailStat = false;
+    await $.post('<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/signup', {checkEmail: true, email}, function(data) {
+      let resp = JSON.parse(data);
+      // console.log(resp);
+      if (resp?.status === true) {
+        emailStat = false
+      }else{
+        emailStat = true
+      }
+    });
+    return emailStat;
+  }
+</script>

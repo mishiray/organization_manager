@@ -1,0 +1,70 @@
+Thu Feb  6 03:16:03 GMT 2020
+Running Processes:
+schooztc  3205594  0.0  0.0  65424 11404 ?        S    03:11   0:00 dovecot/lmtp [local READY]
+schooztc  3277118 35.5  0.7 568340 245172 ?       R    03:15   0:11 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3277158 35.8  0.7 566792 244296 ?       R    03:15   0:10 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3277772 32.2  0.7 566504 243700 ?       R    03:15   0:06 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3277824 32.3  0.7 564272 240704 ?       S    03:15   0:05 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc  3278871 30.0  0.2 430172 78868 ?        R    03:15   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-login.php
+schooztc  3278919 31.0  0.2 428964 71912 ?        R    03:15   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Running Queries:
+
+Open connections
+
+Current Site Requests:
+
+Reference: ui
+   Server: md-47.webhostbox.net
+    Brand: 
+Srv. Type: cpanel
+  Created: Sat Aug 10 21:50:45 2019
+Acct Type: Shared
+     Plan: default
+    Theme: paper_lantern
+     User: schooztc
+U. Domain: schoolofgreatness.africa
+    Email: oshiyemi@gmail.com
+       IP: 199.79.63.83 (shared)
+
+ Doc Root: /home/schooztc/public_html
+    Shell: /bin/bash
+
+CPU Usage: 99.3% (warning)
+      SSL: SSL error: missing certificate (warning)
+
+
+Snapshot 1
+schooztc 3277158 35.2  0.7 568864 245280 ?       S    03:15   0:10 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3278871 33.6  0.2 433644 95456 ?        R    03:15   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-login.php
+schooztc 3278919 35.4  0.2 433124 87236 ?        R    03:15   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 2
+schooztc 3277158 35.4  0.7 568864 245280 ?       R    03:15   0:10 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3278871 34.6  0.2 433644 95940 ?        R    03:15   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-login.php
+schooztc 3278919 36.0  0.2 433144 87772 ?        R    03:15   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 3
+schooztc 3277158 35.7  0.7 568864 245280 ?       R    03:15   0:11 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3278871 36.0  0.3 433928 99052 ?        R    03:15   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-login.php
+schooztc 3278919 37.8  0.2 434448 89972 ?        R    03:15   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 4
+schooztc 3277158 36.0  0.4 454496 145200 ?       R    03:15   0:11 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+schooztc 3278871 37.8  0.3 434412 102932 ?       R    03:15   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-login.php
+schooztc 3278919 39.8  0.2 433240 91680 ?        R    03:15   0:01 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Snapshot 5
+schooztc 3278871 39.0  0.3 435408 106800 ?       R    03:15   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/wp-login.php
+schooztc 3278919 41.4  0.2 433148 93776 ?        R    03:15   0:02 /opt/cpanel/ea-php56/root/usr/bin/php-cgi /home/schooztc/public_html/index.php
+
+Current load:  03:16:05 up 180 days, 11:47,  0 users,  load average: 0.12, 0.03, 0.01
+
+
+MySQL User Processes:
+ID = 68013501	TIME = 1	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+ID = 68013495	TIME = 2	USER = schooztc_scog	HOST = localhost	DB = schooztc_scog	COMMAND = Sleep	INFO = 
+
+Current load:  03:16:05 up 180 days, 11:47,  0 users,  load average: 0.12, 0.03, 0.01
+
+

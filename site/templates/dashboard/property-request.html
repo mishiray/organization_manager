@@ -1,0 +1,55 @@
+<!--{extends file="dashboard.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong>&nbsp;Property Request Form&nbsp;<i class="fa fa-sitemap"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row justify-content-center">
+	<div class="col-md-8">
+        <form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/property-request" id="reqPropForm">
+            <fieldset class="card p-4 mt-3">
+                <legend class="panel-heading text-center">Property Request From</legend>
+                <div class="form-group">
+                    <label for="date" class="sr-only">Request Date</label>
+                    <input type="date" id="date" class="form-control" placeholder="Date" required="" name="date" autofocus="Select Request Date" value="<!--{$Site.dateNow2}-->">
+                </div>
+                <div class="form-group">
+                    <label for="names" class="sr-only">Client Name</label>
+                    <input type="text" id="names" class="form-control" placeholder="Client Name" required="" name="names" autofocus="Enter client name">
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="sr-only">Client Number</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="Client Number" required="" name="phone" autofocus="Enter your last name">
+                </div>
+                <div class="form-group">
+                    <label for="location" class="sr-only">Client Choice Location</label>
+                    <input type="text" id="location" class="form-control" placeholder="Client  Choice Location" required="" name="location" autofocus="Enter client choice loation">
+                </div>
+                <div class="form-group">
+                    <label for="description" class="sr-only">Description</label>
+                    <textarea  id="description" class="form-control" placeholder="Description" required="" name="description" autofocus="Enter description"> </textarea>
+                </div>
+                <div class="form-group">
+                    <label for="budget" class="sr-only">Client Budget</label>
+                    <input type="number" id="budget" class="form-control" placeholder="Client Budget" required="" name="budget" autofocus="Enter client budget">
+                </div>
+                <div class="form-group">
+                    <label for="timeframe" class="sr-only">Time Frame(days)</label>
+                    <input type="text" id="timeframe" class="form-control" placeholder="Time Frame(days)" required="" name="timeframe" autofocus="Enter time frame">
+                </div>
+                <div class="form-group">
+                    <label for="remarks" class="sr-only">Remarks</label>
+                    <textarea id="remarks" class="form-control" placeholder="Remarks" required="" name="remarks" autofocus="Enter remarks"> </textarea>
+                </div>
+                <!--{if !empty($fail)}-->
+                <div class="form-group">
+                    <!--{$fail}-->
+                </div>
+                <!--{/if}-->
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit_request" value="submit-request" id="reqProp">Submit Request</button>
+                </div>
+            </fieldset>
+        </form>
+	</div>
+</section>
+<!--{/block}-->

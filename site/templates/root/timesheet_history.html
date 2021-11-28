@@ -1,0 +1,165 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong> &nbsp;Timesheet&nbsp;<i class="fa fa-list"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<section class="row justify-content-center">
+	<div class="col-sm-12">
+		<h5 class="font-weight-bold mb-2 mt-3">Timesheet Histroy</h5>
+		<div class="card">
+			<div class="card-body">
+				<div class="row  bg-primary rounded mb-2 text-center justify-content-center">
+					<div class="col-lg-6 pt-2">
+						<form id="mainForm" method="POST" class="d-flex" enctype="multipart/form-data" name="timesheet">
+							<div class="form-group">
+							<label class="text-light" for="Year">Enter Year</label>
+								<select class="form-control" id="Year"  name="year">
+									<!--{for $foo=2010 to 3000}-->
+									<option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+									<!--{$foo}-->
+									</option>
+									<!--{/for}-->
+								</select>
+							</div>
+							<div class="form-group">
+							<label class="text-light"  for="month">Select Month</label>
+								<select class="form-control" id="month"  name="month">
+									<option value="">All</option>
+									<!--{foreach $months as $month}-->
+									<option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+									<!--{$month}-->
+									</option>
+									<!--{/foreach}-->
+								</select>
+							</div>
+							<!--{if $isadmin=='yes'}-->
+							<div class="form-group">
+							<label class="text-light"  for="marketer" class="form-control-label">Employees</label>
+							<select name="email" class="form-control" onchange="getInfo(this);" id="marketer">
+							<option selected disabled value="null">Select Employee</option>
+							<!--{if !empty($employees)}-->
+								<!--{foreach $employees as $employee}-->
+								<option <!--{if !empty($filter->email)}--> <!--{if $filter->email == $employee->email}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$employee->email}-->"> <!--{$employee->employeeid}--> - <!--{$employee->surname}--> <!--{$employee->first_name}--></option>
+								<!--{/foreach}-->
+							<!--{else}-->
+								<option value="null">none</option>
+							<!--{/if}-->
+							</select>   
+							</div>
+							<!--{/if}-->
+							<div class="form-group d-flex"> 
+							<button type="submit" class="mt-2 btn btn-success" name="triggers" id="timesheet" value="timesheet">OK</button>
+						</div>      
+						</form>
+					</div>
+				</div>
+				<!--{if !empty($timesheet)}-->
+				<div class="table-responsive">
+					<div id="dataTableId_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+							<thead>
+							<tr>
+								<th>SN</th>
+								<!--{if $isadmin=='yes'}-->
+									<th>Name</th>
+								<!--{/if}-->
+								<th>Date</th>
+								<th>Office</th>
+								<th>Sign In</th>
+								<!--{if $isadmin=='yes'}-->
+									<th>Login Location</th>
+								<!--{/if}-->
+								<th>Sign Out</th>
+								<!--{if $isadmin=='yes'}-->
+									<th>Logout Location</th>
+								<!--{/if}-->
+								<th>Status</th>
+							</tr>
+							</thead>
+							<tfoot>
+							<tr>
+								<th>SN</th>
+								<!--{if $isadmin=='yes'}-->
+									<th>Name</th>
+								<!--{/if}-->
+								<th>Date</th>
+								<th>Office</th>
+								<th>Sign In</th>
+								<!--{if $isadmin=='yes'}-->
+									<th>Login Location</th>
+								<!--{/if}-->
+								<th>Sign Out</th>
+								<!--{if $isadmin=='yes'}-->
+									<th>Logout Location</th>
+								<!--{/if}-->
+								<th>Status</th>
+							</tr>
+							</tfoot>
+							<tbody>
+							<!--{$numCount=1}-->
+									<!--{foreach $timesheet as $sheet}-->
+								<tr>
+									<td><!--{$numCount}--></td>
+									<!--{if $isadmin=='yes'}-->
+									<td>
+										<!--{$sheet->name->surname}--> <!--{$sheet->name->first_name}-->
+									</td>
+									<!--{/if}-->
+									<td>
+										<!--{$sheet->dateadded|date_format}-->
+									</td>
+									<td>
+										<!--{$sheet->name->location}-->
+									</td>
+									<td>
+										<!--{$sheet->login|date_format:$config.date}--> <br>
+									</td>
+									<!--{if $isadmin=='yes'}-->
+									<td>
+										<!--{if !empty($sheet->data_in)}-->
+										<a 
+											href="https://www.google.com/maps/search/?api=1&query=<!--{$sheet->data_in->latitude}-->,<!--{$sheet->data_in->longitude}-->&amp;output=embed" 
+											style="color:#0000FF;text-align:left" 
+											target="_blank"
+										>
+											See Location
+										</a>
+										<!--{/if}-->
+									</td>
+									<!--{/if}-->
+									<td>
+										<!--{$sheet->logout|date_format:$config.date}-->
+									</td>
+									<!--{if $isadmin=='yes'}-->
+									<td>
+										<!--{if !empty($sheet->data_out)}-->
+										<a 
+											href="https://www.google.com/maps/search/?api=1&query=<!--{$sheet->data_out->latitude}-->,<!--{$sheet->data_out->longitude}-->&amp;output=embed" 
+											style="color:#0000FF;text-align:left" 
+											target="_blank"
+										>	
+											See Location
+										</a>
+										<!--{/if}-->
+										
+									</td>
+									<!--{/if}-->
+									<td>
+										<span class="p-2 badge badge-<!--{if $sheet->status =='On Time'}-->success<!--{else}-->warning<!--{/if}-->"><!--{$sheet->status}--></span>
+										
+									</td>
+								</tr>
+									<!--{$numCount=$numCount+1}-->
+							<!--{/foreach}-->
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!--{else}-->
+				<div class="alert alert-warning"><h3 class="alert-heading">No record found</h3></div>
+				<!--{/if}-->
+			</div>
+		</div>
+	</div>
+</section>
+<!--{/block}-->

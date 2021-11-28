@@ -1,0 +1,115 @@
+<div class="dash-side-menu">
+	<div class="side-menu-logo">
+		<img src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/dccba_logo.jpg" class="header-logo" alt="<!--{$Site.companyName}-->">
+	</div>
+	<aside class="side-menu-wrapper">
+		<div class="sm-container">
+			<div class="side-menu-user">
+				<img src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($userinfo->userimg)}--><!--{$userinfo->userimg}--><!--{else}-->site/media/i/icon-student.png<!--{/if}-->">
+				<data><a data-toggle="collapse" class="fullname" href="#min-det" id="smartUser"><strong><!--{$userinfo->firstname}--> <!--{$userinfo->lastname}--> <i class="fa fa-angle-up"></i></strong></a></data>
+				<section id="min-det"  class="text-center collapse show">
+					<div class="">Membership</div>
+					<data class="text-dark"><!--{if !empty($Site.membershipSub[$userinfo->membership])}--><!--{$Site.membershipSub[$userinfo->membership].name|capitalize}--><!--{else}--><!--{/if}--></data>
+					<div>ACCOUNT STATUS</div>
+					<data><!--{if $Site.session.User.userinfo->active==true}--><span class="badge badge-success">Active</span><!--{else}--><span class="badge badge-danger">Blocked</span><!--{/if}--></data>
+				</section>
+			</div>
+			<div class="dash-menu-wrapper mb-5 pb-5">
+				<ul class="side-menu-list mb-5">
+					<li class="side-menu-link <!--{if in_array($sitePage, array('home'))}-->isactive<!--{/if}-->">
+						<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/home"><i class="fa fa-home"></i> Dashboard</a>
+					</li>
+					<li class="side-menu-link <!--{if in_array($sitePage, array('profile', 'logout', 'register', 'development'))}-->isactive<!--{/if}-->">
+						<a href="#"><i class="fa fa-vcard"></i> My Profile <span><i class="fa fa-angle-down"></i></span></a>
+						<ul class="side-menu-sub-list">
+							<li class="side-menu-sub-link <!--{if $sitePage == 'profile'}-->isactive<!--{/if}-->">
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/profile"><i class="fa fa-user"></i> My Profile</a>
+							</li>
+							<li class="side-menu-sub-link <!--{if $sitePage == 'logout'}-->isactive<!--{/if}-->">
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/logout"><i class="fa fa-sign-out"></i> Logout</a>
+							</li>
+						</ul>
+					</li>
+					<li class="side-menu-link <!--{if in_array($sitePage, array('subscriptions', 'register', 'receipt'))}-->isactive<!--{/if}-->">
+						<a href="#" class="side-menu-main-link"><i class="fa fa-money"></i> Subscription <span><i class="fa fa-angle-down"></i></span></a>
+						<ul class="side-menu-sub-list">
+							<li class="side-menu-sub-link <!--{if $sitePage == 'register'}-->isactive<!--{/if}-->">
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/register"><i class="fa fa-money"></i> Renew Subscription</a>
+							</li>
+							<li class="side-menu-sub-link <!--{if in_array($sitePage, array('subscriptions', 'receipt'))}-->isactive<!--{/if}-->">
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/subscriptions"><i class="fa fa-bars"></i> Subscriptions</a>
+							</li>
+						</ul>
+					</li>
+					<li class="side-menu-link <!--{if in_array($sitePage, array('accountings', 'accounting-new', 'accounting'))}-->isactive<!--{/if}-->">
+						<a href="#" class="side-menu-main-link"><i class="fa fa-calculator"></i> Accounting <span><i class="fa fa-angle-down"></i></span></a>
+						<ul class="side-menu-sub-list">
+							<li class="side-menu-sub-link <!--{if $sitePage == 'accounting-new'}-->isactive<!--{/if}-->">
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/accounting-new"><i class="fa fa-calculator"></i> New Accounting</a>
+							</li>
+							<li class="side-menu-sub-link <!--{if $sitePage == 'accountings' or  $sitePage == 'accounting'}-->isactive<!--{/if}-->">
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/accounting"><i class="fa fa-bars"></i> Accounting List</a>
+							</li>
+						</ul>
+					</li>
+					<li class="side-menu-link <!--{if in_array($sitePage, array('news', 'news-new', 'new-info'))}-->isactive<!--{/if}-->">
+						<a href="#" class="side-menu-main-link"><i class="fa fa-newspaper-o"></i> News <span><i class="fa fa-angle-down"></i></span></a>
+						<ul class="side-menu-sub-list">
+							<li class="side-menu-sub-link <!--{if $sitePage == 'news-new'}-->isactive<!--{/if}-->">
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/news-new"><i class="fa fa-info-circle"></i> Add News</a>
+							</li>
+							<li class="side-menu-sub-link <!--{if $sitePage == 'news-info' or  $sitePage == 'news'}-->isactive<!--{/if}-->">
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/news"><i class="fa fa-newspaper-o"></i> News List</a>
+							</li>
+						</ul>
+					</li>
+					<li class="side-menu-link <!--{if in_array($sitePage, array('experts', 'ask-an-expert', 'g
+						expert'))}-->isactive<!--{/if}-->">
+						<a href="#" class="side-menu-main-link"><i class="fa fa-user"></i> Ask An Expert <span><i class="fa fa-angle-down"></i></span></a>
+						<ul class="side-menu-sub-list">
+							<li class="side-menu-sub-link <!--{if $sitePage == 'ask-an-expert'}-->isactive<!--{/if}-->">
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/ask-an-expert"><i class="fa fa-info-circle"></i> Ask An Expert</a>
+							</li>
+							<li class="d-none side-menu-sub-link <!--{if $sitePage == 'blog' or  $sitePage == 'blogs'}-->isactive<!--{/if}-->">
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/blogs"><i class="fa fa-rss-square""></i> Blog List</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="side-menu-link <!--{if in_array($sitePage, array('blogs', 'blog-new', 'blog'))}-->isactive<!--{/if}-->">
+						<a href="#" class="side-menu-main-link"><i class="fa fa-rss"></i> Blog <span><i class="fa fa-angle-down"></i></span></a>
+						<ul class="side-menu-sub-list">
+							<li class="side-menu-sub-link <!--{if $sitePage == 'blog-new'}-->isactive<!--{/if}-->">
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/blog-new"><i class="fa fa-info-circle"></i> Add Blog</a>
+							</li>
+							<li class="side-menu-sub-link <!--{if $sitePage == 'blog' or  $sitePage == 'blogs'}-->isactive<!--{/if}-->">
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/blogs"><i class="fa fa-rss-square""></i> Blog List</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="side-menu-link d-none <!--{if in_array($sitePage, array('receipt', 'transactions'))}-->isactive<!--{/if}-->">
+						<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/transactions"><i class="fa fa-list"></i> TRANSACTIONS</a>
+					</li>
+					<li class="side-menu-link d-none <!--{if in_array($sitePage, array('contact-instructor'))}-->isactive<!--{/if}-->">
+						<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/contact-instructor"><i class="fa fa-headphones"></i> CONTACT INSTRUCTOR</a>
+					</li>
+					<li class="side-menu-link <!--{if in_array($sitePage, array('compose','messages','inbox'))}-->isactive<!--{/if}-->">
+						<a href="#" class="side-menu-main-link"><i class="fa fa-envelope"></i> MESSAGE ADMIN <span><i class="fa fa-angle-down"></i></span></a>
+						<ul class="side-menu-sub-list">
+							<li class="side-menu-sub-link <!--{if $sitePage == 'compose'}-->isactive<!--{/if}-->">
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/compose"><i class="fa fa-pencil"></i> Compose</a>
+							</li>
+							<li class="side-menu-sub-link <!--{if $sitePage == 'messages'}-->isactive<!--{/if}-->">
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/messages"><i class="fa fa-send"></i> Sent Messages</a>
+							</li>
+							<li class="side-menu-sub-link <!--{if $sitePage == 'inbox'}-->isactive<!--{/if}-->">
+								<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/dashboard/inbox"><i class="fa fa-inbox"></i> Inbox</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</aside>
+</div>

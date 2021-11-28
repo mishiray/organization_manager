@@ -1,0 +1,232 @@
+<!--{extends file="root.html"}-->
+<!--{block name="content"}-->
+<!-- Page Heading -->
+<h1 class="mb-2 text-gray-800">Profit and Loss</h1>
+
+<!-- DataTales Example -->
+<section class="row">
+  <div class="card w-100 shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Report</h6>
+    </div>  
+    <div class="card-body justify-content-center">
+        <div class="col-12 bg-dark rounded pt-2">
+            <form action="" class="d-flex p-4" method="post">
+            <div class="form-group">
+              <label class="text-light" for="Year">Enter Year</label>
+                  <select class="form-control" id="Year"  name="year">
+                    <!--{for $foo=2010 to 3000}-->
+                      <option <!--{if !empty($filter->year)}--> <!--{if $foo == $filter->year}--> selected <!--{/if}--> <!--{else}--> <!--{if $foo =='Y'|date}-->selected <!--{/if}--> <!--{/if}--> value="<!--{$foo}-->">
+                        <!--{$foo}-->
+                      </option>
+                    <!--{/for}-->
+                  </select>
+            </div>
+            <div class="form-group">
+              <label for="month"class="text-light">Select Month</label>
+                  <select class="form-control" id="month"  name="month">
+                    <option value="">All</option>
+                    <!--{foreach $months as $month}-->
+                      <option <!--{if !empty($filter->month)}--> <!--{if $month == $filter->month}-->selected <!--{/if}--> <!--{else}--> <!--{if $month =='M'|date}-->selected<!--{/if}--> <!--{/if}--> value="<!--{$month}-->">
+                        <!--{$month}-->
+                      </option>
+                    <!--{/foreach}-->
+                  </select>
+            </div>
+            <div class="form-group">
+              <label for="week"class="text-light">Select Week</label>
+                  <select class="form-control" id="week"  name="week">
+                    <option value="">All</option>
+                    <option <!--{if !empty($filter->week) && $filter->week == 1 }--> selected <!--{/if}-->  value="1">
+                      Week 1
+                    </option>
+                    <option <!--{if !empty($filter->week) && $filter->week == 2 }--> selected <!--{/if}-->  value="2">
+                      Week 2
+                    </option>
+                    <option <!--{if !empty($filter->week) && $filter->week == 3 }--> selected <!--{/if}-->  value="3">
+                      Week 3
+                    </option>
+                    <option <!--{if !empty($filter->week) && $filter->week == 4}--> selected <!--{/if}-->  value="4">
+                      Week 4
+                    </option>
+                    <option <!--{if !empty($filter->week) && $filter->week == 5}--> selected <!--{/if}-->  value="5">
+                      Week 5
+                    </option>
+                  </select>
+            </div>
+              <div class="form-group d-flex"> 
+                <button type="submit" class="mt-2 btn btn-success" name="triggers" id="reports" value="sales_report">OK</button>
+            </div>      
+            </form>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+          <div class="col-12"> 
+            <div class="card shadow mb-4">
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>
+                        <h4>Income</h4>
+                      </th>
+                      <th>
+                       <h4> Cost Of Goods Sold</h4>
+                      </th>
+                      <th>
+                       <h4> Operating Expense</h4>
+                      </th>
+                      <th>
+                       <h4> Net Profit</h4>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <h4>&#8358;<!--{if !empty($total_data)}--> <!--{$total_data->income|number_format:2}--> <!--{else}--> 0.00 <!--{/if}--></h4>
+                      </td>
+                      <td>
+                       <h4>- &#8358;<!--{if !empty($total_data)}--> <!--{$total_data->goods|number_format:2}--> <!--{else}--> 0.00 <!--{/if}--></h4>
+                      </td>
+                      <td>
+                       <h4>- &#8358;<!--{if !empty($total_data)}--> <!--{$total_data->expense|number_format:2}--> <!--{else}--> 0.00 <!--{/if}--></h4>
+                      </td>
+                      <td>
+                       <h4>&#8358;<!--{if !empty($total_data)}--> <span class="<!--{if $total_data->profit > 0}--> text-success <!--{else}--> text-danger <!--{/if}-->"> <!--{$total_data->profit|number_format:2}--> </span> <!--{else}--> 0.00 <!--{/if}--></h4>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="accordion m-4" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+               <h4 class="text-dark"><span class="float-left">Income</span><!--{if empty($income_data)}--><span class="float-right">NGN 0.00</span><!--{/if}--></h4>
+              </button>
+          </div>
+
+          <!--{if !empty($income_data)}-->
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              <!--{foreach $income_data as $income}-->
+                <div class="row border-bottom m-3">
+                  <div class="col-12">
+                    <div class="float-left">
+                      <h4> <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance_detail?id=<!--{$income->financeid}-->"><!--{$income->details|ucwords}--></a>  </h4>
+                    </div>
+                    <div class="float-right">
+                      <h4>NGN <!--{$income->amount|number_format:2}--></h4>
+                    </div>
+                  </div>
+                </div>
+              <!--{/foreach}-->
+              <div class="row border-bottom m-3">
+                <div class="col-12">
+                  <div class="float-left">
+                    <h4> <strong> Total Income </strong> </h4>
+                  </div>
+                  <div class="float-right">
+                    <h4> <strong>NGN <!--{$total_data->income|number_format:2}--></strong> </h4>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <!--{/if}-->
+
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+              <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <h4 class="text-dark"><span class="float-left">Cost of Goods Sold</span><!--{if empty($goods_data)}--><span class="float-right">NGN 0.00</span><!--{/if}--></h4>
+              </button>
+          </div>
+          
+          <!--{if !empty($goods_data)}-->
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+             <!--{foreach $goods_data as $goods}-->
+             <div class="row border-bottom m-3">
+              <div class="col-12">
+                <div class="float-left">
+                  <h4><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance_detail?id=<!--{$goods->financeid}-->"><!--{$goods->details|ucwords}--></a> </h4>
+                </div>
+                <div class="float-right">
+                  <h4>NGN <!--{$goods->amount|number_format:2}--></h4>
+                </div>
+              </div>
+            </div>
+            <!--{/foreach}-->
+              <div class="row border-bottom m-3">
+                <div class="col-12">
+                  <div class="float-left">
+                    <h4> <strong> Total Cost Of Goods Sold </strong> </h4>
+                  </div>
+                  <div class="float-right">
+                    <h4> <strong>NGN <!--{$total_data->goods|number_format:2}--></strong> </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--{/if}-->
+
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h1 class="mb-0">
+              <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <h4 class="text-dark"><span class="float-left">Operating Expenses</span><!--{if empty($expense_data)}--><span class="float-right">NGN 0.00</span><!--{/if}-->
+              </button>
+            </h1>
+          </div>
+          
+          <!--{if !empty($expense_data)}-->
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+              <!--{foreach $expense_data as $expense}-->
+              <div class="row border-bottom m-3">
+                <div class="col-12">
+                  <div class="float-left">
+                    <h4> <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/view_finance_detail?id=<!--{$expense->financeid}-->"><!--{$expense->details|ucwords}--></a> </h4>
+                  </div>
+                  <div class="float-right">
+                    <h4>NGN <!--{$expense->amount|number_format:2}--></h4>
+                  </div>
+                </div>
+              </div>
+            <!--{/foreach}-->
+              <div class="row border-bottom m-3">
+                <div class="col-12">
+                  <div class="float-left">
+                    <h4> <strong> Total Operating Expenses </strong> </h4>
+                  </div>
+                  <div class="float-right">
+                    <h4> <strong>NGN <!--{$total_data->expense|number_format:2}--></strong> </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--{/if}-->
+
+        </div>
+      </div> 
+                
+      <div class="row text-center justify-content-center">
+        <div class="form-group">
+          
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!--{/block}-->

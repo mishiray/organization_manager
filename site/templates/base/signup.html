@@ -1,0 +1,274 @@
+<!--{extends 'default.html'}-->
+<!--{block name="main-slider"}-->
+<section class="hero-wrap hero-wrap-2" style="background-image: url('<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/i/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+      <div class="col-md-9 ftco-animate pb-0 text-center">
+        <p class="breadcrumbs"><span class="mr-2"><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/default">Home <i class="fa fa-chevron-right"></i></a></span> <span>Sign Up<i class="fa fa-chevron-right"></i></span></p>
+        <h1 class="mb-3 bread">Sign Up</h1>
+      </div>
+      </div>
+    </div>
+    </section>
+<!--{/block}-->
+<!--{block name="main_content"}-->
+<section class="ftco-section">
+    <div class="container">
+        <div class="row w-100 justify-content-center">
+            <div class="col-md-8">
+                <div class="middle-align">
+                    <div class="property-details">
+                        <div class="wrap-login200">
+                            <div class="card">
+                                <div class="card-body">
+                                            <form method="post" class="login200-form validate-form" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/signup">
+                                                <span class="login100-form-title p-b-43">
+                                                    SignUp
+                                                </span>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <!--{if !empty($referredBy) and is_object($referredBy)}-->
+                                                        <div class="wrap-input100 validate-input" data-validate = "RefId is required">
+                                                            <input class="input100 has-val" id="refid" type="text"  value="<!--{if !empty($Site.session.refid)}--><!--{$Site.session.refid}--><!--{/if}-->" required="" readonly name="refid">
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">Referral Code</span>
+                                                        </div>
+                                                        <!--{else}-->
+                                                        <div class="wrap-input100 validate-input" data-validate = "RefId is required">
+                                                            <input class="input100 refid has-val" id="refid2" type="text"  value="<!--{if !empty($Site.session.refid)}--><!--{$Site.session.refid}--><!--{/if}-->" required="" name="refid">
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">Referral Code</span>
+                                                        </div>
+                                                        <!--{/if}-->
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="wrap-input100 validate-input">
+                                                            <input class="input100 has-val" id="reffullname" value="<!--{if !empty($referredBy)}--><!--{$referredBy->lastname|ucfirst}--> <!--{$referredBy->firstname|ucfirst}--><!--{/if}-->" readonly type="text">
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">Referee Full Name</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="wrap-input100 validate-input">
+                                                            <input class="input100 has-val" id="names1" type="text" name="firstName" autofocus="Enter your first name" required>
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">First Name</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="wrap-input100 validate-input">
+                                                            <input class="input100 has-val" id="names2" type="text" name="lastName" autofocus="Enter your last name" required>
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">Last Name</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                                                            <input class="input100 has-val" id="email" type="text" name="email">
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">Email Address</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="wrap-input100 validate-input">
+                                                            <input class="input100 has-val" id="username" type="text" name="username" autofocus="Enter your user name" required>
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">User Name</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="wrap-input100 validate-input">
+                                                            <select id="gender" name="gender" required class="input100 border-0 has-val">
+                                                                <option disabled selected value="">Select Gender</option>
+                                                                    <option value="female">Female</option>
+                                                                    <option value="male">Male</option>
+                                                            </select>
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">Gender</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="wrap-input100 validate-input">
+                                                            <input class="input100 has-val" id="phone" type="tel" name="phone" autofocus="Enter your phone number" required>
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">Phone No</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="wrap-input100 validate-input">
+                                                    <input class="input100 has-val" id="address1" type="text" name="address1" autofocus="Enter your address" required>
+                                                    <span class="focus-input100"></span>
+                                                    <span class="label-input100">Address</span>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="wrap-input100 validate-input">
+                                                            <select id="state" name="state" required class="input100 border-0 has-val">
+                                                                <option disabled selected value="">Select State</option>
+                                                                <!--{if !empty($states)}-->
+                                                                    <!--{foreach $states as $state}-->
+                                                                    <option value="<!--{$state->name}-->"><!--{$state->name|capitalize}--></option>
+                                                                    <!--{/foreach}-->
+                                                                <!--{/if}-->
+                                                            </select>
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">State</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="wrap-input100 validate-input">
+                                                            <select id="city" id="citi" name="city" required class="input100 border-0 has-val">
+                                                                <!--{if !empty($cities)}-->
+                                                                <!--{foreach $cities as $city}-->
+                                                                    <option value="<!--{$city->name}-->"><!--{$city->name|capitalize}--></option>
+                                                                <!--{/foreach}-->
+                                                                <!--{/if}-->
+                                                            </select>
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">City</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="wrap-input100 validate-input">
+                                                            <input class="input100 has-val" id="bankname" type="text" name="bankname" autofocus="Enter your bank name" required>
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">Bank Name</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="wrap-input100 validate-input">
+                                                            <input class="input100 has-val" id="accname" type="text" name="accname" autofocus="Enter your account name" required>
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">Account Name</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="wrap-input100 validate-input">
+                                                            <input class="input100 has-val" id="accno" type="text" name="accno" autofocus="Enter your account number" required>
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">Account Number</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="wrap-input100 validate-input" data-validate="Password is required">
+                                                            <input class="input100 has-val" type="password" id="password" name="password">
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">Password</span>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-xs-5 col-sm-5 col-md-5">
+                                                                <button class="btn btn-md btn-info text-white rounded genPassword" type="button"><i class="fa fa-no-companion fa-code"></i> Generate Password</button>
+                                                                <p class="mt-2">
+                                                                    Password: <span class=" genedPass"></span>
+                                                                </p> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="wrap-input100 validate-input" data-validate="Password is required">
+                                                            <input class="input100 has-val" type="password" id="cpassword" name="cpassword">
+                                                            <span class="focus-input100"></span>
+                                                            <span class="label-input100">Confirm Password</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group text-justify">
+                                                    <small class="matches"></small>
+                                                </div>
+
+                                                <div class="form-group text-justify d-none">
+                                                    <input type="checkbox" name="newsletter" value="1" class="form-check-input" checked> <label class="form-check-label">Sign me up for the newsletter! </label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <details>
+                                                        <summary>
+                                                            <input type="checkbox" name="terms" value="1" class="ml-2 form-check-input" required> DECLARATION
+                                                        </summary>
+                                                        <p>
+                                                            By clicking this box, I hereby affirm that information provided as a requirement for being a member of <!--{$Site.companyName}--> is true and agree that any false or inaccurate information provided may result in the decline of my application.
+                                                        </p>
+                                                        
+                                                    </details>
+                                                </div>
+
+                                                <div class="container-login100-form-btn">
+                                                    <button class="login100-form-btn" type="submit" name="signup" value="signup">
+                                                        SignUp
+                                                    </button>
+                                                </div>
+                                                
+
+
+
+
+
+                                                <div class="flex-sb-m w-full p-t-3 p-b-32">
+                                                    <div class="contact100-form-checkbox d-none">
+                                                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                                                        <label class="label-checkbox100" for="ckb1">
+                                                            Remember me
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="d-none">
+                                                        <a href="#" class="txt1">
+                                                            Forgot Password?
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="text-center p-t-46 p-b-20 d-none">
+                                                    <span class="txt2">
+                                                        or sign up using
+                                                    </span>
+                                                </div>
+
+                                                <div class="login100-form-social flex-c-m d-none">
+                                                    <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
+                                                        <i class="fa fa-facebook-f" aria-hidden="true"></i>
+                                                    </a>
+
+                                                    <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
+                                                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                                <!--{if !empty($fail)}-->
+                                                <div class="form-group">
+                                                    <!--{$fail}-->
+                                                </div>
+                                                <!--{/if}-->
+                                            </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</section>
+<!--{/block}-->
+<!--{block name="chat_box"}-->
+<!--{/block}-->

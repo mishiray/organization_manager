@@ -1,0 +1,186 @@
+<!--{extends file="root.html"}-->
+<!--{block name="breadcrumb"}-->
+<section class="breadcrumb"><strong class="uppercase">Dasboard |</strong> &nbsp;<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/projects">CONSTRUCION PROJECTS&nbsp;<i class="fa fa-list"></i></a>&nbsp; Project Detail&nbsp;<i class="fa fa-info-circle"></i></section>
+<!--{/block}-->
+<!--{block name="content"}-->
+<!--{if !empty($project)}-->
+<section class="row justify-content-center" id="printMe">
+	<div class="col-md-7 card">
+		<h4 class="card-header bg-success mt-2 text-center font-weight-bold">
+			<img class="img float-left" style="max-width: 100px;" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/atobe logo.png" alt="<!--{$Site.companyName}-->"> <!--{$project->title}-->
+		</h4>
+		<div class="card-body text-center pt-4">
+			<div class="row no-gutters justify-content-center">
+				<!--{$endext=end(explode(".", $project->images[0]))}-->
+				<!--{if in_array($endext, array("jpg","png","jpe","jpeg", "jp2", "tiff", "tiff"))}-->
+					<img src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($project->images) and is_array($project->images)}--><!--{$project->images[0]}--><!--{else}-->site/media/i/new-imgs/logo01.jpg<!--{/if}-->" class="col-sm-6 card-img-top" id="imgPreviewShow" style="height: 300px;" alt="<!--{$project->title}-->">
+				<!--{else}-->
+                    <div class="w-100">
+                      <video autobuffer controls class="w-100 h300px">
+                        <source src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$project->images[0]}-->">
+                        <source src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$project->images[0]}-->">
+                        <object type="video/ogg" data="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$project->images[0]}-->" class="w-100 h300px">
+                          <param name="src" value="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$project->images[0]}-->">
+                          <param name="autoplay" value="false">
+                          <param name="autoStart" value="0">
+                          <p class="d-none"><a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$project->images[0]}-->" target="__blank">Download this video file.</a></p>
+                        </object>
+                      </video>
+                    </div>
+				<!--{/if}-->
+				<div class="col-sm-6 card-body text-white site-bg-1 px-4">
+					<h4 class="card-title text-center font-weight-bold"><!--{$project->title}--></h4>
+					<p class="card-text"><span class="font-weight-bold">Category: </span> <!--{$project->category}--></p>
+					<!--{if !empty($project->email)}--><p class="card-text"><span class="font-weight-bold">Email: </span> <!--{$project->email}--></p><!--{/if}-->
+					<!--{if !empty($project->phone)}--><p class="card-text"><span class="font-weight-bold">Phone Number: </span> <!--{$project->phone}--></p><!--{/if}-->
+					<!--{if !empty($project->amount)}--><p class="card-text d-none"><span class="font-weight-bold">project Price: </span> ₦ <!--{$project->amount}--></p><!--{/if}-->
+					<!--{if !empty($project->url)}--><p class="card-text d-none"><span class="font-weight-bold">Website URL: </span> <a href="<!--{$project->url}-->" target="__blank"><!--{$project->url}--></a></p><!--{/if}-->
+					<p class="card-text"><span class="font-weight-bold">Date Added: </span> <!--{$project->dateadded}--></p>
+					<p class="card-text"><span class="font-weight-bold">For Website Visitors:</span> <!--{if $project->show=='0'}--><i class="badge badge-pill badge-warning">hidden</i><!--{elseif $project->show=='1'}--><i class="badge badge-pill badge-success">showing</i><!--{/if}--></p>
+					<!--{if $project->set_featured=='1'}--><p class="card-text"><span class="font-weight-bold"></span> <i class="badge badge-pill badge-success">Featured as Ongoing</i></p><!--{/if}-->
+				</div>
+				<!--{if !empty($project->images) and is_array($project->images)}-->
+				<div class="col-sm-12 row justify-content-center card-body px-1 py-2 alert-success">
+					<!--{foreach $project->images as $sIm=> $image}-->
+					<!--{if $sIm==0}--><!--{continue}--><!--{/if}-->
+					<!--{if !empty($image)}-->
+						<div class="col-sm-3">
+							<img src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{$image}-->" class="w-100 h-150px img-thumbnail imgPreview" title="<!--{$project->prop_title}-->">
+						</div>
+					<!--{/if}-->
+					<!--{/foreach}-->
+				</div>
+				<!--{/if}-->
+				<div class="col-sm-12 card-body px-4">
+					<p class="text-center">
+						<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/projects" class="btn btn-sm btn-success rounded-0 btn-success-hover mb-1"><i class="fa fa-undo"></i> BACK</a>
+						<!--{if in_array( $Site.session.User.userinfo->userrole, array('level0','level1')) and  $Site.session.User.userinfo->active==true}-->
+							<button class="btn btn-sm btn-success rounded-0 mb-1" type="button" data-toggle="collapse" data-target="#editStoreInfo" aria-expanded="true" aria-controls="editStoreInfo" id="editStore"><i class="fa fa-pencil-square"></i> Edit Detail</button>
+							<!--{if $project->show!='1'}-->
+								<a class="btn btn-sm btn-success rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/project?id=<!--{$project->token}-->&evt=show" what='show this record to website visitors'><i class="fa fa-check-circle"></i> Show</a>
+							<!--{/if}-->
+							<!--{if $project->show!='0'}-->
+								<a class="btn btn-sm btn-warning rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/project?id=<!--{$project->token}-->&evt=hide" what='hide this record from website visitors'><i class="fa fa-times-circle"></i> Hide</a>
+							<!--{/if}-->
+							<!--{if $project->set_featured!='1'}-->
+								<a class="btn btn-sm btn-success rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/project?id=<!--{$project->token}-->&evt=feature" what='show this record to website visitors'><i class="fa fa-check-circle"></i> Feature as Ongoing Project</a>
+							<!--{/if}-->
+							<a class="btn btn-sm btn-danger rounded-0 confirmTrig mb-1" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/project?id=<!--{$project->token}-->&evt=delete" what='delete this record from the system'><i class="fa fa-trash"></i> Delete</a>
+						<!--{/if}-->
+					</p>
+					<!--{if !empty($fail)}-->
+						<p>
+						  <!--{$fail}-->
+						</p>
+					<!--{/if}-->
+				</div>
+	            <div class="col-md-11 card-body text-justify" id="accordion">
+	            	<div id="editStoreInfo" class="collapse mt-2 row justify-content-center" aria-labelledby="editStore" data-parent="#accordion">
+						<form method="post" action="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/project?id=<!--{$project->token}-->" class="w-100" enctype="multipart/form-data">
+							<fieldset class="rounded border border-success py-4 px-4">
+								<legend class="font-weight-bold text-center">Edit construction Project Detail</legend>
+								<div class="form-row">
+									<div class="form-group col-sm-6">
+										<label for="title" class="form-control-label">Project Name / Title</label>
+										<input type="text" id="title" name="title" class="form-control form-control-sm badge-pill" value="<!--{$project->title}-->" required/>
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="category" class="form-control-label">Category</label>
+										<input type="text" id="category" name="category" class="form-control form-control-sm badge-pill" value="<!--{$project->category}-->" list="categ" required/>
+										<datalist id="categ">
+											<!--{if !empty($categories)}-->
+												<!--{foreach $categories as $cat}-->
+													<option value="<!--{$cat}-->"><!--{$cat}--></option>
+												<!--{/foreach}-->
+											<!--{/if}-->
+										</datalist>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group d-none col-sm-6">
+										<label for="amount" class="form-control-label">Amount / Price (₦)</label>
+										<input type="number" id="amount" name="amount" class="form-control form-control-sm badge-pill" value="<!--{$project->amount}-->"/>
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="email" class="form-control-label">Contact Email</label>
+										<input type="email" id="email" name="email" value="<!--{$project->email}-->" class="form-control form-control-sm badge-pill" />
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="phone" class="form-control-label">Contact Number</label>
+										<input type="text" id="phone" name="phone" class="form-control form-control-sm badge-pill" value="<!--{$project->phone}-->"/>
+									</div>
+								</div>
+								<div class="form-row">
+								</div>
+								<div class="form-row">
+									<div class="form-group d-none col-sm-6">
+										<label for="url" class="form-control-label">Website URL</label>
+										<input type="url" id="url" name="url" value="<!--{$project->url}-->" class="form-control form-control-sm badge-pill" />
+									</div>
+								</div>
+								<div class="form-group ">
+									<label for="description" class="form-control-label">Details & Description</label>
+									<textarea id="description" name="description" class="form-control form-control-sm input-block" rows="6" required><!--{$project->description2}--></textarea>
+								</div>
+								<div class="form-row justify-content-center">
+									<div class="form-group col-sm-6 text-center">
+										<div class="img-scope card-heading pt-3 pb-3">
+											<label for="img-upload">
+												<img class="img img-thumbnail w-100" id="dataImg" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($project->images) and is_array($project->images)}--><!--{$project->images[0]}--><!--{else}-->site/media/i/default-icon/event-icon.png<!--{/if}-->">
+												<data class="text-center jsonly">Upload Photo</data>
+											</label>
+											<input type="file" accept="image/*" id="img-upload" class="badge-pill w-100" name="img_upload"/>
+											<noscript><button class="text-center" id="ppUpload" name="ppUpload" type="button">Upload Photo</button></noscript>
+										</div>
+										<span class="small">default image</span>
+									</div>
+									<div class="form-group col-sm-6">
+										<div class="img-scope card-heading pt-3 pb-3">
+											<label for="img-upload1">
+												<img class="img img-thumbnail w-100" id="dataImg1" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($project->images) and is_array($project->images)}--><!--{$project->images[1]}--><!--{else}-->site/media/i/default-icon/event-icon.png<!--{/if}-->">
+												<data class="text-center jsonly">Upload Photo</data>
+											</label>
+											<input type="file" accept="image/*" id="img-upload1" class="badge-pill w-100" name="img_upload1"/>
+											<noscript><button class="text-center" id="ppUpload" name="ppUpload" type="button">Upload Photo</button></noscript>
+										</div>
+									</div>
+									<div class="form-group col-sm-6">
+										<div class="img-scope card-heading pt-3 pb-3">
+											<label for="img-upload2">
+												<img class="img img-thumbnail w-100" id="dataImg2" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($project->images) and is_array($project->images)}--><!--{$project->images[2]}--><!--{else}-->site/media/i/default-icon/event-icon.png<!--{/if}-->">
+												<data class="text-center jsonly">Upload Photo</data>
+											</label>
+											<input type="file" accept="image/*" id="img-upload2" class="badge-pill w-100" name="img_upload2"/>
+											<noscript><button class="text-center" id="ppUpload" name="ppUpload" type="button">Upload Photo</button></noscript>
+										</div>
+									</div>
+									<div class="form-group col-sm-6">
+										<div class="img-scope card-heading pt-3 pb-3">
+											<label for="img-upload3">
+												<img class="img img-thumbnail w-100" id="dataImg3" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/<!--{if !empty($project->images) and is_array($project->images)}--><!--{$project->images[3]}--><!--{else}-->site/media/i/default-icon/event-icon.png<!--{/if}-->">
+												<data class="text-center jsonly">Upload Photo</data>
+											</label>
+											<input type="file" accept="image/*" id="img-upload3" class="badge-pill w-100" name="img_upload3"/>
+											<noscript><button class="text-center" id="ppUpload" name="ppUpload" type="button">Upload Photo</button></noscript>
+										</div>
+									</div>
+								</div>
+								<div class="form-group text-center">
+									<button class="btn site-bg-1 text-white rounded-0" type="submit" name="editproject"><i class="fa fa-save"></i> Save Changes</button>
+								</div>
+							</fieldset>
+						</form>
+	            	</div>
+	            </div>
+				<div class="col-sm-12 card-body text-white site-bg-1 px-4 ">
+					<!--{if !empty($project->description)}--><p class="card-text text-justify h200px overflow-v-auto"><span class="font-weight-bold">Description:</span> <!--{$project->description}--></p><!--{/if}-->
+				</div>
+			</div>
+		</div>
+		<div class="card-footer d-none">
+			<button type="button" class="btn btn-primary btn-sm" id="printSect"><i class="fa fa-print"></i> Print Now</button>
+		</div>
+	</div>
+</section>
+<!--{/if}-->
+<!--{/block}-->
