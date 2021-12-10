@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-12-10 15:17:50
+/* Smarty version 3.1.39, created on 2021-12-11 00:47:17
   from 'C:\wamp64\www\organization-management\site\templates\root\default.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61b3618e441c65_71007527',
+  'unifunc' => 'content_61b3e70597f577_33508391',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -24,7 +24,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:script.html' => 1,
   ),
 ),false)) {
-function content_61b3618e441c65_71007527 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61b3e70597f577_33508391 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\wamp64\\www\\organization-management\\lib\\Smarty\\plugins\\modifier.capitalize.php','function'=>'smarty_modifier_capitalize',),));
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
@@ -77,7 +77,7 @@ echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
           <div id="memo_messages" class="row">
           </div>
             <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_55214976461b3618e4187c2_73437196', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_187719783461b3e70596f1b2_99351097', "content");
 ?>
 
         </div>
@@ -136,12 +136,12 @@ echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
 </html>
 <?php }
 /* {block "content"} */
-class Block_55214976461b3618e4187c2_73437196 extends Smarty_Internal_Block
+class Block_187719783461b3e70596f1b2_99351097 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_55214976461b3618e4187c2_73437196',
+    0 => 'Block_187719783461b3e70596f1b2_99351097',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

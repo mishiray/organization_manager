@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-12-10 15:17:50
+/* Smarty version 3.1.39, created on 2021-12-11 00:47:17
   from 'C:\wamp64\www\organization-management\site\templates\root\style.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61b3618ed90ac6_07654475',
+  'unifunc' => 'content_61b3e705e24436_39567925',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61b3618ed90ac6_07654475 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61b3e705e24436_39567925 (Smarty_Internal_Template $_smarty_tpl) {
 ?>  <!-- Custom fonts for this template-->
   <link href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
 echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>

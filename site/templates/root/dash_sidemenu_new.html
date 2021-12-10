@@ -6,7 +6,7 @@
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/home">
     <div class="sidebar-brand-icon">
     <!--  <i class="fas fa-laugh-wink"></i> -->
-    <img src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/images/atobe logo.png" alt="" class="img-thumbnail">
+    <img src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/media/images/logo.png" alt="" class="img-thumbnail">
     </div>
     <div class="sidebar-brand-text mx-3"><!--{$userinfo->department}--> </div>
   </a>
@@ -87,9 +87,9 @@
   </li>
 
   <li class="nav-item showall<!--{if in_array($sitePage, array('tree','full_tree'))}--> active <!--{/if}-->">
-    <a class="nav-link" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/full_tree?id=<!--{base64_encode($userinfo->email)}-->">
+    <a class="nav-link" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/full_tree">
       <i class="fas fa-fw fa-users"></i>
-      <span>My Referral Tree</span></a>
+      <span>Organization Tree</span></a>
   </li>
 
   <!-- Nav Item - Pages Collapse Menu CRM -->
@@ -131,35 +131,17 @@
   </li>
 
 
-  <div class="sidebar-heading d-none">
-    My Aplication Forms
-  </div>
-
-  <!-- Nav Item - Pages Collapse Menu CRM -->
-  <li class="nav-item d-none <!--{if in_array($sitePage, array('leave_application_form'))}--> active <!--{/if}-->">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLeave" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-file"></i>
-      <span>Application Forms</span>
-    </a>
-    <div id="collapseLeave" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Leave Application</h6>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/leave_application">Apply for Leave</a>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/applications_leave">History</a>
-      </div>
-    </div>
-  </li>
   <!-- Nav Item - Pages Collapse Menu TIMESHEET-->
   
   <li class="nav-item showall <!--{if in_array($sitePage, array('attendance_sheet','attendance'))}--> active <!--{/if}-->">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAttendance" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-fw fa-calendar"></i>
-      <span><!--{$Site.companyName}--> Planner</span>
+      <span> Planner</span>
     </a>
     <div id="collapseAttendance" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header"><!--{$Site.companyName}--> Planner</h6>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/attendance_sheet"><!--{$Site.companyName}--> Planner Sheet</a>
+        <h6 class="collapse-header"> Planner</h6>
+        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/attendance_sheet"> Planner Sheet</a>
         <a class="collapse-item " href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/attendance">View Plans</a>
       </div>
     </div>
@@ -185,38 +167,6 @@
     Menu
   </div>
   
-  <!-- Nav Item - Pages Collapse Menu TIMESHEET-->
-  
-
-  <!-- Nav Item - Pages Collapse Menu CRM -->
-  <li class="nav-item management-s <!--{if in_array($sitePage, array('clients','transactions','upcoming_birthday'))}--> active <!--{/if}--> ">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUps" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-user"></i>
-      <span>Upload Centre</span>
-    </a>
-    <div id="collapseUps" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Subscriptions</h6>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_subscription_manual">New Registration</a>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/subscriptions">View Subscriptions</a>
-
-        <h6 class="collapse-header">Investments</h6>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/invest_registration_manual">Client Registration</a>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/investment_details">Clients Investment Details</a>
-
-        <h6 class="collapse-header">Accounting</h6>
-         <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/payments">Payments from Sales</a>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_payment">Add Manual Payment</a>
-        <h6 class="collapse-header">Client Transactions</h6>
-         <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/transactions">Transactions</a>
-
-        <h6 class="collapse-header">Documents Toolbox</h6>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/certificates">Document Requests</a>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/certupload">Upload Documents</a>
-        
-      </div>
-    </div>
-  </li>
 
   <!-- Nav Item - Pages Collapse Menu CRM -->
   <li class="nav-item customer admin-m legal <!--{if in_array($sitePage, array('clients','defaulters','transactions','upcoming_birthday','compose_crm','inbox_crm','messages_crm','memos_crm','send_memo_crm'))}--> active <!--{/if}--> ">
@@ -242,173 +192,10 @@
          <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/memos_crm">Announcements</a>
          <h6 class="collapse-header">Client Transactions</h6>
          <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/transactions">Transactions</a>
-         <h6 class="collapse-header">Bulk SMS</h6>
-         <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_sms_subscriber">Add New Subscriber</a>
-         <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/bulk_sms">Send Bulk SMS</a>
       </div>
     </div>
   </li>
 
-  
-  <!-- Nav Item - Pages Collapse Menu PAYMENTS-->
-  <li class="nav-item customer <!--{if in_array($sitePage, array('property-requests', 'property-detail', 'prequest-new'))}--> active <!--{/if}-->">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapserequests" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-question-circle"></i>
-      <span>Property Request</span>
-    </a>
-    <div id="collapserequests" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Subscriptions</h6>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/property-detail">View Requests</a>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/prequest-new">New Request</a>
-      </div>
-    </div>
-  </li>
-
-  <!-- Nav Item - Pages Collapse Menu ESTATES-->
-  <li class="nav-item admin <!--{if in_array($sitePage, array('add_promo','promos','promo'))}--> active <!--{/if}-->">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePromo" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-home"></i>
-      <span>Promos</span>
-    </a>
-    <div id="collapsePromo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Promos</h6>
-        <a class="collapse-item <!--{if in_array($userinfo->userrole, array('level0','level1','level2'))}--> <!--{else}-->d-none <!--{/if}--> " href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_promo">Add New Promo</a>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/promos">View Promos</a>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/promo_subscriptions">View Subscriptions</a>
-      </div>
-    </div>
-  </li>
-
-  <!-- Nav Item - Pages Collapse Menu ESTATES-->
-  <li class="nav-item admin <!--{if in_array($sitePage, array('add_agriculture','agric_property','agric_properties','view_agric_subscription','agric_subscriptions'))}--> active <!--{/if}-->">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgric" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-home"></i>
-      <span>Agric properties</span>
-    </a>
-    <div id="collapseAgric" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Subscriptions</h6>
-        <a class="collapse-item<!--{if in_array($userinfo->userrole, array('level0','level1','level2'))}--> <!--{else}--> d-none <!--{/if}--> " href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/agric_subscriptions">Subscription Details</a>
-        <h6 class="collapse-header">Properties</h6>
-        <a class="collapse-item <!--{if in_array($userinfo->userrole, array('level0','level1','level2'))}--> <!--{else}-->d-none <!--{/if}--> " href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_agriculture">Add New Property</a>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/agric_properties">View Properties</a>\
-      </div>
-    </div>
-  </li>
-
-  <!-- Nav Item - Pages Collapse Menu ESTATES-->
-  <li class="nav-item admin <!--{if in_array($sitePage, array('add_estate','estates','estates_stats','estate'))}--> active <!--{/if}-->">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProjects" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-home"></i>
-      <span>Estate properties</span>
-    </a>
-    <div id="collapseProjects" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Estates</h6>
-        <a class="collapse-item <!--{if in_array($userinfo->userrole, array('level0','level1','level2'))}--> <!--{else}-->d-none <!--{/if}--> " href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_estate">Add New Estate</a>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/estates">View Estates</a>
-        <h6 class="collapse-header <!--{if in_array($userinfo->userrole, array('level0','level1','level2'))}--> <!--{else}-->d-none <!--{/if}-->">Estate Reports</h6>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/estates_stats">Estate Stats</a>
-        <h6 class="collapse-header d-none">Allocated</h6>
-        <a class="collapse-item d-none" href="#">View</a>
-      </div>
-    </div>
-  </li>
-
-  
-  <!-- Nav Item - Pages Collapse Menu PAYMENTS-->
-  <li class="nav-item account customer admin legal corporate-m <!--{if in_array($sitePage, array('add_subscription','subscriptions','view_subscription','add_subscription_manual'))}--> active <!--{/if}--> ">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsesubscription" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-credit-card"></i>
-      <span>Subscriptions</span>
-    </a>
-    <div id="collapsesubscription" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Subscriptions</h6>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_subscription">New Registration</a>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/subscriptions">View Subscriptions</a>
-        <h6 class="collapse-header">Manual Subscriptions</h6>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_subscription_manual">Manual Registration</a>
-        <h6 class="collapse-header">Payments</h6>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/payments">View Payment</a>
-        <a class="collapse-item<!--{if  in_array($userinfo->department, array('Accounting')) || in_array($userinfo->userrole, array('level0','level2')) }--> <!--{else}--> d-none <!--{/if}--> " href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_payment">Add Payment</a>
-        <a class="collapse-item<!--{if in_array($userinfo->userrole, array('level0','level2')) }--> <!--{else}--> d-none <!--{/if}--> " href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/receipt">Receipts</a>
-      </div>
-    </div>
-  </li>
-
-  <!-- Nav Item - Pages Collapse Menu PAYMENTS-->
-  <li class="nav-item account admin-m <!--{if in_array($sitePage, array('leases','view_lease'))}--> active <!--{/if}--> ">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLease" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-credit-card"></i>
-      <span>Leases</span>
-    </a>
-    <div id="collapseLease" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Lease</h6>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_lease">New Registration</a>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/leases">View Leases</a>
-      </div>
-    </div>
-  </li>
-
-<!-- Nav Item - Pages Collapse Menu INVESTMENTS-->
-<li class="nav-item admin legal customer corporate-m account <!--{if in_array($sitePage, array('invest_registration','investment_details','add_investment','investments','view_investment','investment','investment_webpage'))}--> active <!--{/if}--> ">
-  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInvestments" aria-expanded="true" aria-controls="collapseTwo">
-    <i class="fas fa-fw fa-credit-card"></i>
-    <span>Investments</span>
-  </a>
-  <div id="collapseInvestments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-      <h6 class="collapse-header">Investment</h6>
-      <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/invest_registration">Client Registration</a>
-      <a class="collapse-item<!--{if in_array($userinfo->userrole, array('level0','level1','level2'))}--> <!--{else}--> d-none <!--{/if}--> " href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/investment_details">Clients Investment Details</a>
-      <h6 class="collapse-header">Packages</h6>
-      <a class="collapse-item<!--{if in_array($userinfo->userrole, array('level0','level1','level2')) || in_array($userinfo->department, array('Accounting'))}--> <!--{else}--> d-none <!--{/if}--> " href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_investment">Add Estate Investment</a>
-      <a class="collapse-item<!--{if in_array($userinfo->userrole, array('level0','level1','level2')) || in_array($userinfo->department, array('Accounting'))}--> <!--{else}--> d-none <!--{/if}--> " href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/investments">View Plans</a>
-    </div>
-  </div>
-</li>
-
-
-<li class="nav-item showall <!--{if in_array($sitePage, array('real-estates'))}--> active <!--{/if}-->">
-  <a class="nav-link" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/real-estates">
-    <i class="fas fa-fw fa-home"></i>
-    <span>Real Estate Properties</span></a>
-</li>
-
-<!-- Nav Item - Pages Collapse Menu INVESTMENTS-->
-<li class="nav-item admin-m <!--{if in_array($sitePage, array('projects','project','project-new'))}--> active <!--{/if}--> ">
-  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConstruction" aria-expanded="true" aria-controls="collapseTwo">
-    <i class="fas fa-fw fa-credit-card"></i>
-    <span>Construction Projects</span>
-  </a>
-  <div id="collapseConstruction" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-      <h6 class="collapse-header">Constructions</h6>
-      <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/projects">Projects</a>
-      <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/project-new">Add Project</a>
-    </div>
-  </div>
-</li>
-
-  <!-- Nav Item - Pages Collapse Menu Marketers Center-->
-  <li class="nav-item market <!--{if in_array($sitePage, array('tree','full_tree','marketers_center','commission_payrolls','commission_payroll'))}--> active <!--{/if}-->">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCommissions" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-bullhorn"></i>
-      <span>Marketers Center</span>
-    </a>
-    <div id="collapseCommissions" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Clients & Commissions</h6>
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/marketers_center">View Commissions</a>
-        <a class="collapse-item admin-m-only" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/commission_payrolls">View Marketers Payroll</a>
-        <a class="collapse-item admin-m-only" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/full_tree">View Referral Tree</a>
-      </div>
-    </div>
-  </li>
   
   <!-- Nav Item - Pages Collapse Menu CORPORATE OFFICE-->
   <li class="nav-item corporate-m <!--{if in_array($sitePage, array('add_video','videos','event-new','events','event','blogs','blog-new','blog','news','news-new','news-info','add_newsletter_subscriber','newsletters','gallery','add_gallery'))}--> active <!--{/if}--> ">
@@ -453,12 +240,9 @@
     </a>
     <div id="collapseAccounting" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Subcription Sales</h6>
+        <h6 class="collapse-header">Sales</h6>
          <a class="collapse-item <!--{if $sitePage == 'payments'}--> subtive <!--{/if}--> " href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/payments">Payments from Sales</a>
         <a class="collapse-item <!--{if $sitePage == 'add_payment'}--> subtive <!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_payment">Add Manual Payment</a>
-        <h6 class="collapse-header ">Invoices</h6>
-        <a class="collapse-item <!--{if $sitePage == 'invoices'}--> subtive <!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/invoices?type=subscription">Estate Invoices</a>
-        <a class="collapse-item <!--{if $sitePage == 'invoices'}--> subtive <!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/invoices?type=agric_subscription">Agric Invoices</a>
         <h6 class="collapse-header">Payroll</h6>
         <a class="collapse-item <!--{if $sitePage == 'payrolls'}--> subtive <!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/payrolls">View Payroll</a>
         <h6 class="collapse-header">Estimates</h6>
@@ -475,9 +259,6 @@
         <a class="collapse-item <!--{if $sitePage == 'finance_reports'}--> subtive <!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finance_reports">View Transactions</a>
         <a class="collapse-item <!--{if $sitePage == 'accounting_charts'}--> subtive <!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/accounting_charts">Chart Of Accounts</a>
 
-        <h6 class="collapse-header">Commissions</h6>
-        <a class="collapse-item <!--{if $sitePage == 'commission_reports'}--> subtive <!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/commission_reports">Commission Report</a>
-
         <h6 class="collapse-header">Reports</h6>
         <a class="collapse-item <!--{if $sitePage == 'sales_report'}--> subtive <!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/sales_report">Sales Report</a>
         <a class="collapse-item <!--{if $sitePage == 'profit-and-loss'}--> subtive <!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/profit-and-loss">Profit & Loss</a>
@@ -486,9 +267,6 @@
         <a class="collapse-item <!--{if $sitePage == 'defaulters'}--> subtive <!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/defaulters">Customer Aged Receivables</a>
         <a class="collapse-item <!--{if $sitePage == 'aged_vendor_payables'}--> subtive <!--{/if}-->" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/aged_vendor_payables"> Vendor Aged Payables</a>
         
-        <a class="collapse-item d-none" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/asset_report">Asset Report</a>
-        <a class="collapse-item d-none" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/depreciation">Depreciation of Assets</a>
-        <a class="collapse-item d-none" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/inventory_report">Inventory Report</a>
       </div>
     </div>
   </li>
@@ -519,28 +297,7 @@
         <h6 class="collapse-header">Management</h6>
         <a class="collapse-item" href="add_facility_report">Add Report</a>
         <a class="collapse-item" href="facility_reports">View Reports</a>
-        <h6 class="collapse-header">Inventory</h6>
-        <a class="collapse-item" href="#">Inventory Management</a>
         </div>
-    </div>
-  </li>
-
-  <!-- Nav Item - Pages Collapse Menu TECHNICAL-->
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTechnical" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-cogs"></i>
-      <span>Technical Department</span>
-    </a>
-    <div id="collapseTechnical" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Clients</h6>
-        <a class="collapse-item" href="#">View info</a>
-        <h6 class="collapse-header">Property Sold</h6>
-        <a class="collapse-item" href="#">Per Size</a>
-        <h6 class="collapse-header">Task Management</h6>
-        <a class="collapse-item" href="#">Assign Task</a>
-        <a class="collapse-item" href="#">Uploads</a>
-      </div>
     </div>
   </li>
 
@@ -605,31 +362,6 @@
     </div>
   </li>
   
-   <!-- Nav Item - Pages Collapse Menu LEGAL-->
-  <li class="nav-item legal humanr-m <!--{if in_array($sitePage, array('client_listing','subscription_letter','completion_letter'))}--> active <!--{/if}-->">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLegal" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-balance-scale"></i>
-      <span>Legal</span>
-    </a>
-    <div id="collapseLegal" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-       <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/client_listing">Clients Listings</a>
-        </div>
-    </div>
-  </li>
-
-  <!-- Nav Item - Pages Collapse Menu CONSULTANT-->
-  <li class="nav-item management">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConsultants" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-user"></i>
-      <span>Consultants</span>
-    </a>
-    <div id="collapseConsultants" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/partners">All Consultants</a>
-        </div>
-    </div>
-  </li>
 
   <!-- Nav Item - Pages Collapse Menu MARKETING-->
   <li class="nav-item market <!--{if in_array($sitePage, array('add_report','reports','add_weekly_report','add_summary_report','weekly_reports','summary_reports'))}--> active <!--{/if}-->">
@@ -674,7 +406,7 @@
   <li class="nav-item showall <!--{if in_array($sitePage, array('compose','messages','inbox','chat'))}--> active <!--{/if}--> ">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMessaging" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-fw fa-comments"></i>
-      <span><!--{$Site.companyName}--> Prop Communicator</span>
+      <span> Prop Communicator</span>
     </a>
     <div id="collapseMessaging" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-12-10 15:17:51
+/* Smarty version 3.1.39, created on 2021-12-11 00:47:19
   from 'C:\wamp64\www\organization-management\site\templates\root\script.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61b3618fb2a4c6_23615728',
+  'unifunc' => 'content_61b3e7075f03c2_79826015',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9888254b4abc72ce58cf8ec33ae448519db397e5' => 
     array (
       0 => 'C:\\wamp64\\www\\organization-management\\site\\templates\\root\\script.html',
-      1 => 1639145325,
+      1 => 1639176219,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:style.html' => 1,
   ),
 ),false)) {
-function content_61b3618fb2a4c6_23615728 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61b3e7075f03c2_79826015 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\wamp64\\www\\organization-management\\lib\\Smarty\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
  <!-- Bootstrap core JavaScript-->
@@ -577,41 +577,6 @@ var myLineChart = new Chart(ctx, {
       }
     }
   }
-});
-
-
-// Pie Chart Example
-var ctx = document.getElementById("myPieChart");
-var myPieChart = new Chart(ctx, {
-  type: 'doughnut',
-  data: {
-    labels: ["Investments", "Subscriptions"],
-    datasets: [{
-      data: [<?php echo $_smarty_tpl->tpl_vars['earnings']->value->inv_source;?>
-, <?php echo $_smarty_tpl->tpl_vars['earnings']->value->sub_source;?>
-],
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
-      hoverBorderColor: "rgba(234, 236, 244, 1)",
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      caretPadding: 10,
-    },
-    legend: {
-      display: true
-    },
-    cutoutPercentage: 80,
-  },
 });
 
 <?php }?>

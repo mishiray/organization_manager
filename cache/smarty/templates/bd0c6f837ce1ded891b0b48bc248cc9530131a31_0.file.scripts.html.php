@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-12-10 15:17:52
+/* Smarty version 3.1.39, created on 2021-12-11 00:47:20
   from 'C:\wamp64\www\organization-management\site\templates\base\scripts.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61b361903d31d2_93524566',
+  'unifunc' => 'content_61b3e7087905d8_00400364',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61b361903d31d2_93524566 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61b3e7087905d8_00400364 (Smarty_Internal_Template $_smarty_tpl) {
 if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('login','admin'))) {?>
 <!--===============================================================================================-->
 <?php echo '<script'; ?>

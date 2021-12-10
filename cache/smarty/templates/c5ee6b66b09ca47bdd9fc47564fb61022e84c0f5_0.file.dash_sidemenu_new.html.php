@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-12-10 15:17:51
+/* Smarty version 3.1.39, created on 2021-12-11 00:48:53
   from 'C:\wamp64\www\organization-management\site\templates\root\dash_sidemenu_new.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61b3618f752933_96928064',
+  'unifunc' => 'content_61b3e765e76513_95863793',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c5ee6b66b09ca47bdd9fc47564fb61022e84c0f5' => 
     array (
       0 => 'C:\\wamp64\\www\\organization-management\\site\\templates\\root\\dash_sidemenu_new.html',
-      1 => 1635438467,
+      1 => 1639180131,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61b3618f752933_96928064 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61b3e765e76513_95863793 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- Sidebar -->
 <ul class="navbar-nav bg-green sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -33,7 +33,7 @@ echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
     <!--  <i class="fas fa-laugh-wink"></i> -->
     <img src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
 echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/site/media/images/atobe logo.png" alt="" class="img-thumbnail">
+/site/media/images/logo.png" alt="" class="img-thumbnail">
     </div>
     <div class="sidebar-brand-text mx-3"><?php echo $_smarty_tpl->tpl_vars['userinfo']->value->department;?>
  </div>
@@ -135,10 +135,9 @@ echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
   <li class="nav-item showall<?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('tree','full_tree'))) {?> active <?php }?>">
     <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
 echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/full_tree?id=<?php echo base64_encode($_smarty_tpl->tpl_vars['userinfo']->value->email);?>
-">
+/root/full_tree">
       <i class="fas fa-fw fa-users"></i>
-      <span>My Referral Tree</span></a>
+      <span>Organization Tree</span></a>
   </li>
 
   <!-- Nav Item - Pages Collapse Menu CRM -->
@@ -199,44 +198,19 @@ echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
   </li>
 
 
-  <div class="sidebar-heading d-none">
-    My Aplication Forms
-  </div>
-
-  <!-- Nav Item - Pages Collapse Menu CRM -->
-  <li class="nav-item d-none <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('leave_application_form'))) {?> active <?php }?>">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLeave" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-file"></i>
-      <span>Application Forms</span>
-    </a>
-    <div id="collapseLeave" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Leave Application</h6>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/leave_application">Apply for Leave</a>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/applications_leave">History</a>
-      </div>
-    </div>
-  </li>
   <!-- Nav Item - Pages Collapse Menu TIMESHEET-->
   
   <li class="nav-item showall <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('attendance_sheet','attendance'))) {?> active <?php }?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAttendance" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-fw fa-calendar"></i>
-      <span><?php echo $_smarty_tpl->tpl_vars['Site']->value['companyName'];?>
- Planner</span>
+      <span> Planner</span>
     </a>
     <div id="collapseAttendance" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header"><?php echo $_smarty_tpl->tpl_vars['Site']->value['companyName'];?>
- Planner</h6>
+        <h6 class="collapse-header"> Planner</h6>
         <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
 echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/attendance_sheet"><?php echo $_smarty_tpl->tpl_vars['Site']->value['companyName'];?>
- Planner Sheet</a>
+/root/attendance_sheet"> Planner Sheet</a>
         <a class="collapse-item " href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
 echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
 /root/attendance">View Plans</a>
@@ -268,56 +242,6 @@ echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
     Menu
   </div>
   
-  <!-- Nav Item - Pages Collapse Menu TIMESHEET-->
-  
-
-  <!-- Nav Item - Pages Collapse Menu CRM -->
-  <li class="nav-item management-s <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('clients','transactions','upcoming_birthday'))) {?> active <?php }?> ">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUps" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-user"></i>
-      <span>Upload Centre</span>
-    </a>
-    <div id="collapseUps" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Subscriptions</h6>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/add_subscription_manual">New Registration</a>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/subscriptions">View Subscriptions</a>
-
-        <h6 class="collapse-header">Investments</h6>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/invest_registration_manual">Client Registration</a>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/investment_details">Clients Investment Details</a>
-
-        <h6 class="collapse-header">Accounting</h6>
-         <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/payments">Payments from Sales</a>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/add_payment">Add Manual Payment</a>
-        <h6 class="collapse-header">Client Transactions</h6>
-         <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/transactions">Transactions</a>
-
-        <h6 class="collapse-header">Documents Toolbox</h6>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/certificates">Document Requests</a>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/certupload">Upload Documents</a>
-        
-      </div>
-    </div>
-  </li>
 
   <!-- Nav Item - Pages Collapse Menu CRM -->
   <li class="nav-item customer admin-m legal <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('clients','defaulters','transactions','upcoming_birthday','compose_crm','inbox_crm','messages_crm','memos_crm','send_memo_crm'))) {?> active <?php }?> ">
@@ -363,235 +287,10 @@ echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
          <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
 echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
 /root/transactions">Transactions</a>
-         <h6 class="collapse-header">Bulk SMS</h6>
-         <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/add_sms_subscriber">Add New Subscriber</a>
-         <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/bulk_sms">Send Bulk SMS</a>
       </div>
     </div>
   </li>
 
-  
-  <!-- Nav Item - Pages Collapse Menu PAYMENTS-->
-  <li class="nav-item customer <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('property-requests','property-detail','prequest-new'))) {?> active <?php }?>">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapserequests" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-question-circle"></i>
-      <span>Property Request</span>
-    </a>
-    <div id="collapserequests" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Subscriptions</h6>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/property-detail">View Requests</a>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/prequest-new">New Request</a>
-      </div>
-    </div>
-  </li>
-
-  <!-- Nav Item - Pages Collapse Menu ESTATES-->
-  <li class="nav-item admin <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('add_promo','promos','promo'))) {?> active <?php }?>">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePromo" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-home"></i>
-      <span>Promos</span>
-    </a>
-    <div id="collapsePromo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Promos</h6>
-        <a class="collapse-item <?php if (in_array($_smarty_tpl->tpl_vars['userinfo']->value->userrole,array('level0','level1','level2'))) {?> <?php } else { ?>d-none <?php }?> " href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/add_promo">Add New Promo</a>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/promos">View Promos</a>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/promo_subscriptions">View Subscriptions</a>
-      </div>
-    </div>
-  </li>
-
-  <!-- Nav Item - Pages Collapse Menu ESTATES-->
-  <li class="nav-item admin <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('add_agriculture','agric_property','agric_properties','view_agric_subscription','agric_subscriptions'))) {?> active <?php }?>">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgric" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-home"></i>
-      <span>Agric properties</span>
-    </a>
-    <div id="collapseAgric" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Subscriptions</h6>
-        <a class="collapse-item<?php if (in_array($_smarty_tpl->tpl_vars['userinfo']->value->userrole,array('level0','level1','level2'))) {?> <?php } else { ?> d-none <?php }?> " href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/agric_subscriptions">Subscription Details</a>
-        <h6 class="collapse-header">Properties</h6>
-        <a class="collapse-item <?php if (in_array($_smarty_tpl->tpl_vars['userinfo']->value->userrole,array('level0','level1','level2'))) {?> <?php } else { ?>d-none <?php }?> " href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/add_agriculture">Add New Property</a>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/agric_properties">View Properties</a>\
-      </div>
-    </div>
-  </li>
-
-  <!-- Nav Item - Pages Collapse Menu ESTATES-->
-  <li class="nav-item admin <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('add_estate','estates','estates_stats','estate'))) {?> active <?php }?>">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProjects" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-home"></i>
-      <span>Estate properties</span>
-    </a>
-    <div id="collapseProjects" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Estates</h6>
-        <a class="collapse-item <?php if (in_array($_smarty_tpl->tpl_vars['userinfo']->value->userrole,array('level0','level1','level2'))) {?> <?php } else { ?>d-none <?php }?> " href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/add_estate">Add New Estate</a>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/estates">View Estates</a>
-        <h6 class="collapse-header <?php if (in_array($_smarty_tpl->tpl_vars['userinfo']->value->userrole,array('level0','level1','level2'))) {?> <?php } else { ?>d-none <?php }?>">Estate Reports</h6>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/estates_stats">Estate Stats</a>
-        <h6 class="collapse-header d-none">Allocated</h6>
-        <a class="collapse-item d-none" href="#">View</a>
-      </div>
-    </div>
-  </li>
-
-  
-  <!-- Nav Item - Pages Collapse Menu PAYMENTS-->
-  <li class="nav-item account customer admin legal corporate-m <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('add_subscription','subscriptions','view_subscription','add_subscription_manual'))) {?> active <?php }?> ">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsesubscription" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-credit-card"></i>
-      <span>Subscriptions</span>
-    </a>
-    <div id="collapsesubscription" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Subscriptions</h6>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/add_subscription">New Registration</a>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/subscriptions">View Subscriptions</a>
-        <h6 class="collapse-header">Manual Subscriptions</h6>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/add_subscription_manual">Manual Registration</a>
-        <h6 class="collapse-header">Payments</h6>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/payments">View Payment</a>
-        <a class="collapse-item<?php if (in_array($_smarty_tpl->tpl_vars['userinfo']->value->department,array('Accounting')) || in_array($_smarty_tpl->tpl_vars['userinfo']->value->userrole,array('level0','level2'))) {?> <?php } else { ?> d-none <?php }?> " href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/add_payment">Add Payment</a>
-        <a class="collapse-item<?php if (in_array($_smarty_tpl->tpl_vars['userinfo']->value->userrole,array('level0','level2'))) {?> <?php } else { ?> d-none <?php }?> " href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/receipt">Receipts</a>
-      </div>
-    </div>
-  </li>
-
-  <!-- Nav Item - Pages Collapse Menu PAYMENTS-->
-  <li class="nav-item account admin-m <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('leases','view_lease'))) {?> active <?php }?> ">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLease" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-credit-card"></i>
-      <span>Leases</span>
-    </a>
-    <div id="collapseLease" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Lease</h6>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/add_lease">New Registration</a>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/leases">View Leases</a>
-      </div>
-    </div>
-  </li>
-
-<!-- Nav Item - Pages Collapse Menu INVESTMENTS-->
-<li class="nav-item admin legal customer corporate-m account <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('invest_registration','investment_details','add_investment','investments','view_investment','investment','investment_webpage'))) {?> active <?php }?> ">
-  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInvestments" aria-expanded="true" aria-controls="collapseTwo">
-    <i class="fas fa-fw fa-credit-card"></i>
-    <span>Investments</span>
-  </a>
-  <div id="collapseInvestments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-      <h6 class="collapse-header">Investment</h6>
-      <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/invest_registration">Client Registration</a>
-      <a class="collapse-item<?php if (in_array($_smarty_tpl->tpl_vars['userinfo']->value->userrole,array('level0','level1','level2'))) {?> <?php } else { ?> d-none <?php }?> " href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/investment_details">Clients Investment Details</a>
-      <h6 class="collapse-header">Packages</h6>
-      <a class="collapse-item<?php if (in_array($_smarty_tpl->tpl_vars['userinfo']->value->userrole,array('level0','level1','level2')) || in_array($_smarty_tpl->tpl_vars['userinfo']->value->department,array('Accounting'))) {?> <?php } else { ?> d-none <?php }?> " href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/add_investment">Add Estate Investment</a>
-      <a class="collapse-item<?php if (in_array($_smarty_tpl->tpl_vars['userinfo']->value->userrole,array('level0','level1','level2')) || in_array($_smarty_tpl->tpl_vars['userinfo']->value->department,array('Accounting'))) {?> <?php } else { ?> d-none <?php }?> " href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/investments">View Plans</a>
-    </div>
-  </div>
-</li>
-
-
-<li class="nav-item showall <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('real-estates'))) {?> active <?php }?>">
-  <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/real-estates">
-    <i class="fas fa-fw fa-home"></i>
-    <span>Real Estate Properties</span></a>
-</li>
-
-<!-- Nav Item - Pages Collapse Menu INVESTMENTS-->
-<li class="nav-item admin-m <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('projects','project','project-new'))) {?> active <?php }?> ">
-  <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConstruction" aria-expanded="true" aria-controls="collapseTwo">
-    <i class="fas fa-fw fa-credit-card"></i>
-    <span>Construction Projects</span>
-  </a>
-  <div id="collapseConstruction" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-    <div class="bg-white py-2 collapse-inner rounded">
-      <h6 class="collapse-header">Constructions</h6>
-      <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/projects">Projects</a>
-      <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/project-new">Add Project</a>
-    </div>
-  </div>
-</li>
-
-  <!-- Nav Item - Pages Collapse Menu Marketers Center-->
-  <li class="nav-item market <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('tree','full_tree','marketers_center','commission_payrolls','commission_payroll'))) {?> active <?php }?>">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCommissions" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-bullhorn"></i>
-      <span>Marketers Center</span>
-    </a>
-    <div id="collapseCommissions" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Clients & Commissions</h6>
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/marketers_center">View Commissions</a>
-        <a class="collapse-item admin-m-only" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/commission_payrolls">View Marketers Payroll</a>
-        <a class="collapse-item admin-m-only" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/full_tree">View Referral Tree</a>
-      </div>
-    </div>
-  </li>
   
   <!-- Nav Item - Pages Collapse Menu CORPORATE OFFICE-->
   <li class="nav-item corporate-m <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('add_video','videos','event-new','events','event','blogs','blog-new','blog','news','news-new','news-info','add_newsletter_subscriber','newsletters','gallery','add_gallery'))) {?> active <?php }?> ">
@@ -666,20 +365,13 @@ echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
     </a>
     <div id="collapseAccounting" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Subcription Sales</h6>
+        <h6 class="collapse-header">Sales</h6>
          <a class="collapse-item <?php if ($_smarty_tpl->tpl_vars['sitePage']->value == 'payments') {?> subtive <?php }?> " href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
 echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
 /root/payments">Payments from Sales</a>
         <a class="collapse-item <?php if ($_smarty_tpl->tpl_vars['sitePage']->value == 'add_payment') {?> subtive <?php }?>" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
 echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
 /root/add_payment">Add Manual Payment</a>
-        <h6 class="collapse-header ">Invoices</h6>
-        <a class="collapse-item <?php if ($_smarty_tpl->tpl_vars['sitePage']->value == 'invoices') {?> subtive <?php }?>" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/invoices?type=subscription">Estate Invoices</a>
-        <a class="collapse-item <?php if ($_smarty_tpl->tpl_vars['sitePage']->value == 'invoices') {?> subtive <?php }?>" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/invoices?type=agric_subscription">Agric Invoices</a>
         <h6 class="collapse-header">Payroll</h6>
         <a class="collapse-item <?php if ($_smarty_tpl->tpl_vars['sitePage']->value == 'payrolls') {?> subtive <?php }?>" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
 echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
@@ -714,11 +406,6 @@ echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
 echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
 /root/accounting_charts">Chart Of Accounts</a>
 
-        <h6 class="collapse-header">Commissions</h6>
-        <a class="collapse-item <?php if ($_smarty_tpl->tpl_vars['sitePage']->value == 'commission_reports') {?> subtive <?php }?>" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/commission_reports">Commission Report</a>
-
         <h6 class="collapse-header">Reports</h6>
         <a class="collapse-item <?php if ($_smarty_tpl->tpl_vars['sitePage']->value == 'sales_report') {?> subtive <?php }?>" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
 echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
@@ -739,15 +426,6 @@ echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
 echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
 /root/aged_vendor_payables"> Vendor Aged Payables</a>
         
-        <a class="collapse-item d-none" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/asset_report">Asset Report</a>
-        <a class="collapse-item d-none" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/depreciation">Depreciation of Assets</a>
-        <a class="collapse-item d-none" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/inventory_report">Inventory Report</a>
       </div>
     </div>
   </li>
@@ -778,28 +456,7 @@ echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
         <h6 class="collapse-header">Management</h6>
         <a class="collapse-item" href="add_facility_report">Add Report</a>
         <a class="collapse-item" href="facility_reports">View Reports</a>
-        <h6 class="collapse-header">Inventory</h6>
-        <a class="collapse-item" href="#">Inventory Management</a>
         </div>
-    </div>
-  </li>
-
-  <!-- Nav Item - Pages Collapse Menu TECHNICAL-->
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTechnical" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-cogs"></i>
-      <span>Technical Department</span>
-    </a>
-    <div id="collapseTechnical" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Clients</h6>
-        <a class="collapse-item" href="#">View info</a>
-        <h6 class="collapse-header">Property Sold</h6>
-        <a class="collapse-item" href="#">Per Size</a>
-        <h6 class="collapse-header">Task Management</h6>
-        <a class="collapse-item" href="#">Assign Task</a>
-        <a class="collapse-item" href="#">Uploads</a>
-      </div>
     </div>
   </li>
 
@@ -914,35 +571,6 @@ echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
     </div>
   </li>
   
-   <!-- Nav Item - Pages Collapse Menu LEGAL-->
-  <li class="nav-item legal humanr-m <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('client_listing','subscription_letter','completion_letter'))) {?> active <?php }?>">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLegal" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-balance-scale"></i>
-      <span>Legal</span>
-    </a>
-    <div id="collapseLegal" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-       <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/client_listing">Clients Listings</a>
-        </div>
-    </div>
-  </li>
-
-  <!-- Nav Item - Pages Collapse Menu CONSULTANT-->
-  <li class="nav-item management">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConsultants" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-user"></i>
-      <span>Consultants</span>
-    </a>
-    <div id="collapseConsultants" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
-echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
-/root/partners">All Consultants</a>
-        </div>
-    </div>
-  </li>
 
   <!-- Nav Item - Pages Collapse Menu MARKETING-->
   <li class="nav-item market <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('add_report','reports','add_weekly_report','add_summary_report','weekly_reports','summary_reports'))) {?> active <?php }?>">
@@ -1003,8 +631,7 @@ echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
   <li class="nav-item showall <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('compose','messages','inbox','chat'))) {?> active <?php }?> ">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMessaging" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-fw fa-comments"></i>
-      <span><?php echo $_smarty_tpl->tpl_vars['Site']->value['companyName'];?>
- Prop Communicator</span>
+      <span> Prop Communicator</span>
     </a>
     <div id="collapseMessaging" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">

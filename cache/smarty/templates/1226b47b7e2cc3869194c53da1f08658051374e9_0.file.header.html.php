@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-12-10 15:17:52
+/* Smarty version 3.1.39, created on 2021-12-11 00:47:20
   from 'C:\wamp64\www\organization-management\site\templates\base\header.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61b361901d5062_96538501',
+  'unifunc' => 'content_61b3e7084b12e8_08290653',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61b361901d5062_96538501 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61b3e7084b12e8_08290653 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-dark p-0" id="ftco-navbar">
 	    <div class="container">

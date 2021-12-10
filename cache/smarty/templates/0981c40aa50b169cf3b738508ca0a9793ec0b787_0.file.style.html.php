@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-12-10 15:17:52
+/* Smarty version 3.1.39, created on 2021-12-11 00:47:20
   from 'C:\wamp64\www\organization-management\site\templates\base\style.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61b3619019f073_31149517',
+  'unifunc' => 'content_61b3e7082b8e82_63394654',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61b3619019f073_31149517 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61b3e7082b8e82_63394654 (Smarty_Internal_Template $_smarty_tpl) {
 if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('signup','login','admin'))) {?>
 <link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
 echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>

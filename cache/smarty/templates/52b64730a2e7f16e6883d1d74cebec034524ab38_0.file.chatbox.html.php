@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-12-10 15:17:52
+/* Smarty version 3.1.39, created on 2021-12-11 00:47:20
   from 'C:\wamp64\www\organization-management\site\templates\base\chatbox.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_61b361901e99a0_84788446',
+  'unifunc' => 'content_61b3e70856b9e4_64962158',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_61b361901e99a0_84788446 (Smarty_Internal_Template $_smarty_tpl) {
+function content_61b3e70856b9e4_64962158 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <span class="chat-careButton"><i class="fa fa-headphones fa-2x"></i></span>
 <div class="chatApp invisible">
