@@ -45,7 +45,7 @@ if ( in_array($sitePage, array("add_report")) && ($requestMethod == 'POST') && i
 			$targetFile="";
 		endif;
 		/*id	reportid	project	title	client	clientemail	clientphone	location	user	comment	dateadded	status	lawyer_review	md_review attachment*/
-		if($ezDb->query("INSERT INTO `reports` (`reportid`, `project`, `title`, `type`, `client`, `clientemail`, `clientphone`, `location`, `user`, `comment`, `dateadded`, `status`, `supervisor_review`, `md_review`, `attachment`, `budget`, `address`, `requesttype`) VALUES ('$token', '$posts->project', '$posts->title','', '$posts->client', '$posts->clientemail', '$posts->clientphone', '$posts->location', '$userinfo->email', '$posts->content', '$dateNow', '0', '', '', '$targetFile', '$posts->budget', '$posts->address', '$posts->requesttype');")){
+		if($ezDb->query("INSERT INTO `reports` (`reportid`, `project`, `title`, `type`, `client`, `clientemail`, `clientphone`, `location`, `user`, `comment`, `dateadded`, `status`, `supervisor_review`, `md_review`, `attachment`, `budget`, `address`, `requesttype`) VALUES ('$token', '$posts->project', '$posts->title','$posts->type', '$posts->client', '$posts->clientemail', '$posts->clientphone', '$posts->location', '$userinfo->email', '$posts->content', '$dateNow', '0', '', '', '$targetFile', '$posts->budget', '$posts->address', '$posts->requesttype');")){
 			$report=$ezDb->get_row("SELECT * FROM `reports` WHERE `reportid`='$token';");
 			logEvent($userinfo->email, "new-report-added", $userinfo->usertype, 'reports', $report);
 		  alertManager($report->user,0,"New Report has been added by $userinfo->employeeid");

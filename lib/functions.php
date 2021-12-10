@@ -943,6 +943,7 @@ function getAMGLine($employeeid=''){
   return $head;
 }
 
+
 function get_month_diff($start, $end = FALSE)
 {
 	$end OR $end = time();

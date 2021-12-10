@@ -10,7 +10,7 @@
 			<div class="row no-gutters justify-content-center">
 				<div class="col-sm-6 card-body text-dark site-bg-1 px-4">
 					<h4 class="card-title text-center mb-4 font-weight-bold">Marketer's Detail</h4>
-					<h6><span class="font-weight-bold my-2">Report Type: </span>Daily</h6>
+					<h6><span class="font-weight-bold my-2">Report Type: </span><!--{if !empty($report->type)}--><!--{$report->type|ucfirst}--><!--{else}-->Daily<!--{/if}--></h6>
 			      	
 					<h6><span class="font-weight-bold my-2">Name: </span><!--{$report->marketerDetail->firstname}--> <!--{$report->marketerDetail->lastname}--> </h6>
 			      	<h6><span class="font-weight-bold my-2">Username: </span> <!--{$report->marketerDetail->username}--> </h6>

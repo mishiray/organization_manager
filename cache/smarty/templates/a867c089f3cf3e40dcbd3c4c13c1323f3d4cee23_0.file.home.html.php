@@ -1,12 +1,55 @@
-<!--{extends file="root.html"}-->
-<!--{block name="content"}-->
+<?php
+/* Smarty version 3.1.39, created on 2021-12-10 15:17:50
+  from 'C:\wamp64\www\organization-management\site\templates\root\home.html' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.39',
+  'unifunc' => 'content_61b3618e2a5d04_08103620',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'a867c089f3cf3e40dcbd3c4c13c1323f3d4cee23' => 
+    array (
+      0 => 'C:\\wamp64\\www\\organization-management\\site\\templates\\root\\home.html',
+      1 => 1639145424,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_61b3618e2a5d04_08103620 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_loadInheritance();
+$_smarty_tpl->inheritance->init($_smarty_tpl, true);
+?>
+
+<?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_20038085761b3618e1aa4c4_19818966', "content");
+$_smarty_tpl->inheritance->endChild($_smarty_tpl, "root.html");
+}
+/* {block "content"} */
+class Block_20038085761b3618e1aa4c4_19818966 extends Smarty_Internal_Block
+{
+public $subBlocks = array (
+  'content' => 
+  array (
+    0 => 'Block_20038085761b3618e1aa4c4_19818966',
+  ),
+);
+public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
+?>
+
 <section class="jumbotron text-center">
 	<!--img src="--><!--$Site.siteProtocol--><!--$Site.domainName--><!--/site/media/i/all/dashboard_model.jpg" style="" class="img-fluid rounded mx-auto"-->
 	<div class="row  justify-content-center">
 
 		<div class="col-md-3 account-only mb-4">
 			<div class="card bg-gradient-primary text-white shadow">
-				<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/finances">
+				<a href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/finances">
 					<div class=" text-white card-body">
 						<i class="fa fa-calculator  text-white"></i>
 						<div class="text-white">Accounting & Expenses</div>
@@ -17,7 +60,9 @@
 		
 		<div class="col-md-3 humanr-only mb-4">
 			<div class="card bg-gradient-success text-white shadow">
-				<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/employees">
+				<a href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/employees">
 					<div class="text-white card-body">
 						<i class="fa fa-user-circle text-white"></i>
 						<div class="text-white">Human Resource</div>
@@ -28,7 +73,9 @@
 		  </div>
 		  <div class="col-md-3 market-only mb-4">
 			<div class="card bg-gradient-info text-white shadow">
-				<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/reports">
+				<a href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/reports">
 					<div class="text-white card-body">
 						<i class="fa fa-credit-card text-white"></i>
 					  <div class="text-white">Sales/Marketing</div>
@@ -38,7 +85,9 @@
 		  </div>
 		  <div class="col-md-3 customer-only mb-4">
 			<div class="card bg-gradient-primary text-white shadow">
-				<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/inbox">
+				<a href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/inbox">
 					<div class=" text-white card-body">
 						<i class="fa fa-comment text-white"></i> 
 						<div class="text-white">
@@ -50,7 +99,9 @@
 		</div>
 		<div class="col-md-3 mb-4">
 			<div class="card bg-gradient-success text-white shadow">
-				<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/technical">
+				<a href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/technical">
 					<div class="text-white card-body">
 						<i class="fa fa-wrench text-white"></i>
 						<div class="text-white">Technical Operation</div>
@@ -60,7 +111,9 @@
 		  </div>
 		  <div class="col-md-3 facility-only mb-4">
 			<div class="card bg-gradient-info text-white shadow">
-				<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/inventories">
+				<a href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/inventories">
 					<div class="text-white card-body">
 						<i class="fa fa-archive text-white"></i>
 						
@@ -71,7 +124,9 @@
 		  </div>
 		  <div class="col-md-3 customer-only mb-4">
 			<div class="card bg-gradient-primary text-white shadow">
-				<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/clients">
+				<a href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/clients">
 					<div class=" text-white card-body">
 						<i class="fa fa-headphones text-white"></i>
 						
@@ -82,7 +137,9 @@
 		</div>
 		<div class="col-md-3 mb-4">
 			<div class="card bg-gradient-success text-white shadow">
-				<a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/add_variance_report">
+				<a href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/add_variance_report">
 					<div class="text-white card-body">
 						<i class="fa fa-question-circle text-white"></i>
 						<div class="text-white">Help</div>
@@ -92,7 +149,7 @@
 		  </div>
 	</div>
 	
-	<div class="row <!--{if !in_array($userinfo->userrole, array('level0','level1','level2'))}--> d-none <!--{/if}-->">
+	<div class="row <?php if (!in_array($_smarty_tpl->tpl_vars['userinfo']->value->userrole,array('level0','level1','level2'))) {?> d-none <?php }?>">
 
 
 		<!-- Area Chart -->
@@ -112,4 +169,8 @@
 		  </div>
 	</div>
 </section>
-<!--{/block}-->
+<?php
+}
+}
+/* {/block "content"} */
+}

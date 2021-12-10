@@ -1,55 +1,152 @@
+<?php
+/* Smarty version 3.1.39, created on 2021-12-10 15:17:51
+  from 'C:\wamp64\www\organization-management\site\templates\root\script.html' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.39',
+  'unifunc' => 'content_61b3618fb2a4c6_23615728',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '9888254b4abc72ce58cf8ec33ae448519db397e5' => 
+    array (
+      0 => 'C:\\wamp64\\www\\organization-management\\site\\templates\\root\\script.html',
+      1 => 1639145325,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:style.html' => 1,
+  ),
+),false)) {
+function content_61b3618fb2a4c6_23615728 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\wamp64\\www\\organization-management\\lib\\Smarty\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
+?>
  <!-- Bootstrap core JavaScript-->
- <script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/vendor/jquery/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
-<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/js/html2canvas.js"></script>
-<script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+ <?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/lib/common_new/vendor/jquery/jquery.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/lib/common_new/js/html2canvas.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"><?php echo '</script'; ?>
+>
 			
-<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/lib/common_new/vendor/bootstrap/js/bootstrap.bundle.min.js"><?php echo '</script'; ?>
+>
 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> 
+<?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"><?php echo '</script'; ?>
+> 
 
-<!--{if !empty($sitePage) and in_array($sitePage, array('blog-new', 'blog', 'project-new', 'project', 'news-new', 'newsletters', 'news-info', 'event-new', 'event','docupload-new','docupload','companydocs-new','companydoc','management_report','add_management_report','investment_webpage'))}-->
-  <script type="text/javascript" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/quilljs/quill.min.js"></script>
-  <script src="https://cdn.rawgit.com/kensnyder/quill-image-resize-module/3411c9a7/image-resize.min.js"></script>
-<!--{/if}-->
+<?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('blog-new','blog','project-new','project','news-new','newsletters','news-info','event-new','event','docupload-new','docupload','companydocs-new','companydoc','management_report','add_management_report','investment_webpage'))) {?>
+  <?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/lib/common/quilljs/quill.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="https://cdn.rawgit.com/kensnyder/quill-image-resize-module/3411c9a7/image-resize.min.js"><?php echo '</script'; ?>
+>
+<?php }?>
 
 
 <!-- Core plugin JavaScript-->
-<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/vendor/jquery-easing/jquery.easing.min.js"></script>
+<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/lib/common_new/vendor/jquery-easing/jquery.easing.min.js"><?php echo '</script'; ?>
+>
 
 <!-- Custom scripts for all pages-->
-<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/js/admin.min.js"></script>
+<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/lib/common_new/js/admin.min.js"><?php echo '</script'; ?>
+>
 
 <!-- Page level plugins -->
-<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/vendor/chart.js/Chart.min.js"></script>
+<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/lib/common_new/vendor/chart.js/Chart.min.js"><?php echo '</script'; ?>
+>
 
 <!-- Page level custom scripts -->
-<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/js/demo/chart-area-demo.js"></script>
-<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/js/demo/chart-pie-demo.js"></script>
+<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/lib/common_new/js/demo/chart-area-demo.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/lib/common_new/js/demo/chart-pie-demo.js"><?php echo '</script'; ?>
+>
 
  
 <!-- Page level plugins -->
-<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/lib/common_new/vendor/datatables/jquery.dataTables.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/lib/common_new/vendor/datatables/dataTables.bootstrap4.min.js"><?php echo '</script'; ?>
+>
 
 <!-- Page level custom scripts -->
-<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/js/demo/datatables-demo.js"></script>
+<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/lib/common_new/js/demo/datatables-demo.js"><?php echo '</script'; ?>
+>
 
-<!--{if !empty($sitePage) and in_array($sitePage, array('plot_view'))}-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common_new/js/jquery.imagemapster.min.js"></script>
-<!--{/if}-->
+<?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('plot_view'))) {
+echo '<script'; ?>
+ src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/lib/common_new/js/jquery.imagemapster.min.js"><?php echo '</script'; ?>
+>
+<?php }?>
 
-<script src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/lib/common/js/script.js"></script>
+<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/lib/common/js/script.js"><?php echo '</script'; ?>
+>
 
-<script>
+<?php echo '<script'; ?>
+>
   const refreshNotifications = ()=>{
     let arguement = {
 			send: true,
 			sendMode: 'getFresh', 
 		};
-		$.post('<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/refresh', arguement, function(resp) {
+		$.post('<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/refresh', arguement, function(resp) {
       //console.log(resp)
       let chatResp = JSON.parse(resp);
       let memo = chatResp.memo;
@@ -66,7 +163,9 @@
       if(memo != null){
         for (mem of memo) {
           memo_value += `<div id="" class="col-sm-12 col-lg-4">                    
-                    <a href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/memos?id=${mem.token}" class="text-decoration-none">
+                    <a href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/memos?id=${mem.token}" class="text-decoration-none">
                       <div style="z-index: 99999;" class="alert text-center alert-danger flicker alert-dismissible" role="alert">
                         <strong>${mem.sendername}: </strong> <br>${mem.content}
                       </div>
@@ -79,9 +178,13 @@
       if(messages != null){
         for (mess of messages) {
         messages_value += `
-            <a class="dropdown-item d-flex align-items-center" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/inbox?id=${mess.messageid}">
+            <a class="dropdown-item d-flex align-items-center" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/inbox?id=${mess.messageid}">
               <div class="dropdown-list-image mr-3">
-                <img class="rounded-circle" src="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/${mess.senderimg}" alt="">
+                <img class="rounded-circle" src="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/${mess.senderimg}" alt="">
                 <div class="status-indicator bg-success"></div>
               </div>
               <div class="font-weight-bold">
@@ -98,7 +201,10 @@
         for (alert of alertBar) {
           if(alert.page == ""){
             alertBar_value += `
-                <a class="dropdown-item d-flex align-items-center" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/<!--{$sitePage}-->?alertid=${alert.token}">
+                <a class="dropdown-item d-flex align-items-center" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/<?php echo $_smarty_tpl->tpl_vars['sitePage']->value;?>
+?alertid=${alert.token}">
                   <div class="mr-3">
                     <div class="icon-circle ${alert.severity==0 ? 'bg-primary' : ' ' } ${alert.severity==1 ? 'bg-warning' : ' ' } ${alert.severity==2 ? 'bg-danger' : ' ' }">
                       <i class="fas fa-exclamation-triangle text-white"></i>
@@ -111,7 +217,9 @@
                 </a>`;
             }else{
               alertBar_value += `
-                  <a class="dropdown-item d-flex align-items-center" href="<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/${alert.page}&alertid=${alert.token}">
+                  <a class="dropdown-item d-flex align-items-center" href="<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/${alert.page}&alertid=${alert.token}">
                     <div class="mr-3">
                       <div class="icon-circle ${alert.severity==0 ? 'bg-primary' : ' ' } ${alert.severity==1 ? 'bg-warning' : ' ' } ${alert.severity==2 ? 'bg-danger' : ' ' }">
                         <i class="fas fa-exclamation-triangle text-white"></i>
@@ -148,14 +256,14 @@
     
     setInterval(refreshNotifications, 500);
     
-    <!--{if !empty($sitePage) and !in_array($sitePage, array('real-estate','bill','add_bill','vendors','manage_finances','view_finance','view_finance_detail','blog-new','blog','news','news-new','news-info','newsletters','investment_webpage','finance_manager','event-new','event','docupload-new','docupload'))}-->
+    <?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && !in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('real-estate','bill','add_bill','vendors','manage_finances','view_finance','view_finance_detail','blog-new','blog','news','news-new','news-info','newsletters','investment_webpage','finance_manager','event-new','event','docupload-new','docupload'))) {?>
       $('.select2-container').addClass("w-75");
       $('select').select2();
-    <!--{/if}-->
+    <?php }?>
 
   });
 
-  <!--{if !empty($sitePage) and in_array($sitePage, array('chat'))}-->
+  <?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('chat'))) {?>
   
   
     const refreshPeople = ()=>{
@@ -163,7 +271,9 @@
         send: true,
         sendMode: 'getFresh', 
       };
-        $.post('<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/chat_people', arguement, function(resp) {
+        $.post('<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/chat_people', arguement, function(resp) {
           //console.log(resp);
           let chatResp = JSON.parse(resp);
           let peoples_array = chatResp;
@@ -222,7 +332,9 @@
     // Icons made by Freepik from www.flaticon.com
     const BOT_IMG = "https://image.flaticon.com/icons/svg/327/327779.svg";
     const PERSON_IMG = "https://image.flaticon.com/icons/svg/145/145867.svg";
-    const PERSON_NAME = '<!--{$userinfo->lastname|ucfirst}--> <!--{$userinfo->firstname|ucfirst}-->';
+    const PERSON_NAME = '<?php echo ucfirst($_smarty_tpl->tpl_vars['userinfo']->value->lastname);?>
+ <?php echo ucfirst($_smarty_tpl->tpl_vars['userinfo']->value->firstname);?>
+';
     
     const  refreshChat = ()=>{
         if($('#setUser').val() != 'null'){
@@ -231,7 +343,9 @@
             sendMode: 'getFresh', 
             receiver: $('#setUser').val(),
           };
-          $.post('<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/chat_refresh', arguement, function(resp) {
+          $.post('<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/chat_refresh', arguement, function(resp) {
             //console.log(resp);
             let chatResp = JSON.parse(resp);
             var sender_value = '';
@@ -240,7 +354,8 @@
               let receiver = chatResp.receiver;
               var receiver_value = '';
                 for (responses of chatResp) {
-                  if(responses.sender == '<!--{$userinfo->email}-->'){
+                  if(responses.sender == '<?php echo $_smarty_tpl->tpl_vars['userinfo']->value->email;?>
+'){
                     sender_value +=  appendMessage(PERSON_NAME, PERSON_IMG, `${responses.datesent}`, "right", `${responses.content}`);
                   }else{
                     sender_value += appendMessage(`${responses.receiver}`, BOT_IMG, `${responses.datesent}`, "left", `${responses.content}`);
@@ -271,7 +386,9 @@
         receiver: $('#setUser').val(),
       };
 
-      $.post('<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/chat_send', arguement, function(resp) {
+      $.post('<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/chat_send', arguement, function(resp) {
         //console.log(resp);
         let chatResp = JSON.parse(resp);
           if(chatResp.status == 1){
@@ -337,7 +454,7 @@
     refreshPeople();
     setInterval(refreshChat, 500);
 
-  <!--{/if}-->
+  <?php }?>
 
   function deleteItem() {
     if (confirm("Are you sure you want to delete?")) {
@@ -350,13 +467,15 @@ function exportExcel(tableId){
     $(tableId).table2excel({
       // exclude CSS class
       exclude:".noExl",
-      name:"download <!--{$smarty.now|date_format}-->",
-      filename:"download <!--{$smarty.now|date_format}-->",//do not include extension
+      name:"download <?php echo smarty_modifier_date_format(time());?>
+",
+      filename:"download <?php echo smarty_modifier_date_format(time());?>
+",//do not include extension
       fileext:".xls" // file extension
    });
 }
 
-<!--{if !empty($sitePage) and in_array($sitePage, array('home','index'))}-->
+<?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('home','index'))) {?>
 
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
@@ -377,7 +496,19 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [<!--{$earnings->Jan}-->,<!--{$earnings->Feb}-->,<!--{$earnings->Mar}-->,<!--{$earnings->Apr}-->,<!--{$earnings->May}-->,<!--{$earnings->Jun}-->,<!--{$earnings->Jul}-->,<!--{$earnings->Aug}-->,<!--{$earnings->Sep}-->,<!--{$earnings->Oct}-->,<!--{$earnings->Nov}-->,<!--{$earnings->Dec}-->],
+      data: [<?php echo $_smarty_tpl->tpl_vars['earnings']->value->Jan;?>
+,<?php echo $_smarty_tpl->tpl_vars['earnings']->value->Feb;?>
+,<?php echo $_smarty_tpl->tpl_vars['earnings']->value->Mar;?>
+,<?php echo $_smarty_tpl->tpl_vars['earnings']->value->Apr;?>
+,<?php echo $_smarty_tpl->tpl_vars['earnings']->value->May;?>
+,<?php echo $_smarty_tpl->tpl_vars['earnings']->value->Jun;?>
+,<?php echo $_smarty_tpl->tpl_vars['earnings']->value->Jul;?>
+,<?php echo $_smarty_tpl->tpl_vars['earnings']->value->Aug;?>
+,<?php echo $_smarty_tpl->tpl_vars['earnings']->value->Sep;?>
+,<?php echo $_smarty_tpl->tpl_vars['earnings']->value->Oct;?>
+,<?php echo $_smarty_tpl->tpl_vars['earnings']->value->Nov;?>
+,<?php echo $_smarty_tpl->tpl_vars['earnings']->value->Dec;?>
+],
     }],
   },
   options: {
@@ -456,7 +587,9 @@ var myPieChart = new Chart(ctx, {
   data: {
     labels: ["Investments", "Subscriptions"],
     datasets: [{
-      data: [<!--{$earnings->inv_source}-->, <!--{$earnings->sub_source}-->],
+      data: [<?php echo $_smarty_tpl->tpl_vars['earnings']->value->inv_source;?>
+, <?php echo $_smarty_tpl->tpl_vars['earnings']->value->sub_source;?>
+],
       backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
       hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
@@ -481,17 +614,18 @@ var myPieChart = new Chart(ctx, {
   },
 });
 
-<!--{/if}-->
+<?php }?>
 
 
-<!--{if !empty($sitePage) and in_array($sitePage, array('add_employee'))}-->
+<?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('add_employee'))) {?>
   $('#location').change(function(){
     var prefix = $(this).children("option:selected").attr("i");
-    $("#employeeId").val(prefix+"<!--{$newEmpId}-->");
+    $("#employeeId").val(prefix+"<?php echo $_smarty_tpl->tpl_vars['newEmpId']->value;?>
+");
   }); 
-<!--{/if}-->
+<?php }?>
 
-<!--{if !empty($sitePage) and in_array($sitePage, array('add_inventory'))}-->
+<?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('add_inventory'))) {?>
 var main = 'ACC/'; 
 var serId = '';
   $('#format').change(function(){
@@ -503,10 +637,11 @@ var serId = '';
   $('#location').change(function(){
       var prefix = $(this).children("option:selected").attr("i");
       str = prefix.substring(3);
-      finalId = serId+str+'/'+"<!--{$newSerId}-->";
+      finalId = serId+str+'/'+"<?php echo $_smarty_tpl->tpl_vars['newSerId']->value;?>
+";
       $("#serialId").val(finalId);
   }); 
-<!--{/if}-->
+<?php }?>
 function copyToClipboardMsg(elem, msgElem) {
     elemem = document.getElementById(elem);
 	  var succeed = copyToClipboard(elemem);
@@ -574,33 +709,37 @@ function copyToClipboard(elem) {
     }
     return succeed;
 }
-<!--{if !empty($sitePage) and in_array($sitePage, array('gen_payslip'))}-->
+<?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('gen_payslip'))) {?>
     screenshot();    
-<!--{/if}-->  
+<?php }?>  
 
-<!--{if !empty($sitePage) and in_array($sitePage, array('invoice'))}-->
+<?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('invoice'))) {?>
     $(document).on('click','#printNow',function(){
-      printDiv('printable','Invoice To <!--{$subscription->surname|ucfirst}--> <!--{$subscription->middlename|ucfirst}--> <!--{$subscription->firstname|ucfirst}-->');    
+      printDiv('printable','Invoice To <?php echo ucfirst($_smarty_tpl->tpl_vars['subscription']->value->surname);?>
+ <?php echo ucfirst($_smarty_tpl->tpl_vars['subscription']->value->middlename);?>
+ <?php echo ucfirst($_smarty_tpl->tpl_vars['subscription']->value->firstname);?>
+');    
     })
-<!--{/if}-->
+<?php }?>
 
-<!--{if !empty($sitePage) and in_array($sitePage, array('balance_sheet'))}-->
+<?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('balance_sheet'))) {?>
     $(document).on('click','#printNow',function(){
       printDiv('printable','Balance Sheet Report');    
     })
-<!--{/if}-->
-<!--{if !empty($sitePage) and in_array($sitePage, array('cash_flow'))}-->
+<?php }
+if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('cash_flow'))) {?>
     $(document).on('click','#printNow',function(){
       printDiv('printable','Cash Flow Report');    
     })
-<!--{/if}-->
-<!--{if !empty($sitePage) and in_array($sitePage, array('view_estimate'))}-->
+<?php }
+if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('view_estimate'))) {?>
     $(document).on('click','#printNow',function(){
-      printDiv('printable','Estimate To <!--{$estimate->customer|ucwords}-->');    
+      printDiv('printable','Estimate To <?php echo ucwords($_smarty_tpl->tpl_vars['estimate']->value->customer);?>
+');    
     })
-<!--{/if}-->
+<?php }?>
 
-<!--{if !empty($sitePage) and in_array($sitePage, array('payslips','payslip'))}-->   
+<?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('payslips','payslip'))) {?>   
     $(document).on('click','#acknowledge',function(){
       document.getElementById("removewatermark1").classList.add("d-none");
       document.getElementById("removewatermark").classList.add("d-none");
@@ -613,7 +752,10 @@ function copyToClipboard(elem) {
     $(document).on('click','#printNow',function(){
       //screenshot();
       var doc = new jsPDF();
-      printDiv('printable','<!--{$payslip->accname}-->_payslip_<!--{$payslip->month}-->_<!--{$payslip->year}-->');
+      printDiv('printable','<?php echo $_smarty_tpl->tpl_vars['payslip']->value->accname;?>
+_payslip_<?php echo $_smarty_tpl->tpl_vars['payslip']->value->month;?>
+_<?php echo $_smarty_tpl->tpl_vars['payslip']->value->year;?>
+');
     })
 
     function screenshot(){
@@ -628,24 +770,29 @@ function copyToClipboard(elem) {
       //console.log(base64URL);
       // AJAX request
         $.ajax({
-          url: '<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/upload_payslip',
+          url: '<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/upload_payslip',
           type: 'post',
-          data: {image: base64URL,id:'<!--{$payslip->id}-->'},
+          data: {image: base64URL,id:'<?php echo $_smarty_tpl->tpl_vars['payslip']->value->id;?>
+'},
           success: function(data){
-              alert("Saved to <!--{$Site.companyName}--> Docs");
+              alert("Saved to <?php echo $_smarty_tpl->tpl_vars['Site']->value['companyName'];?>
+ Docs");
           }
         });
       });  
     }
     
-<!--{/if}-->
+<?php }?>
 
 function printDiv(divId, title) {
   
   var doc = new jsPDF();
   let mywindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
   
-  mywindow.document.write(`<html><head><title>${title}</title> <!--{include file="style.html"}--> `);
+  mywindow.document.write(`<html><head><title>${title}</title> <?php $_smarty_tpl->_subTemplateRender("file:style.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?> `);
   mywindow.document.write('</head><body>');
   mywindow.document.write(document.getElementById(divId).innerHTML);
   mywindow.document.write('</body></html>');
@@ -691,7 +838,7 @@ function printDiv(divId, title) {
     showTime();
     //console.log(document.getElementById("dataTable").rows[2].cells[6].innerHTML);
   
-  <!--{if !empty($sitePage) and in_array($sitePage, array('attendance_sheet'))}-->
+  <?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('attendance_sheet'))) {?>
 
   var is_weekend =  function(date1){
     var dt = new Date(date1);
@@ -1146,11 +1293,12 @@ $(function dragChangeCellColor() {
         });
     });
 });
-  <!--{/if}-->
+  <?php }?>
 
-  <!--{if in_array($sitePage, array('finance'))}-->
+  <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('finance'))) {?>
 
-    const budget=Number(<!--{$finance->amount}-->);
+    const budget=Number(<?php echo $_smarty_tpl->tpl_vars['finance']->value->amount;?>
+);
 
     $(document).on('change keyup', ".creditInput", function() {
       // console.log($(".creditInput").length);
@@ -1239,9 +1387,9 @@ $(function dragChangeCellColor() {
       }
     });
 
-  <!--{/if}-->
+  <?php }?>
 
-  <!--{if in_array($sitePage, array('manage_finances','view_finance'))}-->
+  <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('manage_finances','view_finance'))) {?>
     
     //add row
     $(document).on('click', ".add-record", function() {
@@ -1470,9 +1618,9 @@ $(function dragChangeCellColor() {
       }
     });
   
-  <!--{/if}-->
+  <?php }?>
 
-  <!--{if in_array($sitePage, array('estimates'))}-->
+  <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('estimates'))) {?>
     $(document).on('change keyup', ".product", function() {
         var amount = $(this).children("option:selected").attr("i");
         $('#price').val(amount);
@@ -1531,10 +1679,10 @@ $(function dragChangeCellColor() {
 			$(`#amount`).val(total);
 			$(`#editamount`).val(etotal);
 		});
-  <!--{/if}-->
+  <?php }?>
 
 
-  <!--{if in_array($sitePage, array('vendors'))}-->
+  <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('vendors'))) {?>
   $(document).on('click', ".editvendor", function() {
       let vendorDetail=JSON.parse($(this).attr('i').trim());
       //console.log($(this));
@@ -1551,9 +1699,9 @@ $(function dragChangeCellColor() {
           $(`#state option[value='${vendorDetail.state}']`).attr("selected", 'selected');
         }
 		});
-    <!--{/if}-->
+    <?php }?>
 
-    <!--{if in_array($sitePage, array('products_services'))}-->
+    <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('products_services'))) {?>
 $(document).on('click', ".editProduct", function() {
     let productDetail=JSON.parse($(this).attr('i').trim());
     //console.log($(this));
@@ -1566,9 +1714,9 @@ $(document).on('click', ".editProduct", function() {
         $(`#expense_category option[value='${productDetail.expense_category}']`).attr("selected", 'selected');
       }
   });
-  <!--{/if}-->
+  <?php }?>
   
-<!--{if in_array($sitePage, array('bills'))}-->
+<?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('bills'))) {?>
 $(document).on('click', ".recordPayment", function() {
     let billDetail=JSON.parse($(this).attr('i').trim());
     //console.log($(this));
@@ -1577,9 +1725,9 @@ $(document).on('click', ".recordPayment", function() {
         $("#amount").val(`${billDetail.total_amount}`);
       }
   });
-  <!--{/if}-->
+  <?php }?>
 
-  <!--{if in_array($sitePage, array('branches'))}-->
+  <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('branches'))) {?>
   $(document).on('click', ".editbranch", function() {
       let branchDetail=JSON.parse($(this).attr('i').trim());
       //console.log($(this));
@@ -1590,11 +1738,12 @@ $(document).on('click', ".recordPayment", function() {
           $("#address").val(`${branchDetail.address}`);
         }
 		});
-<!--{/if}-->
+<?php }?>
 
   
-<!--{if !empty($sitePage) and in_array($sitePage, array('full_tree'))}-->
-    let tree = '<!--{$head}-->';
+<?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('full_tree'))) {?>
+    let tree = '<?php echo $_smarty_tpl->tpl_vars['head']->value;?>
+';
     var colors = ['bg-primary','bg-success','bg-info','bg-warning','bg-dark'];
     tree = JSON.parse(tree);
     function printTree(nodes){
@@ -1619,10 +1768,10 @@ $(document).on('click', ".recordPayment", function() {
     var tree_branches = printTree(tree);
     //console.log(tree_branches);
     $('#tree_top').append(tree_branches);
-<!--{/if}-->
+<?php }?>
 
 
-  <!--{if in_array($sitePage, array('view_finance_detail'))}-->
+  <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('view_finance_detail'))) {?>
 							$(document).on('change keyup', ".category", function() {
 								var category = $(this).val();
 								//console.log(category);
@@ -1651,9 +1800,9 @@ $(document).on('click', ".recordPayment", function() {
             $('#sub_category').val(sub_category);
             $(`#detfinal`).val(category);
         });
-  <!--{/if}-->
+  <?php }?>
 
-  <!--{if in_array($sitePage, array('finance_manager'))}-->
+  <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('finance_manager'))) {?>
     
     //add row
     $(document).on('click', ".add-record", function() {
@@ -1850,10 +1999,10 @@ $(document).on('click', ".recordPayment", function() {
     }
 
 
-  <!--{/if}-->
+  <?php }?>
 
   
-  <!--{if in_array($sitePage, array('add_bill','bill'))}-->
+  <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('add_bill','bill'))) {?>
     //add row
     $(document).on('click', ".add-record", function() {
      var content = $('.sample-row'),
@@ -2003,11 +2152,11 @@ $(document).on('click', ".recordPayment", function() {
     setInterval(function() {  updateFun(); }, 1000);
     setInterval(function() {  updateData(); }, 1000);
 
-  <!--{/if}-->
+  <?php }?>
 
   
 
-	<!--{if !empty($sitePage) and in_array($sitePage, array('timesheet'))}-->
+	<?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('timesheet'))) {?>
         $(document).ready(function(){
             if(navigator.geolocation){
                 navigator.geolocation.getCurrentPosition(showLocation);
@@ -2024,7 +2173,9 @@ $(document).on('click', ".recordPayment", function() {
         /*console.log(longitude);
         $.ajax({
             type:'POST',
-            url:'<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/root/timesheet',
+            url:'<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/root/timesheet',
             data:'latitude='+latitude+'&longitude='+longitude,
             success:function(msg){
                 if(msg){
@@ -2036,10 +2187,10 @@ $(document).on('click', ".recordPayment", function() {
         });
         */
     }
-    <!--{/if}-->
+    <?php }?>
 
     
-	 <!--{if !empty($sitePage) and in_array($sitePage, array('change_password'))}-->
+	 <?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('change_password'))) {?>
       /*  $(document).ready(function(){
 
           $( "#salary" ).keyup(function() {
@@ -2104,10 +2255,10 @@ $(document).on('click', ".recordPayment", function() {
 		$("#pwmatch").css("color","#FF0004");
 	}
 });
-    <!--{/if}-->
+    <?php }?>
   
     
-	<!--{if !empty($sitePage) and in_array($sitePage, array('commission_payroll'))}-->
+	<?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('commission_payroll'))) {?>
     $(document).ready(function () {
               //console.log("i am changed");
 
@@ -2221,16 +2372,18 @@ $(document).on('click', ".recordPayment", function() {
                 $("#dataTable").table2excel({
                 // exclude CSS class
                 exclude:".noExl",
-                name:"Commission PayRoll <!--{$smarty.now|date_format}-->",
-                filename:"Commission PayRoll <!--{$smarty.now|date_format}-->",//do not include extension
+                name:"Commission PayRoll <?php echo smarty_modifier_date_format(time());?>
+",
+                filename:"Commission PayRoll <?php echo smarty_modifier_date_format(time());?>
+",//do not include extension
                 fileext:".xls" // file extension
                 });
               });
                   
     });
-  <!--{/if}--> 
+  <?php }?> 
 
-	<!--{if !empty($sitePage) and in_array($sitePage, array('add_payroll','payroll'))}-->
+	<?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('add_payroll','payroll'))) {?>
     $(document).ready(function () {
               //console.log("i am changed");
 
@@ -2389,8 +2542,10 @@ $(document).on('click', ".recordPayment", function() {
                 $("#dataTable").table2excel({
                   // exclude CSS class
                   exclude:".noExl",
-                  name:"PayRoll <!--{$smarty.now|date_format}-->",
-                  filename:"PayRoll <!--{$smarty.now|date_format}-->",//do not include extension
+                  name:"PayRoll <?php echo smarty_modifier_date_format(time());?>
+",
+                  filename:"PayRoll <?php echo smarty_modifier_date_format(time());?>
+",//do not include extension
                   fileext:".xls" // file extension
                 });
               });
@@ -2443,7 +2598,7 @@ $(document).on('click', ".recordPayment", function() {
               */
                   
     });
-  <!--{/if}--> 
+  <?php }?> 
 
   function htmlEntities(str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -2453,14 +2608,17 @@ $(document).on('click', ".recordPayment", function() {
       // return String(str).replace('&amp;', /&/g).replace('&lt;', '<');
   }
   /*Changing of Country State City*/
-  <!--{if in_array($sitePage, array('profile','vendors' ,'add_employee','edit_employee', 'add_client', 'client', 'add_admin', 'add_guarantor', 'employee', 'admin', 'blogs', 'add_blog', 'edit_blog', 'staff-new', 'staff','add_official','edit_official'))}-->
+  <?php if (in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('profile','vendors','add_employee','edit_employee','add_client','client','add_admin','add_guarantor','employee','admin','blogs','add_blog','edit_blog','staff-new','staff','add_official','edit_official'))) {?>
     
     $(document).on('change','#country, #state', function(){
         //console.log("hellllo");
         let csd={ data: $(this).val(), type: $(this).attr('id') };      
         //console.log(csd);
-        globalParam={sp: `<!--{$sitePage}-->`, csd: csd};
-        $.post("<!--{$Site.siteProtocol}--><!--{$Site.domainName}-->/site/inc/root/general.php", globalParam, (res)=> {
+        globalParam={sp: `<?php echo $_smarty_tpl->tpl_vars['sitePage']->value;?>
+`, csd: csd};
+        $.post("<?php echo $_smarty_tpl->tpl_vars['Site']->value['siteProtocol'];
+echo $_smarty_tpl->tpl_vars['Site']->value['domainName'];?>
+/site/inc/root/general.php", globalParam, (res)=> {
           //console.log(res);
           let ret=JSON.parse(res);
           let target=( $(this).attr('id')=="country"? "#state": "#city");
@@ -2480,7 +2638,7 @@ $(document).on('click', ".recordPayment", function() {
           
         });
       });
-  <!--{/if}-->
+  <?php }?>
     
     $(document).on('change keyup', "#password", function() {
 		  $('.genedPass').text(`${$("#password").val()}`);
@@ -2493,7 +2651,7 @@ $(document).on('click', ".recordPayment", function() {
 			$('.genedPass').text(genPass);
 	  });
     
-  <!--{if !empty($sitePage) and in_array($sitePage, array('blog-new', 'blog', 'project-new', 'project', 'news-new', 'news-info', 'newsletters','event-new', 'event','docupload-new','docupload','companydocs-new','companydoc','management_report','add_management_report','investment_webpage'))}-->
+  <?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('blog-new','blog','project-new','project','news-new','news-info','newsletters','event-new','event','docupload-new','docupload','companydocs-new','companydoc','management_report','add_management_report','investment_webpage'))) {?>
     // Initialize Quill editor
     let toolbarOptions = [
       ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -2540,11 +2698,12 @@ $(document).on('click', ".recordPayment", function() {
       //console.log($('#content').attr('value'));
       $('.addContent').attr('value', $('#content').attr('value'));
     });
-  <!--{/if}-->
-  <!--{if !empty($sitePage) and in_array($sitePage, array( 'blog', 'event','companydoc', 'project', 'news-info', 'event','management_report','investment_webpage'))}-->
-  $('#editcontent .ql-editor').html(`<!--{$content_stripe}-->`);
-  <!--{/if}-->
-  <!--{if !empty($sitePage) and in_array($sitePage, array('certupload'))}-->
+  <?php }?>
+  <?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('blog','event','companydoc','project','news-info','event','management_report','investment_webpage'))) {?>
+  $('#editcontent .ql-editor').html(`<?php echo $_smarty_tpl->tpl_vars['content_stripe']->value;?>
+`);
+  <?php }?>
+  <?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('certupload'))) {?>
     $(document).on('change', "#student", function() {
       let crsDetail=JSON.parse($("#student option:selected").attr('i').trim());
       $(".stdToken").text(`${crsDetail.token}`);
@@ -2553,13 +2712,16 @@ $(document).on('click', ".recordPayment", function() {
       var d = $("#reftoken").text();
       $("#token").val(d);
     });
-  <!--{/if}-->
+  <?php }?>
   
-  <!--{if !empty($sitePage) and in_array($sitePage, array('add_payment'))}-->
+  <?php if (!empty($_smarty_tpl->tpl_vars['sitePage']->value) && in_array($_smarty_tpl->tpl_vars['sitePage']->value,array('add_payment'))) {?>
     $(document).on('change keyup', "#project1", function() {
       let subDetail=JSON.parse($("#project1 option:selected").attr('i').trim());
       $("#serial").val(`${subDetail.email}`);
     });
-  <!--{/if}-->
-</script>
+  <?php }
+echo '</script'; ?>
+>
 
+<?php }
+}

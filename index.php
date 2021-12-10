@@ -54,7 +54,7 @@ if( file_exists("$site/$inc/$sitePage.php") ){
 require_once "$site/$include/default.php";
 // strictly for authentication
 require_once "$libraries/authenticate.php";
-// $smarty->debugging = true;//debug
+//$smarty->debugging = true;//debug
 $smarty->caching = false;
 $smarty->assign('Site', $Site)->assign('sitePage', $sitePage)->assign("thisURL",$thisURL);
 

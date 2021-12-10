@@ -23,17 +23,17 @@ $myGlobals = array(
     'getURI' => (isset($_GET['url'])? $_GET['url'] : null),
     'requestMethod'=> $_SERVER['REQUEST_METHOD'],
     'site'=>'site',
-    'domainName'=>'localhost/atobe',
-    'companyName'=> 'Atobe Property LTD',
-    'companyAddress' => 'KM 28 Opposite Eko Akete, Lekki - Epe Expressway, Ibeju Lekki , Lagos',
+    'domainName'=>'localhost/organization-management',
+    'companyName'=> 'OG-Manager',
+    'companyAddress' => 'Cloud Based',
     'media'=>'media',
     'inc'=>'inc',
-    'siteName'=>'Atobe',
+    'siteName'=>'OG-Manager',
     'templateFolder'=>'base',
     'dashboard'=>'dashboard',
     'admin'=>'root',
-    'baselinePath'=>"/home/schooztc/britproperty",
-    'dbName'=> 'atobe',
+    'baselinePath'=>"",
+    'dbName'=> 'organization_manager',
     'dbHost'=> 'localhost',
     'dbUser'=> 'root',
     'dbPass'=> '',
@@ -50,31 +50,7 @@ $myGlobals = array(
     'today'=> date('l'), 
     'emptyArray'=> array(),
     'membershipSub' => array(
-        "50" => array(
-            "name" => "student",
-            "text" => "Student or young professional (under 30) $50 Annually",
-            "amount" => 50
-        ),
-        "75" => array(
-            "name" => "adult",
-            "text" => "Adult or Professional (over 30) $75 Annually",
-            "amount" => 75
-        ),
-        "35" => array(
-            "name" => "senior",
-            "text" => "Seniors (65 or older) $35 Annually",
-            "amount" => 35
-        ),
-        "150" => array(
-            "name" => "family",
-            "text" => "Family (Two or more family members)  $150 Annually",
-            "amount" => 150
-        ),
-        "240" => array(
-            "name" => "business",
-            "text" => "Business Membership  $240 Annually",
-            "amount" => 240
-        )
+        
     ),
     
     'passwordAuth'=> array('0' => '@[A-Z]@', '1' => '@[0-9]@', '2' => '@[a-z]@', '3' => '@[^\w]@'), 
@@ -86,16 +62,15 @@ foreach ($myGlobals as $key => $value) {
 
 /*System Mail Addres Config*/
 $mailConfig= new stdClass;
-// $mailConfig->contact["email"]="info@$domainName";
-$mailConfig->developer["email"]="hoffenheimtech@gmail.com";
+$mailConfig->developer["email"]=" ";
 
-$mailConfig->contact["email"]="amajoyeogbe.hofftech@gmail.com";// amajoyeogbe.hofftech@gmail.com | info@dufferincountycba.org
-$mailConfig->contact["title"]="Conatact@$companyName";
+$mailConfig->contact["email"]=" ";
+$mailConfig->contact["title"]=" ";
 $mailConfig->contact["subject"]="";
 $mailConfig->contact["password"]="";
-$mailConfig->signup["email"]="amajoyeogbe.hofftech@gmail.com";// amajoyeogbe.hofftech@gmail.com | info@dunistech.ng
-$mailConfig->signup["title"]="Signup@$companyName";
-$mailConfig->instructor["email"]="amajoyeogbe.hofftech@gmail.com";// amajoyeogbe.hofftech@gmail.com | info@dufferincountycba.org
+$mailConfig->signup["email"]=" ";
+$mailConfig->signup["title"]="signup@$companyName";
+$mailConfig->instructor["email"]=" ";
 $mailConfig->instructor["title"]="Conatct Instructor@$companyName";
 $mailConfig->instructor["subject"]="";
 $mailConfig->instructor["password"]="";
@@ -107,15 +82,11 @@ $mailConfig->payment["email"]="payments@$domainName";
 $mailConfig->payment["title"]="Payments@$companyName";
 $mailConfig->payment["subject"]="$companyName";
 $mailConfig->payment["password"]="";
-$mailConfig->dropmsg["email"]="amajoyeogbe.hofftech@gmail.com";// amajoyeogbe.hofftech@gmail.com | info@dufferincountycba.org
+$mailConfig->dropmsg["email"]=" ";
 $mailConfig->dropmsg["title"]="Messaging@$companyName";
 $mailConfig->dropmsg["subject"]="Message Form $companyName";
-$mailConfig->auth["email"]="contact@ajahcity.com.ng";
-$mailConfig->auth["password"]="mB!5CeJru;bb";
-$mailConfig->jobs["email"]="jobs@$domainName";// 
-$mailConfig->jobs["title"]="$companyName Jobs@$companyName";
-$mailConfig->jobs["subject"]="Job Application Request";
-$mailConfig->jobs["password"]="";
+$mailConfig->auth["email"]=" ";
+$mailConfig->auth["password"]=" ";
 
 /*System Payment Key Config*/
 $paymentConfig= new stdClass;

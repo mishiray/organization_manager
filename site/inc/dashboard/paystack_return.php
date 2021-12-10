@@ -46,11 +46,9 @@ if (!empty($sessions->regToken) and !empty($userinfo)) {
 
 			    // log Payment 	id	transid1	regid	transid	token	paidby	amount	purpose	program-	transdate	gateway	status	proof-	refund	discount	status1
 			    $ezDb->query("INSERT INTO `payments` (`transid`, `transid1`, `token`, `purpose`, `amount`, `transdate`, `gateway`, `paidby`, `status1`, `status`, `discount`, `proof`) VALUES ('$sessions->regToken', '$transData->reference', '$sessions->ptoken', '$sessions->pslug', '$sessions->amount', '$dateNow', 'paystack', '$userinfo->email', '$transData->status', '$transData->status1', '$sessions->discount', '');");
-			    $ezDb->query("UPDATE `userprofile` SET `active`=1 WHERE `email`='$userinfo->email';")
+			    $ezDb->query("UPDATE `userprofile` SET `active`=1 WHERE `email`='$userinfo->email';");
 			    	// require_once 'enroll_paystack.php';
 			    	// require_once 'enroll_paystack.php';
-
-			    $fail='<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><h3>Success!</h3> <p class="border bg-white border-success px-2 py-1 rounded">Payment for '.ucwords($sessions->purpose).' successfully renewed</p></div>';
 
 			    $gets->id=$sessions->regToken;
 			    unset($Site["session"]['regToken']);

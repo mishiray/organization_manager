@@ -3,7 +3,6 @@
 $defaults= new stdClass;
 
 $whereClause = '';
-$defaults->not['project']=$ezDb->get_var("SELECT IFNULL(COUNT(`id`),0) FROM `projects`;");
 $defaults->not['members']=$ezDb->get_var("SELECT IFNULL(COUNT(`id`),0) FROM `userprofile` WHERE `usertype`='client' AND `verified`='1';");
 $smarty->assign("defaults", $defaults);
 
